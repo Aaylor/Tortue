@@ -1,20 +1,20 @@
 public class Main{
 
-    /**
-     *  Command line interface
-     *  @param args     The command line parameters.
-     */
 
     /**
-     *  Function to start the program
+     *  Fonction de lancement du programme
      */
     public static void start_program(){
 
     }
 
+    /**
+     *  Fonction main
+     *  @param args     Paramètres des lignes de commandes
+     */
     public static void main(String[] args){
 
-        /*  add here some function/variable before starting program     */
+        /*  Ajouter toutes variables/fonction à lancer avant le programme   */
 
         start_program();
 
