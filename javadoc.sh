@@ -1,5 +1,23 @@
 #!/bin/bash
 
+function do_javadoc(){
+
+    java_file=$1;
+    folder=`pwd`"/javadoc";
+
+    if [ ! -e $folder ]; then
+        mkdir $folder;
+    else
+        rm -r --force $folder"/*";
+    fi
+
+    cd $folder;
+    javadoc ../$java_file >> /tmp/log_javadoc.log;
+
+    echo 'Javadoc done with succes !';
+
+}
+
 if [ -z $1 ]; then
     echo 'Critical error : no arguments';
     exit 1;
@@ -19,21 +37,3 @@ do
     fi
 done
 
-
-function do_javadoc(){
-
-    java_file=$1;
-    folder=`pwd`"/javadoc";
-
-    if [ ! -e $folder ]; then
-        mkdir $folder;
-    else
-        rm -r --force $folder"/*";
-    fi
-
-    cd $folder;
-    javadoc ../$java_file >> /tmp/log_javadoc.log;
-
-    echo 'Javadoc done with succes !';
-
-}
