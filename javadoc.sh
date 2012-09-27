@@ -11,19 +11,21 @@ function do_javadoc(){
         rm -r --force $folder"/*";
     fi
 
-    cd $folder;
-    javadoc ../$java_file >> /tmp/log_javadoc.log;
+    javadoc -windowtitle 'Projet IK3 : Tortue 1' -footer '<i>Classes créees pour le projet Tortue 1, en IK3</i>' -version -charset 'UTF-8' -quiet -d $folder `pwd`"/src/"$java_file; 2> error.log
 
-    echo 'Javadoc done with succes !';
+    if [ -s error.log ]; then
+        cat error.log;
+    else
+        echo 'Javadoc done with succes !';
+    fi
+
+    rm error.log;
 
 }
 
 if [ -z $1 ]; then
     echo 'Critical error : no arguments';
     exit 1;
-elif [ ! -f $1 ]; then
-    echo 'Critical error : is not a file';
-    exit 2;
 fi
 
 java_file=$1
@@ -33,7 +35,7 @@ do
         do_javadoc $java_file;
     else
         echo 'Critical error : is not java file';
-        exit 3;
+        exit 2;
     fi
 done
 
