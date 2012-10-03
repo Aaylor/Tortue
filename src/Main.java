@@ -1,10 +1,18 @@
 public class Main{
 
+    /**
+     * Fonction d'initialisation du programme
+     */
+    public static void init()
+    {
+
+    }
 
     /**
      *  Fonction de lancement du programme
      */
-    public static void start_program(){
+    public static void start_program()
+    {
 
     }
 
@@ -12,10 +20,10 @@ public class Main{
      *  Fonction main
      *  @param args     Paramètres des lignes de commandes
      */
-    public static void main(String[] args){
+    public static void main(String[] args)
+    {
 
-        /*  Ajouter toutes variables/fonction à lancer avant le programme   */
-
+        init();
         start_program();
 
     }
