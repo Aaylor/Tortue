@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Commandes{
 
     private String commande;
+    private static ArrayList<Commandes> liste_de_commande = new ArrayList();
 
     /**
      *  Constructeur vide de l'objet Commandes.
@@ -20,6 +23,7 @@ public class Commandes{
     {
 
         this.commande = commande;
+        init();
 
     }
 
@@ -35,12 +39,129 @@ public class Commandes{
     }
 
     /**
+     *  Affiche la ArrayList
+     */
+    public static void afficheArrayList()
+    {
+
+        for (int i = 0; i < liste_de_commande.size(); i++)
+            System.out.println((liste_de_commande.get(i).getCommande()));
+
+    }
+
+    /**
+     *  Fonction qui traite le string
+     *  @return true si la fonction s'est bien déroulée.
+     */
+    public boolean init()
+    {
+
+        String[] commande_split = this.commande.split(" ");
+        switch ( commande_split[0] )
+        {
+            case "pendown":
+                pendown();
+                break;
+            case "penup":
+                penup();
+                break;
+            case "eraser":
+                eraser();
+                break;
+            case "up":
+                up();
+                break;
+            case "down":
+                down();
+                break;
+            case "left":
+                left();
+                break;
+            case "right":
+                right();
+                break;
+            case "rotate":
+                rotate();
+                break;
+            case "forward":
+                forward();
+                break;
+            case "backward":
+                backward();
+                break;
+            case "goto":
+                goTo();
+                break;
+            case "cursorwidth":
+                cursorwidth();
+                break;
+            case "setcolor":
+                setColor();
+                break;
+            case "setbackgroundcolor":
+                setBackgroundColor();
+                break;
+            case "do":
+                doFigure();
+                break;
+            case "width":
+                width();
+                break;
+            case "height":
+                height();
+                break;
+            case "new":
+                newFile();
+                break;
+            case "open":
+                open();
+                break;
+            case "save":
+                save();
+                break;
+            case "saveas":
+                saveas();
+                break;
+            case "savehistory":
+                savehistory();
+                break;
+            case "exec":
+                exec();
+                break;
+            case "repeat":
+                repeat();
+                break;
+            case "clear":
+                clear();
+                break;
+            case "help":
+                help();
+                break;
+            case "man":
+                man();
+                break;
+            default:
+                System.out.println("fonction n'existe pas");
+                return false;
+
+        }
+
+        System.out.println("fonction existe");
+        return true;
+
+    }
+
+
+
+
+    /**
      * Fonction qui permet l'écriture lorsque l'utilisateur se déplace
      * @return si la fonction s'est bien déroulée.
      */
     public boolean pendown()
     {
 
+        liste_de_commande.add(this);
         return true;
 
     }
@@ -52,6 +173,7 @@ public class Commandes{
     public boolean penup()
     {
 
+        liste_de_commande.add(this);
         return true;
 
     }
