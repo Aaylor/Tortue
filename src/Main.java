@@ -19,7 +19,7 @@ public class Main{
     /**
     * Fonction de vérification du fichier du configuration
     * Renvoie true si le fichier respecte les normes précisées dans la documentation
-    * Renvoie false dans le cas contraire, et affiche un message précisant que les parametre par défaut seront chargé
+    * Renvoie false dans le cas contraire, et affiche un message précisant que les parametre par défaut seront chargés
     */
     
     public static boolean verifFichierConfig(){
