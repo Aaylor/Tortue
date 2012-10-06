@@ -21,7 +21,9 @@ public class Main{
     * @return true si le fichier respecte les normes précisées dans la documentation
     */
     public static boolean verifFichierConfig(){
-    
+   
+        return true;
+
     }
     
     /**
