@@ -13,13 +13,13 @@ public class Main{
      */
     public static void start_program()
     {
-
+    	Fenetre fenetre = new Fenetre();
     }
 
     /**
-    * Fonction de vÃ©rification du fichier du configuration
-    * Renvoie true si le fichier respecte les normes prÃ©cisÃ©es dans la documentation
-    * Renvoie false dans le cas contraire, et affiche un message prÃ©cisant que les parametre par dÃ©faut seront chargÃ©s
+    * Fonction de vérification du fichier du configuration
+    * Renvoie true si le fichier respecte les normes précisées dans la documentation
+    * Renvoie false dans le cas contraire, et affiche un message précisant que les parametre par défaut seront chargés
     */
     
     public static boolean verifFichierConfig(){
@@ -28,7 +28,7 @@ public class Main{
     
     /**
      *  Fonction main
-     *  @param args     ParamÃ¨tres des lignes de commandes
+     *  @param args     Paramètres des lignes de commandes
      */
     public static void main(String[] args)
     {
