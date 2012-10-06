@@ -5,6 +5,6 @@ public class Terminal extends JPanel {
 
 	
 	Terminal(){
-		this.setBackground(Color.WHITE);//TEMPORAIRE, juste pour le positionnement
+		this.setBackground(Color.BLUE);//TEMPORAIRE, juste pour le positionnement
 	}
 }
