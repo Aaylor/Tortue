@@ -5,7 +5,7 @@ public class ZoneDessin extends JPanel {
 
 	
 	ZoneDessin(){
-		this.setBackground(Color.BLUE);//TEMPORAIRE, juste pour le positionnement
+		this.setBackground(Color.WHITE);//TEMPORAIRE, juste pour le positionnement
 		
 	}
 }
