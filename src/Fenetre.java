@@ -3,7 +3,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 
 public class Fenetre extends JFrame{
-	JPanel conteneur = new JPanel(); //JPanel qui va contenir l'ensemble des éléments du programe
+	JPanel conteneur = new JPanel(); //JPanel qui va contenir l'ensemble des ï¿½lï¿½ments du programe
 	Terminal terminal = new Terminal();
 	ZoneDessin zoneDessin = new ZoneDessin();
 	ZoneBouton zoneBouton = new ZoneBouton();
@@ -15,7 +15,7 @@ public class Fenetre extends JFrame{
 		this.setVisible(true);
 		
 		//Positionnement des sous fenetres
-		this.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());//TEMPORAIRE, juste pour se faire une idÃ©e du positionnement
 		this.getContentPane().add(terminal, BorderLayout.EAST);
 		this.getContentPane().add(zoneDessin, BorderLayout.CENTER);
 		
