@@ -1,27 +1,29 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
+import javax.swing.Box;
 
 public class Fenetre extends JFrame{
-	
-    JPanel conteneur = new JPanel(); //JPanel qui va contenir l'ensemble des ï¿½lï¿½ments du programe
+	JPanel conteneurPrincipal = new JPanel(); //JPanel qui va contenir l'ensemble des éléments du programe
+	JPanel conteneurVertical = new JPanel();
 	Terminal terminal = new Terminal();
 	ZoneDessin zoneDessin = new ZoneDessin();
 	ZoneBouton zoneBouton = new ZoneBouton();
 
-	/**
-     *  Constructeur vide
-     */
-    Fenetre(){
+	Fenetre(){
 		this.setTitle("Carapuce");
 		this.setSize(1024, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		
 		//Positionnement des sous fenetres
-		this.setLayout(new BorderLayout());//TEMPORAIRE, juste pour se faire une idÃ©e du positionnement
-		this.getContentPane().add(terminal, BorderLayout.EAST);
-		this.getContentPane().add(zoneDessin, BorderLayout.CENTER);
+		Box voletVertical = Box.createVerticalBox();
+		voletVertical.add(zoneBouton);
+		voletVertical.add(terminal);
+		Box voletHorizontal = Box.createHorizontalBox();
+		voletHorizontal.add(zoneDessin);
+		voletHorizontal.add(voletVertical);
+		
+		this.getContentPane().add(voletHorizontal);
 		
 	}
 }
