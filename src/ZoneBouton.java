@@ -3,7 +3,10 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 
 public class ZoneBouton extends JPanel {
-	
+
+    /**
+     *  Constructeur de la zone de bouton
+     */
 	ZoneBouton(){
 		this.setLayout(new GridLayout(2,2));
 		

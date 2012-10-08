@@ -9,6 +9,9 @@ public class Fenetre extends JFrame{
 	ZoneDessin zoneDessin = new ZoneDessin();
 	ZoneBouton zoneBouton = new ZoneBouton();
 
+    /**
+     *  Constructeur de la fenêtre
+     */
 	Fenetre(){
 		this.setTitle("Carapuce");
 		this.setSize(1024, 600);
