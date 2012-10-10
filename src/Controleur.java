@@ -1,63 +1,59 @@
 import java.util.ArrayList;
 
-public class Commandes{
+public class Controleur{
 
-    private String commande;
-    private static ArrayList<Commandes> liste_de_commande = new ArrayList();
+    static ArrayList<String> liste_de_commande = new ArrayList<String>();
 
     /**
-     *  Constructeur vide de l'objet Commandes.
+     *  Fonction qui permet de contrôler le commande entrée par l'utilisateur
+     *  @param Commande entrée par l'utilisateur
+     *  @return Si la fonction s'est correctement déroulée
      */
-    public Commandes()
+    public static boolean controleur(String s)
     {
+
+	String[] commande_parser;
+
+	if ( s.equals("") )
+	    return false;
+	else
+	    {
+		commande_parser = parse(s);
+
+		if ( init(commande_parser) )
+		    {
+			liste_de_commande.add(s);
+			return true;
+		    }
+		else
+		    return false;
+	    }
+
+    }
+
+    /**
+     *  Fonction qui parse la chaîne de commande
+     *  @param Commande entrée par l'utilisateur
+     *  @return Tableau comportant la commande et ses arguments ( si besoins )
+     */
+    public static String[] parse(String s)
+    {
+
+	s = s.toLowerCase();
+	return s.split(" ");
     
-        this( new String("") );
-
     }
-
-   /**
-    *   Constructeur de l'objet Commande. 
-    *   @param commande string de la commande entrée par l'utilisateur.
-    */
-    public Commandes(String commande)
-    {
-
-        this.commande = commande;
-        init();
-
-    }
-
-   /**
-    *   Accesseur
-    *   @return commande
-    */
-    public String getCommande()
-    {
-
-        return this.commande;
-
-    }
-
-    /**
-     *  Affiche la ArrayList
-     */
-    public static void afficheArrayList()
-    {
-
-        for (int i = 0; i < liste_de_commande.size(); i++)
-            System.out.println((liste_de_commande.get(i).getCommande()));
-
-    }
+    
 
     /**
      *  Fonction qui traite le string
+     *  @param Tableau contenant le nom de la commande ainsi que ses arguments
      *  @return true si la fonction s'est bien déroulée.
      */
-    public boolean init()
+    public boolean init(String[] commande_parser)
     {
 
-        String[] commande_split = this.commande.split(" ");
-        switch ( commande_split[0] )
+        switch ( commande_parser[0] )
         {
             case "pendown":
                 pendown();
@@ -161,7 +157,6 @@ public class Commandes{
     public boolean pendown()
     {
 
-        liste_de_commande.add(this);
         return true;
 
     }
@@ -173,7 +168,6 @@ public class Commandes{
     public boolean penup()
     {
 
-        liste_de_commande.add(this);
         return true;
 
     }
