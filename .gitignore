@@ -1,4 +1,51 @@
-.class
-.swp
-bin/*
+########################
+#   Compiled source    #
+########################
+*.class
+*.exe
+*.o
+*.out
+
+
+###############
+#   Package   #
+###############
+*.7z
+*.tar*
+*.gz*
+*.jar
+*.iso
+*.rar
+*.tar*
+*.zip
+
+
+#########################
+#   Logs & Docs files   #
+#########################
+*.doc
+*.txt
+*.rtf
+
+
+##############
+#   Folder   #
+##############
+.classpath
+.project
+.setting
+build/*
 javadoc/*
+bin/*
+
+#######################
+#   Temporary files   #
+#######################
+*~
+*.swp
+
+
+#################
+#   SVN files   #
+#################
+.svn*
