@@ -50,7 +50,7 @@ public class Controleur{
      *  @param Tableau contenant le nom de la commande ainsi que ses arguments
      *  @return true si la fonction s'est bien déroulée.
      */
-    public boolean init(String[] commande_parser)
+    public static boolean init(String[] commande_parser)
     {
 
         switch ( commande_parser[0] )
@@ -154,7 +154,7 @@ public class Controleur{
      * Fonction qui permet l'écriture lorsque l'utilisateur se déplace
      * @return si la fonction s'est bien déroulée.
      */
-    public boolean pendown()
+    public static boolean pendown()
     {
 
         return true;
@@ -165,7 +165,7 @@ public class Controleur{
      * Fonction qui permet d'arrêter l'écriture lorsque l'utilisateur se déplace
      * @return si la fonction s'est bien déroulée.
      */
-    public boolean penup()
+    public static boolean penup()
     {
 
         return true;
@@ -176,7 +176,7 @@ public class Controleur{
      * Fonction qui permet de passer en mode gomme
      * @return si la fonction s'est bien déroulée.
      */
-    public boolean eraser()
+    public static boolean eraser()
     {
 
         return true;
@@ -187,7 +187,7 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers le haut
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean up()
+    public static boolean up()
     {
 
         return true;
@@ -198,7 +198,7 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers le bas
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean down()
+    public static boolean down()
     {
 
         return true;
@@ -209,7 +209,7 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers la gauche
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean left()
+    public static boolean left()
     {
 
         return true;
@@ -220,7 +220,7 @@ public class Controleur{
      * Fonction qui permet de placer le pointeur vers la droite
      * @return si la fonction s'est bien déroulée.
      */
-    public boolean right()
+    public static boolean right()
     {
 
         return true;
@@ -231,7 +231,7 @@ public class Controleur{
      *  Fonction qui permet de faire une rotation sur le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean rotate()
+    public static boolean rotate()
     {
 
         return true;
@@ -242,7 +242,7 @@ public class Controleur{
      *  Fonction qui permet de faire avancer le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean forward()
+    public static boolean forward()
     {
 
         return true;
@@ -253,7 +253,7 @@ public class Controleur{
      *  Fonction qui permet de faire reculer le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean backward()
+    public static boolean backward()
     {
 
         return true;
@@ -264,7 +264,7 @@ public class Controleur{
      *  Fonction qui permet de déplacer le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean goTo()
+    public static boolean goTo()
     {
     
         return true;
@@ -275,7 +275,7 @@ public class Controleur{
      *  Fonction qui permet de régler la largeur du curseur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean cursorwidth()
+    public static boolean cursorwidth()
     {
 
         return true;
@@ -286,7 +286,7 @@ public class Controleur{
      *  Fonction qui permet de changer la couleur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean setColor()
+    public static boolean setColor()
     {
 
         return true;
@@ -297,7 +297,7 @@ public class Controleur{
      *  Fonction qui permet de changer la couleur du fond d'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean setBackgroundColor()
+    public static boolean setBackgroundColor()
     {
 
         return true;
@@ -308,7 +308,7 @@ public class Controleur{
      *  Fonction qui permet de tracer des figures particulières
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean doFigure()
+    public static boolean doFigure()
     {
 
         return true;
@@ -319,7 +319,7 @@ public class Controleur{
      *  Fonction qui permet de changer la largeur de l'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean width()
+    public static boolean width()
     {
 
         return true;
@@ -330,7 +330,7 @@ public class Controleur{
      *  Fonction qui permet de changer la hauteur de l'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean height()
+    public static boolean height()
     {
 
         return true;
@@ -341,7 +341,7 @@ public class Controleur{
      *  Fonction qui permet de créer un nouveau document
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean newFile()
+    public static boolean newFile()
     {
 
         return true;
@@ -352,7 +352,7 @@ public class Controleur{
      *  Fonction qui permet d'ouvrir une image
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean open()
+    public static boolean open()
     {
 
         return true;
@@ -363,7 +363,7 @@ public class Controleur{
      *  Fonction qui permet de sauvegarder un document en une image
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean save()
+    public static boolean save()
     {
 
         return true;
@@ -374,7 +374,7 @@ public class Controleur{
      *  Fonction qui sauvegarde dans un dossier donner par l'utilisateur
      *  @return si la fonction s'est bien déroulée
      */
-    public boolean saveas()
+    public static boolean saveas()
     {
 
         return true;
@@ -385,7 +385,7 @@ public class Controleur{
      *  Fonction qui sauvegarde l'historique dans un format .txt
      *  @return si la fonction s'est bien déroulée
      */
-    public boolean savehistory()
+    public static boolean savehistory()
     {
 
         return true;
@@ -396,7 +396,7 @@ public class Controleur{
      *  Fonction qui lit un fichier et execute les lignes de commandes si celles-ci sont correctes
      *  @return si la fonction s'est bien déroulée
      */
-    public boolean exec()
+    public static boolean exec()
     {
 
         return true;
@@ -407,7 +407,7 @@ public class Controleur{
      *  Fonction qui répète les dernières commandes lancés par l'utilisateur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean repeat()
+    public static boolean repeat()
     {
 
         return true;
@@ -418,7 +418,7 @@ public class Controleur{
      *  Fonction qui efface l'écran de dessin
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean clear()
+    public static boolean clear()
     {
 
         return true;
@@ -429,7 +429,7 @@ public class Controleur{
      *  Fonction qui affiche une fenêtre avec la liste des commandes
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean help()
+    public static boolean help()
     {
 
         return true;
@@ -440,7 +440,7 @@ public class Controleur{
      *  Fonction qui affiche le manuel de la commande
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean man()
+    public static boolean man()
     {
 
         return true;

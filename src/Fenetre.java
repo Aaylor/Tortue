@@ -3,14 +3,14 @@ import javax.swing.JPanel;
 import javax.swing.Box;
 
 public class Fenetre extends JFrame{
-	JPanel conteneurPrincipal = new JPanel(); //JPanel qui va contenir l'ensemble des éléments du programe
+	JPanel conteneurPrincipal = new JPanel(); //JPanel qui va contenir l'ensemble des elements du programe
 	JPanel conteneurVertical = new JPanel();
 	Terminal terminal = new Terminal();
 	ZoneDessin zoneDessin = new ZoneDessin();
 	ZoneBouton zoneBouton = new ZoneBouton();
 
     /**
-     *  Constructeur de la fenêtre
+     *  Constructeur de la fenetre
      */
 	Fenetre(){
 		this.setTitle("Carapuce");

@@ -17,8 +17,8 @@ public class Main{
     }
 
     /**
-    * Fonction de vérification du fichier du configuration
-    * @return true si le fichier respecte les normes précisées dans la documentation
+    * Fonction de verification du fichier du configuration
+    * @return true si le fichier respecte les normes precisees dans la documentation
     */
     public static boolean verifFichierConfig(){
    
@@ -28,7 +28,7 @@ public class Main{
     
     /**
      *  Fonction main
-     *  @param args     Paramètres des lignes de commandes
+     *  @param args     Parametres des lignes de commandes
      */
     public static void main(String[] args)
     {

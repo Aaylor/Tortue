@@ -2,8 +2,8 @@ import java.awt.Color;
 
 public class Curseur {
 
-    private static int x, y; //Coordonn�es du curseur
-	private static int orientation; //Orientation du curseur en degr� (de 0 � 360);
+    private static int x, y; //Coordonnees du curseur
+	private static int orientation; //Orientation du curseur en degre (de 0 � 360);
 	private static short type; //Il s'agit du mat�riel du curseur (0 = curseur, 1 = Gomme);
 	private static Color couleur;
 	
