@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Color; //TEMPORAIRE, juste pour le positionnement
 import java.awt.event.*;
 
-public class Terminal extends JPanel {
+public class Terminal extends JPanel implements KeyListener{
 
     private JTextField champ_de_commande;
     private Controleur controleur;
@@ -18,32 +18,43 @@ public class Terminal extends JPanel {
 		this.setBackground(Color.BLACK);//TEMPORAIRE, juste pour le positionnement
         addTerminal();
         this.add(this.champ_de_commande);
-
-        KeyListener keyListener = new KeyListener(){
-            public void keyPressed(KeyEvent keyEvent) 
-            {
-                if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
-                {
-                    controleur.commande("pendown");
-                    controleur.commande("penup");
-                    controleur.commande("trolol");
-                    controleur.commande("FUNCTION_DEBUG_TEST");
-                }
-            }
-
-            public void keyReleased(KeyEvent keyEvent) 
-            {
-            }
-
-            public void keyTyped(KeyEvent keyEvent) 
-            {
-            }
-
-        };
-        this.champ_de_commande.addKeyListener(keyListener);
+        this.champ_de_commande.addKeyListener(this);
 
     }
 
+    /**
+     *  Evenement lors de la pression des touches
+     *  @param keyEvent
+     */
+    public void keyPressed(KeyEvent keyEvent)
+    {
+        if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            controleur.commande(this.champ_de_commande.getText());
+        }
+    }
+
+    /**
+     *  (IGNORE)
+     *  @param keyEvent
+     */
+    public void keyReleased(KeyEvent keyEvent)
+    {
+        /*  IGNORE  */
+    }
+
+    /**
+     *  (IGNORE)
+     *  @param keyEvent
+     */
+    public void keyTyped(KeyEvent keyEvent)
+    {
+        /*  IGNORE  */
+    }
+
+    /**
+     *  Ajoute le terminal, et ajoute les valeurs par défaut
+     */
     private void addTerminal()
     {
 

@@ -7,11 +7,9 @@ function do_javadoc(){
 
     if [ ! -e $folder ]; then
         mkdir $folder;
-    else
-        rm -r --force $folder"/*";
     fi
 
-    javadoc -windowtitle 'Projet IK3 : Tortue 1' -footer '<i>Classes créees pour le projet Tortue 1, en IK3</i>' -charset 'UTF-8' -quiet -d $folder `pwd`"/src/"$java_file; 2> error.log
+    javadoc -charset 'UTF-8' -quiet -d $folder `pwd`"/src/"$java_file; 2> error.log
 
     if [ -s error.log ]; then
         cat error.log;

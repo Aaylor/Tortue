@@ -9,6 +9,9 @@ public class Controleur{
     Curseur curseur = null;
 
 
+    /**
+     *  Constructeur vide
+     */
     public Controleur(){};
 
     /**
