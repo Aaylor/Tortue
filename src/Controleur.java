@@ -42,7 +42,6 @@ public class Controleur{
     {
 
 	    String[] commande_parser;
-        System.out.println("jambon");
 
 	    if ( s.equals("") )
 	        return false;
@@ -50,7 +49,7 @@ public class Controleur{
         else
 	    {
 		    commande_parser = parse(s);
-/*
+
 		    if ( init(commande_parser) )
 		    {
 		
@@ -58,7 +57,7 @@ public class Controleur{
 			    return true;
 		
             }
-*/		
+		
 	        return false;
 
         }
@@ -170,6 +169,9 @@ public class Controleur{
             case "man":
                 man();
                 break;
+            case "function_debug_test":
+                function_debug_test();
+                break;
             default:
                 System.out.println("fonction n'existe pas");
                 return false;
@@ -191,6 +193,7 @@ public class Controleur{
     public boolean pendown()
     {
 
+        System.out.println("pendown done");
         return true;
 
     }
@@ -478,6 +481,14 @@ public class Controleur{
     {
 
         return true;
+
+    }
+
+    public void function_debug_test()
+    {
+
+        for (int i = 0; i < liste_de_commande.size(); i++)
+            System.out.println(liste_de_commande.get(i));
 
     }
 

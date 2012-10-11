@@ -18,7 +18,30 @@ public class Terminal extends JPanel {
 		this.setBackground(Color.BLACK);//TEMPORAIRE, juste pour le positionnement
         addTerminal();
         this.add(this.champ_de_commande);
-    
+
+        KeyListener keyListener = new KeyListener(){
+            public void keyPressed(KeyEvent keyEvent) 
+            {
+                if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
+                {
+                    controleur.commande("pendown");
+                    controleur.commande("penup");
+                    controleur.commande("trolol");
+                    controleur.commande("FUNCTION_DEBUG_TEST");
+                }
+            }
+
+            public void keyReleased(KeyEvent keyEvent) 
+            {
+            }
+
+            public void keyTyped(KeyEvent keyEvent) 
+            {
+            }
+
+        };
+        this.champ_de_commande.addKeyListener(keyListener);
+
     }
 
     private void addTerminal()
@@ -41,29 +64,4 @@ public class Terminal extends JPanel {
     {
         this.controleur = c;
     }
-}
-
-public class TerminalKeyListener extends KeyListener{
-
-    String commande;
-
-    public TerminalKeyListener(String s)
-    {
-        this.commande = s;
-    }
-
-    public void keyPressed(KeyEvent keyEvent) 
-    {
-        if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
-            controleur.commande(commande);
-    }
-
-    public void keyReleased(KeyEvent keyEvent) 
-    {
-    }
-
-    public void keyTyped(KeyEvent keyEvent) 
-    {
-    }
-
 }
