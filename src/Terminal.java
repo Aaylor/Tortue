@@ -21,7 +21,12 @@ public class Terminal extends JPanel {
     {
 
         this.champ_de_commande = new JTextField(50);
-        this.champ_de_commande.setSize(new Dimension(this.getSize()));
+        this.champ_de_commande.setBackground(Color.black);
+        this.champ_de_commande.setForeground(Color.white);
+        this.champ_de_commande.setPreferredSize(new Dimension(this.getWidth(), 20));
+        this.champ_de_commande.setFocusable(true);
+        this.champ_de_commande.setEnabled(true);
+        this.champ_de_commande.setVisible(true);
 
     }
 }
