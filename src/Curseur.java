@@ -6,7 +6,8 @@ public class Curseur {
 	private static int orientation; //Orientation du curseur en degre (de 0 � 360);
 	private static short type; //Il s'agit du mat�riel du curseur (0 = curseur, 1 = Gomme);
 	private static Color couleur;
-	
+    private Controleur controleur;
+
     /**
      *  Constructeur vide
      */
@@ -98,6 +99,15 @@ public class Curseur {
 	void setCouleur(Color c){
 		couleur = c;
 	}
+
+    /**
+     *  Modifieur du controleur
+     *  @param c nouveau controleur
+     */
+    void setControleur(Controleur c)
+    {
+        this.controleur = c;
+    }
 	
 	//////////METHODES
 

@@ -13,7 +13,12 @@ public class Main{
      */
     public static void start_program()
     {
+
     	Fenetre fenetre = new Fenetre();
+        Curseur curseur = new Curseur();
+        Controleur c = new Controleur();
+        c.___hydrate___(fenetre, curseur);
+
     }
 
     /**

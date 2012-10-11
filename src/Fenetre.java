@@ -29,4 +29,33 @@ public class Fenetre extends JFrame{
 		this.getContentPane().add(voletHorizontal);
 		
 	}
+
+    /**
+     *  Retourne le terminal associé à la fenêtre
+     *  @return retourne le terminal
+     */
+    public Terminal getTerminal()
+    {
+        return this.terminal;
+    }
+
+    /**
+     *  Retourne la zone de dessin associé à la fenêtre
+     *  @return retourne la zone de dessin
+     */
+    public ZoneDessin getZoneDessin()
+    {
+        return this.zoneDessin;
+    }
+
+    /**
+     *  Retourne la zone de bouton associté à la fenêtre
+     *  @return retourne la zone de bouton
+     */
+    public ZoneBouton getZoneBouton()
+    {
+        return this.zoneBouton;
+    }
+
+
 }

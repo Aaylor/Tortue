@@ -4,6 +4,9 @@ import java.awt.GridLayout;
 
 public class ZoneBouton extends JPanel {
 
+    private Controleur controleur;
+
+
     /**
      *  Constructeur de la zone de bouton
      */
@@ -15,4 +18,15 @@ public class ZoneBouton extends JPanel {
 		this.add(new JButton("test3"));
 		this.add(new JButton("test4"));
 	}
+
+    /**
+     *  Modifieur du controleur
+     *  @param c nouveau controleur
+     */
+    public void setControleur(Controleur c)
+    {
+        this.controleur = c;
+    }   
+    
+
 }
