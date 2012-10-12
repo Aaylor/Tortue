@@ -31,6 +31,7 @@ public class Terminal extends JPanel implements KeyListener{
         if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
         {
             controleur.commande(this.champ_de_commande.getText());
+            this.champ_de_commande.setText("");
         }
     }
 
@@ -61,7 +62,8 @@ public class Terminal extends JPanel implements KeyListener{
         this.champ_de_commande = new JTextField(50);
         this.champ_de_commande.setBackground(Color.black);
         this.champ_de_commande.setForeground(Color.white);
-        this.champ_de_commande.setPreferredSize(new Dimension(this.getWidth(), 20));
+        this.champ_de_commande.setSize( this.getWidth(), 20 );
+        //this.champ_de_commande.setAlignmentY( 1024f );
         this.champ_de_commande.setFocusable(true);
         this.champ_de_commande.requestFocus();
 
