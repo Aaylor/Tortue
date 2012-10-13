@@ -9,7 +9,8 @@ public class ZoneDessin extends JPanel {
      *  Constructeur de la zone de dessin
      */
 	ZoneDessin(){
-		this.setBackground(Color.WHITE);//TEMPORAIRE, juste pour le positionnement
+		
+        this.setBackground(Color.WHITE);//TEMPORAIRE, juste pour le positionnement
 		
 	}
 
