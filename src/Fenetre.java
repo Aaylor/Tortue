@@ -1,5 +1,5 @@
-﻿import javax.swing.*;
-import java.awt.*;
+﻿import java.awt.*;
+import javax.swing.*;
 
 public class Fenetre extends JFrame{
 	JPanel conteneurPrincipal = new JPanel(); //JPanel qui va contenir l'ensemble des elements du programe
