@@ -1,6 +1,7 @@
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.BorderLayout;
 
 public class ZoneBouton extends JPanel {
 
@@ -11,12 +12,17 @@ public class ZoneBouton extends JPanel {
      *  Constructeur de la zone de bouton
      */
 	ZoneBouton(){
-		this.setLayout(new GridLayout(2,2));
 		
-		this.add(new JButton("test1"));
-		this.add(new JButton("test2"));
-		this.add(new JButton("test3"));
-		this.add(new JButton("test4"));
+		
+        this.setLayout(new BorderLayout());
+	    JPanel grid_button = new JPanel();
+        grid_button.setLayout(new GridLayout());
+        this.add(grid_button);
+
+        grid_button.add(new JButton("test1"));
+		grid_button.add(new JButton("test2"));
+		grid_button.add(new JButton("test3"));
+		grid_button.add(new JButton("test4"));
 	}
 
     /**

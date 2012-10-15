@@ -3,6 +3,7 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Color; //TEMPORAIRE, juste pour le positionnement
+import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -23,8 +24,9 @@ public class Terminal extends JPanel implements KeyListener{
 
 		this.setBackground(Color.BLACK);//TEMPORAIRE, juste pour le positionnement
         addTerminal();
-        this.add(this.champ_de_commande);
-        this.add(this.histo);
+        this.setLayout(new BorderLayout());
+        this.add(this.champ_de_commande, BorderLayout.SOUTH);
+        this.add(this.histo, BorderLayout.CENTER);
         this.champ_de_commande.addKeyListener(this);
 
     }
