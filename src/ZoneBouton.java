@@ -13,10 +13,6 @@ public class ZoneBouton extends JPanel {
      */
 	ZoneBouton(){
 		
-<<<<<<< HEAD
-=======
-		
->>>>>>> parent of 12512f2... ajout fonctions
         this.setLayout(new BorderLayout());
 	    JPanel grid_button = new JPanel();
         grid_button.setLayout(new GridLayout(2,2));
@@ -26,13 +22,8 @@ public class ZoneBouton extends JPanel {
 		grid_button.add(new JButton("test2"));
 		grid_button.add(new JButton("test3"));
 		grid_button.add(new JButton("test4"));
-<<<<<<< HEAD
 	
     }
-=======
-	}
->>>>>>> parent of 12512f2... ajout fonctions
-
     /**
      *  Modifieur du controleur
      *  @param c nouveau controleur

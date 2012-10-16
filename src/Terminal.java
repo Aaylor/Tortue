@@ -1,6 +1,4 @@
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.Color; //TEMPORAIRE, juste pour le positionnement
 import java.awt.BorderLayout;
@@ -11,6 +9,7 @@ public class Terminal extends JPanel implements KeyListener{
 
     //private static ArrayList<JTextArea> affichage_historique = new ArrayList<JTextArea>();
     private static JTextArea histo = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !");
+    private static JScrollPane pane = new JScrollPane(histo, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     private static ArrayList<String> all_cmd = new ArrayList<String>();
     private int compteur_commandes = -1;
     private JTextField champ_de_commande;
@@ -25,8 +24,10 @@ public class Terminal extends JPanel implements KeyListener{
 		this.setBackground(Color.BLACK);//TEMPORAIRE, juste pour le positionnement
         addTerminal();
         this.setLayout(new BorderLayout());
+        
         this.add(this.champ_de_commande, BorderLayout.SOUTH);
-        this.add(this.histo, BorderLayout.CENTER);
+        this.add(this.pane, BorderLayout.CENTER);
+        
         this.champ_de_commande.addKeyListener(this);
 
     }
@@ -38,10 +39,12 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public void keyPressed(KeyEvent keyEvent)
     {
-        if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
+        if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER
+                && !this.champ_de_commande.getText().equals(""))
         {
             controleur.commande(this.champ_de_commande.getText());
             this.histo.append("\n"+this.champ_de_commande.getText());
+            this.histo.setCaretPosition(this.histo.getDocument().getLength());
             this.all_cmd.add(this.champ_de_commande.getText());
             
             /*

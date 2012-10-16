@@ -230,7 +230,7 @@ public class Controleur{
     public boolean up()
     {
     	this.curseur.setOrientation(90);
-    	/*il reste à faire une rotation de l'image du curseur*/
+    	/*il reste a faire une rotation de l'image du curseur*/
         return true;
 
     }
@@ -242,7 +242,7 @@ public class Controleur{
     public boolean down()
     {
     	this.curseur.setOrientation(270);
-    	/*il reste à faire une rotation de l'image du curseur*/
+    	/*il reste a faire une rotation de l'image du curseur*/
         return true;
 
     }
@@ -254,7 +254,7 @@ public class Controleur{
     public boolean left()
     {
     	this.curseur.setOrientation(180);
-    	/*il reste à faire une rotation de l'image du curseur*/
+    	/*il reste a faire une rotation de l'image du curseur*/
         return true;
 
     }
@@ -266,7 +266,7 @@ public class Controleur{
     public boolean right()
     {
     	this.curseur.setOrientation(0);
-    	/*il reste à faire une rotation de l'image du curseur*/
+    	/*il reste a faire une rotation de l'image du curseur*/
         return true;
 
     }
@@ -277,7 +277,7 @@ public class Controleur{
      */
     public boolean rotate(String[] commande_parser)
     {
-    	/*on compte le nombre d'elts présent dans le tableau*/
+    	/*on compte le nombre d'elts present dans le tableau*/
     	if(commande_parser.length==2){
     		
     		String arg_deg=commande_parser[1];
@@ -289,12 +289,12 @@ public class Controleur{
     		}
     		else{
     			/*ce n'est pas un int : message d'erreur*/
-    			System.out.println("Le paramètre passé dans la commande n'est pas un int.");
+    			System.out.println("Le parametre passe dans la commande n'est pas un int.");
     		}
     	}
     	else{
-    		/*mauvais arguments passés dans le terminal*/
-    		System.out.println("Vous devez passer en paramètre 1 argument de type int.");
+    		/*mauvais arguments passes dans le terminal*/
+    		System.out.println("Vous devez passer en parametre 1 argument de type int.");
     	}
         return true;
 
@@ -517,7 +517,7 @@ public class Controleur{
 
     }
     
-    /*cette fonction teste si une chaine de caractère est un int ou pas*/
+    /*cette fonction teste si une chaine de caractere est un int ou pas*/
     public boolean isInt(String s){
     	boolean isAnInt=true;
     	try{
