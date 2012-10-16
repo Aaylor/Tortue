@@ -3,7 +3,6 @@ import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Color; //TEMPORAIRE, juste pour le positionnement
-import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -24,9 +23,8 @@ public class Terminal extends JPanel implements KeyListener{
 
 		this.setBackground(Color.BLACK);//TEMPORAIRE, juste pour le positionnement
         addTerminal();
-        this.setLayout(new BorderLayout());
-        this.add(this.champ_de_commande, BorderLayout.SOUTH);
-        this.add(this.histo, BorderLayout.CENTER);
+        this.add(this.champ_de_commande);
+        this.add(this.histo);
         this.champ_de_commande.addKeyListener(this);
 
     }
@@ -61,7 +59,6 @@ public class Terminal extends JPanel implements KeyListener{
             if ( compteur_commandes - 1 >= 0 )
             {
                 compteur_commandes--;
-                System.out.println(" UP :: " + compteur_commandes);
                 this.champ_de_commande.setText(all_cmd.get(compteur_commandes));
             }        
             
@@ -70,11 +67,10 @@ public class Terminal extends JPanel implements KeyListener{
         else if ( keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
         {
 
-            if ( compteur_commandes + 1 < all_cmd.size() )
+            if ( compteur_commandes + 1 <= all_cmd.size() )
             {
                 compteur_commandes++;
-                System.out.println(" DOWN :: " + compteur_commandes);
-                this.champ_de_commande.setText(all_cmd.get(compteur_commandes));
+                this.champ_de_commande.setText(all_cmd.get(compteur_commandes-1));
             }
 
         }
