@@ -113,7 +113,7 @@ public class Controleur{
                 right();
                 break;
             case "rotate":
-                rotate();
+                rotate(commande_parser);
                 break;
             case "forward":
                 forward();
@@ -229,7 +229,8 @@ public class Controleur{
      */
     public boolean up()
     {
-
+    	this.curseur.setOrientation(90);
+    	/*il reste à faire une rotation de l'image du curseur*/
         return true;
 
     }
@@ -240,7 +241,8 @@ public class Controleur{
      */
     public boolean down()
     {
-
+    	this.curseur.setOrientation(270);
+    	/*il reste à faire une rotation de l'image du curseur*/
         return true;
 
     }
@@ -251,7 +253,8 @@ public class Controleur{
      */
     public boolean left()
     {
-
+    	this.curseur.setOrientation(180);
+    	/*il reste à faire une rotation de l'image du curseur*/
         return true;
 
     }
@@ -262,7 +265,8 @@ public class Controleur{
      */
     public boolean right()
     {
-
+    	this.curseur.setOrientation(0);
+    	/*il reste à faire une rotation de l'image du curseur*/
         return true;
 
     }
@@ -271,9 +275,27 @@ public class Controleur{
      *  Fonction qui permet de faire une rotation sur le pointeur
      *  @return si la fonction s'est bien dÃ©roulÃ©e.
      */
-    public boolean rotate()
+    public boolean rotate(String[] commande_parser)
     {
-
+    	/*on compte le nombre d'elts présent dans le tableau*/
+    	if(commande_parser.length==2){
+    		
+    		String arg_deg=commande_parser[1];
+    		int degre;
+    		
+    		if(isInt(arg_deg)){
+    			degre=Integer.parseInt(arg_deg);
+    			this.curseur.setOrientation(degre);
+    		}
+    		else{
+    			/*ce n'est pas un int : message d'erreur*/
+    			System.out.println("Le paramètre passé dans la commande n'est pas un int.");
+    		}
+    	}
+    	else{
+    		/*mauvais arguments passés dans le terminal*/
+    		System.out.println("Vous devez passer en paramètre 1 argument de type int.");
+    	}
         return true;
 
     }
@@ -493,6 +515,20 @@ public class Controleur{
         for (int i = 0; i < liste_de_commande.size(); i++)
             System.out.println(liste_de_commande.get(i));
 
+    }
+    
+    /*cette fonction teste si une chaine de caractère est un int ou pas*/
+    public boolean isInt(String s){
+    	boolean isAnInt=true;
+    	try{
+    		Integer.parseInt(s);
+    	}
+    	catch(NumberFormatException e){
+    		isAnInt=false;
+    	}
+    	finally{
+    		return isAnInt;
+    	}
     }
 
 
