@@ -13,10 +13,23 @@ public class ZoneBouton extends JPanel {
 	ZoneBouton(){
 		this.setLayout(new GridLayout(2,2));
 		
+<<<<<<< HEAD
 		this.add(new JButton("test1"));
 		this.add(new JButton("test2"));
 		this.add(new JButton("test3"));
 		this.add(new JButton("test4"));
+=======
+		
+        this.setLayout(new BorderLayout());
+	    JPanel grid_button = new JPanel();
+        grid_button.setLayout(new GridLayout());
+        this.add(grid_button);
+
+        grid_button.add(new JButton("test1"));
+		grid_button.add(new JButton("test2"));
+		grid_button.add(new JButton("test3"));
+		grid_button.add(new JButton("test4"));
+>>>>>>> parent of 969fb07... fix du positionnement
 	}
 
     /**
