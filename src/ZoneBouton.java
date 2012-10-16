@@ -16,7 +16,7 @@ public class ZoneBouton extends JPanel {
 		
         this.setLayout(new BorderLayout());
 	    JPanel grid_button = new JPanel();
-        grid_button.setLayout(new GridLayout());
+        grid_button.setLayout(new GridLayout(2,2));
         this.add(grid_button);
 
         grid_button.add(new JButton("test1"));
