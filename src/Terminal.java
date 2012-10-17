@@ -8,12 +8,13 @@ import java.util.ArrayList;
 public class Terminal extends JPanel implements KeyListener{
 
     //private static ArrayList<JTextArea> affichage_historique = new ArrayList<JTextArea>();
-    private static JTextArea histo = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !");
+    private static JTextArea histo = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
     private static JScrollPane pane = new JScrollPane(histo, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     private static ArrayList<String> all_cmd = new ArrayList<String>();
     private int compteur_commandes = -1;
     private JTextField champ_de_commande;
     private Controleur controleur;
+    private String message_erreur = "";
 
     /**
      *  Constructeur du Terminal
@@ -44,6 +45,12 @@ public class Terminal extends JPanel implements KeyListener{
         {
             controleur.commande(this.champ_de_commande.getText());
             this.histo.append("\n > "+this.champ_de_commande.getText());
+            if ( !this.message_erreur.equals("") )
+            {
+                this.histo.append("\n   --" + this.message_erreur);
+                this.message_erreur = "";
+            }
+            
             this.histo.setCaretPosition(this.histo.getDocument().getLength());
             this.all_cmd.add(this.champ_de_commande.getText());
             
@@ -128,6 +135,11 @@ public class Terminal extends JPanel implements KeyListener{
     public void setControleur(Controleur c)
     {
         this.controleur = c;
+    }
+
+    public void afficheErreur(String message_erreur)
+    {
+        this.message_erreur = message_erreur;
     }
 
 }
