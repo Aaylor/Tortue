@@ -43,7 +43,7 @@ public class Terminal extends JPanel implements KeyListener{
                 && !this.champ_de_commande.getText().equals(""))
         {
             controleur.commande(this.champ_de_commande.getText());
-            this.histo.append("\n"+this.champ_de_commande.getText());
+            this.histo.append("\n > "+this.champ_de_commande.getText());
             this.histo.setCaretPosition(this.histo.getDocument().getLength());
             this.all_cmd.add(this.champ_de_commande.getText());
             
@@ -64,7 +64,6 @@ public class Terminal extends JPanel implements KeyListener{
             if ( compteur_commandes - 1 >= 0 )
             {
                 compteur_commandes--;
-                System.out.println(" UP :: " + compteur_commandes);
                 this.champ_de_commande.setText(all_cmd.get(compteur_commandes));
             }        
             
@@ -76,7 +75,6 @@ public class Terminal extends JPanel implements KeyListener{
             if ( compteur_commandes + 1 < all_cmd.size() )
             {
                 compteur_commandes++;
-                System.out.println(" DOWN :: " + compteur_commandes);
                 this.champ_de_commande.setText(all_cmd.get(compteur_commandes));
             }
 
