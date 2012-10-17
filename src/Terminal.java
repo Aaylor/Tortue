@@ -137,6 +137,10 @@ public class Terminal extends JPanel implements KeyListener{
         this.controleur = c;
     }
 
+    /**
+     *  Ajoute le message d'erreur
+     *  @param message_erreur le message d'erreur
+     */
     public void afficheErreur(String message_erreur)
     {
         this.message_erreur = message_erreur;
