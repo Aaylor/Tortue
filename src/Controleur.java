@@ -85,6 +85,10 @@ public class Controleur{
     
     }
 
+    /**
+     *  Fonction qui envoie le message d'erreur au terminal
+     *  @param s le message d'erreur
+     */
     public void afficheErreur(String s)
     {
 
