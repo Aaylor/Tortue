@@ -18,19 +18,21 @@ public class Fenetre extends JFrame{
 
 		
 		//Positionnement des sous fenetres
-		Box voletVertical = Box.createVerticalBox();
+		JPanel vertical = new JPanel();
+		vertical.setLayout(new BorderLayout());
+		vertical.add(zoneBouton, BorderLayout.NORTH);
+		vertical.add(terminal, BorderLayout.CENTER);
+		/*Box voletVertical = Box.createVerticalBox();
 		voletVertical.add(zoneBouton);
-		voletVertical.add(terminal);
+		voletVertical.add(terminal);*/
 		Box voletHorizontal = Box.createHorizontalBox();
 		voletHorizontal.add(zoneDessin);
-		voletHorizontal.add(voletVertical);
+		voletHorizontal.add(vertical);//voletHorizontal.add(voletVertical);
 		
 		this.getContentPane().add(voletHorizontal);
 
 		//Resize temporaire des JPanel, a étudier comment obtenir des dimension absolue
-		zoneDessin.setPreferredSize(new Dimension(320, 240));
-		zoneBouton.setPreferredSize(new Dimension(0, 0));
-		terminal.setPreferredSize(new Dimension(0, 0));
+		zoneDessin.setPreferredSize(new Dimension(2000, 0));
 
 
 		//Affichage de la fenetre (ne pas placer avant, sinon bug sous mac)
