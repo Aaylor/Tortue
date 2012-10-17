@@ -122,6 +122,8 @@ public class Terminal extends JPanel implements KeyListener{
         this.champ_de_commande.setFocusable(true);
         this.champ_de_commande.requestFocus();
 
+        this.histo.setLineWrap(true);
+        this.histo.setWrapStyleWord(true);
         this.histo.setBackground(Color.black);
         this.histo.setForeground(Color.white);
         this.histo.setEnabled(false);

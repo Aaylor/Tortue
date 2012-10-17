@@ -1,6 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
-
+import javax.swing.*;
 
 public class Dessin extends JPanel {
 	Curseur curs1 = new Curseur(20, 20, 30, Color.red);
