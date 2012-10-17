@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 public class Controleur{
 
+    public static final int COMMANDE_ERRONEE = 1;
+    /* TODO
+     * mettre en constante les autres erreurs
+     */
+    
     static ArrayList<String> liste_de_commande = new ArrayList<String>();
     Terminal term = null;
     ZoneDessin zd = null;
@@ -78,6 +83,13 @@ public class Controleur{
 	    s = s.toLowerCase();
 	    return s.split(" ");
     
+    }
+
+    public void afficheErreur(String s)
+    {
+
+        term.afficheErreur(s);
+
     }
     
 
@@ -176,12 +188,11 @@ public class Controleur{
                 function_debug_test();
                 break;
             default:
-                System.out.println("fonction n'existe pas");
+                this.afficheErreur(GenerationErreur.genererErreur(COMMANDE_ERRONEE));
                 return false;
 
         }
 
-        System.out.println("fonction existe");
         return true;
 
     }
@@ -196,7 +207,6 @@ public class Controleur{
     public boolean pendown()
     {
 
-        System.out.println("pendown done");
         return true;
 
     }
