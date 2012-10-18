@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 public class Terminal extends JPanel implements KeyListener{
 
-    //private static ArrayList<JTextArea> affichage_historique = new ArrayList<JTextArea>();
     private static JTextArea histo = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
     private static JScrollPane pane = new JScrollPane(histo, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     private static ArrayList<String> all_cmd = new ArrayList<String>();
@@ -35,10 +34,6 @@ public class Terminal extends JPanel implements KeyListener{
     }
     
 
-    private boolean touche_1_pressee = false;
-    private boolean touche_2_pressee = false;
-    private int derniere_touche_presse = KeyEvent.VK_UNDEFINED;
-
     /**
      *  Evenement lors de la pression des touches
      *  @param keyEvent
@@ -59,13 +54,6 @@ public class Terminal extends JPanel implements KeyListener{
             this.histo.setCaretPosition(this.histo.getDocument().getLength());
             this.all_cmd.add(this.champ_de_commande.getText());
             
-            /*
-            JTextArea j = new JTextArea(this.champ_de_commande.getText());
-
-            for (int i = affichage_historique.size()-1; i >= 0; i--)
-              this.add(this.affichage_historique.get(i));
-            */
-
             this.champ_de_commande.setText("");
             this.compteur_commandes = all_cmd.size();
         }
@@ -92,7 +80,8 @@ public class Terminal extends JPanel implements KeyListener{
 
         }
 
-        else if ( keyEvent.getKeyCode() == KeyEvent.VK_TAB )
+        else if ( keyEvent.getKeyCode() == KeyEvent.VK_TAB 
+                    && !this.champ_de_commande.getText().equals("") )
         {
 
             String[] proposition_completion = auto_completion(this.champ_de_commande.getText());
@@ -155,6 +144,11 @@ public class Terminal extends JPanel implements KeyListener{
 
     }
 
+    /**
+     *  Fonction d'auto completion
+     *  @param s Debut de commande entré par l'utilisateur
+     *  @return Tableau de tous les choix possibles [ de 0 jusqu'à n choix ]
+     */
     public String[] auto_completion(String s)
     {
 
@@ -202,7 +196,10 @@ public class Terminal extends JPanel implements KeyListener{
         this.message_erreur = message_erreur;
     }
 
-    
+    /**
+     *  Génère le tableau d'autocompletion
+     *  @return Tableau de toutes les commandes
+     */
     public static String[] generationTableauCommande()
     {
 
