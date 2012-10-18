@@ -11,6 +11,7 @@ public class Terminal extends JPanel implements KeyListener{
     private static JTextArea histo = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
     private static JScrollPane pane = new JScrollPane(histo, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     private static ArrayList<String> all_cmd = new ArrayList<String>();
+    private static String[] commande = generationTableauCommande();
     private int compteur_commandes = -1;
     private JTextField champ_de_commande;
     private Controleur controleur;
@@ -33,6 +34,10 @@ public class Terminal extends JPanel implements KeyListener{
 
     }
     
+
+    private boolean touche_1_pressee = false;
+    private boolean touche_2_pressee = false;
+    private int derniere_touche_presse = KeyEvent.VK_UNDEFINED;
 
     /**
      *  Evenement lors de la pression des touches
@@ -76,7 +81,7 @@ public class Terminal extends JPanel implements KeyListener{
             
         }
 
-        else if ( keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
+        else if ( keyEvent.getKeyCode() == KeyEvent.VK_DOWN )
         {
 
             if ( compteur_commandes + 1 < all_cmd.size() )
@@ -84,6 +89,24 @@ public class Terminal extends JPanel implements KeyListener{
                 compteur_commandes++;
                 this.champ_de_commande.setText(all_cmd.get(compteur_commandes));
             }
+
+        }
+
+        else if ( keyEvent.getKeyCode() == KeyEvent.VK_TAB )
+        {
+
+            String[] proposition_completion = auto_completion(this.champ_de_commande.getText());
+
+            if ( proposition_completion.length == 1 )
+                this.champ_de_commande.setText(proposition_completion[0]);
+            else if ( proposition_completion.length > 1 )
+            {
+                String display_proposition = "\n > " + this.champ_de_commande.getText() + "\n";
+                for ( int i = 0; i < proposition_completion.length; i++)
+                    display_proposition += "  " + proposition_completion[i];
+                this.histo.append(display_proposition);
+            }
+            else;
 
         }
 
@@ -121,12 +144,43 @@ public class Terminal extends JPanel implements KeyListener{
         this.champ_de_commande.setSize( this.getWidth(), 20 );
         this.champ_de_commande.setFocusable(true);
         this.champ_de_commande.requestFocus();
+        this.champ_de_commande.setFocusTraversalKeysEnabled(false);
 
         this.histo.setLineWrap(true);
         this.histo.setWrapStyleWord(true);
         this.histo.setBackground(Color.black);
         this.histo.setForeground(Color.white);
         this.histo.setEnabled(false);
+
+
+    }
+
+    public String[] auto_completion(String s)
+    {
+
+        String[] proposition;
+        int nbProp = 0;
+
+        for (int i = 0; i < commande.length; i++)
+        {
+            if ( (s.length() < commande[i].length()) && s.equals(commande[i].substring(0, s.length())) )
+                nbProp++;
+        }
+
+        proposition = new String[nbProp];
+        int compteur = 0;
+        for (int i = 0; i < commande.length; i++)
+        {
+
+            if ( (s.length() < commande[i].length()) && s.equals(commande[i].substring(0, s.length())) )
+            {
+                proposition[compteur] = commande[i];
+                compteur++;
+            }
+
+        }
+
+        return proposition;
 
     }
 
@@ -146,6 +200,23 @@ public class Terminal extends JPanel implements KeyListener{
     public void afficheErreur(String message_erreur)
     {
         this.message_erreur = message_erreur;
+    }
+
+    
+    public static String[] generationTableauCommande()
+    {
+
+        String[] tableauCommande = new String[7];
+        tableauCommande[0] = "pendown";
+        tableauCommande[1] = "penup";
+        tableauCommande[2] = "eraser";
+        tableauCommande[3] = "up";
+        tableauCommande[4] = "down";
+        tableauCommande[5] = "left";
+        tableauCommande[6] = "right";
+
+        return tableauCommande;
+
     }
 
 }

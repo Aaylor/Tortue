@@ -15,7 +15,6 @@ public class Fenetre extends JFrame{
 		this.setTitle("Carapuce");
 		this.setSize(1024, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		
 		//Positionnement des sous fenetres
 		JPanel vertical = new JPanel();
