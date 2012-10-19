@@ -2,9 +2,9 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Fenetre extends JFrame{
-	BarreMenu barreMenu = new BarreMenu();
+	BarreMenu barreMenu = new BarreMenu();//Barre de menu
 	JPanel conteneurPrincipal = new JPanel(); //JPanel qui va contenir l'ensemble des elements du programe
-	JPanel conteneurVertical = new JPanel();
+	JPanel conteneurVertical = new JPanel();//JPanel qui contient la barre d'outil ainsi que le terminal
 	Terminal terminal = new Terminal();
 	ZoneDessin zoneDessin = new ZoneDessin();
 	ZoneBouton zoneBouton = new ZoneBouton();
@@ -13,12 +13,13 @@ public class Fenetre extends JFrame{
      *  Constructeur de la fenetre
      */
 	Fenetre(){
+		//Initialisation de la JFrame
 		this.setTitle("Carapuce");
 		this.setSize(1024, 600);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("img/icone.png" ).getImage());
 		
-		//Barre de menu
+		//Ajout de la barre de menu
 		this.setJMenuBar(barreMenu);
 		
 		//Positionnement des sous fenetres
@@ -29,22 +30,22 @@ public class Fenetre extends JFrame{
 		Box voletHorizontal = Box.createHorizontalBox();
 		voletHorizontal.add(zoneDessin);
 		voletHorizontal.add(vertical);
-		
+		//Liaison au ContentPane
 		this.getContentPane().add(voletHorizontal);
 
-		//Resize temporaire des JPanel, a Ã©tudier comment obtenir des dimension absolue
+		//Resize temporaire des JPanel, à étudier comment obtenir des dimension absolue
 		zoneDessin.setPreferredSize(new Dimension(this.getWidth()*2/3, 0));
 		vertical.setPreferredSize(new Dimension(this.getWidth()/3, 0));
 		vertical.setMaximumSize(new Dimension(this.getWidth()/3, 10000));
 		
 
-		//Affichage de la fenetre (ne pas placer avant, sinon bug sous mac)
+		//Affichage de la fenetre (ne pas placer avant)
 		this.setVisible(true);
 		
 	}
 
     /**
-     *  Retourne le terminal associÃ© Ã  la fenÃªtre
+     *  Retourne le terminal associée à  la fenètre
      *  @return retourne le terminal
      */
     public Terminal getTerminal()
@@ -53,7 +54,7 @@ public class Fenetre extends JFrame{
     }
 
     /**
-     *  Retourne la zone de dessin associÃ© Ã  la fenÃªtre
+     *  Retourne la zone de dessin associée a  la fenètre
      *  @return retourne la zone de dessin
      */
     public ZoneDessin getZoneDessin()
@@ -62,7 +63,7 @@ public class Fenetre extends JFrame{
     }
 
     /**
-     *  Retourne la zone de bouton associtÃ© Ã  la fenÃªtre
+     *  Retourne la zone de bouton associée a  la fenètre
      *  @return retourne la zone de bouton
      */
     public ZoneBouton getZoneBouton()

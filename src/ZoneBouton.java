@@ -16,7 +16,6 @@ public class ZoneBouton extends JPanel {
 		//Layout
 		this.setLayout(new BorderLayout());
 		
-		
 		//Ajout des boutons
 		Box b = Box.createHorizontalBox();
 		b.add(boutonPoserCrayon);
