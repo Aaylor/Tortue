@@ -66,7 +66,6 @@ public class ZoneBouton extends JPanel {
 		return bouton;
 	}
 	
-	
 	 /**
 	  * Fonction renvoyant le Bouton Crayon/Gomme
 	  */
