@@ -10,14 +10,16 @@ public class ZoneBouton extends JPanel {
      *  Constructeur de la zone de bouton
      */
 	ZoneBouton(){
-		
+		//Layout
 		this.setLayout(new BorderLayout());
+		
+		
+		//Ajout des boutons
 		Box b = Box.createHorizontalBox();
-
         b.add(new JButton("Lever le crayon"));
         b.add(new JButton("Gomme"));
-	
-        this.add(b, BorderLayout.NORTH);
+        this.add(b);
+        
     }
     /**
      *  Modifieur du controleur
