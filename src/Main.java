@@ -6,6 +6,13 @@ public class Main{
     public static void init()
     {
 
+        if ( !StockageDonnee.init() )
+            System.exit(1);
+
+        if ( !verifFichierConfig() );
+        else;
+        /* TODO */
+
     }
 
     /**

@@ -4,17 +4,18 @@ import java.awt.Color; //TEMPORAIRE, juste pour le positionnement
 import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Enumeration;
 
 public class Terminal extends JPanel implements KeyListener{
 
-    private static JTextArea histo = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
-    private static JScrollPane pane = new JScrollPane(histo, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
-    private static ArrayList<String> all_cmd = new ArrayList<String>();
-    private static String[] commande = generationTableauCommande();
-    private int compteur_commandes = -1;
-    private JTextField champ_de_commande;
+    private static JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
+    
+    private static JScrollPane pane = new JScrollPane(historique, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
+    
     private Controleur controleur;
+    private int compteur_commandes = -1;
     private String message_erreur = "";
+    private JTextField champ_de_commande;
 
     /**
      *  Constructeur du Terminal
@@ -44,18 +45,18 @@ public class Terminal extends JPanel implements KeyListener{
                 && !this.champ_de_commande.getText().equals(""))
         {
             controleur.commande(this.champ_de_commande.getText());
-            this.histo.append("\n > "+this.champ_de_commande.getText());
+            this.historique.append("\n > "+this.champ_de_commande.getText());
             if ( !this.message_erreur.equals("") )
             {
-                this.histo.append("\n   --" + this.message_erreur);
+                this.historique.append("\n   --" + this.message_erreur);
                 this.message_erreur = "";
             }
             
-            this.histo.setCaretPosition(this.histo.getDocument().getLength());
-            this.all_cmd.add(this.champ_de_commande.getText());
+            this.historique.setCaretPosition(this.historique.getDocument().getLength());
+            StockageDonnee.liste_commande_entree_generale.add(this.champ_de_commande.getText());
             
             this.champ_de_commande.setText("");
-            this.compteur_commandes = all_cmd.size();
+            this.compteur_commandes = StockageDonnee.liste_commande_entree_generale.size();
         }
 
         else if ( keyEvent.getKeyCode() == KeyEvent.VK_UP)
@@ -64,7 +65,7 @@ public class Terminal extends JPanel implements KeyListener{
             if ( compteur_commandes - 1 >= 0 )
             {
                 compteur_commandes--;
-                this.champ_de_commande.setText(all_cmd.get(compteur_commandes));
+                this.champ_de_commande.setText(StockageDonnee.liste_commande_entree_generale.get(compteur_commandes));
             }        
             
         }
@@ -72,11 +73,13 @@ public class Terminal extends JPanel implements KeyListener{
         else if ( keyEvent.getKeyCode() == KeyEvent.VK_DOWN )
         {
 
-            if ( compteur_commandes + 1 < all_cmd.size() )
+            if ( compteur_commandes + 1 < StockageDonnee.liste_commande_entree_generale.size() )
             {
                 compteur_commandes++;
-                this.champ_de_commande.setText(all_cmd.get(compteur_commandes));
+                this.champ_de_commande.setText(StockageDonnee.liste_commande_entree_generale.get(compteur_commandes));
             }
+            else
+                this.champ_de_commande.setText("");
 
         }
 
@@ -84,16 +87,16 @@ public class Terminal extends JPanel implements KeyListener{
                     && !this.champ_de_commande.getText().equals("") )
         {
 
-            String[] proposition_completion = auto_completion(this.champ_de_commande.getText());
+            ArrayList<String> proposition_completion = auto_completion( this.champ_de_commande.getText() );
 
-            if ( proposition_completion.length == 1 )
-                this.champ_de_commande.setText(proposition_completion[0]);
-            else if ( proposition_completion.length > 1 )
+            if ( proposition_completion.size() == 1 )
+                this.champ_de_commande.setText(proposition_completion.get(0));
+            else if ( proposition_completion.size() > 1 )
             {
                 String display_proposition = "\n > " + this.champ_de_commande.getText() + "\n";
-                for ( int i = 0; i < proposition_completion.length; i++)
-                    display_proposition += "  " + proposition_completion[i];
-                this.histo.append(display_proposition);
+                for ( int i = 0; i < proposition_completion.size(); i++)
+                    display_proposition += "  " + proposition_completion.get(i);
+                this.historique.append(display_proposition);
             }
             else;
 
@@ -135,11 +138,11 @@ public class Terminal extends JPanel implements KeyListener{
         this.champ_de_commande.requestFocus();
         this.champ_de_commande.setFocusTraversalKeysEnabled(false);
 
-        this.histo.setLineWrap(true);
-        this.histo.setWrapStyleWord(true);
-        this.histo.setBackground(Color.black);
-        this.histo.setForeground(Color.white);
-        this.histo.setEnabled(false);
+        this.historique.setLineWrap(true);
+        this.historique.setWrapStyleWord(true);
+        this.historique.setBackground(Color.black);
+        this.historique.setForeground(Color.white);
+        this.historique.setEnabled(false);
 
 
     }
@@ -149,29 +152,20 @@ public class Terminal extends JPanel implements KeyListener{
      *  @param s Debut de commande entré par l'utilisateur
      *  @return Tableau de tous les choix possibles [ de 0 jusqu'à n choix ]
      */
-    public String[] auto_completion(String s)
+    public ArrayList<String> auto_completion(String s)
     {
 
-        String[] proposition;
-        int nbProp = 0;
+        ArrayList<String> proposition = new ArrayList<String>();
+        Enumeration<String> commandes = StockageDonnee.liste_des_commandes.keys();
 
-        for (int i = 0; i < commande.length; i++)
+        while ( commandes.hasMoreElements() )
         {
-            if ( (s.length() < commande[i].length()) && s.equals(commande[i].substring(0, s.length())) )
-                nbProp++;
-        }
-
-        proposition = new String[nbProp];
-        int compteur = 0;
-        for (int i = 0; i < commande.length; i++)
-        {
-
-            if ( (s.length() < commande[i].length()) && s.equals(commande[i].substring(0, s.length())) )
+            String commande_courante = commandes.nextElement();
+            if ( (s.length() < commande_courante.length()) 
+                    && s.equals(commande_courante.substring(0, s.length())) )
             {
-                proposition[compteur] = commande[i];
-                compteur++;
+                proposition.add( commande_courante );
             }
-
         }
 
         return proposition;
@@ -194,26 +188,6 @@ public class Terminal extends JPanel implements KeyListener{
     public void afficheErreur(String message_erreur)
     {
         this.message_erreur = message_erreur;
-    }
-
-    /**
-     *  Génère le tableau d'autocompletion
-     *  @return Tableau de toutes les commandes
-     */
-    public static String[] generationTableauCommande()
-    {
-
-        String[] tableauCommande = new String[7];
-        tableauCommande[0] = "pendown";
-        tableauCommande[1] = "penup";
-        tableauCommande[2] = "eraser";
-        tableauCommande[3] = "up";
-        tableauCommande[4] = "down";
-        tableauCommande[5] = "left";
-        tableauCommande[6] = "right";
-
-        return tableauCommande;
-
     }
 
 }

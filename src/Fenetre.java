@@ -33,7 +33,7 @@ public class Fenetre extends JFrame{
 		//Liaison au ContentPane
 		this.getContentPane().add(voletHorizontal);
 
-		//Resize temporaire des JPanel, à étudier comment obtenir des dimension absolue
+		//Resize temporaire des JPanel, a etudier comment obtenir des dimension absolue
 		zoneDessin.setPreferredSize(new Dimension(this.getWidth()*2/3, 0));
 		vertical.setPreferredSize(new Dimension(this.getWidth()/3, 0));
 		vertical.setMaximumSize(new Dimension(this.getWidth()/3, 10000));
@@ -45,7 +45,7 @@ public class Fenetre extends JFrame{
 	}
 
     /**
-     *  Retourne le terminal associée à  la fenètre
+     *  Retourne le terminal associee a la fenetre
      *  @return retourne le terminal
      */
     public Terminal getTerminal()
@@ -54,7 +54,7 @@ public class Fenetre extends JFrame{
     }
 
     /**
-     *  Retourne la zone de dessin associée a  la fenètre
+     *  Retourne la zone de dessin associee a la fenetre
      *  @return retourne la zone de dessin
      */
     public ZoneDessin getZoneDessin()
@@ -63,7 +63,7 @@ public class Fenetre extends JFrame{
     }
 
     /**
-     *  Retourne la zone de bouton associée a  la fenètre
+     *  Retourne la zone de bouton associee a la fenetre
      *  @return retourne la zone de bouton
      */
     public ZoneBouton getZoneBouton()

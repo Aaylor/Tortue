@@ -10,12 +10,8 @@ public class GenerationErreur{
 
         String message_erreur = "Erreur " + numero_erreur + " : ";
 
-        if ( numero_erreur == 1 )
-        {
-            return message_erreur + "la commande n'existe pas.";
-        }
-
-        return "";
+        return "Erreur " + numero_erreur + " : "
+            + StockageDonnee.liste_erreurs.get( numero_erreur );
 
     }
 

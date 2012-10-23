@@ -7,7 +7,6 @@ public class Controleur{
      * mettre en constante les autres erreurs
      */
     
-    static ArrayList<String> liste_de_commande = new ArrayList<String>();
     Terminal term = null;
     ZoneDessin zd = null;
     ZoneBouton zb = null;
@@ -61,7 +60,7 @@ public class Controleur{
 		    if ( init(commande_parser) )
 		    {
 		
-                liste_de_commande.add(s);
+                StockageDonnee.liste_commande_entree_correcte.add(s);
 			    return true;
 		
             }
@@ -105,90 +104,94 @@ public class Controleur{
     public boolean init(String[] commande_parser)
     {
 
-        switch ( commande_parser[0] )
+        int numero_commande = -1;
+        if ( StockageDonnee.liste_des_commandes.containsKey( commande_parser[0] ) )
+            numero_commande = StockageDonnee.liste_des_commandes.get( commande_parser[0] );
+
+        switch ( numero_commande )
         {
-            case "pendown":
+            case 0:
                 pendown();
                 break;
-            case "penup":
+            case 1:
                 penup();
                 break;
-            case "eraser":
+            case 2:
                 eraser();
                 break;
-            case "up":
+            case 3:
                 up();
                 break;
-            case "down":
+            case 4:
                 down();
                 break;
-            case "left":
+            case 5:
                 left();
                 break;
-            case "right":
+            case 6:
                 right();
                 break;
-            case "rotate":
+            case 7:
                 rotate(commande_parser);
                 break;
-            case "forward":
+            case 8:
                 forward();
                 break;
-            case "backward":
+            case 9:
                 backward();
                 break;
-            case "goto":
+            case 10:
                 goTo();
                 break;
-            case "cursorwidth":
+            case 11:
                 cursorwidth();
                 break;
-            case "setcolor":
+            case 12:
                 setColor();
                 break;
-            case "setbackgroundcolor":
+            case 13:
                 setBackgroundColor();
                 break;
-            case "do":
+            case 14:
                 doFigure();
                 break;
-            case "width":
+            case 15:
                 width();
                 break;
-            case "height":
+            case 16:
                 height();
                 break;
-            case "new":
+            case 17:
                 newFile();
                 break;
-            case "open":
+            case 18:
                 open();
                 break;
-            case "save":
+            case 19:
                 save();
                 break;
-            case "saveas":
+            case 20:
                 saveas();
                 break;
-            case "savehistory":
+            case 21:
                 savehistory();
                 break;
-            case "exec":
+            case 22:
                 exec();
                 break;
-            case "repeat":
+            case 23:
                 repeat();
                 break;
-            case "clear":
+            case 24:
                 clear();
                 break;
-            case "help":
+            case 25:
                 help();
                 break;
-            case "man":
+            case 26:
                 man();
                 break;
-            case "function_debug_test":
+            case 27:
                 function_debug_test();
                 break;
             default:
@@ -526,8 +529,8 @@ public class Controleur{
     public void function_debug_test()
     {
 
-        for (int i = 0; i < liste_de_commande.size(); i++)
-            System.out.println(liste_de_commande.get(i));
+        for (int i = 0; i < StockageDonnee.liste_commande_entree_correcte.size(); i++)
+            System.out.println(StockageDonnee.liste_commande_entree_correcte.get(i));
 
     }
     
