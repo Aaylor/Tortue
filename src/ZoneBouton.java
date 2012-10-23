@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ZoneBouton extends JPanel {
+public class ZoneBouton extends JMenuBar {
     private Controleur controleur;
     private boolean crayonEstPose = true; //TEMPORAIRE, juste pour l'initialisation du bouton localement
     private boolean gomme;//False : Crayon, True : Gomme
@@ -12,15 +12,13 @@ public class ZoneBouton extends JPanel {
     /**
      *  Constructeur de la zone de bouton
      */
+    
 	ZoneBouton(){
-		//Layout
-		this.setLayout(new BorderLayout());
 		
 		//Ajout des boutons
-		Box b = Box.createHorizontalBox();
-		b.add(boutonPoserCrayon);
-		b.add(boutonGomme);
-        this.add(b);
+		this.add(boutonPoserCrayon);
+		this.add(boutonGomme);
+		this.add(new JMenu("Commandes"));
 		
 		//Action des boutons
 		boutonPoserCrayon.addActionListener(new ActionListener(){
@@ -51,7 +49,7 @@ public class ZoneBouton extends JPanel {
         
         
     }
-	
+    
 	 /**
 	  * Fonction renvoyant le Bouton Lever/Poser le Crayon
 	  */
