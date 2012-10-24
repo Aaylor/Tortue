@@ -13,8 +13,7 @@ public class Curseur extends JPanel {
 	private double coordY2; /////////////////////////////////////////////////////////
 	private double centreX; // Coordonnees du centre du curseur
 	private double centreY; /////////////////////////////////////////////////////////
-	private double orientationDegree;
-	private double orientationRadian;
+	private double orientation;
 	private int taille;
 	private short type;
 	private Color couleur;
@@ -30,16 +29,15 @@ public class Curseur extends JPanel {
 	Curseur (double x, double y, double orientation, int taille, Color couleur) {
 		this.coordX1 = x;
 		this.coordY1 = y;
-		this.orientationDegree = orientation;
+		this.orientation = orientation;
 		this.taille = taille;
 		this.couleur = couleur;
-		this.orientationRadian = this.convertToRadian(this.orientationDegree);
 		this.centreX = this.coordX1 + (this.taille/2);
 		this.centreY = this.coordY1 + (this.taille/2);
-		this.coordX2 = this.centreX + this.calculCos(this.orientationRadian) / (this.taille/2);
-		this.coordY2 = this.centreY + this.calculSin(this.orientationRadian) / (this.taille/2);
+		this.coordX2 = centreX + this.calculCos() * (this.taille);
+		this.coordY2 = centreY + this.calculSin() * (this.taille);
 		this.type = 0;
-		//this.controleur = null;
+	//	this.controleur = null;
 	}
 	
 	
@@ -47,27 +45,59 @@ public class Curseur extends JPanel {
 	//  ACCESSEURS  //
 	//////////////////
     /**
-     *  Accesseur de x
-     *  @return x
+     *  Accesseur de x1
+     *  @return coordX1
      */
 	public double getCoordX1 () {
 		return this.coordX1;
 	}
 
     /**
-     *  Accesseur de y
-     *  @return y
+     *  Accesseur de y1
+     *  @return coordY1
      */
 	public double getCoordY1 () {
 		return this.coordY1;
 	}
+	
+    /**
+     *  Accesseur de x2
+     *  @return coordX2
+     */
+	public double getCoordX2 () {
+		return this.coordX2;
+	}
 
+    /**
+     *  Accesseur de y2
+     *  @return coordY2
+     */
+	public double getCoordY2 () {
+		return this.coordY2;
+	}
+
+    /**
+     *  Accesseur de centreX
+     *  @return centreX
+     */
+	public double getCentreX () {
+		return this.centreX;
+	}
+
+    /**
+     *  Accesseur de centreY
+     *  @return centreY
+     */
+	public double getCentreY () {
+		return this.centreY;
+	}
+	
     /**
      *  Accesseur de la variable orientation
      *  @return orientation
      */
-	public double getOrientationDegree () {
-		return this.orientationDegree;
+	public double getOrientation () {
+		return this.orientation;
 	}
 	
 	/**
@@ -117,8 +147,8 @@ public class Curseur extends JPanel {
      *  Modifieur de la variable orientation
      *  @param orientation nouvelle valeur de  l'orientation
      */
-	public void setOrientationDegree (double orientation) {
-		this.orientationDegree = orientation;
+	public void setOrientation (double orientation) {
+		this.orientation = orientation;
 	}
 	
 	/**
@@ -165,36 +195,34 @@ public class Curseur extends JPanel {
      * @param degree
      * @return radian
      */
-    public double convertToRadian (double degree) {
+    public double convertToRadian () {
     	double radian;
     	
-    	radian = Math.toRadians(degree);
+    	radian = Math.toRadians(this.orientation);
     	
     	return radian;
     }
     
     /**
-     * Donne la valeur du cosinus a partir d'une valeur en radian
-     * @param radian
+     * retourne la valeur du cosinus du curseur
      * @return cos
      */
-    public double calculCos (double radian) {
+    public double calculCos () {
     	double cos;
     	
-    	cos = Math.cos(radian);
+    	cos = Math.cos(this.convertToRadian());
     	
     	return cos;
     }
     
     /**
-     * Donne la valeur du sinus a partir d'une valeur en radian
-     * @param radian
+     * retourne la valeur du sinus du curseur
      * @return sin
      */
-     public double calculSin (double radian) {
+     public double calculSin () {
     	 double sin;
     	 
-    	 sin = Math.sin(radian);
+    	 sin = Math.sin(this.convertToRadian());
     	 
     	 return sin;
      }
@@ -205,4 +233,3 @@ public class Curseur extends JPanel {
     	 g.drawLine((int)this.centreX, (int)this.centreY, (int)this.coordX2, (int)this.coordY2);
      }
 }
-
