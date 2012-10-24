@@ -1,41 +1,49 @@
+import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.lang.Math;
 
-public class Curseur {
+public class Curseur extends JPanel {
 	/////////////////
 	//  VARIABLES  //
 	/////////////////
-	private double x;
-	private double y;
-	private double orientation;
+	private double coordX1; // Coordonnees du point en haut a gauche du curseur
+	private double coordY1; /////////////////////////////////////////////////////////
+	private double coordX2; // Coordonnees du bout de la fleche d'orientation
+	private double coordY2; /////////////////////////////////////////////////////////
+	private double centreX; // Coordonnees du centre du curseur
+	private double centreY; /////////////////////////////////////////////////////////
+	private double orientationDegree;
+	private double orientationRadian;
 	private int taille;
 	private short type;
 	private Color couleur;
-	private Controleur controleur;
+	// private Controleur controleur;
 
 	
 	/////////////////////
 	//  CONSTRUCTEURS  //
 	/////////////////////
-    /**
-     *  Constructeur vide
-     */
-	Curseur () {
-
-	}
-	
 	/**
 	 * Constructeur test
 	 */
-	Curseur (int x, int y, int orientation, Color couleur) {
-		this.x = x;
-		this.y = y;
-		this.orientation = orientation;
-		this.taille = 10;
+	Curseur (double x, double y, double orientation, int taille, Color couleur) {
+		this.coordX1 = x;
+		this.coordY1 = y;
+		this.orientationDegree = orientation;
+		this.taille = taille;
 		this.couleur = couleur;
+		this.orientationRadian = this.convertToRadian(this.orientationDegree);
+		this.centreX = this.coordX1 + (this.taille/2);
+		this.centreY = this.coordY1 + (this.taille/2);
+		this.coordX2 = this.coordX1 + this.calculCos(this.orientationRadian) / (this.taille/2);
+		this.coordY2 = this.coordY1 + this.calculSin(this.orientationRadian) / (this.taille/2);
 		this.type = 0;
-		this.controleur = null;
+    	System.out.println("Val radian : " + this.orientationRadian);
+    	System.out.println("Val degree : " + this.orientationDegree);
+    	System.out.println(this.calculCos(this.orientationRadian));
+    	System.out.println(this.calculSin(this.orientationRadian));
+	//	this.controleur = null;
 	}
 	
 	
@@ -46,24 +54,24 @@ public class Curseur {
      *  Accesseur de x
      *  @return x
      */
-	public double getX () {
-		return this.x;
+	public double getCoordX1 () {
+		return this.coordX1;
 	}
 
     /**
      *  Accesseur de y
      *  @return y
      */
-	public double getY () {
-		return this.y;
+	public double getCoordY1 () {
+		return this.coordY1;
 	}
 
     /**
      *  Accesseur de la variable orientation
      *  @return orientation
      */
-	public double getOrientation () {
-		return this.orientation;
+	public double getOrientationDegree () {
+		return this.orientationDegree;
 	}
 	
 	/**
@@ -97,24 +105,24 @@ public class Curseur {
      *  Modifieur de la variable x
      *  @param x nouvelle valeur de la position x
      */
-	public void setX (double x) {
-		this.x = x;
+	public void setX1 (double x) {
+		this.coordX1 = x;
 	}
 
     /**
      *  Modifieur de la variable y
      *  @param y nouvelle valeur de la position y
      */
-	public void setY (double y) {
-		this.y = y;
+	public void setY1 (double y) {
+		this.coordY1 = y;
 	}
 
     /**
      *  Modifieur de la variable orientation
      *  @param orientation nouvelle valeur de  l'orientation
      */
-	public void setOrientation (double orientation) {
-		this.orientation = orientation;
+	public void setOrientationDegree (double orientation) {
+		this.orientationDegree = orientation;
 	}
 	
 	/**
@@ -145,10 +153,12 @@ public class Curseur {
      *  Modifieur du controleur
      *  @param controleur nouveau controleur
      */
-    public void setControleur(Controleur controleur)
+    /*
+	public void setControleur(Controleur controleur)
     {
         this.controleur = controleur;
     }
+    */
 	
     ///////////////
     //  METHODES //
@@ -188,8 +198,15 @@ public class Curseur {
      public double calculSin (double radian) {
     	 double sin;
     	 
-    	 sin = Math.cos(radian);
+    	 sin = Math.sin(radian);
     	 
     	 return sin;
      }
+     
+     public void paintComponent (Graphics g) {
+    	 g.setColor(this.couleur);
+    	 g.drawOval((int)this.coordX1, (int)this.coordY1, (int)this.taille, (int)this.taille);
+    	 g.drawLine((int)this.centreX, (int)this.centreY, (int)this.coordX2, (int)this.coordY2);
+     }
 }
+
