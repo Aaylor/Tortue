@@ -39,11 +39,7 @@ public class Curseur extends JPanel {
 		this.coordX2 = this.coordX1 + this.calculCos(this.orientationRadian) / (this.taille/2);
 		this.coordY2 = this.coordY1 + this.calculSin(this.orientationRadian) / (this.taille/2);
 		this.type = 0;
-    	System.out.println("Val radian : " + this.orientationRadian);
-    	System.out.println("Val degree : " + this.orientationDegree);
-    	System.out.println(this.calculCos(this.orientationRadian));
-    	System.out.println(this.calculSin(this.orientationRadian));
-	//	this.controleur = null;
+		//this.controleur = null;
 	}
 	
 	
