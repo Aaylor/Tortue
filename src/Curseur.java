@@ -128,7 +128,7 @@ public class Curseur extends JPanel {
 	//  MODIFIEURS //
 	/////////////////
     /**
-     *  Modifieur de la variable x
+     *  Modifieur de la variable x2
      *  @param x nouvelle valeur de la position x
      */
 	public void setX1 (double x) {
@@ -136,13 +136,45 @@ public class Curseur extends JPanel {
 	}
 
     /**
-     *  Modifieur de la variable y
+     *  Modifieur de la variable y1
      *  @param y nouvelle valeur de la position y
      */
 	public void setY1 (double y) {
 		this.coordY1 = y;
 	}
+	
+    /**
+     *  Modifieur de la variable x2
+     *  @param x nouvelle valeur de la position x
+     */
+	public void setX2 (double x) {
+		this.coordX2 = x;
+	}
 
+    /**
+     *  Modifieur de la variable y2
+     *  @param y nouvelle valeur de la position y
+     */
+	public void setY2 (double y) {
+		this.coordY2 = y;
+	}
+	
+    /**
+     *  Modifieur de la variable centreX
+     *  @param x nouvelle valeur de la position x
+     */
+	public void setCentreX (double x) {
+		this.centreX = x;
+	}
+
+    /**
+     *  Modifieur de la variable y
+     *  @param y nouvelle valeur de la position y
+     */
+	public void setCentreY (double y) {
+		this.centreY = y;
+	}
+	
     /**
      *  Modifieur de la variable orientation
      *  @param orientation nouvelle valeur de  l'orientation
