@@ -11,7 +11,10 @@ public class ZoneDessin extends JPanel {
      *  Constructeur de la zone de dessin
      */
 	ZoneDessin(){
-	}
+	
+        this.setBackground( new Color(170,170,170) );
+    
+    }
 
     /**
      *  Modifie le controleur

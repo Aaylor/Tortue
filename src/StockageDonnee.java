@@ -105,4 +105,70 @@ public class StockageDonnee
 
     }
 
+    /**
+    *   Fonction renvoyant le message d'erreur
+    *   @param numero Numero de l'erreur
+    *   @return String correspondant au message d'erreur
+    */
+    public static String getMessageErreur(int numero)
+    {
+        return liste_erreurs.get( numero );       
+    }
+
+    /**
+     *  Fonction renvoyant l'entier correspondant à la commande
+     *  @return l'entier de la commande entrée par l'utilisateur
+     */
+    public static int getNumeroFonction(String commande)
+    {
+        return ( liste_des_commandes.containsKey(commande) ) ? liste_des_commandes.get(commande) : -1;
+    }
+
+    public static String getLCEC(int numero)
+    {
+        return liste_commande_entree_correcte.get( numero );
+    }
+
+    public static String getLCEG(int numero)
+    {
+        return liste_commande_entree_generale.get( numero );
+    }
+    /**
+     *  Fonction ajoutant la commande à la collection correspondante
+     *  @param commande Commande entrée par l'utilisateur
+     */
+    public static boolean ajoutLCEC(String commande)
+    {
+        liste_commande_entree_correcte.add(commande);
+        return true;
+    }
+
+    /**
+     *  Fonction ajoutant la commande à la collection correspondante
+     *  @param commande Commande entréé par l'utilisateur
+     */
+    public static boolean ajoutLCEG(String commande)
+    {
+        liste_commande_entree_generale.add(commande);
+        return true;
+    }
+
+    /**
+     *  Fonction renvoyant la taille de la collection
+     *  @return taille
+     */
+    public static int getSize_LCEG()
+    {
+        return liste_commande_entree_generale.size();
+    }
+
+    /**
+     *  Fonction renvoyant la taille de la collection
+     *  @return taille
+     */
+    public static int getSize_LCEC()
+    {
+        return liste_commande_entree_correcte.size();
+    }
+
 }

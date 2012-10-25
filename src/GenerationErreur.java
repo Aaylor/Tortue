@@ -11,7 +11,7 @@ public class GenerationErreur{
         String message_erreur = "Erreur " + numero_erreur + " : ";
 
         return "Erreur " + numero_erreur + " : "
-            + StockageDonnee.liste_erreurs.get( numero_erreur );
+            + StockageDonnee.getMessageErreur( numero_erreur );
 
     }
 

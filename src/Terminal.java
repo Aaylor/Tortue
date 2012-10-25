@@ -9,7 +9,6 @@ import java.util.Enumeration;
 public class Terminal extends JPanel implements KeyListener{
 
     private static JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
-    
     private static JScrollPane pane = new JScrollPane(historique, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     
     private Controleur controleur;
@@ -53,10 +52,9 @@ public class Terminal extends JPanel implements KeyListener{
             }
             
             this.historique.setCaretPosition(this.historique.getDocument().getLength());
-            StockageDonnee.liste_commande_entree_generale.add(this.champ_de_commande.getText());
             
             this.champ_de_commande.setText("");
-            this.compteur_commandes = StockageDonnee.liste_commande_entree_generale.size();
+            this.compteur_commandes = StockageDonnee.getSize_LCEG();
         }
 
         else if ( keyEvent.getKeyCode() == KeyEvent.VK_UP)
@@ -65,7 +63,7 @@ public class Terminal extends JPanel implements KeyListener{
             if ( compteur_commandes - 1 >= 0 )
             {
                 compteur_commandes--;
-                this.champ_de_commande.setText(StockageDonnee.liste_commande_entree_generale.get(compteur_commandes));
+                this.champ_de_commande.setText(StockageDonnee.getLCEG(compteur_commandes));
             }        
             
         }
@@ -73,10 +71,10 @@ public class Terminal extends JPanel implements KeyListener{
         else if ( keyEvent.getKeyCode() == KeyEvent.VK_DOWN )
         {
 
-            if ( compteur_commandes + 1 < StockageDonnee.liste_commande_entree_generale.size() )
+            if ( compteur_commandes + 1 < StockageDonnee.getSize_LCEG() )
             {
                 compteur_commandes++;
-                this.champ_de_commande.setText(StockageDonnee.liste_commande_entree_generale.get(compteur_commandes));
+                this.champ_de_commande.setText(StockageDonnee.getLCEG(compteur_commandes));
             }
             else
                 this.champ_de_commande.setText("");
@@ -150,7 +148,7 @@ public class Terminal extends JPanel implements KeyListener{
     /**
      *  Fonction d'auto completion
      *  @param s Debut de commande entré par l'utilisateur
-     *  @return Tableau de tous les choix possibles [ de 0 jusqu'à n choix ]
+     *  @return ArrayList de tous les choix possibles [ de 0 jusqu'à n choix ]
      */
     public ArrayList<String> auto_completion(String s)
     {

@@ -17,13 +17,18 @@ public class Curseur extends JPanel {
 	private int taille;
 	private short type;
 	private Color couleur;
-	// private Controleur controleur;
+	private Controleur controleur;
 
 	
 	/////////////////////
 	//  CONSTRUCTEURS  //
 	/////////////////////
-	/**
+    /**
+     *  Constructeur vide
+     */
+    Curseur(){}
+    
+    /**
 	 * Constructeur test
 	 */
 	Curseur (double x, double y, double orientation, int taille, Color couleur) {
@@ -36,10 +41,7 @@ public class Curseur extends JPanel {
 		this.centreY = this.coordY1 + (this.taille/2);
 		this.coordX2 = centreX + this.calculCos() * (this.taille);
 		this.coordY2 = centreY + this.calculSin() * (this.taille);
-		this.type = 0;
-	//	this.controleur = null;
-	}
-	
+    }	
 	
 	//////////////////
 	//  ACCESSEURS  //
@@ -211,12 +213,10 @@ public class Curseur extends JPanel {
      *  Modifieur du controleur
      *  @param controleur nouveau controleur
      */
-    /*
 	public void setControleur(Controleur controleur)
     {
         this.controleur = controleur;
     }
-    */
 	
     ///////////////
     //  METHODES //

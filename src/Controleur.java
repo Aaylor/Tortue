@@ -2,8 +2,10 @@ import java.util.ArrayList;
 
 public class Controleur{
 
+    public static final int SUCCESS = 0;
     public static final int COMMANDE_ERRONEE = 1;
-    /* TODO
+    /* 
+     * TODO
      * mettre en constante les autres erreurs
      */
     
@@ -50,24 +52,11 @@ public class Controleur{
 
 	    String[] commande_parser;
 
-	    if ( s.equals("") )
-	        return false;
+		commande_parser = parse(s);
 
-        else
-	    {
-		    commande_parser = parse(s);
-
-		    if ( init(commande_parser) )
-		    {
-		
-                StockageDonnee.liste_commande_entree_correcte.add(s);
-			    return true;
-		
-            }
-		
-	        return false;
-
-        }
+        int numero_renvoie = init(commande_parser);
+        return numero_renvoie == 0 ? StockageDonnee.ajoutLCEC(s) && StockageDonnee.ajoutLCEG(s)
+                  : StockageDonnee.ajoutLCEG(s) && this.afficheErreur(numero_renvoie);
 
     }
 
@@ -78,7 +67,11 @@ public class Controleur{
      */
     public String[] parse(String s)
     {
-
+        
+        /*
+         * TODO
+         * Faire en sorte d'enlever les espaces présents devant la commande avant de spliter
+         */
 	    s = s.toLowerCase();
 	    return s.split(" ");
     
@@ -86,12 +79,14 @@ public class Controleur{
 
     /**
      *  Fonction qui envoie le message d'erreur au terminal
-     *  @param s le message d'erreur
+     *  @param numer_erreur numero de l'erreur
+     *  @return boolean
      */
-    public void afficheErreur(String s)
+    public boolean afficheErreur(int numero_erreur)
     {
 
-        term.afficheErreur(s);
+        term.afficheErreur(GenerationErreur.genererErreur(numero_erreur));
+        return true;
 
     }
     
@@ -99,108 +94,131 @@ public class Controleur{
     /**
      *  Fonction qui traite le string
      *  @param commande_parser Tableau contenant le nom de la commande ainsi que ses arguments
-     *  @return true si la fonction s'est bien déroulée.
+     *  @return 0 si la fonction s'est bien déroulée.
      */
-    public boolean init(String[] commande_parser)
+    public int init(String[] commande_parser)
     {
 
-        int numero_commande = -1;
-        if ( StockageDonnee.liste_des_commandes.containsKey( commande_parser[0] ) )
-            numero_commande = StockageDonnee.liste_des_commandes.get( commande_parser[0] );
-
-        switch ( numero_commande )
+        switch ( StockageDonnee.getNumeroFonction( commande_parser[0] ) )
         {
             case 0:
                 pendown();
                 break;
+            
             case 1:
                 penup();
                 break;
+            
             case 2:
                 eraser();
                 break;
+            
             case 3:
                 up();
                 break;
+            
             case 4:
                 down();
                 break;
+            
             case 5:
                 left();
                 break;
+            
             case 6:
                 right();
                 break;
+            
             case 7:
                 rotate(commande_parser);
                 break;
+            
             case 8:
                 forward();
                 break;
+            
             case 9:
                 backward();
                 break;
+            
             case 10:
                 goTo();
                 break;
+            
             case 11:
                 cursorwidth();
                 break;
+            
             case 12:
                 setColor();
                 break;
+            
             case 13:
                 setBackgroundColor();
                 break;
+            
             case 14:
                 doFigure();
                 break;
+            
             case 15:
                 width();
                 break;
+            
             case 16:
                 height();
                 break;
+            
             case 17:
                 newFile();
                 break;
+            
             case 18:
                 open();
                 break;
+            
             case 19:
                 save();
                 break;
+            
             case 20:
                 saveas();
                 break;
+            
             case 21:
                 savehistory();
                 break;
+            
             case 22:
                 exec();
                 break;
+            
             case 23:
                 repeat();
                 break;
+            
             case 24:
                 clear();
                 break;
+            
             case 25:
                 help();
                 break;
+            
             case 26:
                 man();
                 break;
+            
             case 27:
                 function_debug_test();
                 break;
+            
             default:
-                this.afficheErreur(GenerationErreur.genererErreur(COMMANDE_ERRONEE));
-                return false;
+                return COMMANDE_ERRONEE;
 
         }
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -211,10 +229,10 @@ public class Controleur{
      * Fonction qui permet l'écriture lorsque l'utilisateur se déplace
      * @return si la fonction s'est bien déroulée.
      */
-    public boolean pendown()
+    public int pendown()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -222,10 +240,10 @@ public class Controleur{
      * Fonction qui permet d'arrêter l'écriture lorsque l'utilisateur se déplace
      * @return si la fonction s'est bien déroulée.
      */
-    public boolean penup()
+    public int penup()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -233,10 +251,10 @@ public class Controleur{
      * Fonction qui permet de passer en mode gomme
      * @return si la fonction s'est bien déroulée.
      */
-    public boolean eraser()
+    public int eraser()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -244,11 +262,11 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers le haut
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean up()
+    public int up()
     {
     	this.curseur.setOrientation(90);
     	/*il reste a faire une rotation de l'image du curseur*/
-        return true;
+        return SUCCESS;
 
     }
 
@@ -256,11 +274,11 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers le bas
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean down()
+    public int down()
     {
     	this.curseur.setOrientation(270);
     	/*il reste a faire une rotation de l'image du curseur*/
-        return true;
+        return SUCCESS;
 
     }
 
@@ -268,11 +286,11 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers la gauche
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean left()
+    public int left()
     {
     	this.curseur.setOrientation(180);
     	/*il reste a faire une rotation de l'image du curseur*/
-        return true;
+        return SUCCESS;
 
     }
 
@@ -280,11 +298,11 @@ public class Controleur{
      * Fonction qui permet de placer le pointeur vers la droite
      * @return si la fonction s'est bien déroulée.
      */
-    public boolean right()
+    public int right()
     {
     	this.curseur.setOrientation(0);
     	/*il reste a faire une rotation de l'image du curseur*/
-        return true;
+        return SUCCESS;
 
     }
 
@@ -292,7 +310,7 @@ public class Controleur{
      *  Fonction qui permet de faire une rotation sur le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean rotate(String[] commande_parser)
+    public int rotate(String[] commande_parser)
     {
     	/*on compte le nombre d'elts present dans le tableau*/
     	if(commande_parser.length==2){
@@ -313,7 +331,7 @@ public class Controleur{
     		/*mauvais arguments passes dans le terminal*/
     		System.out.println("Vous devez passer en parametre 1 argument de type int.");
     	}
-        return true;
+        return SUCCESS;
 
     }
 
@@ -321,10 +339,10 @@ public class Controleur{
      *  Fonction qui permet de faire avancer le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean forward()
+    public int forward()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -332,10 +350,10 @@ public class Controleur{
      *  Fonction qui permet de faire reculer le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean backward()
+    public int backward()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -343,10 +361,10 @@ public class Controleur{
      *  Fonction qui permet de déplacer le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean goTo()
+    public int goTo()
     {
     
-        return true;
+        return SUCCESS;
 
     }
 
@@ -354,10 +372,10 @@ public class Controleur{
      *  Fonction qui permet de régler la largeur du curseur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean cursorwidth()
+    public int cursorwidth()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -365,10 +383,10 @@ public class Controleur{
      *  Fonction qui permet de changer la couleur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean setColor()
+    public int setColor()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -376,10 +394,10 @@ public class Controleur{
      *  Fonction qui permet de changer la couleur du fond d'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean setBackgroundColor()
+    public int setBackgroundColor()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -387,10 +405,10 @@ public class Controleur{
      *  Fonction qui permet de tracer des figures particulières
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean doFigure()
+    public int doFigure()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -398,10 +416,10 @@ public class Controleur{
      *  Fonction qui permet de changer la largeur de l'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean width()
+    public int width()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -409,10 +427,10 @@ public class Controleur{
      *  Fonction qui permet de changer la hauteur de l'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean height()
+    public int height()
     {
 
-        return true;
+        return SUCCESS;
     
     }
 
@@ -420,10 +438,10 @@ public class Controleur{
      *  Fonction qui permet de créer un nouveau document
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean newFile()
+    public int newFile()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -431,10 +449,10 @@ public class Controleur{
      *  Fonction qui permet d'ouvrir une image
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean open()
+    public int open()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -442,10 +460,10 @@ public class Controleur{
      *  Fonction qui permet de sauvegarder un document en une image
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean save()
+    public int save()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -453,10 +471,10 @@ public class Controleur{
      *  Fonction qui sauvegarde dans un dossier donner par l'utilisateur
      *  @return si la fonction s'est bien déroulée
      */
-    public boolean saveas()
+    public int saveas()
     {
     
-        return true;
+        return SUCCESS;
 
     }
 
@@ -464,10 +482,10 @@ public class Controleur{
      *  Fonction qui sauvegarde l'historique dans un format .txt
      *  @return si la fonction s'est bien déroulée
      */
-    public boolean savehistory()
+    public int savehistory()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -475,10 +493,10 @@ public class Controleur{
      *  Fonction qui lit un fichier et execute les lignes de commandes si celles-ci sont correctes
      *  @return si la fonction s'est bien déroulée
      */
-    public boolean exec()
+    public int exec()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -486,10 +504,10 @@ public class Controleur{
      *  Fonction qui répète les dernières commandes lancés par l'utilisateur
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean repeat()
+    public int repeat()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -497,10 +515,10 @@ public class Controleur{
      *  Fonction qui efface l'écran de dessin
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean clear()
+    public int clear()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -508,10 +526,10 @@ public class Controleur{
      *  Fonction qui affiche une fenêtre avec la liste des commandes
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean help()
+    public int help()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
@@ -519,18 +537,20 @@ public class Controleur{
      *  Fonction qui affiche le manuel de la commande
      *  @return si la fonction s'est bien déroulée.
      */
-    public boolean man()
+    public int man()
     {
 
-        return true;
+        return SUCCESS;
 
     }
 
-    public void function_debug_test()
+    private void function_debug_test()
     {
 
-        for (int i = 0; i < StockageDonnee.liste_commande_entree_correcte.size(); i++)
-            System.out.println(StockageDonnee.liste_commande_entree_correcte.get(i));
+        for (int i = 0; i < StockageDonnee.getSize_LCEG(); i++)
+        {
+            System.out.println(StockageDonnee.getLCEG(i));
+        }
 
     }
     
