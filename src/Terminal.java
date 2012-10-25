@@ -44,7 +44,7 @@ public class Terminal extends JPanel implements KeyListener{
                 && !this.champ_de_commande.getText().equals(""))
         {
             controleur.commande(this.champ_de_commande.getText());
-            this.historique.append("\n > "+this.champ_de_commande.getText());
+            this.historique.append("\n > "+this.champ_de_commande.getText().trim());
             if ( !this.message_erreur.equals("") )
             {
                 this.historique.append("\n   --" + this.message_erreur);

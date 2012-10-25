@@ -51,6 +51,7 @@ public class Controleur{
     {
 
 	    String[] commande_parser;
+        s = s.trim();
 
 		commande_parser = parse(s);
 
@@ -67,14 +68,7 @@ public class Controleur{
      */
     public String[] parse(String s)
     {
-        
-        /*
-         * TODO
-         * Faire en sorte d'enlever les espaces présents devant la commande avant de spliter
-         */
-	    s = s.toLowerCase();
-	    return s.split(" ");
-    
+	    return s.toLowerCase().split(" ");
     }
 
     /**
