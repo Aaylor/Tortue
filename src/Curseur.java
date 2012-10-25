@@ -15,9 +15,10 @@ public class Curseur extends JPanel {
 	private double centreY; /////////////////////////////////////////////////////////
 	private double orientation;
 	private int taille;
-	private short type;
+	private short type; //0 : Crayon, 1 : Gomme
 	private Color couleur;
 	private Controleur controleur;
+	private boolean isDown=false;//par défaut false: donc penup
 
 	
 	/////////////////////
@@ -126,6 +127,13 @@ public class Curseur extends JPanel {
 		return this.couleur;
 	}
 	
+	/**
+	 * Accesseur de la variable isDown
+	 * @return
+	 */
+	public boolean getIsDown(){
+		return this.isDown;
+	}
 	/////////////////
 	//  MODIFIEURS //
 	/////////////////
@@ -217,6 +225,14 @@ public class Curseur extends JPanel {
     {
         this.controleur = controleur;
     }
+	
+	/**
+	 * Modifieur de la variable isDown
+	 * @param isDown
+	 */
+	public void setIsDown(boolean isDown){
+		this.isDown=isDown;
+	}
 	
     ///////////////
     //  METHODES //
