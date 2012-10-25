@@ -4,6 +4,7 @@ public class Controleur{
 
     public static final int SUCCESS = 0;
     public static final int COMMANDE_ERRONEE = 1;
+    public static final int ERREUR_ARGUMENT = 2; 
     /* 
      * TODO
      * mettre en constante les autres erreurs
@@ -13,7 +14,6 @@ public class Controleur{
     ZoneDessin zd = null;
     ZoneBouton zb = null;
     Curseur curseur = null;
-
 
     /**
      *  Constructeur vide
@@ -73,7 +73,7 @@ public class Controleur{
 
     /**
      *  Fonction qui envoie le message d'erreur au terminal
-     *  @param numer_erreur numero de l'erreur
+     *  @param numero_erreur numero de l'erreur
      *  @return boolean
      */
     public boolean afficheErreur(int numero_erreur)
@@ -96,8 +96,10 @@ public class Controleur{
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0] ) )
         {
             case 0:
-                pendown();
-                break;
+                if ( commande_parser.length > 1 )
+                    return ERREUR_ARGUMENT;
+                else
+                    return pendown();
             
             case 1:
                 penup();
