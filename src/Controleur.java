@@ -227,7 +227,7 @@ public class Controleur{
      */
     public int pendown()
     {
-
+    	this.curseur.setIsDown(true);
         return SUCCESS;
 
     }
@@ -238,7 +238,7 @@ public class Controleur{
      */
     public int penup()
     {
-
+    	this.curseur.setIsDown(false);
         return SUCCESS;
 
     }
