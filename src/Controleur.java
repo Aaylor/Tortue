@@ -92,6 +92,7 @@ public class Controleur{
      */
     public int init(String[] commande_parser)
     {
+        int valeur = 0;
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0] ) )
         {
             case 0:
@@ -105,12 +106,14 @@ public class Controleur{
                 return penup();
            
             case 2:
-                pencil();
-                break;
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return pencil();
 
             case 3:
-                eraser();
-                break;
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return eraser();
             
             case 4:
                 if ( commande_parser.length > 1 )
@@ -137,14 +140,32 @@ public class Controleur{
                 break;
             
             case 9:
-                if ( commande_parser.length > 2 )
+                if ( commande_parser.length == 1 )
+                    return NOMBRE_ARG_LESS;
+                else if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                return forward();
+                else;
+
+                if ( isInt(commande_parser[1])  )
+                    valeur = Integer.parseInt(commande_parser[1]);
+                else
+                    return COMMANDE_ERRONEE; /* TODO : Changer la valeur de retour */
+
+                return forward(valeur);
             
             case 10:
-                if ( commande_parser.length > 2 )
+                if ( commande_parser.length == 1 )
+                    return NOMBRE_ARG_LESS;
+                else if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                return backward();
+                else;
+
+                if ( isInt(commande_parser[1]) )
+                    valeur = Integer.parseInt(commande_parser[1]);
+                else
+                    return COMMANDE_ERRONEE; /* TODO : Changer la valeur de retour */
+                
+                return backward(valeur);
             
             case 11:
                 goTo();
@@ -169,12 +190,14 @@ public class Controleur{
                 break;
             
             case 16:
-                width();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return width();
             
             case 17:
-                height();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return height();
             
             case 18:
                 if ( commande_parser.length > 2 )
@@ -221,8 +244,9 @@ public class Controleur{
                 return help();
             
             case 27:
-                man();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return man();
             
             case 28:
                 if ( commande_parser.length >= 2 )
@@ -279,6 +303,7 @@ public class Controleur{
     {
         return SUCCESS;
     }
+
     /**
      * Fonction qui permet de passer en mode gomme
      * @return si la fonction s'est bien déroulée.
@@ -367,24 +392,24 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de faire avancer le pointeur
+     *  @param valeur Valeur d'avancée
      *  @return si la fonction s'est bien déroulée.
      */
-    public int forward()
+    public int forward(int valeur)
     {
-
+        System.out.println("Valeur de forward :: " + valeur); /* TODO : Enlever TEST */
         return SUCCESS;
-
     }
 
     /**
      *  Fonction qui permet de faire reculer le pointeur
+     *  @param valeur Valeur de recul
      *  @return si la fonction s'est bien déroulée.
      */
-    public int backward()
+    public int backward(int valeur)
     {
-
+        System.out.println("Valeur de backward :: " + valeur); /* TODO : Enlever TEST */
         return SUCCESS;
-
     }
 
     /**
@@ -596,16 +621,13 @@ public class Controleur{
     
     /*cette fonction teste si une chaine de caractere est un int ou pas*/
     public boolean isInt(String s){
-    	boolean isAnInt=true;
     	try{
     		Integer.parseInt(s);
     	}
     	catch(NumberFormatException e){
-    		isAnInt=false;
+    		return false;
     	}
-    	finally{
-    		return isAnInt;
-    	}
+        return true;
     }
 
 
