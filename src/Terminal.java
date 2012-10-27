@@ -43,8 +43,8 @@ public class Terminal extends JPanel implements KeyListener{
         if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER
                 && !this.champ_de_commande.getText().equals(""))
         {
-            controleur.commande(this.champ_de_commande.getText());
             this.historique.append("\n > "+this.champ_de_commande.getText().trim());
+            controleur.commande(this.champ_de_commande.getText());
             if ( !this.message_erreur.equals("") )
             {
                 this.historique.append("\n   --" + this.message_erreur);
@@ -186,6 +186,15 @@ public class Terminal extends JPanel implements KeyListener{
     public void afficheErreur(String message_erreur)
     {
         this.message_erreur = message_erreur;
+    }
+
+    /**
+     *  Supprime l'affichage courant de l'historique (mais garde en
+     *  mémoire les commandes.
+     */
+    public void clear()
+    {
+        this.historique.setText("");
     }
 
 }

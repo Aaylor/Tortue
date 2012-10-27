@@ -100,7 +100,9 @@ public class StockageDonnee
         liste_erreurs = new Hashtable<Integer, String>(); 
 
         liste_erreurs.put(1, "la commande n'existe pas");
-        liste_erreurs.put(2, "argument en trop");
+        liste_erreurs.put(2, "nombre(s) d'argument(s) trop élevé");
+        liste_erreurs.put(3, "nombre(s) d'argument(s) trop faible");
+        liste_erreurs.put(4, "paramètre incorrect");
 
         return true;
 

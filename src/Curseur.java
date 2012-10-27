@@ -18,7 +18,7 @@ public class Curseur extends JPanel {
 	private short type; //0 : Crayon, 1 : Gomme
 	private Color couleur;
 	private Controleur controleur;
-	private boolean isDown=false;//par défaut false: donc penup
+	private boolean isDown=false;//par defaut false: donc penup
 
 	
 	/////////////////////

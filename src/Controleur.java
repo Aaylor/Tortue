@@ -4,7 +4,9 @@ public class Controleur{
 
     public static final int SUCCESS = 0;
     public static final int COMMANDE_ERRONEE = 1;
-    public static final int ERREUR_ARGUMENT = 2; 
+    public static final int NOMBRE_ARG_SUP = 2; 
+    public static final int NOMBRE_ARG_LESS = 3;
+    public static final int PARAM_INCORRECTE = 4;
     /* 
      * TODO
      * mettre en constante les autres erreurs
@@ -78,10 +80,8 @@ public class Controleur{
      */
     public boolean afficheErreur(int numero_erreur)
     {
-
         term.afficheErreur(GenerationErreur.genererErreur(numero_erreur));
         return true;
-
     }
     
 
@@ -92,126 +92,154 @@ public class Controleur{
      */
     public int init(String[] commande_parser)
     {
-
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0] ) )
         {
             case 0:
                 if ( commande_parser.length > 1 )
-                    return ERREUR_ARGUMENT;
-                else
-                    return pendown();
+                    return NOMBRE_ARG_SUP;
+                return pendown();
             
             case 1:
-                penup();
-                break;
-            
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return penup();
+           
             case 2:
+                pencil();
+                break;
+
+            case 3:
                 eraser();
                 break;
             
-            case 3:
-                up();
-                break;
-            
             case 4:
-                down();
-                break;
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return up();
             
             case 5:
-                left();
-                break;
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return down();
             
             case 6:
-                right();
-                break;
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return left();
             
             case 7:
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return right();
+            
+            case 8:
                 rotate(commande_parser);
                 break;
             
-            case 8:
-                forward();
-                break;
-            
             case 9:
-                backward();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return forward();
             
             case 10:
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return backward();
+            
+            case 11:
                 goTo();
                 break;
             
-            case 11:
+            case 12:
                 cursorwidth();
                 break;
             
-            case 12:
-                setColor();
-                break;
-            
             case 13:
-                setBackgroundColor();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return setColor();
             
             case 14:
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return setBackgroundColor();
+            
+            case 15:
                 doFigure();
                 break;
             
-            case 15:
+            case 16:
                 width();
                 break;
             
-            case 16:
+            case 17:
                 height();
                 break;
             
-            case 17:
-                newFile();
-                break;
-            
             case 18:
-                open();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return newFile();
             
             case 19:
-                save();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return open();
             
             case 20:
-                saveas();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return save();
             
             case 21:
-                savehistory();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return saveas();
             
             case 22:
-                exec();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return savehistory();
             
             case 23:
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                return exec();
+            
+            case 24:
                 repeat();
                 break;
             
-            case 24:
-                clear();
-                break;
-            
             case 25:
-                help();
-                break;
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return clear();
             
             case 26:
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_ARG_SUP;
+                return help();
+            
+            case 27:
                 man();
                 break;
             
-            case 27:
-                function_debug_test();
+            case 28:
+                if ( commande_parser.length >= 2 )
+                {
+                    System.out.println(commande_parser[1] + commande_parser[2]);
+                    if ( commande_parser[1].equals("LCEC") )
+                        function_debug_test( true );
+                    else if ( commande_parser[1].equals("LCEG") )
+                        function_debug_test( false );
+                    else
+                        return PARAM_INCORRECTE;
+                }
+                function_debug_test( false );
                 break;
             
             default:
                 return COMMANDE_ERRONEE;
-
         }
 
         return SUCCESS;
@@ -244,14 +272,20 @@ public class Controleur{
     }
 
     /**
+     *  Fonction qui permet de passer en mode crayon
+     *  @return si la fonction s'est bien déroulée.
+     */
+    public int pencil()
+    {
+        return SUCCESS;
+    }
+    /**
      * Fonction qui permet de passer en mode gomme
      * @return si la fonction s'est bien déroulée.
      */
     public int eraser()
     {
-
         return SUCCESS;
-
     }
 
     /**
@@ -514,6 +548,7 @@ public class Controleur{
     public int clear()
     {
 
+        term.clear();
         return SUCCESS;
 
     }
@@ -540,14 +575,23 @@ public class Controleur{
 
     }
 
-    private void function_debug_test()
+    private void function_debug_test(boolean b)
     {
-
-        for (int i = 0; i < StockageDonnee.getSize_LCEG(); i++)
+        if ( !b )
         {
-            System.out.println(StockageDonnee.getLCEG(i));
+            for (int i = 0; i < StockageDonnee.getSize_LCEG(); i++)
+            {
+                System.out.println(StockageDonnee.getLCEG(i));
+            }
         }
 
+        else
+        {
+            for (int i = 0; i < StockageDonnee.getSize_LCEC(); i++)
+            {
+                System.out.println(StockageDonnee.getLCEC(i));
+            }
+        }
     }
     
     /*cette fonction teste si une chaine de caractere est un int ou pas*/
