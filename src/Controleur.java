@@ -93,6 +93,7 @@ public class Controleur{
     public int init(String[] commande_parser)
     {
         int valeur = 0;
+        double value = 0;
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0] ) )
         {
             case 0:
@@ -168,8 +169,23 @@ public class Controleur{
                 return backward(valeur);
             
             case 11:
-                goTo();
-                break;
+                double value_2 = 0;
+                if ( commande_parser.length > 3 )
+                    return NOMBRE_ARG_SUP;
+                else if ( commande_parser.length <= 2 )
+                    return NOMBRE_ARG_LESS;
+                else;
+
+                if ( isDouble(commande_parser[1])
+                        && isDouble(commande_parser[2]) )
+                {
+                    value = Double.parseDouble(commande_parser[1]);
+                    value_2 = Double.parseDouble(commande_parser[2]);
+                }
+                else
+                    return COMMANDE_ERRONEE;
+                    
+                return goTo(value, value_2);
             
             case 12:
                 cursorwidth();
@@ -416,11 +432,10 @@ public class Controleur{
      *  Fonction qui permet de déplacer le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public int goTo()
+    public int goTo(double value, double value_2)
     {
-    
+        System.out.println("value 1 :: " + value + "\nvalue 2 :: " + value_2); 
         return SUCCESS;
-
     }
 
     /**
@@ -627,6 +642,19 @@ public class Controleur{
     	catch(NumberFormatException e){
     		return false;
     	}
+        return true;
+    }
+
+    public boolean isDouble(String s)
+    {
+        try
+        {
+            Double.parseDouble(s);
+        }
+        catch(NumberFormatException e)
+        {
+            return false;
+        }
         return true;
     }
 
