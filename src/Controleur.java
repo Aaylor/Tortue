@@ -316,7 +316,8 @@ public class Controleur{
      *  @return si la fonction s'est bien déroulée.
      */
     public int pencil()
-    {
+    { 
+    	this.curseur.setType(0);
         return SUCCESS;
     }
 
@@ -326,6 +327,7 @@ public class Controleur{
      */
     public int eraser()
     {
+    	this.curseur.setType(1);
         return SUCCESS;
     }
 
@@ -335,7 +337,7 @@ public class Controleur{
      */
     public int up()
     {
-    	this.curseur.setOrientation(90);
+    	this.curseur.setOrientation(180);
     	/*il reste a faire une rotation de l'image du curseur*/
         return SUCCESS;
 
@@ -347,7 +349,7 @@ public class Controleur{
      */
     public int down()
     {
-    	this.curseur.setOrientation(270);
+    	this.curseur.setOrientation(0);
     	/*il reste a faire une rotation de l'image du curseur*/
         return SUCCESS;
 
@@ -359,7 +361,7 @@ public class Controleur{
      */
     public int left()
     {
-    	this.curseur.setOrientation(180);
+    	this.curseur.setOrientation(270);
     	/*il reste a faire une rotation de l'image du curseur*/
         return SUCCESS;
 
@@ -371,7 +373,7 @@ public class Controleur{
      */
     public int right()
     {
-    	this.curseur.setOrientation(0);
+    	this.curseur.setOrientation(90);
     	/*il reste a faire une rotation de l'image du curseur*/
         return SUCCESS;
 
@@ -413,7 +415,14 @@ public class Controleur{
      */
     public int forward(int valeur)
     {
-        System.out.println("Valeur de forward :: " + valeur); /* TODO : Enlever TEST */
+    	//Calcul de la nouvelle position du curseur
+    	double posX = curseur.getPosX() + valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
+		double posY = curseur.getPosY() + valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
+		
+		//Changement effectif
+        curseur.setPosX((int)posX);
+        curseur.setPosY((int)posY);
+        
         return SUCCESS;
     }
 
@@ -424,7 +433,14 @@ public class Controleur{
      */
     public int backward(int valeur)
     {
-        System.out.println("Valeur de backward :: " + valeur); /* TODO : Enlever TEST */
+    	//Calcul de la nouvelle position du curseur
+    	double posX = curseur.getPosX() - valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
+		double posY = curseur.getPosY() - valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
+		
+		//Changement effectif
+        curseur.setPosX((int)posX);
+        curseur.setPosY((int)posY);
+        
         return SUCCESS;
     }
 

@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Graphics;
 
 public class Main{
 
@@ -22,15 +23,26 @@ public class Main{
      */
     public static void start_program()
     {
-    	int largeurDessin = 600;
-    	int hauteurDessin = 600;
-    	Curseur curseur = new Curseur(largeurDessin/2, hauteurDessin/2, 90, 1, Color.BLACK);
+    	int largeurDessin = 400;
+    	int hauteurDessin = 400;
+    	Curseur curseur = new Curseur(largeurDessin/2, hauteurDessin/2, 90, 1, Color.BLACK, 0);
     	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, Color.WHITE, curseur);
     	Fenetre fenetre = new Fenetre(zoneDessin);
         
         Controleur c = new Controleur();
         c.___hydrate___(fenetre, curseur);
 
+        
+        //TEMPORAIRE JUSTE POUR TESTER LE PROGRAMME
+        while(true){
+        	try{
+        		  Thread.sleep(1000); //Ici, une pause d'une seconde
+        		  zoneDessin.repaint();
+        		}catch(InterruptedException e) {
+        		  e.printStackTrace();
+        		}
+        }
+        
     }
 
     /**

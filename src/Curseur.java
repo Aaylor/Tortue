@@ -11,7 +11,7 @@ public class Curseur extends JPanel {
 	private int posY;
 	private int orientation;
 	private int taille;
-	private short type; //0 : Crayon, 1 : Gomme
+	private int type; //0 : Crayon, 1 : Gomme
 	private Color couleur;
 	private Controleur controleur;
 	private boolean isDown=false;//par defaut false: donc penup
@@ -23,12 +23,13 @@ public class Curseur extends JPanel {
     /**
 	 * Constructeur test
 	 */
-	Curseur (int posX, int posY, int orientation, int taille, Color couleur) {
+	Curseur (int posX, int posY, int orientation, int taille, Color couleur, int type) {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;
 		this.taille = taille;
 		this.couleur = couleur;
+		this.type = type;
     }	
 	
 	//////////////////
@@ -61,7 +62,7 @@ public class Curseur extends JPanel {
      *  Accesseur de la variable type
      *  @return type
      */
-	public short getType () {
+	public int getType () {
 		return this.type;
 	}
 
@@ -86,6 +87,12 @@ public class Curseur extends JPanel {
 	//  MODIFIEURS //
 	/////////////////
 
+	public void setPosX (int posX) {
+		this.posX = posX;
+	}
+	public void setPosY (int posY) {
+		this.posY = posY;
+	}
     /**
      *  Modifieur de la variable orientation
      *  @param orientation nouvelle valeur de  l'orientation
@@ -106,7 +113,7 @@ public class Curseur extends JPanel {
      *  Modifieur de la variable type
      *  @param type nouvelle valeur du type
      */
-	public void setType (short type) {
+	public void setType (int type) {
 		this.type = type;
 	}
 

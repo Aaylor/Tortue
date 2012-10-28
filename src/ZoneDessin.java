@@ -34,11 +34,10 @@ public class ZoneDessin extends JPanel {
 			g.setColor(curseur.getCouleur());
 			g.drawLine(curseur.getPosX()-2, curseur.getPosY(), curseur.getPosX()+2, curseur.getPosY());
 			g.drawLine(curseur.getPosX(), curseur.getPosY()-2, curseur.getPosX(), curseur.getPosY()+2);
-			//Determinons les points x et y "d'arrivée" du curseurs symbolisant l'orientation
-			//endX   = x + 40 * Math.sin(angle * Math.PI / 180);
-			//endY   = y + 40 * Math.cos(angle * Math.PI / 180);
+			//Determinons le point d'arrivée du trait symbolisant l'orientation
 			double posX2 = curseur.getPosX() + 40 * Math.sin(curseur.getOrientation() * Math.PI / 180);
 			double posY2 = curseur.getPosY() + 40 * Math.cos(curseur.getOrientation() * Math.PI / 180);
+			//Dessinons le trait
 			g.drawLine(curseur.getPosX(), curseur.getPosY(), (int)posX2, (int)posY2);
 		
 	}
