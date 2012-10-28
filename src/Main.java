@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 public class Main{
 
     /**
@@ -21,7 +23,8 @@ public class Main{
     public static void start_program()
     {
 
-    	Fenetre fenetre = new Fenetre();
+    	ZoneDessin zoneDessin = new ZoneDessin(600,600, Color.WHITE);
+    	Fenetre fenetre = new Fenetre(zoneDessin);
         Curseur curseur = new Curseur();
         Controleur c = new Controleur();
         c.___hydrate___(fenetre, curseur);
