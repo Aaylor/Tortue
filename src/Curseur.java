@@ -21,11 +21,6 @@ public class Curseur extends JPanel {
 	//  CONSTRUCTEURS  //
 	/////////////////////
     /**
-     *  Constructeur vide
-     */
-    Curseur(){}
-    
-    /**
 	 * Constructeur test
 	 */
 	Curseur (int posX, int posY, int orientation, int taille, Color couleur) {
@@ -40,6 +35,12 @@ public class Curseur extends JPanel {
 	//  ACCESSEURS  //
 	//////////////////
    
+	public int getPosX () {
+		return this.posX;
+	}
+	public int getPosY () {
+		return this.posY;
+	}
     /**
      *  Accesseur de la variable orientation
      *  @return orientation

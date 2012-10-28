@@ -22,10 +22,12 @@ public class Main{
      */
     public static void start_program()
     {
-
-    	ZoneDessin zoneDessin = new ZoneDessin(600,600, Color.WHITE);
+    	int largeurDessin = 600;
+    	int hauteurDessin = 600;
+    	Curseur curseur = new Curseur(largeurDessin/2, hauteurDessin/2, 0, 1, Color.BLACK);
+    	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, Color.WHITE, curseur);
     	Fenetre fenetre = new Fenetre(zoneDessin);
-        Curseur curseur = new Curseur();
+        
         Controleur c = new Controleur();
         c.___hydrate___(fenetre, curseur);
 
