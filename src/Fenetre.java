@@ -3,8 +3,6 @@ import javax.swing.*;
 
 public class Fenetre extends JFrame{
 	BarreMenu barreMenu = new BarreMenu();//Barre de menu
-	JPanel conteneurPrincipal = new JPanel(); //JPanel qui va contenir l'ensemble des elements du programe
-	JPanel conteneurVertical = new JPanel();//JPanel qui contient la barre d'outil ainsi que le terminal
 	Terminal terminal = new Terminal();
 	ZoneDessin zoneDessin; //L'objet est associé dans Fenetre pendant l'initialisation
 	ZoneBouton zoneBouton = new ZoneBouton();
@@ -16,6 +14,7 @@ public class Fenetre extends JFrame{
 		//Initialisation de la JFrame
 		this.setTitle("Carapuce");
 		this.setSize(1024, 600);
+		this.setMinimumSize(new Dimension(1024, 600));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("img/icone.png" ).getImage());
 		
@@ -26,20 +25,21 @@ public class Fenetre extends JFrame{
 		this.zoneDessin = zoneDessin;
 		
 		//Positionnement des sous fenetres
-		JPanel vertical = new JPanel();
-		vertical.setLayout(new BorderLayout());
-		vertical.add(zoneBouton, BorderLayout.NORTH);
-		vertical.add(terminal, BorderLayout.CENTER);
-		Box voletHorizontal = Box.createHorizontalBox();
-		voletHorizontal.add(zoneDessin);
-		voletHorizontal.add(vertical);
+		JPanel conteneurVertical = new JPanel();
+		conteneurVertical.setLayout(new BorderLayout());
+		conteneurVertical.add(zoneBouton, BorderLayout.NORTH);
+		conteneurVertical.add(terminal);
+		
+		Box conteneurPrincipal = Box.createHorizontalBox();
+		conteneurPrincipal.add(zoneDessin);
+		conteneurPrincipal.add(conteneurVertical);
 		//Liaison au ContentPane
-		this.getContentPane().add(voletHorizontal);
+		this.getContentPane().add(conteneurPrincipal);
 
 		//Resize temporaire des JPanel, a etudier comment obtenir des dimension absolue
 		zoneDessin.setPreferredSize(new Dimension(this.getWidth()*2/3, 0));
-		vertical.setPreferredSize(new Dimension(this.getWidth()/3, 0));
-		vertical.setMaximumSize(new Dimension(this.getWidth()/3, 10000));
+		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, 0));
+		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, 10000));
 		
 
 		//Affichage de la fenetre (ne pas placer avant)

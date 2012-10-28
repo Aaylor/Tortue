@@ -37,7 +37,7 @@ public class Main{
         while(true){
         	try{
         		  Thread.sleep(1000); //Ici, une pause d'une seconde
-        		  zoneDessin.repaint();
+        		  fenetre.zoneDessin.repaint();
         		}catch(InterruptedException e) {
         		  e.printStackTrace();
         		}

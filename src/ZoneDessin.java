@@ -25,7 +25,9 @@ public class ZoneDessin extends JPanel {
 	public void paintComponent(Graphics g){
 		//ETAPE 1 : Afficher toutes les anciennes actions
 		//Background
-			g.setColor(background);
+			g.setColor(Color.gray);//Couleur de fond
+			g.fillRect(0, 0, this.getWidth(), this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
+			g.setColor(background);//Couleur de fond du dessin
 			g.fillRect(0, 0, this.largeurDessin, this.hauteurDessin);
 		//Les actions 
 		
