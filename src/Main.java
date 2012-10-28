@@ -24,7 +24,7 @@ public class Main{
     {
     	int largeurDessin = 600;
     	int hauteurDessin = 600;
-    	Curseur curseur = new Curseur(largeurDessin/2, hauteurDessin/2, 0, 1, Color.BLACK);
+    	Curseur curseur = new Curseur(largeurDessin/2, hauteurDessin/2, 90, 1, Color.BLACK);
     	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, Color.WHITE, curseur);
     	Fenetre fenetre = new Fenetre(zoneDessin);
         
