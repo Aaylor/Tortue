@@ -128,15 +128,24 @@ public class StockageDonnee
         return ( liste_des_commandes.containsKey(commande) ) ? liste_des_commandes.get(commande) : -1;
     }
 
+    /**
+     *  Fonction renvoyant la commande entrée selon son numéro
+     *  @return la commande
+     */
     public static String getLCEC(int numero)
     {
         return liste_commande_entree_correcte.get( numero );
     }
 
+    /**
+     *  Fonction renvoyant la commande entrée selon son numéro
+     *  @return la commande
+     */
     public static String getLCEG(int numero)
     {
         return liste_commande_entree_generale.get( numero );
     }
+
     /**
      *  Fonction ajoutant la commande à la collection correspondante
      *  @param commande Commande entrée par l'utilisateur
