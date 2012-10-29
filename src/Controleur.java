@@ -338,7 +338,6 @@ public class Controleur{
     public int up()
     {
     	this.curseur.setOrientation(180);
-    	/*il reste a faire une rotation de l'image du curseur*/
         return SUCCESS;
 
     }
@@ -350,7 +349,6 @@ public class Controleur{
     public int down()
     {
     	this.curseur.setOrientation(0);
-    	/*il reste a faire une rotation de l'image du curseur*/
         return SUCCESS;
 
     }
@@ -362,7 +360,6 @@ public class Controleur{
     public int left()
     {
     	this.curseur.setOrientation(270);
-    	/*il reste a faire une rotation de l'image du curseur*/
         return SUCCESS;
 
     }
@@ -374,7 +371,6 @@ public class Controleur{
     public int right()
     {
     	this.curseur.setOrientation(90);
-    	/*il reste a faire une rotation de l'image du curseur*/
         return SUCCESS;
 
     }
