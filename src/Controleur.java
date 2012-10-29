@@ -93,7 +93,8 @@ public class Controleur{
     public int init(String[] commande_parser)
     {
         int valeur = 0;
-        double value = 0;
+        double valeur_x = 0;
+        double valeur_y = 0;
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0] ) )
         {
             case 0:
@@ -169,7 +170,6 @@ public class Controleur{
                 return backward(valeur);
             
             case 11:
-                double value_2 = 0;
                 if ( commande_parser.length > 3 )
                     return NOMBRE_ARG_SUP;
                 else if ( commande_parser.length <= 2 )
@@ -179,13 +179,13 @@ public class Controleur{
                 if ( isDouble(commande_parser[1])
                         && isDouble(commande_parser[2]) )
                 {
-                    value = Double.parseDouble(commande_parser[1]);
-                    value_2 = Double.parseDouble(commande_parser[2]);
+                    valeur_x = Double.parseDouble(commande_parser[1]);
+                    valeur_y = Double.parseDouble(commande_parser[2]);
                 }
                 else
                     return COMMANDE_ERRONEE;
                     
-                return goTo(value, value_2);
+                return goTo(valeur_x, valeur_y);
             
             case 12:
                 cursorwidth();
