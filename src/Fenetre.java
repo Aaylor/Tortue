@@ -5,12 +5,12 @@ public class Fenetre extends JFrame{
 	BarreMenu barreMenu = new BarreMenu();//Barre de menu
 	Terminal terminal = new Terminal();
 	ZoneDessin zoneDessin; //L'objet est associé dans Fenetre pendant l'initialisation
-	BarreOutils zoneBouton = new BarreOutils();
+	BarreOutils barreOutils;
 
     /**
      *  Constructeur de la fenetre
      */
-	Fenetre(ZoneDessin zoneDessin){
+	Fenetre(ZoneDessin zoneDessin, BarreOutils barreOutils){
 		//Initialisation de la JFrame
 		this.setTitle("Carapuce");
 		this.setSize(1024, 600);
@@ -27,7 +27,8 @@ public class Fenetre extends JFrame{
 		//Positionnement des sous fenetres
 		JPanel conteneurVertical = new JPanel();
 		conteneurVertical.setLayout(new BorderLayout());
-		conteneurVertical.add(zoneBouton, BorderLayout.NORTH);
+		this.barreOutils = barreOutils; 
+		conteneurVertical.add(barreOutils, BorderLayout.NORTH);
 		conteneurVertical.add(terminal);
 		
 		Box conteneurPrincipal = Box.createHorizontalBox();
@@ -78,7 +79,7 @@ public class Fenetre extends JFrame{
      */
     public BarreOutils getZoneBouton()
     {
-        return this.zoneBouton;
+        return this.barreOutils;
     }
 
 

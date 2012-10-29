@@ -45,15 +45,18 @@ public class ZoneDessin extends JPanel {
 					g.drawLine(curseur.getPosX()-2, curseur.getPosY(), curseur.getPosX()-2, curseur.getPosY());
 					g.drawLine(curseur.getPosX()+2, curseur.getPosY(), curseur.getPosX()+2, curseur.getPosY());
 					g.drawLine(curseur.getPosX(), curseur.getPosY() - 2, curseur.getPosX(), curseur.getPosY() - 2);
-					g.drawLine(curseur.getPosX(), curseur.getPosX(), curseur.getPosX(), curseur.getPosX());
+					g.drawLine(curseur.getPosX(), curseur.getPosX() + 2, curseur.getPosX(), curseur.getPosX() + 2);
 				}
 			}
 			else if(curseur.getType() == 1){
 				if (curseur.isDown()){
-
+					g.drawLine(curseur.getPosX()-2, curseur.getPosY(), curseur.getPosX()+2, curseur.getPosY());
+					g.drawLine(curseur.getPosX(), curseur.getPosY()-2, curseur.getPosX(), curseur.getPosY()+2);
+					g.drawOval(curseur.getPosX() - 2, curseur.getPosY() - 2 , 4, 4);
 				}
 				else{
-
+					g.drawLine(curseur.getPosX(), curseur.getPosY(), curseur.getPosX(), curseur.getPosY());
+					g.drawOval(curseur.getPosX() - 2, curseur.getPosY() - 2 , 4, 4);
 				}
 			}
 			

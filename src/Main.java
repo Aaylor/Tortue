@@ -27,7 +27,8 @@ public class Main{
     	int hauteurDessin = 400;
     	Curseur curseur = new Curseur(largeurDessin/2, hauteurDessin/2, 90, 1, Color.BLACK, 0);
     	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, Color.WHITE, curseur);
-    	Fenetre fenetre = new Fenetre(zoneDessin);
+    	BarreOutils barreOutils = new BarreOutils(curseur, zoneDessin);
+    	Fenetre fenetre = new Fenetre(zoneDessin, barreOutils);
         
         Controleur c = new Controleur();
         c.___hydrate___(fenetre, curseur);

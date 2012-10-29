@@ -3,19 +3,22 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class BarreOutils extends JMenuBar {
-	
+	private Curseur curseur;
+	private ZoneDessin zoneDessin;
 	
     private Controleur controleur;
-    private boolean crayonEstPose = true; //TEMPORAIRE, juste pour l'initialisation du bouton localement
     private boolean gomme;//False : Crayon, True : Gomme
-    private JButton boutonPoserCrayon = boutonPoserCrayon();
-    private JButton boutonGomme = boutonGomme();
-    
+    private JButton boutonPoserCrayon;
+    private JButton boutonGomme;
     /**
      *  Constructeur de la zone de bouton
      */
     
-	BarreOutils(){
+	BarreOutils(final Curseur curseur, final ZoneDessin zoneDessin){
+		this.curseur = curseur;
+		this.zoneDessin = zoneDessin;
+		boutonPoserCrayon = boutonPoserCrayon();
+		boutonGomme = boutonGomme();
 		
 		//Ajout des boutons
 		this.add(boutonPoserCrayon);
@@ -25,26 +28,30 @@ public class BarreOutils extends JMenuBar {
 		//Action des boutons
 		boutonPoserCrayon.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				if (crayonEstPose){
-					
-					boutonPoserCrayon.setText("Poser le crayon");
-					crayonEstPose = false;
+				if (curseur.isDown()){
+					boutonPoserCrayon.setText("Poser l'outil");
+					curseur.setIsDown(false);
+					zoneDessin.repaint();
 				}
 				else{
-					boutonPoserCrayon.setText("Lever le Crayon");
-					crayonEstPose = true;
+					boutonPoserCrayon.setText("Lever l'outil");
+					curseur.setIsDown(true);
+					zoneDessin.repaint();
+
 				}
 			}
 		});
 		boutonGomme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				if (gomme){
+				if (curseur.getType() == 0){
 					boutonGomme.setText("Gomme");
-					gomme = false;
+					curseur.setType(1);
+					zoneDessin.repaint();
 				}
 				else{
 					boutonGomme.setText("Crayon");
-					gomme = true;
+					curseur.setType(0);
+					zoneDessin.repaint();
 				}
 			}
 		});
@@ -59,7 +66,7 @@ public class BarreOutils extends JMenuBar {
 	public JButton boutonPoserCrayon(){
 		JButton bouton = new JButton();
 		//Texte contenu dans le bouton
-		if (crayonEstPose) bouton.setText("Lever le crayon");
+		if (curseur.isDown()) bouton.setText("Lever le crayon");
 		else bouton.setText("Poser le Crayon");
 		
 		//Return du bouton
