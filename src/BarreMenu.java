@@ -16,7 +16,7 @@ public class BarreMenu extends JMenuBar{
 	JMenu menuOutils = new JMenu("Outils");
 	JMenuItem options = new JMenuItem("Options");
 	JMenuItem aPropos = new JMenuItem("A propos");
-	
+	System.out.println'();	
     /**
      *  Constructeur
      */
