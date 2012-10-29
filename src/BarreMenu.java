@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class BarreMenu extends JMenuBar{
@@ -30,6 +32,25 @@ public class BarreMenu extends JMenuBar{
 		this.add(menuOutils);
 		menuOutils.add(options);
 		menuOutils.add(aPropos);
+		aPropos.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				aPropos();
+			}
+		});
 		
 	}
+	
+	public void aPropos(){
+		JOptionPane aPropos = new JOptionPane();
+		aPropos.showMessageDialog(null,
+								"Carapuce est un projet Universitaire développé par 4 petits chenapans\n\n" +
+								"Mehdi Khelifi : Interface Graphiques\n" +
+								"Loïc Runarvot : Terminal\n" +
+								"Gauthier Lo : Commandes\n" +
+								"Frederic Mamath : Commandes",
+								"A propos",
+								JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	
 }
