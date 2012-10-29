@@ -14,7 +14,7 @@ public class Controleur{
     
     Terminal term = null;
     ZoneDessin zd = null;
-    ZoneBouton zb = null;
+    BarreOutils zb = null;
     Curseur curseur = null;
 
     /**

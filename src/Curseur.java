@@ -78,7 +78,7 @@ public class Curseur extends JPanel {
 	 * Accesseur de la variable isDown
 	 * @return
 	 */
-	public boolean getIsDown(){
+	public boolean isDown(){
 		return this.isDown;
 	}
 	

@@ -5,7 +5,7 @@ public class Fenetre extends JFrame{
 	BarreMenu barreMenu = new BarreMenu();//Barre de menu
 	Terminal terminal = new Terminal();
 	ZoneDessin zoneDessin; //L'objet est associé dans Fenetre pendant l'initialisation
-	ZoneBouton zoneBouton = new ZoneBouton();
+	BarreOutils zoneBouton = new BarreOutils();
 
     /**
      *  Constructeur de la fenetre
@@ -76,7 +76,7 @@ public class Fenetre extends JFrame{
      *  Retourne la zone de bouton associee a la fenetre
      *  @return retourne la zone de bouton
      */
-    public ZoneBouton getZoneBouton()
+    public BarreOutils getZoneBouton()
     {
         return this.zoneBouton;
     }

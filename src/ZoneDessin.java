@@ -34,8 +34,33 @@ public class ZoneDessin extends JPanel {
 		
 		//ETAPE 2 : Afficher le curseur
 			g.setColor(curseur.getCouleur());
-			g.drawLine(curseur.getPosX()-2, curseur.getPosY(), curseur.getPosX()+2, curseur.getPosY());
-			g.drawLine(curseur.getPosX(), curseur.getPosY()-2, curseur.getPosX(), curseur.getPosY()+2);
+			
+			//Forme Crayon
+			if(curseur.getType() == 0){
+				if (curseur.isDown()){
+					g.drawLine(curseur.getPosX()-2, curseur.getPosY(), curseur.getPosX()+2, curseur.getPosY());
+					g.drawLine(curseur.getPosX(), curseur.getPosY()-2, curseur.getPosX(), curseur.getPosY()+2);
+				}
+				else{
+					g.drawLine(curseur.getPosX()-2, curseur.getPosY(), curseur.getPosX()-2, curseur.getPosY());
+					g.drawLine(curseur.getPosX()+2, curseur.getPosY(), curseur.getPosX()+2, curseur.getPosY());
+					g.drawLine(curseur.getPosX(), curseur.getPosY() - 2, curseur.getPosX(), curseur.getPosY() - 2);
+					g.drawLine(curseur.getPosX(), curseur.getPosX(), curseur.getPosX(), curseur.getPosX());
+				}
+			}
+			else if(curseur.getType() == 1){
+				if (curseur.isDown()){
+
+				}
+				else{
+
+				}
+			}
+			
+			//Forme Gomme
+			
+			
+			
 			//Determinons le point d'arrivée du trait symbolisant l'orientation
 			double posX2 = curseur.getPosX() + 40 * Math.sin(curseur.getOrientation() * Math.PI / 180);
 			double posY2 = curseur.getPosY() + 40 * Math.cos(curseur.getOrientation() * Math.PI / 180);
