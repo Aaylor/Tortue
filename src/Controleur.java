@@ -450,7 +450,11 @@ public class Controleur{
      */
     public int goTo(double value, double value_2)
     {
-        System.out.println("value 1 :: " + value + "\nvalue 2 :: " + value_2); 
+        System.out.println("value 1 :: " + value + "\nvalue 2 :: " + value_2);
+        
+        //plus tard il faudrat faire des conditions sur la position max qui est égale à la taille de la fenetre
+        curseur.setPosX((int)value);
+        curseur.setPosY((int)value_2);
         return SUCCESS;
     }
 
