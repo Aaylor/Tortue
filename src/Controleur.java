@@ -265,17 +265,17 @@ public class Controleur{
                 return man();
             
             case 28:
-                if ( commande_parser.length >= 2 )
+                if ( commande_parser.length == 2 )
                 {
-                    System.out.println(commande_parser[1] + commande_parser[2]);
-                    if ( commande_parser[1].equals("LCEC") )
+                    if ( commande_parser[1].equals("lcec") )
                         function_debug_test( true );
-                    else if ( commande_parser[1].equals("LCEG") )
+                    else if ( commande_parser[1].equals("lceg") )
                         function_debug_test( false );
                     else
                         return PARAM_INCORRECTE;
                 }
-                function_debug_test( false );
+                else
+                    function_debug_test( false );
                 break;
             
             default:
