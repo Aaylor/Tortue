@@ -7,7 +7,6 @@ public class BarreOutils extends JMenuBar {
 	private ZoneDessin zoneDessin;
 	
     private Controleur controleur;
-    private boolean gomme;//False : Crayon, True : Gomme
     private JButton boutonPoserCrayon;
     private JButton boutonGomme;
     /**
@@ -44,12 +43,12 @@ public class BarreOutils extends JMenuBar {
 		boutonGomme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				if (curseur.getType() == 0){
-					boutonGomme.setText("Gomme");
+					boutonGomme.setText("Crayon");
 					curseur.setType(1);
 					zoneDessin.repaint();
 				}
 				else{
-					boutonGomme.setText("Crayon");
+					boutonGomme.setText("Gomme");
 					curseur.setType(0);
 					zoneDessin.repaint();
 				}
@@ -79,7 +78,7 @@ public class BarreOutils extends JMenuBar {
 	public JButton boutonGomme(){
 		JButton bouton = new JButton();
 		//Texte contenu dans le bouton
-		if (gomme) bouton.setText("Crayon");
+		if (curseur.getType() == 1) bouton.setText("Crayon");
 		else bouton.setText("Gomme");
 		
 		//Return du bouton
