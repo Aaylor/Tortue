@@ -15,6 +15,7 @@ public class Fenetre extends JFrame{
 		this.setTitle("Carapuce");
 		this.setSize(1024, 600);
 		this.setMinimumSize(new Dimension(1024, 600));
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setIconImage(new ImageIcon("img/icone.png" ).getImage());
 		

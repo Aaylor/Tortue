@@ -59,7 +59,8 @@ public class BarreMenu extends JMenuBar{
 		});
 		options.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				options();
+				MenuOption menuOption = new MenuOption(null, "Option", true);
+				
 			}
 		});
 		aPropos.addActionListener(new ActionListener(){
