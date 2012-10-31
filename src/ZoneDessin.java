@@ -85,6 +85,18 @@ public class ZoneDessin extends JPanel {
 		
 	}
 	
+	/*///
+	 * ACCESSEURS
+	 //
+	 */
+	
+	public int getPosX(){
+		return curseur.getPosX() + ecartHorizontal;
+	}
+	public int getPosY(){
+		return curseur.getPosY() + ecartVertical;
+	}
+	
     /**
      *  Modifie le controleur
      *  @param c nouveau controleur
