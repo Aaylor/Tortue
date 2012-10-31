@@ -6,6 +6,9 @@ public class ZoneDessin extends JPanel {
 	int hauteurDessin; //La longueur de la zone de dessin
 	Color background;
 	Curseur curseur;
+	//Les bords de la zones de dessin
+	int ecartHorizontal;
+	int ecartVertical;
 	
     private Controleur controleur;
 
@@ -28,12 +31,17 @@ public class ZoneDessin extends JPanel {
 			//Fond de la zone de dessin
 			g.setColor(new Color(180,180,180));//Couleur de fond
 			g.fillRect(0, 0, this.getWidth(), this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
+			//Calcul de l'ecart de la zone de dessin pour centrer le dessin
+			ecartHorizontal = (this.getWidth() - largeurDessin)/2;
+			ecartVertical = (this.getHeight() - hauteurDessin)/2;
+			
 			//Ombre de l'image
 			g.setColor(new Color(220,220,220));
-			g.fillRect(5, 5, this.largeurDessin + 5, this.hauteurDessin + 5);
+			g.fillRect(ecartHorizontal + 5, ecartVertical + 5, this.largeurDessin, this.hauteurDessin);
 			//Image
 			g.setColor(background);//Couleur de fond du dessin
-			g.fillRect(0, 0, this.largeurDessin, this.hauteurDessin);
+			g.fillRect(ecartHorizontal, ecartVertical, this.largeurDessin, this.hauteurDessin);
+			
 		//Les actions 
 		
 		

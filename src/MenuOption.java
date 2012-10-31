@@ -23,6 +23,7 @@ public class MenuOption extends JDialog{
 		//Affichage
 		JPanel panAffichage = new JPanel();
 		panAffichage.setBorder(BorderFactory.createTitledBorder("Mode d'affichage au démarrage"));
+		affichageFenetre.setSelected(true);
 		ButtonGroup affichage = new ButtonGroup();
 		affichage.add(affichageFenetre);
 		affichage.add(affichagePleinEcran);
