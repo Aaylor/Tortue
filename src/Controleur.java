@@ -338,6 +338,7 @@ public class Controleur{
     public int up()
     {
     	this.curseur.setOrientation(180);
+        this.zd.repaint();
         return SUCCESS;
 
     }
@@ -349,6 +350,7 @@ public class Controleur{
     public int down()
     {
     	this.curseur.setOrientation(0);
+        this.zd.repaint();
         return SUCCESS;
 
     }
@@ -360,6 +362,7 @@ public class Controleur{
     public int left()
     {
     	this.curseur.setOrientation(270);
+        this.zd.repaint();
         return SUCCESS;
 
     }
@@ -371,6 +374,7 @@ public class Controleur{
     public int right()
     {
     	this.curseur.setOrientation(90);
+        this.zd.repaint();
         return SUCCESS;
 
     }
