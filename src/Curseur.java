@@ -87,6 +87,10 @@ public class Curseur extends JPanel {
 	//  MODIFIEURS //
 	/////////////////
 
+	public void setPosition(int x, int y){
+		this.posX = x;
+		this.posY = y;
+	}
 	public void setPosX (int posX) {
 		this.posX = posX;
 	}
