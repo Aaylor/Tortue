@@ -452,9 +452,44 @@ public class Controleur{
     {
         System.out.println("value 1 :: " + value + "\nvalue 2 :: " + value_2);
         
-        //plus tard il faudrat faire des conditions sur la position max qui est égale à la taille de la fenetre
-        curseur.setPosX((int)value);
-        curseur.setPosY((int)value_2);
+//conditions pour que le curseur ne dépasse pas la zone de dessin
+        
+        if( value >= 0 && value <= zd.getLargeurDessin()){
+    		
+    		curseur.setPosX((int)value);
+    		
+    	}
+    	
+    	if(value_2 >= 0 && value_2 <= zd.getHauteurDessin()){
+    		
+    		curseur.setPosY((int)value_2);
+    		
+    	}
+    	
+    	if(value > zd.getLargeurDessin()){
+    		
+    		curseur.setPosX(zd.getLargeurDessin());
+    		
+    	}
+    	
+    	if(value_2 > zd.getHauteurDessin()){
+    		
+    		curseur.setPosY(zd.getHauteurDessin());
+    		
+    	}
+    	
+    	if(value < 0){
+    		
+    		curseur.setPosX(0);
+    		
+    	}
+    	
+    	if(value_2 < 0){
+    		
+    		curseur.setPosY(0);
+    		
+    	}
+    	
         return SUCCESS;
     }
 
