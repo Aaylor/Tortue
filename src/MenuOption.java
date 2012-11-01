@@ -1,5 +1,4 @@
 import javax.swing.*;
-
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
@@ -23,6 +22,9 @@ public class MenuOption extends JDialog{
 	JTextField couleurDessinVertTextField = new JTextField(3);
 	JTextField couleurDessinBleuTextField = new JTextField(3);
 	
+	JTextField largeurDessinTextField = new JTextField(4);
+	JTextField hauteurDessinTextField = new JTextField(4);
+	
 	String[] couleursPredefinie = {"Noir", "Bleu", "Cyan", "Gris", "Vert", "Magenta", "Orange", "Rose", "Rouge", "Jaune", "Blanc"};
 	
 	
@@ -32,7 +34,6 @@ public class MenuOption extends JDialog{
 		this.setSize(550, 500);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
-	    this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		initComponent();
 		this.setVisible(true);
 		
@@ -106,6 +107,21 @@ public class MenuOption extends JDialog{
 		panDessin.setBorder(BorderFactory.createTitledBorder("Dessin"));
 			
 			//Taille du dessin par défaut
+		JPanel panTailleDessin = new JPanel();
+		panTailleDessin.setLayout(new BoxLayout(panTailleDessin, BoxLayout.PAGE_AXIS));
+		JLabel labTailleDessin = new JLabel("Taille du dessin par défaut :");
+		
+		JPanel panChoixTailleDessin = new JPanel();
+		panChoixTailleDessin.setLayout(new BoxLayout(panChoixTailleDessin, BoxLayout.LINE_AXIS));
+		JLabel labLargeurDessin = new JLabel("Largeur du dessin :");
+		JLabel labHauteurDessin = new JLabel("Hauteur du dessin :");
+		panChoixTailleDessin.add(labLargeurDessin);
+		panChoixTailleDessin.add(largeurDessinTextField);
+		panChoixTailleDessin.add(labHauteurDessin);
+		panChoixTailleDessin.add(hauteurDessinTextField);
+		
+		panTailleDessin.add(labTailleDessin);
+		panTailleDessin.add(panChoixTailleDessin);
 		
 			//Couleur du Background par défaut
 		JPanel panCouleurDessin = new JPanel();
@@ -138,6 +154,7 @@ public class MenuOption extends JDialog{
 		panCouleurDessin.add(panCouleurDessinDefinie);
 		
 			//Ajout des JPanel au JPanel "Dessin"
+		panDessin.add(panTailleDessin);
 		panDessin.add(panCouleurDessin);
 
 		
