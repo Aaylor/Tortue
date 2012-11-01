@@ -161,7 +161,7 @@ public class Controleur{
             case 8:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                else if ( commande_parser.length == 1 )
+                else if ( commande_parser.length < 2 )
                     return NOMBRE_ARG_LESS;
                 else;
 
@@ -173,7 +173,7 @@ public class Controleur{
                 return rotate(valeur);
             
             case 9:
-                if ( commande_parser.length == 1 )
+                if ( commande_parser.length < 2 )
                     return NOMBRE_ARG_LESS;
                 else if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
@@ -187,7 +187,7 @@ public class Controleur{
                 return forward(valeur);
             
             case 10:
-                if ( commande_parser.length == 1 )
+                if ( commande_parser.length < 2 )
                     return NOMBRE_ARG_LESS;
                 else if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
@@ -201,9 +201,9 @@ public class Controleur{
                 return backward(valeur);
             
             case 11:
-                if ( commande_parser.length > 3 )
+                if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                else if ( commande_parser.length <= 2 )
+                else if ( commande_parser.length < 2 )
                     return NOMBRE_ARG_LESS;
                 else;
 
@@ -221,7 +221,7 @@ public class Controleur{
             case 12:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                else if ( commande_parser.length == 1 )
+                else if ( commande_parser.length < 2 )
                     return NOMBRE_ARG_LESS;
                 else;
 
@@ -230,7 +230,7 @@ public class Controleur{
                 else
                     return COMMANDE_ERRONEE; /* TODO : changer la valeur de retour */
 
-                return cursorwidth(valeur);
+                return cursorWidth(valeur);
             
             case 13:
                 if ( commande_parser.length > 2 )
@@ -244,21 +244,44 @@ public class Controleur{
             case 14:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
+                else if ( commande_parser.length < 2 )
+                    return NOMBRE_ARG_LESS;
+                else;
+
                 return setBackgroundColor();
             
             case 15:
+                /* TODO */
                 doFigure();
                 break;
             
             case 16:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                return width();
+                else if ( commande_parser.length < 2 )
+                    return NOMBRE_ARG_LESS;
+                else;
+
+                if ( isInt(commande_parser[1]) )
+                    valeur = Integer.parseInt(commande_parser[1]);
+                else
+                    return COMMANDE_ERRONEE;    /* TODO */
+
+                return width(valeur);
             
             case 17:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                return height();
+                else if ( commande_parser.length < 2 )
+                    return NOMBRE_ARG_LESS;
+                else;
+
+                if ( isInt(commande_parser[1]) )
+                    valeur = Integer.parseInt(commande_parser[1]);
+                else
+                    return COMMANDE_ERRONEE;    /* TODO */
+
+                return height(valeur);
             
             case 18:
                 if ( commande_parser.length > 2 )
@@ -283,7 +306,11 @@ public class Controleur{
             case 22:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                return savehistory();
+    
+                if ( commande_parser.length == 2 )
+                    return savehistory(commande_parser[1]);
+                else
+                    return savehistory("");
             
             case 23:
                 if ( commande_parser.length > 2 )
@@ -327,7 +354,11 @@ public class Controleur{
             case 27:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                return man();
+                
+                if ( commande_parser.length < 2 )
+                    return man(false, "");
+                else
+                    return man(true, commande_parser[1]);
             
             case 28:
                 if ( commande_parser.length == 2 )
@@ -548,7 +579,7 @@ public class Controleur{
      *  Fonction qui permet de régler la largeur du curseur
      *  @return si la fonction s'est bien déroulée.
      */
-    public int cursorwidth(int valeur)
+    public int cursorWidth(int valeur)
     {
 
         System.out.println("valeur :: " + valeur);
@@ -594,9 +625,10 @@ public class Controleur{
      *  Fonction qui permet de changer la largeur de l'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public int width()
+    public int width(int valeur)
     {
 
+        System.out.println("value :: " + valeur);
         return SUCCESS;
 
     }
@@ -605,9 +637,10 @@ public class Controleur{
      *  Fonction qui permet de changer la hauteur de l'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public int height()
+    public int height(int valeur)
     {
 
+        System.out.println("value :: " + valeur);
         return SUCCESS;
     
     }
@@ -660,9 +693,13 @@ public class Controleur{
      *  Fonction qui sauvegarde l'historique dans un format .txt
      *  @return si la fonction s'est bien déroulée
      */
-    public int savehistory()
+    public int savehistory(String s)
     {
 
+        if ( s.equals("") )
+            System.out.println("Ouvrir une boite de dialogue");
+        else
+            System.out.println("Sauvegarder à l'endroit selectionner par l'utilisateur");
         return SUCCESS;
 
     }
@@ -718,9 +755,13 @@ public class Controleur{
      *  Fonction qui affiche le manuel de la commande
      *  @return si la fonction s'est bien déroulée.
      */
-    public int man()
+    public int man(boolean isNotEmpty, String commande)
     {
 
+        if ( isNotEmpty )
+            System.out.println("Affiche le manuel de la commande : " + commande );
+        else
+            System.out.println("Quel page voulez vous ? (Syntaxe : man <commande>");
         return SUCCESS;
 
     }
