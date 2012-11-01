@@ -759,9 +759,14 @@ public class Controleur{
     {
 
         if ( isNotEmpty )
-            System.out.println("Affiche le manuel de la commande : " + commande );
+        {
+            if ( StockageDonnee.manuel.containsKey(commande) )
+                System.out.println(StockageDonnee.getManuel(commande));
+            else
+                System.out.println("La commande n'existe pas");
+        }
         else
-            System.out.println("Quel page voulez vous ? (Syntaxe : man <commande>");
+            System.out.println("Quel page voulez vous ? (Syntaxe : man <commande>)");
         return SUCCESS;
 
     }

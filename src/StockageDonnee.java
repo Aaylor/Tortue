@@ -8,6 +8,7 @@ public class StockageDonnee
     public static ArrayList<String> liste_commande_entree_generale;
     public static Hashtable<String, Integer> liste_des_commandes;
     public static Hashtable<Integer, String> liste_erreurs;
+    public static Hashtable<String, String> manuel;
 
     /**
      *  Fonction qui initialise toutes les collections
@@ -18,7 +19,8 @@ public class StockageDonnee
 
         return init_lcec() && init_lceg()
                             && init_ldc()
-                            && init_le();
+                            && init_le()
+                            && init_manuel();
 
     }
 
@@ -110,6 +112,71 @@ public class StockageDonnee
     }
 
     /**
+     *  Fonction initialisant le manuel
+     *  @return boolean vérifiant l'initialisation de la collection
+     */
+    public static boolean init_manuel()
+    {
+
+        manuel = new Hashtable<String, String>();
+
+        manuel.put("pendown", "Manuel\n=====\nCommande : pendown\nSyntaxe : pendown, pas d'arguments possible"
+                                + "\nRepose le curseur, et permet ainsi de pouvoir dessiner.");
+        manuel.put("penup", "Manuel\n=====\nCommande : penup\nSyntaxe : penup, pas d'arguments possible"
+                                + "\nLève le curseur, et l'empêche de dessiner");
+        manuel.put("pencil", "Manuel\n=====\nCommande : pencil\nSyntaxe : pencil, pas d'arguments possible"
+                                + "\nPasse en mode crayon : dessine selon la couleur et l'epaisseur courante.");
+        manuel.put("eraser", "Manuel\n=====\nCommande : eraser\nSyntaxe : eraser, pas d'arguments possible"
+                                + "\nPasse en mode gomme.");
+        manuel.put("up", "Manuel\n=====\nCommande : up\nSyntaxe : up, pas d'arguments possible"
+                                + "\nPlace le curseur vers le haut. Correspond à la commande \"rotate 180\"");
+        manuel.put("down", "Manuel\n=====\nCommande : down\nSyntaxe : down, pas d'arguments possible"
+                                + "\nPlace le curseur vers le bas. Correspond à la commande \"rotate 0\"");
+        manuel.put("left", "Manuel\n=====\nCommande : left\nSyntaxe : left, pas d'arguments possible"
+                                + "\nPlace le curseur vers la gauche. Correspond à la commande \"rotate 270\"");
+        manuel.put("right", "Manuel\n=====\nCommande : right\nSyntaxe : right, pas d'arguments possible" 
+                                + "\nPlace le curseur vers la doite. Correspond à la commande \"rotate 90\"");
+        manuel.put("rotate", "Manuel\n=====\nCommande : rotate\nSyntaxe : rotate <angle en degré>. L'angle doit être obligatoirement précisé."
+                                + "\nFait une rotation du curseur.");
+        manuel.put("forward", "Manuel\n=====\nCommande : forward\nSyntaxe : forward <entier en pixel>. Doit être précisé."
+                                + "\nFait avancer le curseur");
+        manuel.put("backward", "Manuel\n=====\nCommande : backward\nSyntaxe : bacward <entier en pixel>. Doit être précisé."
+                                + "\nFait reculer le curseur");
+        manuel.put("goto", "Manuel\n=====\nCommande : goto\nSyntaxe : goto <int x><int y>. x & y doivent être précisés."
+                                + "\nDéplace le curseur aux coordonnées x et y.");
+        manuel.put("cursorwidth", "Manuel\n=====\nCommande : cursorwidth\nSyntaxe : cursorwidth <int width>. Doit être précisé."
+                                + "\nFixe la largeur du curseur.");
+        manuel.put("setcolor", "Manuel\n=====\nCommande : setcolor\nSyntaxe : setcolor <couleur>. Doit être précisé."
+                                + "\nFixe la couleur du curseur.");
+        manuel.put("setbackgroundcolor", "Manuel\n=====\nCommande : setbackgroundcolor\nSyntaxe : setbackgroundcolor <couleur>. "
+                                + "\nFixe la couleur de fond.");
+        manuel.put("do", "Manuel\n=====\nCommande : do\nSyntaxe : /* TODO */\n");
+        manuel.put("width", "Manuel\n=====\nCommande : width\nSyntaxe : width <int width>"
+                                + "\nFixe la largeur de la zone de dessin.");
+        manuel.put("height", "Manuel\n=====\nCommande : height\nSyntaxe : height <int height>"
+                                + "\nFixe la hauteur de la zone de dessin.");
+        manuel.put("new", "Manuel\n=====\nCommande : new\nSyntaxe : /* TODO */\n");
+        manuel.put("open", "Manuel\n=====\nCommande : open\nSyntaxe : /* TODO */\n");
+        manuel.put("save", "Manuel\n=====\nCommande : save\nSyntaxe : /* TODO */\n");
+        manuel.put("saveas", "Manuel\n=====\nCommande : saveas\nSyntaxe : /* TODO */\n");
+        manuel.put("savehistory", "Manuel\n=====\nCommande : savehistory\nSyntaxe : /* TODO */\n");
+        manuel.put("exec", "Manuel\n=====\nCommande : exec\nSyntaxe : /* TODO */\n");
+        manuel.put("repeat", "Manuel\n======\nCommande : repeat\nSyntaxe : repeat, repeat <nombre_de_commande>"
+                                + ", repeat <nombre_de_commande> <nombre_de_repetition>\n"
+                                + "Repète les dernières actions de l'utilisateur. Si l'utilisateur n'entre aucun argument, alors la commande "
+                                + "n'executera que la dernière actions. Si il rentre un seul argument, alors la commande executera les "
+                                + "x dernières actions de l'utilisateur.");
+        manuel.put("clear", "Manuel\n=====\nCommande : clear\nSyntaxe : clear, pas d'argument possible."
+                                + "\nEfface le contenu du terminal. (Son historique est de tout même conservé)");
+        manuel.put("help", "Manuel\n=====\nCommande : help\nSyntaxe : help, pas d'argument possible."
+                                + "\nAffiche la liste des commandes possible, ainsi qu ela description du programme");
+        manuel.put("man", "Manuel\n=====\nCommande : man\nSyntaxe : man <commande>"
+                                + "\nAffiche le manuel de la commande");
+
+        return true;
+    }
+
+    /**
     *   Fonction renvoyant le message d'erreur
     *   @param numero Numero de l'erreur
     *   @return String correspondant au message d'erreur
@@ -182,6 +249,15 @@ public class StockageDonnee
     public static int getSize_LCEC()
     {
         return liste_commande_entree_correcte.size();
+    }
+
+    /**
+     *  Fonction renvoyant le manuel de la commande.
+     *  @param commande Commande entré par l'utilisateur
+     */
+    public static String getManuel(String commande)
+    {
+        return manuel.get( commande );
     }
 
 }
