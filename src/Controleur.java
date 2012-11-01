@@ -140,7 +140,7 @@ public class Controleur{
             case 8:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                else if ( commande_parse.length == 1 )
+                else if ( commande_parser.length == 1 )
                     return NOMBRE_ARG_LESS;
                 else;
 
@@ -209,7 +209,7 @@ public class Controleur{
                 else
                     return COMMANDE_ERRONEE; /* TODO : changer la valeur de retour */
 
-                return cursorwidth(int valeur);
+                return cursorwidth(valeur);
             
             case 13:
                 if ( commande_parser.length > 2 )
@@ -526,6 +526,7 @@ public class Controleur{
     public int cursorwidth(int valeur)
     {
 
+        System.out.println("valeur :: " + valeur);
         return SUCCESS;
 
     }
@@ -655,9 +656,11 @@ public class Controleur{
      *  Fonction qui répète les dernières commandes lancés par l'utilisateur
      *  @return si la fonction s'est bien déroulée.
      */
-    public int repeat()
+    public int repeat(int nombre_de_commandes, int nombre_de_repetition)
     {
 
+        System.out.println("value 1 :: " + nombre_de_commandes 
+                + "\nvalue 2 :: " + nombre_de_repetition);
         return SUCCESS;
 
     }

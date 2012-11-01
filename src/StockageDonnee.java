@@ -69,7 +69,7 @@ public class StockageDonnee
         liste_des_commandes.put("forward", 9);
         liste_des_commandes.put("backward", 10);
         liste_des_commandes.put("goto", 11);
-        liste_des_commandes.put("cursoswidth", 12);
+        liste_des_commandes.put("cursorwidth", 12);
         liste_des_commandes.put("setcolor", 13);
         liste_des_commandes.put("setbackgroundcolor", 14);
         liste_des_commandes.put("do", 15);
