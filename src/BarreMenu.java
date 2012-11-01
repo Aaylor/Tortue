@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+@SuppressWarnings("serial")
 public class BarreMenu extends JMenuBar{
 	//JMenu "Fichier"
 	JMenu menuFichier = new JMenu("Fichier");
@@ -78,6 +78,10 @@ public class BarreMenu extends JMenuBar{
 	public void enregistrerSous(){}
 	
 	public void quitter(){
+
+        /* TODO : N'afficher la boîte de dialogue que si le dessin a été modifié après sauvegarde
+         * ou n'a pas été sauvegardé
+         */
 		JOptionPane quitter = new JOptionPane();
 		int option = quitter.showConfirmDialog(null, "Voulez vous sauvegarder votre travail avant de fermer le programme ?", "Sauvegarder", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if (option == JOptionPane.OK_OPTION){

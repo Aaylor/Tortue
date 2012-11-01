@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.lang.Math;
 
+@SuppressWarnings("serial")
 public class Curseur extends JPanel {
 	/////////////////
 	//  VARIABLES  //

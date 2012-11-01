@@ -6,10 +6,11 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+@SuppressWarnings("serial")
 public class Terminal extends JPanel implements KeyListener{
 
     private static JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
-    private static JScrollPane pane = new JScrollPane(historique, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
+    private static JScrollPane scroll_pane = new JScrollPane(historique, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     
     private Controleur controleur;
     private int compteur_commandes = -1;
@@ -27,7 +28,7 @@ public class Terminal extends JPanel implements KeyListener{
         this.setLayout(new BorderLayout());
         
         this.add(this.champ_de_commande, BorderLayout.SOUTH);
-        this.add(this.pane, BorderLayout.CENTER);
+        this.add(Terminal.scroll_pane, BorderLayout.CENTER);
         
         this.champ_de_commande.addKeyListener(this);
 
@@ -43,15 +44,15 @@ public class Terminal extends JPanel implements KeyListener{
         if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER
                 && !this.champ_de_commande.getText().equals(""))
         {
-            this.historique.append("\n > "+this.champ_de_commande.getText().trim());
+            Terminal.historique.append("\n > "+this.champ_de_commande.getText().trim());
             controleur.commande(this.champ_de_commande.getText());
             if ( !this.message_erreur.equals("") )
             {
-                this.historique.append("\n   --" + this.message_erreur);
+                Terminal.historique.append("\n   --" + this.message_erreur);
                 this.message_erreur = "";
             }
             
-            this.historique.setCaretPosition(this.historique.getDocument().getLength());
+            Terminal.historique.setCaretPosition(Terminal.historique.getDocument().getLength());
             
             this.champ_de_commande.setText("");
             this.compteur_commandes = StockageDonnee.getSize_LCEG();
@@ -94,7 +95,7 @@ public class Terminal extends JPanel implements KeyListener{
                 String display_proposition = "\n > " + this.champ_de_commande.getText() + "\n";
                 for ( int i = 0; i < proposition_completion.size(); i++)
                     display_proposition += "  " + proposition_completion.get(i);
-                this.historique.append(display_proposition);
+                Terminal.historique.append(display_proposition);
             }
             else;
 
@@ -136,11 +137,11 @@ public class Terminal extends JPanel implements KeyListener{
         this.champ_de_commande.requestFocus();
         this.champ_de_commande.setFocusTraversalKeysEnabled(false);
 
-        this.historique.setLineWrap(true);
-        this.historique.setWrapStyleWord(true);
-        this.historique.setBackground(Color.black);
-        this.historique.setForeground(Color.white);
-        this.historique.setEnabled(false);
+        Terminal.historique.setLineWrap(true);
+        Terminal.historique.setWrapStyleWord(true);
+        Terminal.historique.setBackground(Color.black);
+        Terminal.historique.setForeground(Color.white);
+        Terminal.historique.setEnabled(false);
 
 
     }
@@ -194,7 +195,7 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public void clear()
     {
-        this.historique.setText("");
+        Terminal.historique.setText("");
     }
 
 }

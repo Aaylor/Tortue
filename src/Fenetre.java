@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class Fenetre extends JFrame{
 	BarreMenu barreMenu = new BarreMenu();//Barre de menu
 	Terminal terminal = new Terminal();

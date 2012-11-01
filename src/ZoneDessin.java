@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
+@SuppressWarnings("serial")
 public class ZoneDessin extends JPanel {
 	int largeurDessin; //La largeur de la zone de dessin
 	int hauteurDessin; //La longueur de la zone de dessin

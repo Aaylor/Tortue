@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("serial")
 public class BarreOutils extends JMenuBar {
 	private Curseur curseur;
 	private ZoneDessin zoneDessin;

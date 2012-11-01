@@ -2,21 +2,22 @@ import javax.swing.*;
 
 import java.awt.event.*;
 
+@SuppressWarnings("serial")
 public class MenuOption extends JDialog{
-	JRadioButton affichageFenetre = new JRadioButton("Fenêtré");
+    JRadioButton affichageFenetre = new JRadioButton("Fenêtré");
 	JRadioButton affichagePleinEcran = new JRadioButton("Plein écran");
 	JRadioButton posCurseurCentreButton = new JRadioButton("Centré");
 	JRadioButton posCurseurHautGaucheButton = new JRadioButton("En haut à gauche");
 	
 	JRadioButton couleurCurseurPredefinie = new JRadioButton("Couleur prédéfinie");
-	JComboBox couleurPredefinieComboBox;
+	JComboBox<String> couleurPredefinieComboBox;
 	JRadioButton couleurCurseurSpecifique = new JRadioButton("Définir la couleur");
 	JTextField couleurCurseurRougeTextField = new JTextField(3);
 	JTextField couleurCurseurVertTextField = new JTextField(3);
 	JTextField couleurCurseurBleuTextField = new JTextField(3);
 	
 	JRadioButton couleurDessinPredefinie = new JRadioButton("Couleur prédéfinie");
-	JComboBox couleurPredefinieDessinComboBox;
+	JComboBox<String> couleurPredefinieDessinComboBox;
 	JRadioButton couleurDessinSpecifique = new JRadioButton("Définir la couleur");
 	JTextField couleurDessinRougeTextField = new JTextField(3);
 	JTextField couleurDessinVertTextField = new JTextField(3);
@@ -72,7 +73,7 @@ public class MenuOption extends JDialog{
 		
 		JPanel panCouleurPredefinie = new JPanel();
 		panCouleurPredefinie.setLayout(new BoxLayout(panCouleurPredefinie, BoxLayout.LINE_AXIS));
-		couleurPredefinieComboBox = new JComboBox();
+		couleurPredefinieComboBox = new JComboBox<String>();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieComboBox.addItem(couleursPredefinie[i]);
 		panCouleurPredefinie.add(couleurCurseurPredefinie);
@@ -113,7 +114,7 @@ public class MenuOption extends JDialog{
 		
 		JPanel panCouleurDessinPredefinie = new JPanel();
 		panCouleurDessinPredefinie.setLayout(new BoxLayout(panCouleurDessinPredefinie, BoxLayout.LINE_AXIS));
-		couleurPredefinieDessinComboBox = new JComboBox();
+		couleurPredefinieDessinComboBox = new JComboBox<String>();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieDessinComboBox.addItem(couleursPredefinie[i]);
 		panCouleurDessinPredefinie.add(couleurDessinPredefinie);
