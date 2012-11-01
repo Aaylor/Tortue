@@ -138,8 +138,18 @@ public class Controleur{
                 return right();
             
             case 8:
-                rotate(commande_parser);
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                else if ( commande_parse.length == 1 )
+                    return NOMBRE_ARG_LESS;
+                else;
+
+                if ( isDouble(commande_parser[1]) )
+                    valeur = (int)Double.parseDouble(commande_parser[1]);
+                else
+                    return COMMANDE_ERRONEE; /* TODO : Changer la valeur de retour */
+
+                return rotate(valeur);
             
             case 9:
                 if ( commande_parser.length == 1 )
@@ -188,8 +198,18 @@ public class Controleur{
                 return goTo(valeur_x, valeur_y);
             
             case 12:
-                cursorwidth();
-                break;
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_ARG_SUP;
+                else if ( commande_parser.length == 1 )
+                    return NOMBRE_ARG_LESS;
+                else;
+
+                if ( isInt(commande_parser[1]) )
+                    valeur = Integer.parseInt(commande_parser[1]);
+                else
+                    return COMMANDE_ERRONEE; /* TODO : changer la valeur de retour */
+
+                return cursorwidth(int valeur);
             
             case 13:
                 if ( commande_parser.length > 2 )
@@ -246,9 +266,29 @@ public class Controleur{
                 return exec();
             
             case 24:
-                repeat();
-                break;
-            
+                if ( commande_parser.length > 3 )
+                    return NOMBRE_ARG_SUP;
+
+                if ( commande_parser.length == 1 )
+                    return repeat(1,1);
+                else if ( commande_parser.length == 2 )
+                {
+                    if ( isInt(commande_parser[1]) )
+                        return repeat(Integer.parseInt(commande_parser[1]),1);
+                    else
+                        return COMMANDE_ERRONEE;    /*  TODO : CHANGER ERREUR   */
+                }
+                else
+                {
+                    if ( isInt(commande_parser[1]) && isInt(commande_parser[1]) )
+                    {
+                        return repeat(Integer.parseInt(commande_parser[1]),
+                                        Integer.parseInt(commande_parser[2]));
+                    }
+                    else
+                        return COMMANDE_ERRONEE;    /*  TODO : CHANGER ERREUR   */
+                }
+                
             case 25:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_ARG_SUP;
@@ -296,6 +336,7 @@ public class Controleur{
     public int pendown()
     {
     	this.curseur.setIsDown(true);
+        this.zd.repaint();
         return SUCCESS;
 
     }
@@ -307,6 +348,7 @@ public class Controleur{
     public int penup()
     {
     	this.curseur.setIsDown(false);
+        this.zd.repaint();
         return SUCCESS;
 
     }
@@ -383,29 +425,14 @@ public class Controleur{
      *  Fonction qui permet de faire une rotation sur le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public int rotate(String[] commande_parser)
+    public int rotate(int valeur)
     {
-    	/*on compte le nombre d'elts present dans le tableau*/
-    	if(commande_parser.length==2){
-    		
-    		String arg_deg=commande_parser[1];
-    		int degre;
-    		
-    		if(isInt(arg_deg)){
-    			degre=Integer.parseInt(arg_deg);
-    			this.curseur.setOrientation(degre);
-    		}
-    		else{
-    			/*ce n'est pas un int : message d'erreur*/
-    			System.out.println("Le parametre passe dans la commande n'est pas un int.");
-    		}
-    	}
-    	else{
-    		/*mauvais arguments passes dans le terminal*/
-    		System.out.println("Vous devez passer en parametre 1 argument de type int.");
-    	}
+        /*  TODO
+         *  FAIRE DES TESTS SUR LA VARIABLE valeur
+         */
+    	this.curseur.setOrientation(valeur);
+        this.zd.repaint();
         return SUCCESS;
-
     }
 
     /**
@@ -422,7 +449,8 @@ public class Controleur{
 		//Changement effectif
         curseur.setPosX((int)posX);
         curseur.setPosY((int)posY);
-        
+       
+        this.zd.repaint();
         return SUCCESS;
     }
 
@@ -440,7 +468,8 @@ public class Controleur{
 		//Changement effectif
         curseur.setPosX((int)posX);
         curseur.setPosY((int)posY);
-        
+       
+        this.zd.repaint();
         return SUCCESS;
     }
 
@@ -462,7 +491,7 @@ public class Controleur{
      *  Fonction qui permet de régler la largeur du curseur
      *  @return si la fonction s'est bien déroulée.
      */
-    public int cursorwidth()
+    public int cursorwidth(int valeur)
     {
 
         return SUCCESS;
