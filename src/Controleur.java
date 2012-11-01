@@ -4,8 +4,8 @@ public class Controleur{
 
     public static final int SUCCESS = 0;
     public static final int COMMANDE_ERRONEE = 1;
-    public static final int NOMBRE_ARG_SUP = 2; 
-    public static final int NOMBRE_ARG_LESS = 3;
+    public static final int NOMBRE_ARG_LESS = 2; 
+    public static final int NOMBRE_ARG_SUP = 3;
     public static final int PARAM_INCORRECTE = 4;
     /* 
      * TODO
@@ -53,7 +53,7 @@ public class Controleur{
     {
 
 	    String[] commande_parser;
-        s = s.trim();
+        s = rework_command(s);
 
 		commande_parser = parse(s);
 
@@ -71,6 +71,27 @@ public class Controleur{
     public String[] parse(String s)
     {
 	    return s.toLowerCase().split(" ");
+    }
+
+    /**
+     *  Fonction qui renvoie la commande tapée par l'utilisateur en enlevant tout espace superflu
+     *  @param s Commande entrée par l'utilisateur
+     *  @return Commande retravaillée
+     */
+    public String rework_command(String s)
+    {
+        s = s.trim();
+
+        int i = 0;
+        while ( i+1 < s.length() )
+        {
+            if ( (s.charAt(i) == ' ') && (s.charAt(i+1) == ' ') )
+                s = s.substring(0,i) + s.substring(i+1);
+            else
+                i++;
+        }
+
+        return s;
     }
 
     /**
@@ -214,7 +235,11 @@ public class Controleur{
             case 13:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_ARG_SUP;
-                return setColor();
+                else if ( commande_parser.length < 2 )
+                    return NOMBRE_ARG_LESS;
+                else;
+
+                return setColor(commande_parser[1]);
             
             case 14:
                 if ( commande_parser.length > 2 )
@@ -535,9 +560,10 @@ public class Controleur{
      *  Fonction qui permet de changer la couleur
      *  @return si la fonction s'est bien déroulée.
      */
-    public int setColor()
+    public int setColor(String couleur)
     {
 
+        System.out.println("couleur :: " + couleur);
         return SUCCESS;
 
     }
