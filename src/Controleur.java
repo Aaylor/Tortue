@@ -442,15 +442,26 @@ public class Controleur{
      */
     public int forward(int valeur)
     {
+    	
     	//Calcul de la nouvelle position du curseur
     	double posX = curseur.getPosX() + valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
 		double posY = curseur.getPosY() + valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
 		
-		//Changement effectif
-        curseur.setPosX((int)posX);
-        curseur.setPosY((int)posY);
-       
-        this.zd.repaint();
+		//conditions pour que le curseur ne dépasse pas la zone de dessin
+		
+		if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
+        
+        if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
+        
+        if(posX <0) curseur.setPosX(0); //valeur négative : on replace à 0
+        
+        if(posY <0) curseur.setPosY(0); //valeur négative : on replace à 0
+        
+        if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
+        
+        if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
+        
+        this.zd.repaint(); 
         return SUCCESS;
     }
 
@@ -465,9 +476,19 @@ public class Controleur{
     	double posX = curseur.getPosX() - valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
 		double posY = curseur.getPosY() - valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
 		
-		//Changement effectif
-        curseur.setPosX((int)posX);
-        curseur.setPosY((int)posY);
+		//conditions pour que le curseur ne dépasse pas la zone de dessin
+		
+		if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
+		       
+		if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
+		        
+		if(posX <0) curseur.setPosX(0); //valeur négative : on replace à 0
+		       
+		if(posY <0) curseur.setPosY(0); //valeur négative : on replace à 0
+		        
+		if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
+		        
+		if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
        
         this.zd.repaint();
         return SUCCESS;
@@ -481,9 +502,20 @@ public class Controleur{
     {
         System.out.println("value 1 :: " + value + "\nvalue 2 :: " + value_2);
         
-        //plus tard il faudrat faire des conditions sur la position max qui est égale à la taille de la fenetre
-        curseur.setPosX((int)value);
-        curseur.setPosY((int)value_2);
+        //conditions pour que le curseur ne dépasse pas la zone de dessin
+        
+        if( value >= 0 && value <= zd.getLargeurDessin()) curseur.setPosX((int)value); //ok
+    		
+    	if(value_2 >= 0 && value_2 <= zd.getHauteurDessin()) curseur.setPosY((int)value_2); //ok
+
+    	if(value > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //valeur X > largeur de la zone
+    	
+    	if(value_2 > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //valeur Y > hauteur de la zone
+    	
+    	if(value < 0) curseur.setPosX(0); //valeur négative => on replace à la valeur minimu : 0
+    	
+    	if(value_2 < 0) curseur.setPosY(0); //valeur négative => on replace à la valeur minimu : 0
+    	
         return SUCCESS;
     }
 
