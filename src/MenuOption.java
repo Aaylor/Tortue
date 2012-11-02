@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
@@ -31,7 +32,7 @@ public class MenuOption extends JDialog{
 	
 	public MenuOption(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		this.setSize(550, 500);
+		this.setSize(400, 700);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		initComponent();
@@ -43,123 +44,128 @@ public class MenuOption extends JDialog{
 	private void initComponent(){
 		//Affichage
 		JPanel panAffichage = new JPanel();
-		panAffichage.setBorder(BorderFactory.createTitledBorder("Mode d'affichage au démarrage"));
-		affichageFenetre.setSelected(true);
+		panAffichage.setLayout(new BoxLayout(panAffichage, BoxLayout.PAGE_AXIS));
+		panAffichage.setBorder(BorderFactory.createTitledBorder("Affichage"));
+		
+		JLabel labTailleFenetre = new JLabel("Mode d'affichage au démarrage :");
 		
 		ButtonGroup affichage = new ButtonGroup();
 		affichage.add(affichageFenetre);
 		affichage.add(affichagePleinEcran);
+		affichageFenetre.setSelected(true);
+		
+		panAffichage.add(labTailleFenetre);
 		panAffichage.add(affichageFenetre);
 		panAffichage.add(affichagePleinEcran);
 		
 		//Curseur
 		JPanel panCurseur = new JPanel();
+		panCurseur.setLayout(new BoxLayout(panCurseur, BoxLayout.PAGE_AXIS));
 		panCurseur.setBorder(BorderFactory.createTitledBorder("Curseur"));
 		
 			//Position du curseur
-		JPanel panPosCurseur = new JPanel();
-		panPosCurseur.setLayout(new BoxLayout(panPosCurseur, BoxLayout.LINE_AXIS));
-		JLabel labPosCurseur = new JLabel("Position du curseur au démarrage :");
+		JLabel labPosCurseur = new JLabel("Position du curseur au démarrage : ");
+		
 		ButtonGroup posCurseurGroup = new ButtonGroup();
 		posCurseurGroup.add(posCurseurCentreButton);
 		posCurseurGroup.add(posCurseurHautGaucheButton);
-		panPosCurseur.add(labPosCurseur);
-		panPosCurseur.add(posCurseurCentreButton);
-		panPosCurseur.add(posCurseurHautGaucheButton);
+		
+		panCurseur.add(labPosCurseur);
+		panCurseur.add(posCurseurCentreButton);
+		panCurseur.add(posCurseurHautGaucheButton);
 		
 			//Couleur par défaut
-		JPanel panCouleurCurseur = new JPanel();
-		panCouleurCurseur.setLayout(new BoxLayout(panCouleurCurseur, BoxLayout.PAGE_AXIS));
-		JLabel labCouleurCurseur = new JLabel("Couleur par défaut :");
+		JLabel labCouleurCurseur = new JLabel("Couleurs par défaut : ");
 		
-		JPanel panCouleurPredefinie = new JPanel();
-		panCouleurPredefinie.setLayout(new BoxLayout(panCouleurPredefinie, BoxLayout.LINE_AXIS));
+		ButtonGroup couleurCurseurGroup = new ButtonGroup();
+		couleurCurseurGroup.add(couleurCurseurPredefinie);
+		couleurCurseurGroup.add(couleurCurseurSpecifique);
+		
 		couleurPredefinieComboBox = new JComboBox<String>();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieComboBox.addItem(couleursPredefinie[i]);
-		panCouleurPredefinie.add(couleurCurseurPredefinie);
-		panCouleurPredefinie.add(couleurPredefinieComboBox);
 		
-		JPanel panCouleurDefinie = new JPanel();
-		panCouleurDefinie.setLayout(new BoxLayout(panCouleurDefinie, BoxLayout.LINE_AXIS));
-		JLabel labRouge = new JLabel("Rouge :");
-		JLabel labVert = new JLabel("Vert :");
-		JLabel labBleu = new JLabel("Bleu :");
-		panCouleurDefinie.add(couleurCurseurSpecifique);
-		panCouleurDefinie.add(couleurCurseurRougeTextField);
-		panCouleurDefinie.add(labRouge);
-		panCouleurDefinie.add(couleurCurseurVertTextField);
-		panCouleurDefinie.add(labVert);
-		panCouleurDefinie.add(couleurCurseurBleuTextField);
-		panCouleurDefinie.add(labBleu);
+		JPanel panCouleurRougeDefinir = new JPanel();
+		JLabel labRouge = new JLabel("Rouge : ");
+		panCouleurRougeDefinir.add(labRouge);
+		panCouleurRougeDefinir.add(couleurCurseurRougeTextField);
 		
-		panCouleurCurseur.add(labCouleurCurseur);
-		panCouleurCurseur.add(panCouleurPredefinie);
-		panCouleurCurseur.add(panCouleurDefinie);
+		JPanel panCouleurVertDefinir = new JPanel();
+		JLabel labVert = new JLabel("Vert : ");
+		panCouleurVertDefinir.add(labVert);
+		panCouleurVertDefinir.add(couleurCurseurVertTextField);
 		
-			//Ajout des JPanel au JPanel "Curseur"
-		panCurseur.add(panPosCurseur);
-		panCurseur.add(panCouleurCurseur);
+		JPanel panCouleurBleuDefinir = new JPanel();
 		
+		JLabel labBleu = new JLabel("Bleu : ");
+		panCouleurBleuDefinir.add(labBleu);
+		panCouleurBleuDefinir.add(couleurCurseurBleuTextField);
+		
+		panCurseur.add(labCouleurCurseur);
+		panCurseur.add(couleurCurseurPredefinie);
+		panCurseur.add(couleurPredefinieComboBox);
+		panCurseur.add(couleurCurseurSpecifique);
+		panCurseur.add(panCouleurRougeDefinir);
+		panCurseur.add(panCouleurVertDefinir);
+		panCurseur.add(panCouleurBleuDefinir);
 		
 		//Dessin
 		JPanel panDessin = new JPanel();
+		panDessin.setLayout(new BoxLayout(panDessin, BoxLayout.PAGE_AXIS));
 		panDessin.setBorder(BorderFactory.createTitledBorder("Dessin"));
+		
+		
 			
 			//Taille du dessin par défaut
-		JPanel panTailleDessin = new JPanel();
-		panTailleDessin.setLayout(new BoxLayout(panTailleDessin, BoxLayout.PAGE_AXIS));
 		JLabel labTailleDessin = new JLabel("Taille du dessin par défaut :");
 		
-		JPanel panChoixTailleDessin = new JPanel();
-		panChoixTailleDessin.setLayout(new BoxLayout(panChoixTailleDessin, BoxLayout.LINE_AXIS));
-		JLabel labLargeurDessin = new JLabel("Largeur du dessin :");
-		JLabel labHauteurDessin = new JLabel("Hauteur du dessin :");
-		panChoixTailleDessin.add(labLargeurDessin);
-		panChoixTailleDessin.add(largeurDessinTextField);
-		panChoixTailleDessin.add(labHauteurDessin);
-		panChoixTailleDessin.add(hauteurDessinTextField);
+		JPanel panChoixLargeurDessin = new JPanel();
+		JLabel labLargeurDessin = new JLabel("Largeur du dessin : ");
+		panChoixLargeurDessin.add(labLargeurDessin);
+		panChoixLargeurDessin.add(largeurDessinTextField);
 		
-		panTailleDessin.add(labTailleDessin);
-		panTailleDessin.add(panChoixTailleDessin);
+		JPanel panChoixHauteurDessin = new JPanel();
+		JLabel labHauteurDessin = new JLabel("Hauteur du dessin : ");
+		panChoixHauteurDessin.add(labHauteurDessin);
+		panChoixHauteurDessin.add(hauteurDessinTextField);
+		
+		panDessin.add(labTailleDessin);
+		panDessin.add(panChoixLargeurDessin);
+		panDessin.add(panChoixHauteurDessin);
 		
 			//Couleur du Background par défaut
-		JPanel panCouleurDessin = new JPanel();
-		panCouleurDessin.setLayout(new BoxLayout(panCouleurDessin, BoxLayout.PAGE_AXIS));
 		JLabel labCouleurDessin = new JLabel("Couleur par défaut :");
 		
-		JPanel panCouleurDessinPredefinie = new JPanel();
-		panCouleurDessinPredefinie.setLayout(new BoxLayout(panCouleurDessinPredefinie, BoxLayout.LINE_AXIS));
+		ButtonGroup couleurDessinGroup = new ButtonGroup();
+		couleurDessinGroup.add(couleurDessinPredefinie);
+		couleurDessinGroup.add(couleurDessinSpecifique);
+		
 		couleurPredefinieDessinComboBox = new JComboBox<String>();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieDessinComboBox.addItem(couleursPredefinie[i]);
-		panCouleurDessinPredefinie.add(couleurDessinPredefinie);
-		panCouleurDessinPredefinie.add(couleurPredefinieDessinComboBox);
 		
-		JPanel panCouleurDessinDefinie = new JPanel();
-		panCouleurDessinDefinie.setLayout(new BoxLayout(panCouleurDessinDefinie, BoxLayout.LINE_AXIS));
-		JLabel labDessinRouge = new JLabel("Rouge :");
-		JLabel labDessinVert = new JLabel("Vert :");
-		JLabel labDessinBleu = new JLabel("Bleu :");
-		panCouleurDessinDefinie.add(couleurDessinSpecifique);
-		panCouleurDessinDefinie.add(couleurDessinRougeTextField);
-		panCouleurDessinDefinie.add(labDessinRouge);
-		panCouleurDessinDefinie.add(couleurDessinVertTextField);
-		panCouleurDessinDefinie.add(labDessinVert);
-		panCouleurDessinDefinie.add(couleurDessinBleuTextField);
-		panCouleurDessinDefinie.add(labDessinBleu);
+		JPanel panCouleurRougeDessinDefinie = new JPanel();
+		JLabel labDessinRouge = new JLabel("Rouge : ");
+		panCouleurRougeDessinDefinie.add(labDessinRouge);
+		panCouleurRougeDessinDefinie.add(couleurDessinRougeTextField);
 		
-		panCouleurDessin.add(labCouleurDessin);
-		panCouleurDessin.add(panCouleurDessinPredefinie);
-		panCouleurDessin.add(panCouleurDessinDefinie);
-		
-			//Ajout des JPanel au JPanel "Dessin"
-		panDessin.add(panTailleDessin);
-		panDessin.add(panCouleurDessin);
+		JPanel panCouleurVertDessinDefinie = new JPanel();
+		JLabel labDessinVert = new JLabel("Vert : ");
+		panCouleurVertDessinDefinie.add(labDessinVert);
+		panCouleurVertDessinDefinie.add(couleurDessinVertTextField);
 
+		JPanel panCouleurBleuDessinDefinie = new JPanel();
+		JLabel labDessinBleu = new JLabel("Bleu : ");
+		panCouleurBleuDessinDefinie.add(labDessinBleu);
+		panCouleurBleuDessinDefinie.add(couleurDessinBleuTextField);
 		
-		
-		
+		panDessin.add(labCouleurDessin);
+		panDessin.add(couleurDessinPredefinie);
+		panDessin.add(couleurPredefinieDessinComboBox);
+		panDessin.add(couleurDessinSpecifique);
+		panDessin.add(panCouleurRougeDessinDefinie);
+		panDessin.add(panCouleurVertDessinDefinie);
+		panDessin.add(panCouleurBleuDessinDefinie);
 		
 		
 		//Bouton Enregistrer/Quitter
