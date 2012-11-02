@@ -32,7 +32,7 @@ public class MenuOption extends JDialog{
 	
 	public MenuOption(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		this.setSize(400, 700);
+		this.setSize(245, 590);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		initComponent();
@@ -69,6 +69,7 @@ public class MenuOption extends JDialog{
 		ButtonGroup posCurseurGroup = new ButtonGroup();
 		posCurseurGroup.add(posCurseurCentreButton);
 		posCurseurGroup.add(posCurseurHautGaucheButton);
+		posCurseurCentreButton.setSelected(true);
 		
 		panCurseur.add(labPosCurseur);
 		panCurseur.add(posCurseurCentreButton);
@@ -80,10 +81,15 @@ public class MenuOption extends JDialog{
 		ButtonGroup couleurCurseurGroup = new ButtonGroup();
 		couleurCurseurGroup.add(couleurCurseurPredefinie);
 		couleurCurseurGroup.add(couleurCurseurSpecifique);
+		couleurCurseurPredefinie.setSelected(true);
 		
+		JPanel panCouleurCurseurPredefinie = new JPanel();
 		couleurPredefinieComboBox = new JComboBox<String>();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieComboBox.addItem(couleursPredefinie[i]);
+		panCouleurCurseurPredefinie.add(couleurCurseurPredefinie);
+		panCouleurCurseurPredefinie.add(couleurPredefinieComboBox);
+		
 		
 		JPanel panCouleurRougeDefinir = new JPanel();
 		JLabel labRouge = new JLabel("Rouge : ");
@@ -91,19 +97,18 @@ public class MenuOption extends JDialog{
 		panCouleurRougeDefinir.add(couleurCurseurRougeTextField);
 		
 		JPanel panCouleurVertDefinir = new JPanel();
-		JLabel labVert = new JLabel("Vert : ");
+		JLabel labVert = new JLabel("Vert     : ");
 		panCouleurVertDefinir.add(labVert);
 		panCouleurVertDefinir.add(couleurCurseurVertTextField);
 		
 		JPanel panCouleurBleuDefinir = new JPanel();
 		
-		JLabel labBleu = new JLabel("Bleu : ");
+		JLabel labBleu = new JLabel("Bleu     : ");
 		panCouleurBleuDefinir.add(labBleu);
 		panCouleurBleuDefinir.add(couleurCurseurBleuTextField);
 		
 		panCurseur.add(labCouleurCurseur);
-		panCurseur.add(couleurCurseurPredefinie);
-		panCurseur.add(couleurPredefinieComboBox);
+		panCurseur.add(panCouleurCurseurPredefinie);
 		panCurseur.add(couleurCurseurSpecifique);
 		panCurseur.add(panCouleurRougeDefinir);
 		panCurseur.add(panCouleurVertDefinir);
@@ -139,10 +144,15 @@ public class MenuOption extends JDialog{
 		ButtonGroup couleurDessinGroup = new ButtonGroup();
 		couleurDessinGroup.add(couleurDessinPredefinie);
 		couleurDessinGroup.add(couleurDessinSpecifique);
+		couleurDessinPredefinie.setSelected(true);
 		
+		JPanel panCouleurDessinPredefinie = new JPanel();
 		couleurPredefinieDessinComboBox = new JComboBox<String>();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieDessinComboBox.addItem(couleursPredefinie[i]);
+		couleurPredefinieDessinComboBox.setSelectedIndex(10);
+		panCouleurDessinPredefinie.add(couleurDessinPredefinie);
+		panCouleurDessinPredefinie.add(couleurPredefinieDessinComboBox);
 		
 		JPanel panCouleurRougeDessinDefinie = new JPanel();
 		JLabel labDessinRouge = new JLabel("Rouge : ");
@@ -150,18 +160,17 @@ public class MenuOption extends JDialog{
 		panCouleurRougeDessinDefinie.add(couleurDessinRougeTextField);
 		
 		JPanel panCouleurVertDessinDefinie = new JPanel();
-		JLabel labDessinVert = new JLabel("Vert : ");
+		JLabel labDessinVert = new JLabel("Vert     : ");
 		panCouleurVertDessinDefinie.add(labDessinVert);
 		panCouleurVertDessinDefinie.add(couleurDessinVertTextField);
 
 		JPanel panCouleurBleuDessinDefinie = new JPanel();
-		JLabel labDessinBleu = new JLabel("Bleu : ");
+		JLabel labDessinBleu = new JLabel("Bleu     : ");
 		panCouleurBleuDessinDefinie.add(labDessinBleu);
 		panCouleurBleuDessinDefinie.add(couleurDessinBleuTextField);
 		
 		panDessin.add(labCouleurDessin);
-		panDessin.add(couleurDessinPredefinie);
-		panDessin.add(couleurPredefinieDessinComboBox);
+		panDessin.add(panCouleurDessinPredefinie);
 		panDessin.add(couleurDessinSpecifique);
 		panDessin.add(panCouleurRougeDessinDefinie);
 		panDessin.add(panCouleurVertDessinDefinie);
@@ -188,8 +197,64 @@ public class MenuOption extends JDialog{
 		EnregistrerAnnuler.add(buttonEnregistrer);
 		EnregistrerAnnuler.add(buttonAnnuler);
 		
+		//POSITIONNEMENT DU TOUT DANS LA DIALOGUE BOX
+			//Tailles
+		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 90));
+		panCurseur.setPreferredSize(new Dimension(this.getWidth() - 20, 210));
+		panDessin.setPreferredSize(new Dimension(this.getWidth() - 20, 205));
+		
+			//Positionnement dans les section
+			//Affichage
+		labCouleurCurseur.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurCurseurPredefinie.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurCurseurPredefinie.setLayout(new BoxLayout(panCouleurCurseurPredefinie, BoxLayout.LINE_AXIS));
+		couleurPredefinieComboBox.setMaximumSize(new Dimension(80, 18));
+		couleurCurseurSpecifique.setAlignmentX(LEFT_ALIGNMENT);
+		
+		panCouleurRougeDefinir.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurRougeDefinir.setLayout(new BoxLayout(panCouleurRougeDefinir, BoxLayout.LINE_AXIS));
+		panCouleurRougeDefinir.setMaximumSize(new Dimension(80, 20));
+		
+		panCouleurVertDefinir.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurVertDefinir.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurVertDefinir.setLayout(new BoxLayout(panCouleurVertDefinir, BoxLayout.LINE_AXIS));
+		panCouleurVertDefinir.setMaximumSize(new Dimension(80, 20));
+		
+		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurBleuDefinir.setLayout(new BoxLayout(panCouleurBleuDefinir, BoxLayout.LINE_AXIS));
+		panCouleurBleuDefinir.setMaximumSize(new Dimension(80, 20));
+		
+			//Dessin
+		labTailleDessin.setAlignmentX(LEFT_ALIGNMENT);
+		panChoixLargeurDessin.setAlignmentX(LEFT_ALIGNMENT);
+		panChoixLargeurDessin.setLayout(new BoxLayout(panChoixLargeurDessin, BoxLayout.LINE_AXIS));
+		largeurDessinTextField.setMaximumSize(new Dimension(80, 20));
+		panChoixHauteurDessin.setAlignmentX(LEFT_ALIGNMENT);
+		panChoixHauteurDessin.setLayout(new BoxLayout(panChoixHauteurDessin, BoxLayout.LINE_AXIS));
+		hauteurDessinTextField.setMaximumSize(new Dimension(80, 20));
+		
+		panCouleurDessinPredefinie.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurDessinPredefinie.setLayout(new BoxLayout(panCouleurDessinPredefinie, BoxLayout.LINE_AXIS));
+		couleurPredefinieDessinComboBox.setMaximumSize(new Dimension(80, 18));
+		
+		couleurDessinSpecifique.setAlignmentX(LEFT_ALIGNMENT);
+		
+		panCouleurRougeDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurRougeDessinDefinie.setLayout(new BoxLayout(panCouleurRougeDessinDefinie, BoxLayout.LINE_AXIS));
+		panCouleurRougeDessinDefinie.setMaximumSize(new Dimension(80, 20));
+		
+		panCouleurVertDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurVertDessinDefinie.setLayout(new BoxLayout(panCouleurVertDessinDefinie, BoxLayout.LINE_AXIS));
+		panCouleurVertDessinDefinie.setMaximumSize(new Dimension(80, 20));
+		
+		panCouleurBleuDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
+		panCouleurBleuDessinDefinie.setLayout(new BoxLayout(panCouleurBleuDessinDefinie, BoxLayout.LINE_AXIS));
+		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(80, 20));
+		
 		//Ajout de tous les JPanel dans la boite Option
-		Box content = Box.createVerticalBox();
+		//Box content = Box.createVerticalBox();
+		JPanel content = new JPanel();
 		content.add(panAffichage);
 		content.add(panCurseur);
 		content.add(panDessin);
