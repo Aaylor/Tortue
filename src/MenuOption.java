@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.NumberFormat;
 
 @SuppressWarnings("serial")
 public class MenuOption extends JDialog{
@@ -12,19 +13,19 @@ public class MenuOption extends JDialog{
 	JRadioButton couleurCurseurPredefinie = new JRadioButton("Couleur prédéfinie");
 	JComboBox<String> couleurPredefinieComboBox;
 	JRadioButton couleurCurseurSpecifique = new JRadioButton("Définir la couleur");
-	JTextField couleurCurseurRougeTextField = new JTextField(3);
-	JTextField couleurCurseurVertTextField = new JTextField(3);
-	JTextField couleurCurseurBleuTextField = new JTextField(3);
+	JFormattedTextField couleurCurseurRougeTextField;
+	JFormattedTextField couleurCurseurVertTextField;
+	JFormattedTextField couleurCurseurBleuTextField;
 	
 	JRadioButton couleurDessinPredefinie = new JRadioButton("Couleur prédéfinie");
 	JComboBox<String> couleurPredefinieDessinComboBox;
 	JRadioButton couleurDessinSpecifique = new JRadioButton("Définir la couleur");
-	JTextField couleurDessinRougeTextField = new JTextField(3);
-	JTextField couleurDessinVertTextField = new JTextField(3);
-	JTextField couleurDessinBleuTextField = new JTextField(3);
+	JFormattedTextField couleurDessinRougeTextField;
+	JFormattedTextField couleurDessinVertTextField;
+	JFormattedTextField couleurDessinBleuTextField;
 	
-	JTextField largeurDessinTextField = new JTextField(4);
-	JTextField hauteurDessinTextField = new JTextField(4);
+	JFormattedTextField largeurDessinTextField;
+	JFormattedTextField hauteurDessinTextField;
 	
 	String[] couleursPredefinie = {"Noir", "Bleu", "Cyan", "Gris", "Vert", "Magenta", "Orange", "Rose", "Rouge", "Jaune", "Blanc"};
 	
@@ -42,6 +43,39 @@ public class MenuOption extends JDialog{
 	}
 	
 	private void initComponent(){
+		  ////////////////////////////////////////////////
+		 //         CONFIGURATION DES COMPOSANTS       //
+		////////////////////////////////////////////////
+		
+		//Configuration des JFormattedTextField recevant les couleur RGB
+		NumberFormat formatCouleur = NumberFormat.getIntegerInstance();
+		formatCouleur.setMaximumIntegerDigits(3);
+		couleurCurseurRougeTextField = new JFormattedTextField(formatCouleur);
+		couleurCurseurRougeTextField.setText("0");
+		couleurCurseurVertTextField = new JFormattedTextField(formatCouleur);
+		couleurCurseurVertTextField.setText("0");
+		couleurCurseurBleuTextField = new JFormattedTextField(formatCouleur);
+		couleurCurseurBleuTextField.setText("0");
+		couleurDessinRougeTextField = new JFormattedTextField(formatCouleur);
+		couleurDessinRougeTextField.setText("0");
+		couleurDessinVertTextField = new JFormattedTextField(formatCouleur);
+		couleurDessinVertTextField.setText("0");
+		couleurDessinBleuTextField = new JFormattedTextField(formatCouleur);
+		couleurDessinBleuTextField.setText("0");
+		
+		//Configuration des JTextfield recevant la taille du dessin
+		NumberFormat formatTaille = NumberFormat.getIntegerInstance();
+		formatTaille.setMaximumIntegerDigits(4);
+		largeurDessinTextField = new JFormattedTextField(formatTaille);
+		largeurDessinTextField.setText("300");
+		hauteurDessinTextField = new JFormattedTextField(formatTaille);
+		hauteurDessinTextField.setText("300");
+		
+		
+		  ////////////////////////////////////////////////
+		 //        INITIALISATION DES COMPOSANTS       //
+		////////////////////////////////////////////////
+		
 		//Affichage
 		JPanel panAffichage = new JPanel();
 		panAffichage.setLayout(new BoxLayout(panAffichage, BoxLayout.PAGE_AXIS));
@@ -184,8 +218,8 @@ public class MenuOption extends JDialog{
 		
 		buttonEnregistrer.addActionListener(new ActionListener(){
 		      public void actionPerformed(ActionEvent arg0) {
-		    	  //TRAITEMENT A AJOUTER
-		        setVisible(false);
+		    	  //TRAITEMENT A AJOUTER();
+		    	  verificationDesValeurs();
 		      }      
 		    });
 		buttonAnnuler.addActionListener(new ActionListener(){
@@ -197,7 +231,22 @@ public class MenuOption extends JDialog{
 		EnregistrerAnnuler.add(buttonEnregistrer);
 		EnregistrerAnnuler.add(buttonAnnuler);
 		
-		//POSITIONNEMENT DU TOUT DANS LA DIALOGUE BOX
+		
+		//Ajout de tous les JPanel dans la boite Option
+		//Box content = Box.createVerticalBox();
+		JPanel content = new JPanel();
+		content.add(panAffichage);
+		content.add(panCurseur);
+		content.add(panDessin);
+		content.add(EnregistrerAnnuler);
+		
+		//Affichage
+		this.getContentPane().add(content);
+		
+		
+		  ////////////////////////////////////////////////
+		 //POSITIONNEMENT DU TOUT DANS LA DIALOGUE BOX //
+		////////////////////////////////////////////////
 			//Tailles
 		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 90));
 		panCurseur.setPreferredSize(new Dimension(this.getWidth() - 20, 210));
@@ -252,15 +301,78 @@ public class MenuOption extends JDialog{
 		panCouleurBleuDessinDefinie.setLayout(new BoxLayout(panCouleurBleuDessinDefinie, BoxLayout.LINE_AXIS));
 		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(80, 20));
 		
-		//Ajout de tous les JPanel dans la boite Option
-		//Box content = Box.createVerticalBox();
-		JPanel content = new JPanel();
-		content.add(panAffichage);
-		content.add(panCurseur);
-		content.add(panDessin);
-		content.add(EnregistrerAnnuler);
 		
-		//Affichage
-		this.getContentPane().add(content);
+
+	}
+
+	private void verificationDesValeurs(){
+		boolean erreurCouleur = false;
+		boolean erreurTailleDessin = false;
+		//On crée ensuite un tableau qui va contenir les valeurs correctes
+		int[] tabValeurs = new int[8];
+		
+		//Ajout des valeurs dans le tableau
+		
+		//Verif des champs vide
+		if(couleurCurseurRougeTextField.getText().equals("")) couleurCurseurRougeTextField.setText("-1");
+		tabValeurs[0] = Integer.parseInt(couleurCurseurRougeTextField.getText());
+		if(couleurCurseurVertTextField.getText().equals("")) couleurCurseurVertTextField.setText("-1");
+		tabValeurs[1] = Integer.parseInt(couleurCurseurVertTextField.getText());
+		if(couleurCurseurBleuTextField.getText().equals("")) couleurCurseurBleuTextField.setText("-1");
+		tabValeurs[2] = Integer.parseInt(couleurCurseurBleuTextField.getText());
+		if(couleurDessinRougeTextField.getText().equals("")) couleurDessinRougeTextField.setText("-1");
+		tabValeurs[3] = Integer.parseInt(couleurDessinRougeTextField.getText());
+		if(couleurDessinVertTextField.getText().equals("")) couleurDessinVertTextField.setText("-1");
+		tabValeurs[4] = Integer.parseInt(couleurDessinVertTextField.getText());
+		if(couleurDessinBleuTextField.getText().equals("")) couleurDessinBleuTextField.setText("-1");
+		tabValeurs[5] = Integer.parseInt(couleurDessinBleuTextField.getText());
+		if(largeurDessinTextField.getText().equals("")) largeurDessinTextField.setText("-1");
+		tabValeurs[6] = Integer.parseInt(largeurDessinTextField.getText());
+		if(hauteurDessinTextField.getText().equals("")) hauteurDessinTextField.setText("-1");
+		tabValeurs[7] = Integer.parseInt(hauteurDessinTextField.getText());
+		
+		//Verif des valeur
+		for(int i=0; i < tabValeurs.length; i++){
+			//Verif des couleurs
+			if (i < 6){
+				if((couleurCurseurSpecifique.isSelected() && i < 3) || (couleurDessinSpecifique.isSelected() && i < 6)){
+					if (tabValeurs[i]<0){
+						tabValeurs[i] = 0;
+						erreurCouleur = true;
+					}
+					if (tabValeurs[i]>255){
+						tabValeurs[i] = 255;
+						erreurCouleur = true;
+					}
+				}
+			}
+			//Verif taille dessin
+			else {
+				if (tabValeurs[i]<20){
+					tabValeurs[i] = 20;
+					erreurTailleDessin = true;
+				}
+			}
+		}
+		
+		//Petit panneau d'erreur		
+		if (erreurCouleur || erreurTailleDessin){
+			String stringErreur = "Attention :\n";
+			
+			if (erreurCouleur)
+				stringErreur += "Un champ de couleur ne peux contenir qu'un nombre compris entre 0 et 255, des valeurs ont été ajustées";
+			if (erreurCouleur && erreurTailleDessin )
+				stringErreur += "\n";
+			if (erreurTailleDessin)
+				stringErreur += "La taille du dessin ne peut pas être inférieure à 20*20, les valeurs ont été ajustées";
+			//Affichage du message d'erreur
+			JOptionPane boiteErreur = new JOptionPane();
+			boiteErreur.showMessageDialog(null, stringErreur, "Erreur", JOptionPane.ERROR_MESSAGE);
+			
+			  /////////////////////////////////////////////////
+			 //CHARGEMENT DES DONNEES DANS UN FICHIER CONFIG//
+			/////////////////////////////////////////////////
+		
+		}
 	}
 }
