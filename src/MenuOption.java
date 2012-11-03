@@ -1,7 +1,28 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
 public class MenuOption extends JDialog{
@@ -335,6 +356,7 @@ public class MenuOption extends JDialog{
 		for(int i=0; i < tabValeurs.length; i++){
 			//Verif des couleurs
 			if (i < 6){
+				//Si le valeurs sont hors propos on les ajuste
 				if((couleurCurseurSpecifique.isSelected() && i < 3) || (couleurDessinSpecifique.isSelected() && i < 6)){
 					if (tabValeurs[i]<0){
 						tabValeurs[i] = 0;
@@ -355,6 +377,81 @@ public class MenuOption extends JDialog{
 			}
 		}
 		
+		//Si l'utilisateur a choisi une des valeurs prédéfinie, on rempli le tableau ici :
+		//Pour les rouges
+		if(couleurCurseurPredefinie.isSelected() || couleurDessinPredefinie.isSelected()){
+			
+			for(int n = 0; n < 2; n++){
+				String couleur = "";
+				int i = 0;
+				
+				if(couleurCurseurPredefinie.isSelected() && n ==0){
+					couleur = (String)couleurPredefinieComboBox.getSelectedItem();
+					i = 0;
+				}
+				if(couleurDessinPredefinie.isSelected() && n ==1){
+					couleur = (String)couleurPredefinieDessinComboBox.getSelectedItem();
+					i = 3;
+				}
+				
+				if(couleur.equals("Noir")){
+					tabValeurs[i + 0] = 255;
+					tabValeurs[i + 1] = 255;
+					tabValeurs[i + 2] = 255;
+				}
+				if(couleur.equals("Bleu")){
+					tabValeurs[i + 0] = 0;
+					tabValeurs[i + 1] = 0;
+					tabValeurs[i + 2] = 255;
+				}
+				if(couleur.equals("Cyan")){
+					tabValeurs[i + 0] = 0;
+					tabValeurs[i + 1] = 255;
+					tabValeurs[i + 2] = 255;
+				}
+				if(couleur.equals("Gris")){
+					tabValeurs[i + 0] = 166;
+					tabValeurs[i + 1] = 166;
+					tabValeurs[i + 2] = 166;
+				}
+				if(couleur.equals("Vert")){
+					tabValeurs[i + 0] = 0;
+					tabValeurs[i + 1] = 255;
+					tabValeurs[i + 2] = 0;
+				}
+				if(couleur.equals("Magenta")){
+					tabValeurs[i + 0] = 255;
+					tabValeurs[i + 1] = 0;
+					tabValeurs[i + 2] = 255;
+				}
+				if(couleur.equals("Orange")){
+					tabValeurs[i + 0] = 255;
+					tabValeurs[i + 1] = 127;
+					tabValeurs[i + 2] = 0;
+				}
+				if(couleur.equals("Rose")){
+					tabValeurs[i + 0] = 255;
+					tabValeurs[i + 1] = 0;
+					tabValeurs[i + 2] = 127;
+				}
+				if(couleur.equals("Rouge")){
+					tabValeurs[i + 0] = 255;
+					tabValeurs[i + 1] = 0;
+					tabValeurs[i + 2] = 0;
+				}
+				if(couleur.equals("Jaune")){
+					tabValeurs[i + 0] = 255;
+					tabValeurs[i + 1] = 255;
+					tabValeurs[i + 2] = 102;
+				}
+				if(couleur.equals("Blanc")){
+					tabValeurs[i + 0] = 0;
+					tabValeurs[i + 1] = 0;
+					tabValeurs[i + 2] = 0;
+				}
+			}
+		}
+		
 		//Petit panneau d'erreur		
 		if (erreurCouleur || erreurTailleDessin){
 			String stringErreur = "Attention :\n";
@@ -368,11 +465,78 @@ public class MenuOption extends JDialog{
 			//Affichage du message d'erreur
 			JOptionPane boiteErreur = new JOptionPane();
 			boiteErreur.showMessageDialog(null, stringErreur, "Erreur", JOptionPane.ERROR_MESSAGE);
-			
-			  /////////////////////////////////////////////////
-			 //CHARGEMENT DES DONNEES DANS UN FICHIER CONFIG//
-			/////////////////////////////////////////////////
-		
 		}
+		
+		  /////////////////////////////////////////////////
+		 //CHARGEMENT DES DONNEES DANS UN FICHIER CONFIG//
+		/////////////////////////////////////////////////
+		
+		//On supprime le fichier .config/.config.txt si il existe
+		File f = new File(".config/.config.txt");
+		if(f.exists()) f.delete();
+		
+		//On crée un nouveau fichier avec les bonnes données
+		DataOutputStream dos;
+		DataInputStream dis;
+		try {
+		      dos = new DataOutputStream(
+		              new BufferedOutputStream(
+		                new FileOutputStream(
+		                  new File(".config/.config.txt"))));
+
+		      //On écrit dans le fichier
+		      //Données 1 : si true, la fenetre est en mode fenetré
+		      if(affichageFenetre.isSelected()) dos.writeBoolean(true);
+		      else dos.writeBoolean(false);
+		      //Données 2 : si true, le curseur est centré
+		      if(posCurseurCentreButton.isSelected()) dos.writeBoolean(true);
+		      else dos.writeBoolean(false);
+		      //Données 3 : valeur Red du curseur
+		      dos.writeInt(tabValeurs[0]);
+		      
+		      //Données 4 : valeur Green du curseur
+		      dos.writeInt(tabValeurs[1]);
+		      
+		      //Données 5 : valeur Blue du curseur
+		      dos.writeInt(tabValeurs[2]);
+		      
+		      //Données 6 : Largeur du dessin
+		      dos.writeInt(tabValeurs[6]);
+		      
+		      //Données 7 : Hauteur du dessin
+		      dos.writeInt(tabValeurs[7]);
+		      
+		      //Données 8 : valeur Red du dessin
+		      dos.writeInt(tabValeurs[3]);
+		      
+		      //Données 9 : valeur Green du dessin
+		      dos.writeInt(tabValeurs[4]);
+		      
+		      //Données 10 : valeur Blue du dessin
+		      dos.writeInt(tabValeurs[5]);
+		      
+		      //On ferme l'ecriture
+		      dos.close();
+		      
+		      //Testons le tout
+		      //On récupère maintenant les données !
+		      dis = new DataInputStream(
+		              new BufferedInputStream(
+		                new FileInputStream(
+		                  new File(".config/.config.txt"))));
+		            
+		      System.out.println(dis.readBoolean());
+		      System.out.println(dis.readBoolean());
+		      System.out.println(dis.readInt());
+		      System.out.println(dis.readInt());
+		      System.out.println(dis.readInt());
+		      System.out.println(dis.readInt());
+		      System.out.println(dis.readInt());
+		      System.out.println(dis.readInt());
+		      System.out.println(dis.readInt());
+		      System.out.println(dis.readInt());
+		    } catch (IOException e) {
+		      e.printStackTrace();
+		    }
 	}
 }

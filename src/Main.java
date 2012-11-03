@@ -1,5 +1,5 @@
 import java.awt.Color;
-import java.awt.Graphics;
+import java.io.File;
 
 public class Main{
 
@@ -52,7 +52,17 @@ public class Main{
     * @return true si le fichier respecte les normes precisees dans la documentation
     */
     public static boolean verifFichierConfig(){
-   
+    	File f = new File(".config/.config.txt");   
+    	//Verifions que le fichier de configuration existe
+    	if(f.exists()){
+    		
+    	}
+    	//Le fichier config n'existe pas : on en informe l'utilisateur et on en créé un
+    	else{
+    		
+    	}
+    	
+    	
         return true;
 
     }
