@@ -472,7 +472,7 @@ public class MenuOption extends JDialog{
 		/////////////////////////////////////////////////
 		
 		//On supprime le fichier .config/.config.txt si il existe
-		File f = new File(".config/.config.txt");
+		File f = new File("config/.config.txt");
 		if(f.exists()) f.delete();
 		
 		//On crée un nouveau fichier avec les bonnes données
@@ -482,7 +482,7 @@ public class MenuOption extends JDialog{
 		      dos = new DataOutputStream(
 		              new BufferedOutputStream(
 		                new FileOutputStream(
-		                  new File(".config/.config.txt"))));
+		                  new File("config/.config.txt"))));
 
 		      //On écrit dans le fichier
 		      //Données 1 : si true, la fenetre est en mode fenetré
@@ -519,11 +519,11 @@ public class MenuOption extends JDialog{
 		      dos.close();
 		      
 		      //Testons le tout
-		      //On récupère maintenant les données !
+		      
 		      dis = new DataInputStream(
 		              new BufferedInputStream(
 		                new FileInputStream(
-		                  new File(".config/.config.txt"))));
+		                  new File("config/.config.txt"))));
 		            
 		      System.out.println(dis.readBoolean());
 		      System.out.println(dis.readBoolean());

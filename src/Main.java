@@ -1,5 +1,9 @@
 import java.awt.Color;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class Main{
 
@@ -52,14 +56,52 @@ public class Main{
     * @return true si le fichier respecte les normes precisees dans la documentation
     */
     public static boolean verifFichierConfig(){
-    	File f = new File(".config/.config.txt");   
+    	//Si le dossier .config n'existe pas, on le créé
+    	File dossier = new File("config");
+    	if(!dossier.exists()) dossier.mkdir();
+    	
+    	
+    	File f = new File("config/.config.txt");   
     	//Verifions que le fichier de configuration existe
     	if(f.exists()){
     		
     	}
     	//Le fichier config n'existe pas : on en informe l'utilisateur et on en créé un
     	else{
-    		
+    		try{
+	    		DataOutputStream dos;
+	    		
+	    		dos = new DataOutputStream(
+			              new BufferedOutputStream(
+			                new FileOutputStream(
+			                  new File("config/.config.txt"))));
+	
+			      //On écrit dans le fichier
+			      //Données 1 : si true, la fenetre est en mode fenetré
+			      dos.writeBoolean(true);
+			      //Données 2 : si true, le curseur est centré
+			      dos.writeBoolean(true);
+			      //Données 3 : valeur Red du curseur
+			      dos.writeInt(255);
+			      //Données 4 : valeur Green du curseur
+			      dos.writeInt(255);
+			      //Données 5 : valeur Blue du curseur
+			      dos.writeInt(255);
+			      //Données 6 : Largeur du dessin
+			      dos.writeInt(300);
+			      //Données 7 : Hauteur du dessin
+			      dos.writeInt(300);
+			      //Données 8 : valeur Red du dessin
+			      dos.writeInt(0);
+			      //Données 9 : valeur Green du dessin
+			      dos.writeInt(0);
+			      //Données 10 : valeur Blue du dessin
+			      dos.writeInt(0);
+			      //On ferme l'ecriture
+			      dos.close();
+		    } catch (IOException e) {
+			      e.printStackTrace();
+			}
     	}
     	
     	
