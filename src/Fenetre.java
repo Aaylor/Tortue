@@ -14,7 +14,11 @@ public class Fenetre extends JFrame{
 	Fenetre(ZoneDessin zoneDessin, BarreOutils barreOutils){
 		//Initialisation de la JFrame
 		this.setTitle("Carapuce");
-		this.setSize(1024, 600);
+		
+		if(MenuOption.getConfigProgrammeEstFenetre())
+			this.setSize(1024, 600);
+		else
+			this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setMinimumSize(new Dimension(1024, 600));
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

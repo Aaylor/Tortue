@@ -50,6 +50,18 @@ public class MenuOption extends JDialog{
 	
 	String[] couleursPredefinie = {"Noir", "Bleu", "Cyan", "Gris", "Vert", "Magenta", "Orange", "Rose", "Rouge", "Jaune", "Blanc"};
 	
+    //Données de configuration du programme
+    private static boolean configProgrammeEstFenetre;//True : Le programme se lance en mode fenetre, False : le programme se lance en plein ecran
+    private static boolean configCurseurEstCentre;//True : Le curseur est centré au démarrage, False : le curseur est en haut à gauche
+    private static int configCurseurRed;
+    private static int configCurseurGreen;
+    private static int configCurseurBlue;
+    private static int configDessinLargeur;
+    private static int configDessinHauteur;
+    private static int configDessinBackgroundRed;
+    private static int configDessinBackgroundGreen;
+    private static int configDessinBackgroundBlue;
+	
 	
 	
 	public MenuOption(JFrame parent, String title, boolean modal){
@@ -72,25 +84,25 @@ public class MenuOption extends JDialog{
 		NumberFormat formatCouleur = NumberFormat.getIntegerInstance();
 		formatCouleur.setMaximumIntegerDigits(3);
 		couleurCurseurRougeTextField = new JFormattedTextField(formatCouleur);
-		couleurCurseurRougeTextField.setText("0");
+		couleurCurseurRougeTextField.setText(""+configCurseurRed);
 		couleurCurseurVertTextField = new JFormattedTextField(formatCouleur);
-		couleurCurseurVertTextField.setText("0");
+		couleurCurseurVertTextField.setText(""+configCurseurGreen);
 		couleurCurseurBleuTextField = new JFormattedTextField(formatCouleur);
-		couleurCurseurBleuTextField.setText("0");
+		couleurCurseurBleuTextField.setText(""+configCurseurGreen);
 		couleurDessinRougeTextField = new JFormattedTextField(formatCouleur);
-		couleurDessinRougeTextField.setText("0");
+		couleurDessinRougeTextField.setText(""+configDessinBackgroundRed);
 		couleurDessinVertTextField = new JFormattedTextField(formatCouleur);
-		couleurDessinVertTextField.setText("0");
+		couleurDessinVertTextField.setText(""+configDessinBackgroundGreen);
 		couleurDessinBleuTextField = new JFormattedTextField(formatCouleur);
-		couleurDessinBleuTextField.setText("0");
+		couleurDessinBleuTextField.setText(""+configDessinBackgroundBlue);
 		
 		//Configuration des JTextfield recevant la taille du dessin
 		NumberFormat formatTaille = NumberFormat.getIntegerInstance();
 		formatTaille.setMaximumIntegerDigits(4);
 		largeurDessinTextField = new JFormattedTextField(formatTaille);
-		largeurDessinTextField.setText("300");
+		largeurDessinTextField.setText(""+configDessinLargeur);
 		hauteurDessinTextField = new JFormattedTextField(formatTaille);
-		hauteurDessinTextField.setText("300");
+		hauteurDessinTextField.setText(""+configDessinHauteur);
 		
 		
 		  ////////////////////////////////////////////////
@@ -107,7 +119,9 @@ public class MenuOption extends JDialog{
 		ButtonGroup affichage = new ButtonGroup();
 		affichage.add(affichageFenetre);
 		affichage.add(affichagePleinEcran);
-		affichageFenetre.setSelected(true);
+		if(configProgrammeEstFenetre) affichageFenetre.setSelected(true);
+		else affichagePleinEcran.setSelected(true);
+			
 		
 		panAffichage.add(labTailleFenetre);
 		panAffichage.add(affichageFenetre);
@@ -124,7 +138,8 @@ public class MenuOption extends JDialog{
 		ButtonGroup posCurseurGroup = new ButtonGroup();
 		posCurseurGroup.add(posCurseurCentreButton);
 		posCurseurGroup.add(posCurseurHautGaucheButton);
-		posCurseurCentreButton.setSelected(true);
+		if(configCurseurEstCentre) posCurseurCentreButton.setSelected(true);
+		else posCurseurHautGaucheButton.setSelected(true);
 		
 		panCurseur.add(labPosCurseur);
 		panCurseur.add(posCurseurCentreButton);
@@ -136,7 +151,7 @@ public class MenuOption extends JDialog{
 		ButtonGroup couleurCurseurGroup = new ButtonGroup();
 		couleurCurseurGroup.add(couleurCurseurPredefinie);
 		couleurCurseurGroup.add(couleurCurseurSpecifique);
-		couleurCurseurPredefinie.setSelected(true);
+		couleurCurseurSpecifique.setSelected(true);
 		
 		JPanel panCouleurCurseurPredefinie = new JPanel();
 		couleurPredefinieComboBox = new JComboBox<String>();
@@ -199,7 +214,7 @@ public class MenuOption extends JDialog{
 		ButtonGroup couleurDessinGroup = new ButtonGroup();
 		couleurDessinGroup.add(couleurDessinPredefinie);
 		couleurDessinGroup.add(couleurDessinSpecifique);
-		couleurDessinPredefinie.setSelected(true);
+		couleurDessinSpecifique.setSelected(true);
 		
 		JPanel panCouleurDessinPredefinie = new JPanel();
 		couleurPredefinieDessinComboBox = new JComboBox<String>();
@@ -239,8 +254,8 @@ public class MenuOption extends JDialog{
 		
 		buttonEnregistrer.addActionListener(new ActionListener(){
 		      public void actionPerformed(ActionEvent arg0) {
-		    	  //TRAITEMENT A AJOUTER();
 		    	  verificationDesValeurs();
+		    	  setVisible(false);
 		      }      
 		    });
 		buttonAnnuler.addActionListener(new ActionListener(){
@@ -395,9 +410,9 @@ public class MenuOption extends JDialog{
 				}
 				
 				if(couleur.equals("Noir")){
-					tabValeurs[i + 0] = 255;
-					tabValeurs[i + 1] = 255;
-					tabValeurs[i + 2] = 255;
+					tabValeurs[i + 0] = 0;
+					tabValeurs[i + 1] = 0;
+					tabValeurs[i + 2] = 0;
 				}
 				if(couleur.equals("Bleu")){
 					tabValeurs[i + 0] = 0;
@@ -445,9 +460,9 @@ public class MenuOption extends JDialog{
 					tabValeurs[i + 2] = 102;
 				}
 				if(couleur.equals("Blanc")){
-					tabValeurs[i + 0] = 0;
-					tabValeurs[i + 1] = 0;
-					tabValeurs[i + 2] = 0;
+					tabValeurs[i + 0] = 255;
+					tabValeurs[i + 1] = 255;
+					tabValeurs[i + 2] = 255;
 				}
 			}
 		}
@@ -477,7 +492,6 @@ public class MenuOption extends JDialog{
 		
 		//On crée un nouveau fichier avec les bonnes données
 		DataOutputStream dos;
-		DataInputStream dis;
 		try {
 		      dos = new DataOutputStream(
 		              new BufferedOutputStream(
@@ -519,7 +533,8 @@ public class MenuOption extends JDialog{
 		      dos.close();
 		      
 		      //Testons le tout
-		      
+		      /*
+		      DataInputStream dis;
 		      dis = new DataInputStream(
 		              new BufferedInputStream(
 		                new FileInputStream(
@@ -535,8 +550,81 @@ public class MenuOption extends JDialog{
 		      System.out.println(dis.readInt());
 		      System.out.println(dis.readInt());
 		      System.out.println(dis.readInt());
+		      */
+		      
 		    } catch (IOException e) {
 		      e.printStackTrace();
 		    }
+	}
+
+	  ////////////////////////////////////////////
+	 //          ACCESSEURS
+	////////////////////////////////////////////
+	
+	public static boolean getConfigProgrammeEstFenetre(){
+		return configProgrammeEstFenetre;
+	}
+    public static boolean getConfigCurseurEstCentre(){
+    	return configCurseurEstCentre;
+    }
+    public static int getConfigCurseurRed(){
+    	return configCurseurRed;
+    }
+    public static int getConfigCurseurGreen(){
+    	return configCurseurGreen;
+    }
+    public static int getConfigCurseurBlue(){
+    	return configCurseurBlue;
+    }
+    public static int getConfigDessinLargeur(){
+    	return configDessinLargeur;
+    }
+    public static int getConfigDessinHauteur(){
+    	return configDessinHauteur;
+    }
+    public static int getConfigDessinBackgroundRed(){
+    	return configDessinBackgroundRed;
+    }
+    public static int getConfigDessinBackgroundGreen(){
+    	return configDessinBackgroundGreen;
+    }
+    public static int getConfigDessinBackgroundBlue(){
+    	return configDessinBackgroundBlue;
+    }
+    
+    
+	  ////////////////////////////////////////////
+	 //          MODIFIEURS
+	////////////////////////////////////////////
+	
+	public static void setConfigProgrammeEstFenetre(boolean a){
+		configProgrammeEstFenetre = a;
+	}
+	public static void setConfigCurseurEstCentre(boolean a){
+		configCurseurEstCentre = a;
+	}
+	public static void setConfigCurseurRed(int a){
+		configCurseurRed = a;
+	}
+	public static void setConfigCurseurGreen(int a){
+		configCurseurGreen = a;
+	}
+	public static void setConfigCurseurBlue(int a){
+		configCurseurBlue = a;
+	}
+	public static void setConfigDessinLargeur(int a){
+		configDessinLargeur = a;
+	}
+	public static void setConfigDessinHauteur(int a){
+		configDessinHauteur = a;
+	}
+	public static void setConfigDessinBackgroundRed(int a){
+		configDessinBackgroundRed = a;
+	}
+	public static void setConfigDessinBackgroundGreen(int a){
+		configDessinBackgroundGreen = a;
+	}
+	public static void setConfigDessinBackgroundBlue(int a){
+		configDessinBackgroundBlue = a;
 	}
 }
