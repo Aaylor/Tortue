@@ -6,6 +6,7 @@ public class StockageDonnee
 
     public static ArrayList<String> liste_commande_entree_correcte;
     public static ArrayList<String> liste_commande_entree_generale;
+    public static ArrayList<Traceur> liste_dessin;
     public static Hashtable<String, Integer> liste_des_commandes;
     public static Hashtable<Integer, String> liste_erreurs;
     public static Hashtable<String, String> manuel;
@@ -18,6 +19,7 @@ public class StockageDonnee
     {
 
         return init_lcec() && init_lceg()
+                            && init_ldessin()
                             && init_ldc()
                             && init_le()
                             && init_manuel();
@@ -46,6 +48,18 @@ public class StockageDonnee
     {
 
         liste_commande_entree_generale = new ArrayList<String>();
+        return true;
+
+    }
+
+    /**
+     *  Fonction initialisant la collection des listes d'objet utilisé pour le dessin
+     *  @return boolean pour l'initialisation
+     */
+    public static boolean init_ldessin()
+    {
+
+        liste_dessin = new ArrayList<Traceur>();
         return true;
 
     }
