@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public class Controleur{
 
     public static final int SUCCESS = 0;
-    public static final int COMMANDE_ERRONEE = 1;
-    public static final int NOMBRE_ARG_LESS = 2; 
-    public static final int NOMBRE_ARG_SUP = 3;
-    public static final int PARAM_INCORRECTE = 4;
+    public static final int COMMANDE_ERRONEE = 100;
+    public static final int NOMBRE_ARG_LESS = 200; 
+    public static final int NOMBRE_ARG_SUP = 201;
+    public static final int PARAM_INCORRECTE = 202;
     /* 
      * TODO
      * mettre en constante les autres erreurs
@@ -59,7 +59,7 @@ public class Controleur{
 
         int numero_renvoie = init(commande_parser);
         return numero_renvoie == 0 ? StockageDonnee.ajoutLCEC(s) && StockageDonnee.ajoutLCEG(s)
-                  : StockageDonnee.ajoutLCEG(s) && this.afficheErreur(numero_renvoie);
+                  : StockageDonnee.ajoutLCEG(s) && this.setMessageErreur(numero_renvoie, commande_parser[0]);
 
     }
 
@@ -99,10 +99,15 @@ public class Controleur{
      *  @param numero_erreur numero de l'erreur
      *  @return boolean
      */
-    public boolean afficheErreur(int numero_erreur)
+    public boolean setMessageErreur(int numero_erreur, String partie_erreur)
     {
-        term.afficheErreur(GenerationErreur.genererErreur(numero_erreur));
-        return true;
+        String message = "Erreur : ";
+        if ( numero_erreur >= 100 && numero_erreur < 200 )
+        {
+            message += partie_erreur + " : la commande n'existe pas";
+        }
+        term.setMessageErreur(message);
+        return false;
     }
     
 

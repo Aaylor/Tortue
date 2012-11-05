@@ -1,4 +1,4 @@
-public class GenerationErreur{
+public class GenerationErreur extends RuntimeException{
 
     /**
      *  Fonction qui renvoie le message d'erreur correspondat à son numéro
