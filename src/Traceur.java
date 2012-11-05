@@ -12,9 +12,13 @@ public class Traceur extends JPanel{
 	private int y_origine;
 	private int x_arrivee;
 	private int y_arrivee;
+	private int heuteur;
+	private int largeur;
+	private boolean estRempli; //true : le rectanlge ou cercle sera remplie 
+	
 	
 	/* constructeur */
-	public Traceur(){
+	public Traceur(int epaisseur, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee){
 		
 	}
 	
