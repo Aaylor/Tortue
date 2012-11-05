@@ -23,8 +23,48 @@ public class Traceur extends JPanel{
 	public int getType(){ return this.type; }
 	public Color getColor(){ return this.couleur; }
 	public boolean getIsDown(){ return this.isDown; }
-	
+	public int getTypeForme(){ return this.type_forme; }
+	public int getXOrigin(){ return this.x_origin; }
+	public int getYOrigin(){ return this.y_origin; }
+	public int getXArrivee(){ return this.x_arrivee; }
+	public int getYArrivee(){ return this.y_arrivee; }
 	
 	
 	/*modifieurs*/
+	public void setEpaisseur(int epaisseur){
+		this.epaisseur=epaisseur;
+		}
+	
+	public void setType(int type){
+		this.type=type;
+	}
+	
+	public void setColor(Color couleur){
+		this.couleur=couleur;
+	}
+	
+	public void setIsDown(boolean isDown){
+		this.isDown=isDown;
+	}
+	
+	public void setTypeForme(int type_forme){
+		this.type_forme=type_forme;
+	}
+	
+	public void setXOrigin(int x_origin){
+		this.x_origin=x_origin;
+	}
+	
+	public void setYOrigin(int y_origin){
+		this.y_origin=y_origin;
+	}
+	
+	public void setXArrivee(int x_arrivee){
+		this.x_arrivee=x_arrivee;
+	}
+	
+	public void setYArrivee(int y_arrivee){
+		this.y_arrivee=y_arrivee;
+	}
+	
 }
