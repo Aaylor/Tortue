@@ -523,7 +523,8 @@ public class Controleur{
         if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
         
         if(curseur.isDown() && curseur.getType() == 0){
-        	/*Traceur t = new Traceur();*/
+        	Traceur t = new Traceur(curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	
         	
         }
         

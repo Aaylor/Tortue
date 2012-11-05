@@ -16,6 +16,7 @@ public class Curseur extends JPanel {
 	private Color couleur;
 	private Controleur controleur;
 	private boolean isDown=false;//par defaut false: donc penup
+	private int epaisseur;
 
 	
 	/////////////////////
@@ -83,6 +84,9 @@ public class Curseur extends JPanel {
 		return this.isDown;
 	}
 	
+	public int getEpaisseur(){
+		return this.epaisseur;
+	}
 	
 	/////////////////
 	//  MODIFIEURS //
@@ -147,7 +151,8 @@ public class Curseur extends JPanel {
 		this.isDown=isDown;
 	}
      
-     public void paintComponent (Graphics g) {
-    	 
-     }
+    public void setEpaisseur(int epaisseur){
+    	this.epaisseur=epaisseur;
+    }
+     
 }

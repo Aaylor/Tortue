@@ -19,7 +19,13 @@ public class Traceur extends JPanel{
 	
 	/* constructeur */
 	public Traceur(int epaisseur, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee){
-		
+		this.epaisseur=epaisseur;
+		this.couleur=couleur;
+		this.x_origine=x_origine;
+		this.y_origine=y_origine;
+		this.x_arrivee=x_arrivee;
+		this.y_arrivee=y_arrivee;
+			
 	}
 	
 	/*accesseurs*/
