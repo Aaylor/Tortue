@@ -116,10 +116,12 @@ public class StockageDonnee
 
         liste_erreurs = new Hashtable<Integer, String>(); 
 
-        liste_erreurs.put(1, "la commande n'existe pas");
-        liste_erreurs.put(2, "nombre(s) d'argument(s) trop faible");
-        liste_erreurs.put(3, "nombre(s) d'argument(s) trop élevé");
-        liste_erreurs.put(4, "paramètre incorrect");
+        liste_erreurs.put(-1, "");
+
+        liste_erreurs.put(100, "la commande n'existe pas.");
+        liste_erreurs.put(200, "nombre(s) d'argument(s) trop faible.");
+        liste_erreurs.put(201, "nombre(s) d'argument(s) trop élevé.");
+        liste_erreurs.put(202, "paramètre incorrect.");
 
         return true;
 
@@ -198,6 +200,26 @@ public class StockageDonnee
     public static String getMessageErreur(int numero)
     {
         return liste_erreurs.get( numero );       
+    }
+
+    /**
+     *  Fonction renvoyant le paramètre du message d'erreur
+     *  @return String correspondant au paramètre
+     */
+    public static String getParamErreur()
+    {
+        String param = liste_erreurs.get(-1);
+        liste_erreurs.put(-1,"");
+        return param;
+    }
+
+    /**
+     *  Fonction enregistrant un paramètre pour le message d'erreur
+     *  @param param correspondant au paramètre
+     */
+    public static void setParamErreur(String param)
+    {
+        liste_erreurs.put(-1, param);
     }
 
     /**

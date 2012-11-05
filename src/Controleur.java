@@ -4,8 +4,8 @@ public class Controleur{
 
     public static final int SUCCESS = 0;
     public static final int COMMANDE_ERRONEE = 100;
-    public static final int NOMBRE_ARG_LESS = 200; 
-    public static final int NOMBRE_ARG_SUP = 201;
+    public static final int NOMBRE_PARAM_LESS = 200; 
+    public static final int NOMBRE_PARAM_SUP = 201;
     public static final int PARAM_INCORRECTE = 202;
     /* 
      * TODO
@@ -59,7 +59,7 @@ public class Controleur{
 
         int numero_renvoie = init(commande_parser);
         return numero_renvoie == 0 ? StockageDonnee.ajoutLCEC(s) && StockageDonnee.ajoutLCEG(s)
-                  : StockageDonnee.ajoutLCEG(s) && this.setMessageErreur(numero_renvoie, commande_parser[0]);
+                  : StockageDonnee.ajoutLCEG(s) && this.setMessageErreur(numero_renvoie);
 
     }
 
@@ -99,13 +99,13 @@ public class Controleur{
      *  @param numero_erreur numero de l'erreur
      *  @return boolean
      */
-    public boolean setMessageErreur(int numero_erreur, String partie_erreur)
+    public boolean setMessageErreur(int numero_erreur)
     {
         String message = "Erreur : ";
-        if ( numero_erreur >= 100 && numero_erreur < 200 )
-        {
-            message += partie_erreur + " : la commande n'existe pas";
-        }
+        String param = StockageDonnee.getParamErreur();
+        if ( !param.equals("") ) 
+            message += param + " : ";
+        message += StockageDonnee.getMessageErreur(numero_erreur);
         term.setMessageErreur(message);
         return false;
     }
@@ -125,91 +125,91 @@ public class Controleur{
         {
             case 0:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return pendown();
             
             case 1:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return penup();
            
             case 2:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return pencil();
 
             case 3:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return eraser();
             
             case 4:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return up();
             
             case 5:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return down();
             
             case 6:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return left();
             
             case 7:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return right();
             
             case 8:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else;
 
                 if ( isDouble(commande_parser[1]) )
                     valeur = (int)Double.parseDouble(commande_parser[1]);
                 else
-                    return COMMANDE_ERRONEE; /* TODO : Changer la valeur de retour */
+                    return PARAM_INCORRECTE;
 
                 return rotate(valeur);
             
             case 9:
                 if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 else;
 
                 if ( isInt(commande_parser[1])  )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return COMMANDE_ERRONEE; /* TODO : Changer la valeur de retour */
+                    return PARAM_INCORRECTE;
 
                 return forward(valeur);
             
             case 10:
                 if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 else;
 
                 if ( isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return COMMANDE_ERRONEE; /* TODO : Changer la valeur de retour */
-                
+                    return PARAM_INCORRECTE;
+
                 return backward(valeur);
             
             case 11:
-                if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                if ( commande_parser.length > 3 )
+                    return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else;
 
                 if ( isDouble(commande_parser[1])
@@ -219,41 +219,41 @@ public class Controleur{
                     valeur_y = Double.parseDouble(commande_parser[2]);
                 }
                 else
-                    return COMMANDE_ERRONEE;
-                    
+                    return PARAM_INCORRECTE;
+
                 return goTo(valeur_x, valeur_y);
             
             case 12:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else;
 
                 if ( isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return COMMANDE_ERRONEE; /* TODO : changer la valeur de retour */
+                    return PARAM_INCORRECTE;
 
                 return cursorWidth(valeur);
             
             case 13:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else;
 
                 return setColor(commande_parser[1]);
             
             case 14:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else;
 
-                return setBackgroundColor();
+                return setBackgroundColor(commande_parser[1]);
             
             case 15:
                 /* TODO */
@@ -262,55 +262,55 @@ public class Controleur{
             
             case 16:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else;
 
                 if ( isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return COMMANDE_ERRONEE;    /* TODO */
+                    return PARAM_INCORRECTE;
 
                 return width(valeur);
             
             case 17:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_ARG_LESS;
+                    return NOMBRE_PARAM_LESS;
                 else;
 
                 if ( isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return COMMANDE_ERRONEE;    /* TODO */
+                    return PARAM_INCORRECTE;
 
                 return height(valeur);
             
             case 18:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return newFile();
             
             case 19:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return open();
             
             case 20:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return save();
             
             case 21:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return saveas();
             
             case 22:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
     
                 if ( commande_parser.length == 2 )
                     return savehistory(commande_parser[1]);
@@ -319,12 +319,12 @@ public class Controleur{
             
             case 23:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return exec();
             
             case 24:
                 if ( commande_parser.length > 3 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
 
                 if ( commande_parser.length == 1 )
                     return repeat(1,1);
@@ -333,7 +333,7 @@ public class Controleur{
                     if ( isInt(commande_parser[1]) )
                         return repeat(Integer.parseInt(commande_parser[1]),1);
                     else
-                        return COMMANDE_ERRONEE;    /*  TODO : CHANGER ERREUR   */
+                        return PARAM_INCORRECTE;
                 }
                 else
                 {
@@ -343,22 +343,22 @@ public class Controleur{
                                         Integer.parseInt(commande_parser[2]));
                     }
                     else
-                        return COMMANDE_ERRONEE;    /*  TODO : CHANGER ERREUR   */
+                        return PARAM_INCORRECTE;
                 }
                 
             case 25:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return clear();
             
             case 26:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 return help();
             
             case 27:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_ARG_SUP;
+                    return NOMBRE_PARAM_SUP;
                 
                 if ( commande_parser.length < 2 )
                     return man(false, "");
@@ -584,7 +584,8 @@ public class Controleur{
     	if(value < 0) curseur.setPosX(0); //valeur négative => on replace à la valeur minimu : 0
     	
     	if(value_2 < 0) curseur.setPosY(0); //valeur négative => on replace à la valeur minimu : 0
-    	
+
+    	this.zd.repaint();
         return SUCCESS;
     }
 
@@ -616,9 +617,10 @@ public class Controleur{
      *  Fonction qui permet de changer la couleur du fond d'écran
      *  @return si la fonction s'est bien déroulée.
      */
-    public int setBackgroundColor()
+    public int setBackgroundColor(String bgColor)
     {
 
+        System.out.println("couleur :: " + bgColor);
         return SUCCESS;
 
     }
@@ -809,6 +811,7 @@ public class Controleur{
     		Integer.parseInt(s);
     	}
     	catch(NumberFormatException e){
+            StockageDonnee.setParamErreur(s);
     		return false;
     	}
         return true;
@@ -822,6 +825,7 @@ public class Controleur{
         }
         catch(NumberFormatException e)
         {
+            StockageDonnee.setParamErreur(s);
             return false;
         }
         return true;
