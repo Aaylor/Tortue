@@ -8,8 +8,8 @@ public class Traceur extends JPanel{
 	private Color couleur;
 	private boolean isDown;
 	private int type_forme; //0: point, 1: ligne, 2:rectangle , 3:cercle
-	private int x_origin;
-	private int y_origin;
+	private int x_origine;
+	private int y_origine;
 	private int x_arrivee;
 	private int y_arrivee;
 	
@@ -24,8 +24,8 @@ public class Traceur extends JPanel{
 	public Color getColor(){ return this.couleur; }
 	public boolean getIsDown(){ return this.isDown; }
 	public int getTypeForme(){ return this.type_forme; }
-	public int getXOrigin(){ return this.x_origin; }
-	public int getYOrigin(){ return this.y_origin; }
+	public int getXOrigin(){ return this.x_origine; }
+	public int getYOrigin(){ return this.y_origine; }
 	public int getXArrivee(){ return this.x_arrivee; }
 	public int getYArrivee(){ return this.y_arrivee; }
 	
@@ -51,12 +51,12 @@ public class Traceur extends JPanel{
 		this.type_forme=type_forme;
 	}
 	
-	public void setXOrigin(int x_origin){
-		this.x_origin=x_origin;
+	public void setXOrigin(int x_origine){
+		this.x_origine=x_origine;
 	}
 	
-	public void setYOrigin(int y_origin){
-		this.y_origin=y_origin;
+	public void setYOrigin(int y_origine){
+		this.y_origine=y_origine;
 	}
 	
 	public void setXArrivee(int x_arrivee){
