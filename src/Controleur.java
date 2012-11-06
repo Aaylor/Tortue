@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.util.Date;
+import java.io.*;
+import java.text.SimpleDateFormat;
 
 public class Controleur{
 
@@ -7,20 +10,24 @@ public class Controleur{
     public static final int NOMBRE_PARAM_LESS = 200; 
     public static final int NOMBRE_PARAM_SUP = 201;
     public static final int PARAM_INCORRECTE = 202;
+    public static final int HISTO_ALREADY_SAVE = 900;
     /* 
      * TODO
      * mettre en constante les autres erreurs
      */
     
-    Terminal term = null;
-    ZoneDessin zd = null;
-    BarreOutils zb = null;
-    Curseur curseur = null;
+    public Terminal term = null;
+    public ZoneDessin zd = null;
+    public BarreOutils zb = null;
+    public Curseur curseur = null;
+
+    public boolean history_already_save = false;
 
     /**
      *  Constructeur vide
      */
     public Controleur(){};
+
 
     /**
      *  Fonction qui permet d'initialiser les liens entre objets
@@ -101,7 +108,6 @@ public class Controleur{
      */
     public boolean setMessageErreur(int numero_erreur)
     {
-    
         String message = "   /!\\ Erreur : ";
         String param = StockageDonnee.getParamErreur();
         if ( !param.equals("") ) 
@@ -738,11 +744,59 @@ public class Controleur{
      */
     public int savehistory(String s)
     {
+        String format = "yy-MM-yy_H:mm:ss";
+        SimpleDateFormat formater = new SimpleDateFormat(format);
+        Date date = new java.util.Date();
+
+        File history;
 
         if ( s.equals("") )
-            System.out.println("Ouvrir une boite de dialogue");
-        else
-            System.out.println("Sauvegarder à l'endroit selectionner par l'utilisateur");
+        {
+            
+            try
+            {
+                File folder = new File("../history");
+                if ( !folder.exists() )
+                {
+                    if ( !folder.mkdir() )
+                        term.addMessage("   /!i\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                }
+                
+                history = new File("../history/history" + formater.format(date) + ".txt");
+                
+            }
+            catch (Exception e)
+            {
+                return COMMANDE_ERRONEE;
+            }
+
+        }
+        else;
+            
+        /* TODO implenter le parametre */
+
+        try
+        {
+            history.createNewFile();
+            FileWriter fw = new FileWriter(history, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter fSortie = new PrintWriter(bw);
+
+            for (int i = 0; i < StockageDonnee.getSize_LCEC(); i++)
+            {
+                fSortie.println(StockageDonnee.getLCEC(i));
+                fSortie.flush();
+            }
+
+            fSortie.close();
+        }
+        catch (Exception e)
+        {
+            return COMMANDE_ERRONEE;
+        }
+
+        this.setHistoAlreadySave(true);
+
         return SUCCESS;
 
     }

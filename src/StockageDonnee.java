@@ -18,7 +18,7 @@ public class StockageDonnee
     public static boolean init()
     {
 
-        return init_lcec() && init_lceg()
+        return init_lcec()  && init_lceg()
                             && init_ldessin()
                             && init_ldc()
                             && init_le()
@@ -122,6 +122,7 @@ public class StockageDonnee
         liste_erreurs.put(200, "nombre(s) d'argument(s) trop faible.");
         liste_erreurs.put(201, "nombre(s) d'argument(s) trop élevé.");
         liste_erreurs.put(202, "paramètre incorrect.");
+        liste_erreurs.put(900, "l'historique à déjà été sauvegardé.");
 
         return true;
 

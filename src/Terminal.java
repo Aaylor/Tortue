@@ -81,7 +81,7 @@ public class Terminal extends JPanel implements KeyListener{
                     && !this.champ_de_commande.getText().equals("") )
         {
 
-            ArrayList<String> proposition_completion = auto_completion( this.champ_de_commande.getText() );
+            ArrayList<String> proposition_completion = auto_completion( this.champ_de_commande.getText().trim() );
 
             if ( proposition_completion.size() == 1 )
                 this.champ_de_commande.setText(proposition_completion.get(0));
