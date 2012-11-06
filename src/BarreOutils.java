@@ -1,6 +1,11 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JMenuBar;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 @SuppressWarnings("serial")
 public class BarreOutils extends JMenuBar {
@@ -10,6 +15,7 @@ public class BarreOutils extends JMenuBar {
     private Controleur controleur;
     private JButton boutonPoserCrayon;
     private JButton boutonGomme;
+    private JSlider slider;
     /**
      *  Constructeur de la zone de bouton
      */
@@ -19,11 +25,13 @@ public class BarreOutils extends JMenuBar {
 		this.zoneDessin = zoneDessin;
 		boutonPoserCrayon = boutonPoserCrayon();
 		boutonGomme = boutonGomme();
+		slider = slider();
 		
 		//Ajout des boutons
 		this.add(boutonPoserCrayon);
 		this.add(boutonGomme);
-		this.add(new JMenu("Commandes"));
+		this.add(slider);
+		
 		
 		//Action des boutons
 		boutonPoserCrayon.addActionListener(new ActionListener(){
@@ -60,6 +68,25 @@ public class BarreOutils extends JMenuBar {
         
     }
     
+	public JSlider slider(){
+		JSlider slider = new JSlider();
+		   
+	    slider.setMaximum(100);
+	    slider.setMinimum(0);
+	    slider.setValue(curseur.getEpaisseur());
+	    slider.setPaintTicks(true);
+	    slider.setPaintLabels(true);
+	    slider.setMinorTickSpacing(10);
+	    slider.setMajorTickSpacing(20);
+	    slider.addChangeListener(new ChangeListener(){
+	      public void stateChanged(ChangeEvent event){
+	    	  curseur.setEpaisseur(((JSlider)event.getSource()).getValue());
+	      }
+	    });
+	    
+	    return slider;
+	}
+	
 	 /**
 	  * Fonction renvoyant le Bouton Lever/Poser le Crayon
 	  */
