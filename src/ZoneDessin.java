@@ -50,7 +50,12 @@ public class ZoneDessin extends JPanel {
 		Traceur t;
 		for (int i = 0; i < StockageDonnee.liste_dessin.size(); i ++){
 			t = StockageDonnee.liste_dessin.get(i);			
-			
+			System.out.println("Position X Début : " + posXAbsolue(t.getXOrigine()));
+			System.out.println("Position Y Début : " + posYAbsolue(t.getYOrigine()));
+			System.out.println("Position X Fin : " + posXAbsolue(t.getXArrivee()));
+			System.out.println("Position Y Fin : " + posYAbsolue(t.getYArrivee()));
+			System.out.println("Couleur Curseur : " + t.getColor());
+			System.out.println("Epaisseur : " + t.getEpaisseur());
 			g.setColor(t.getColor());
 			
 			//Si le t est un point
@@ -61,10 +66,7 @@ public class ZoneDessin extends JPanel {
 			//Si le t est une droite
 			else if (t.getType() == 1){
 				if(t.getEpaisseur() == 1){
-					System.out.println("Position X D�but : " + posXAbsolue(t.getXOrigine()));
-					System.out.println("Position Y D�but : " + posYAbsolue(t.getYOrigine()));
-					System.out.println("Position X Fin : " + posXAbsolue(t.getXArrivee()));
-					System.out.println("Position Y Fin : " + posYAbsolue(t.getYArrivee()));
+					
 					
 					g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
 					
@@ -74,7 +76,7 @@ public class ZoneDessin extends JPanel {
 					g.drawOval(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getEpaisseur(), t.getEpaisseur());
 					//Dessine le "point" d'arrivee
 					g.drawOval(posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()), t.getEpaisseur(), t.getEpaisseur());
-					//Dessine un polygone entre les extremit� des deux points
+					//Dessine un polygone entre les extremité des deux points
 					int[] x = {posXAbsolue(t.getXOrigine()), 
 							posXAbsolue(t.getXOrigine()), 
 							posXAbsolue(t.getXArrivee()), 
