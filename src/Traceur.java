@@ -4,10 +4,9 @@ import java.awt.*;
 public class Traceur extends JPanel{
 	
 	private int epaisseur;
-	private int type; //0: crayon, 1: gomme
+	private int type; //0: point, 1: ligne, 2:rectangle , 3:cercle
 	private Color couleur;
-	private boolean isDown;
-	private int type_forme; //0: point, 1: ligne, 2:rectangle , 3:cercle
+	private boolean isDown; 
 	private int x_origine;
 	private int y_origine;
 	private int x_arrivee;
@@ -18,14 +17,14 @@ public class Traceur extends JPanel{
 	
 	
 	/* constructeur */
-	public Traceur(int type_forme, int epaisseur, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee){
+	public Traceur(int type, int epaisseur, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee){
 		this.epaisseur=epaisseur;
 		this.couleur=couleur;
 		this.x_origine=x_origine;
 		this.y_origine=y_origine;
 		this.x_arrivee=x_arrivee;
 		this.y_arrivee=y_arrivee;
-		this.type_forme=type_forme;
+		this.type=type;
 			
 	}
 	
@@ -34,7 +33,6 @@ public class Traceur extends JPanel{
 	public int getType(){ return this.type; }
 	public Color getColor(){ return this.couleur; }
 	public boolean getIsDown(){ return this.isDown; }
-	public int getTypeForme(){ return this.type_forme; }
 	public int getXOrigine(){ return this.x_origine; }
 	public int getYOrigine(){ return this.y_origine; }
 	public int getXArrivee(){ return this.x_arrivee; }
@@ -56,10 +54,6 @@ public class Traceur extends JPanel{
 	
 	public void setIsDown(boolean isDown){
 		this.isDown=isDown;
-	}
-	
-	public void setTypeForme(int type_forme){
-		this.type_forme=type_forme;
 	}
 	
 	public void setXOrigine(int x_origine){
