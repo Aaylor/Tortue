@@ -508,6 +508,9 @@ public class Controleur{
     {
     	
     	//Calcul de la nouvelle position du curseur
+    	int posX1=curseur.getPosX();
+    	int posY1=curseur.getPosY();
+    	
     	double posX = curseur.getPosX() + valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
 		double posY = curseur.getPosY() + valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
 		
@@ -526,11 +529,11 @@ public class Controleur{
         if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
         
         if(curseur.isDown() && curseur.getType() == 0){
-        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY());
         	StockageDonnee.liste_dessin.add(t);
         }
         if(curseur.isDown() && curseur.getType() == 1){
-        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), posX1, posY1, curseur.getPosX(), curseur.getPosY());
         	StockageDonnee.liste_dessin.add(t);
         	
         }
@@ -548,6 +551,10 @@ public class Controleur{
     public int backward(int valeur)
     {
     	//Calcul de la nouvelle position du curseur
+    	
+    	int posX1=curseur.getPosX();
+    	int posY1=curseur.getPosY();
+    	
     	double posX = curseur.getPosX() - valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
 		double posY = curseur.getPosY() - valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
 		
@@ -566,12 +573,12 @@ public class Controleur{
 		if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
        
 		if(curseur.isDown() && curseur.getType() == 0){
-        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY());
         	StockageDonnee.liste_dessin.add(t);
         	
         }
         if(curseur.isDown() && curseur.getType() == 1){
-        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), posX1, posY1, curseur.getPosX(), curseur.getPosY());
         	StockageDonnee.liste_dessin.add(t);
         	
         }
@@ -588,6 +595,9 @@ public class Controleur{
     {
         System.out.println("value 1 :: " + value + "\nvalue 2 :: " + value_2);
         
+        int posX1=curseur.getPosX();
+    	int posY1=curseur.getPosY();
+    	
         //conditions pour que le curseur ne dépasse pas la zone de dessin
         
         if( value >= 0 && value <= zd.getLargeurDessin()) curseur.setPosX((int)value); //ok
@@ -603,12 +613,12 @@ public class Controleur{
     	if(value_2 < 0) curseur.setPosY(0); //valeur négative => on replace à la valeur minimu : 0
     	
     	if(curseur.isDown() && curseur.getType() == 0){
-        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)value, (int)value_2);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY());
         	StockageDonnee.liste_dessin.add(t);
         	
         }
         if(curseur.isDown() && curseur.getType() == 1){
-        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)value, (int)value_2);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), posX1, posY1, curseur.getPosX(), curseur.getPosY());
         	StockageDonnee.liste_dessin.add(t);
         	
         }
