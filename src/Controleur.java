@@ -523,12 +523,12 @@ public class Controleur{
         if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
         
         if(curseur.isDown() && curseur.getType() == 0){
-        	Traceur t = new Traceur(curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
         	StockageDonnee.liste_dessin.add(t);
         	
         }
         if(curseur.isDown() && curseur.getType() == 1){
-        	Traceur t = new Traceur(curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
         	StockageDonnee.liste_dessin.add(t);
         	
         }
@@ -564,12 +564,12 @@ public class Controleur{
 		if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
        
 		if(curseur.isDown() && curseur.getType() == 0){
-        	Traceur t = new Traceur(curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
         	StockageDonnee.liste_dessin.add(t);
         	
         }
         if(curseur.isDown() && curseur.getType() == 1){
-        	Traceur t = new Traceur(curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
         	StockageDonnee.liste_dessin.add(t);
         	
         }
@@ -601,12 +601,12 @@ public class Controleur{
     	if(value_2 < 0) curseur.setPosY(0); //valeur négative => on replace à la valeur minimu : 0
     	
     	if(curseur.isDown() && curseur.getType() == 0){
-        	Traceur t = new Traceur(curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)value, (int)value_2);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)value, (int)value_2);
         	StockageDonnee.liste_dessin.add(t);
         	
         }
         if(curseur.isDown() && curseur.getType() == 1){
-        	Traceur t = new Traceur(curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)value, (int)value_2);
+        	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)value, (int)value_2);
         	StockageDonnee.liste_dessin.add(t);
         	
         }
