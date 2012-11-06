@@ -11,7 +11,9 @@ public class Traceur extends JPanel{
 	private int y_origine;
 	private int x_arrivee;
 	private int y_arrivee;
-	private int heuteur;
+	private int x3;
+	private int y3;
+	private int hauteur;
 	private int largeur;
 	private boolean estRempli; //true : le rectanlge ou cercle sera remplie 
 	
@@ -37,6 +39,11 @@ public class Traceur extends JPanel{
 	public int getYOrigine(){ return this.y_origine; }
 	public int getXArrivee(){ return this.x_arrivee; }
 	public int getYArrivee(){ return this.y_arrivee; }
+	public int getX3(){ return this.x3; }
+	public int getY3(){ return this.y3; }
+	public int getHauteur(){ return this.hauteur; }
+	public int getLargeur(){ return this.largeur; }
+	public boolean estRempli(){ return this.estRempli();}
 	
 	
 	/*modifieurs*/
@@ -70,6 +77,15 @@ public class Traceur extends JPanel{
 	
 	public void setYArrivee(int y_arrivee){
 		this.y_arrivee=y_arrivee;
+	}
+	public void setX3(int x){
+		this.x3=x;
+	}
+	public void setY3(int y){
+		this.x3=y;
+	}
+	public void estRempli(boolean estRempli){
+		this.estRempli=estRempli;
 	}
 	
 }

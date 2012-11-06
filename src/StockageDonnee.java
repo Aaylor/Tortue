@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -10,6 +11,7 @@ public class StockageDonnee
     public static Hashtable<String, Integer> liste_des_commandes;
     public static Hashtable<Integer, String> liste_erreurs;
     public static Hashtable<String, String> manuel;
+    public static Hashtable<String, Color> liste_couleur;
 
     /**
      *  Fonction qui initialise toutes les collections
@@ -192,6 +194,25 @@ public class StockageDonnee
 
         return true;
     }
+    
+    public static boolean init_liste_couleur(){
+    	
+    	liste_couleur.put("black", Color.black);
+    	liste_couleur.put("blue", Color.blue);
+    	liste_couleur.put("cyan", Color.cyan);
+    	liste_couleur.put("light_gray", Color.lightGray);
+    	liste_couleur.put("gray", Color.gray);
+    	liste_couleur.put("dark_gray", Color.darkGray);
+    	liste_couleur.put("green", Color.green);
+    	liste_couleur.put("magenta" , Color.magenta );
+    	liste_couleur.put("orange", Color.orange);
+    	liste_couleur.put("pink", Color.pink);
+    	liste_couleur.put("red", Color.red);
+    	liste_couleur.put("yellow", Color.yellow);
+    	liste_couleur.put("white", Color.white);
+    	
+    	return true;
+    }
 
     /**
     *   Fonction renvoyant le message d'erreur
@@ -296,5 +317,6 @@ public class StockageDonnee
     {
         return manuel.get( commande );
     }
-
+    
+    
 }

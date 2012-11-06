@@ -25,13 +25,14 @@ public class Curseur extends JPanel {
     /**
 	 * Constructeur test
 	 */
-	Curseur (int posX, int posY, int orientation, int taille, Color couleur, int type) {
+	Curseur (int posX, int posY, int orientation, int taille, Color couleur, int type, int epaisseur) {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;
 		this.taille = taille;
 		this.couleur = couleur;
 		this.type = type;
+		this.epaisseur = epaisseur;
     }	
 	
 	//////////////////
