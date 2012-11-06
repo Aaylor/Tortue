@@ -101,12 +101,13 @@ public class Controleur{
      */
     public boolean setMessageErreur(int numero_erreur)
     {
-        String message = "Erreur : ";
+    
+        String message = "   /!\\ Erreur : ";
         String param = StockageDonnee.getParamErreur();
         if ( !param.equals("") ) 
             message += param + " : ";
         message += StockageDonnee.getMessageErreur(numero_erreur);
-        term.setMessageErreur(message);
+        term.addMessage(message);
         return false;
     }
     
@@ -208,8 +209,10 @@ public class Controleur{
             case 11:
                 if ( commande_parser.length > 3 )
                     return NOMBRE_PARAM_SUP;
-                else if ( commande_parser.length < 2 )
+                else if ( commande_parser.length <= 2 )
+                {
                     return NOMBRE_PARAM_LESS;
+                }
                 else;
 
                 if ( isDouble(commande_parser[1])

@@ -45,11 +45,7 @@ public class Terminal extends JPanel implements KeyListener{
                 && !this.champ_de_commande.getText().equals(""))
         {
             Terminal.historique.append("\n > "+this.champ_de_commande.getText().trim());
-            
-            if ( !controleur.commande(this.champ_de_commande.getText()) )
-            {
-                Terminal.historique.append("\n   " + this.getMessageErreur());
-            }
+            controleur.commande(this.champ_de_commande.getText());
             
             Terminal.historique.setCaretPosition(Terminal.historique.getDocument().getLength());
             
@@ -180,17 +176,12 @@ public class Terminal extends JPanel implements KeyListener{
     }
 
     /**
-     *  Ajoute le message d'erreur
-     *  @param message_erreur le message d'erreur
+     *  Ajoute un message sur l'historique
+     *  @param message
      */
-    public void setMessageErreur(String message_erreur)
+    public void addMessage(String message)
     {
-        this.message_erreur = message_erreur;
-    }
-
-    public String getMessageErreur()
-    {
-        return this.message_erreur;
+        this.historique.append("\n" + message);
     }
 
     /**
