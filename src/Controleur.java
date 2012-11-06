@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.awt.Color;
 
 public class Controleur{
 
@@ -647,6 +647,9 @@ public class Controleur{
     {
 
         System.out.println("couleur :: " + couleur);
+        
+        Color c = StockageDonnee.liste_couleur.get(couleur);
+        
         return SUCCESS;
 
     }

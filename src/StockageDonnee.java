@@ -199,9 +199,9 @@ public class StockageDonnee
     	liste_couleur.put("black", Color.black);
     	liste_couleur.put("blue", Color.blue);
     	liste_couleur.put("cyan", Color.cyan);
-    	liste_couleur.put("light gray", Color.lightGray);
+    	liste_couleur.put("light_gray", Color.lightGray);
     	liste_couleur.put("gray", Color.gray);
-    	liste_couleur.put("dark gray", Color.darkGray);
+    	liste_couleur.put("dark_gray", Color.darkGray);
     	liste_couleur.put("green", Color.green);
     	liste_couleur.put("magenta" , Color.magenta );
     	liste_couleur.put("orange", Color.orange);
