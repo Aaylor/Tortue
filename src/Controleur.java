@@ -525,7 +525,6 @@ public class Controleur{
         if(curseur.isDown() && curseur.getType() == 0){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
         	StockageDonnee.liste_dessin.add(t);
-        	
         }
         if(curseur.isDown() && curseur.getType() == 1){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
