@@ -526,7 +526,11 @@ public class Controleur{
         	Traceur t = new Traceur(curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
         	StockageDonnee.liste_dessin.add(t);
         }
-        
+        if(curseur.isDown() && curseur.getType() == 1){
+        	Traceur t = new Traceur(curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	StockageDonnee.liste_dessin.add(t);
+        	
+        }
         
         
         this.zd.repaint(); 
@@ -558,7 +562,18 @@ public class Controleur{
 		        
 		if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
        
-        this.zd.repaint();
+		if(curseur.isDown() && curseur.getType() == 0){
+        	Traceur t = new Traceur(curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	StockageDonnee.liste_dessin.add(t);
+        	
+        }
+        if(curseur.isDown() && curseur.getType() == 1){
+        	Traceur t = new Traceur(curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)posX, (int)posY);
+        	StockageDonnee.liste_dessin.add(t);
+        	
+        }
+		
+		this.zd.repaint();
         return SUCCESS;
     }
 
@@ -583,6 +598,17 @@ public class Controleur{
     	if(value < 0) curseur.setPosX(0); //valeur négative => on replace à la valeur minimu : 0
     	
     	if(value_2 < 0) curseur.setPosY(0); //valeur négative => on replace à la valeur minimu : 0
+    	
+    	if(curseur.isDown() && curseur.getType() == 0){
+        	Traceur t = new Traceur(curseur.getEpaisseur(), curseur.getCouleur(), curseur.getPosX(), curseur.getPosY(), (int)value, (int)value_2);
+        	StockageDonnee.liste_dessin.add(t);
+        	
+        }
+        if(curseur.isDown() && curseur.getType() == 1){
+        	Traceur t = new Traceur(curseur.getEpaisseur(), zd.getBackground(), curseur.getPosX(), curseur.getPosY(), (int)value, (int)value_2);
+        	StockageDonnee.liste_dessin.add(t);
+        	
+        }
 
     	this.zd.repaint();
         return SUCCESS;
