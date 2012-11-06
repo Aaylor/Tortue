@@ -1,5 +1,7 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
@@ -29,7 +31,8 @@ public class ZoneDessin extends JPanel {
 	/**
 	 * Methode dessinant la zone de dessin puis le curseur
 	 */
-	public void paintComponent(Graphics g){
+	public void paintComponent(Graphics gd){
+		Graphics2D g = (Graphics2D)gd;
 		//ETAPE 1 : Afficher toutes les anciennes actions
 		//Background
 			//Fond de la zone de dessin
@@ -49,53 +52,28 @@ public class ZoneDessin extends JPanel {
 		//ETAPE 2 : Afficher les traceurs
 		Traceur t;
 		for (int i = 0; i < StockageDonnee.liste_dessin.size(); i ++){
-			t = StockageDonnee.liste_dessin.get(i);			
+			t = StockageDonnee.liste_dessin.get(i);
+			//Initialisons les propriétés de l'objet graphics
+			g.setColor(t.getColor());
+			g.setStroke(new BasicStroke(t.getEpaisseur(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+			
 			System.out.println("Position X Début : " + posXAbsolue(t.getXOrigine()));
 			System.out.println("Position Y Début : " + posYAbsolue(t.getYOrigine()));
 			System.out.println("Position X Fin : " + posXAbsolue(t.getXArrivee()));
 			System.out.println("Position Y Fin : " + posYAbsolue(t.getYArrivee()));
 			System.out.println("Couleur Curseur : " + t.getColor());
 			System.out.println("Epaisseur : " + t.getEpaisseur());
-			g.setColor(t.getColor());
 			
-			//Si le t est un point
-			if(t.getType() == 0){
-				g.drawOval(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getEpaisseur(), t.getEpaisseur());
-			}
-			
-			//Si le t est une droite
-			else if (t.getType() == 1){
-				if(t.getEpaisseur() == 1){
-					
-					
-					g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
-					
-				}
-				else{
-					//Dessine le "point" d'origine
-					g.drawOval(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getEpaisseur(), t.getEpaisseur());
-					//Dessine le "point" d'arrivee
-					g.drawOval(posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()), t.getEpaisseur(), t.getEpaisseur());
-					//Dessine un polygone entre les extremité des deux points
-					int[] x = {posXAbsolue(t.getXOrigine()), 
-							posXAbsolue(t.getXOrigine()), 
-							posXAbsolue(t.getXArrivee()), 
-							posXAbsolue(t.getXArrivee())};
-					int[] y = {posYAbsolue(t.getYOrigine()) + t.getEpaisseur(),
-							posYAbsolue(t.getYOrigine()) - t.getEpaisseur(),
-							posYAbsolue(t.getYArrivee()) - t.getEpaisseur(),
-							posYAbsolue(t.getYArrivee()) + t.getEpaisseur()};
-					g.fillPolygon(x, y, 4);
-				}
+			//Si le t est une droite/point
+			if (t.getType() == 1 || t.getType() == 0){
+				g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
 			}
 
 			//Si le t est un Rectangle
 			else if (t.getType() == 2){
 				//On va faire une boucle qui dessin des triangle successifs selon l'epaisseur du curseur
 				if(!t.estRempli()){
-					for(int j = 0; j < t.getEpaisseur(); j++){
-							g.fillRect(posXAbsolue(t.getXOrigine()) - i, posYAbsolue(t.getYOrigine()) - i, t.getLargeur() + i, t.getHauteur() + i);
-					}
+					g.fillRect(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getLargeur(), t.getHauteur());
 				}
 				else{
 					g.drawRect(posXAbsolue(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()), posYAbsolue(t.getYOrigine()) - t.getEpaisseur(), t.getLargeur() + t.getEpaisseur(), t.getHauteur() + t.getEpaisseur());
@@ -111,21 +89,9 @@ public class ZoneDessin extends JPanel {
 						posYAbsolue(t.getYArrivee()),
 						posYAbsolue(t.getY3())};
 				if(!t.estRempli()){
-					for(int j = 0; j < t.getEpaisseur(); j++){
-						for(int f = 0; f < x.length; f++){
-							x[0] -=1;
-							x[2] +=1;
-						}
-						for(int f = 0; f < x.length; f++){
-							y[1] += 1;
-						}
 						g.fillPolygon(x, y, 3);
 					}
-				}
 				else{
-					x[0] -= t.getEpaisseur();
-					x[2] += t.getEpaisseur();
-					y[1] += t.getEpaisseur();
 					g.drawPolygon(x, y, 3);
 				}
 			}
@@ -134,12 +100,10 @@ public class ZoneDessin extends JPanel {
 			else if (t.getType() == 4){
 				//On va faire une boucle qui dessin des triangle successifs selon l'epaisseur du curseur
 				if(!t.estRempli()){
-					for(int j = 0; j < t.getEpaisseur(); j++){
-							g.fillOval(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getLargeur() + i, t.getHauteur() + i);
-					}
+					g.fillOval(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getLargeur(), t.getHauteur());
 				}
 				else{
-					g.drawOval(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getLargeur() + t.getEpaisseur(), t.getHauteur() + t.getEpaisseur());
+					g.drawOval(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getLargeur(), t.getHauteur());
 				}
 			}
 			
@@ -148,6 +112,7 @@ public class ZoneDessin extends JPanel {
 		
 		//ETAPE 3 : Afficher le curseur
 			g.setColor(curseur.getCouleur());
+			g.setStroke(new BasicStroke(0));
 			
 			//Forme Crayon
 			if(curseur.getType() == 0){
