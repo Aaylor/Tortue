@@ -81,6 +81,7 @@ public class BarreOutils extends JMenuBar {
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setEpaisseur(((JSlider)event.getSource()).getValue());
+	    	  zoneDessin.repaint();
 	      }
 	    });
 	    

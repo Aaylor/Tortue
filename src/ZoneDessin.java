@@ -112,42 +112,44 @@ public class ZoneDessin extends JPanel {
 		
 		//ETAPE 3 : Afficher le curseur
 			g.setColor(curseur.getCouleur());
-			g.setStroke(new BasicStroke(0));
 			
-			//Forme Crayon
+			
+			//Forme du curseur en fonction de l'outil
+			BasicStroke forme;
 			if(curseur.getType() == 0){
-				if (curseur.isDown()){
-					g.drawLine(this.getPosX()-2, this.getPosY(), this.getPosX()+2, this.getPosY());
-					g.drawLine(this.getPosX(), this.getPosY()-2, this.getPosX(), this.getPosY()+2);
-				}
-				else{
-					g.drawLine(this.getPosX()-2, this.getPosY(), this.getPosX()-2, this.getPosY());
-					g.drawLine(this.getPosX()+2, this.getPosY(), this.getPosX()+2, this.getPosY());
-					g.drawLine(this.getPosX(), this.getPosY() - 2, this.getPosX(), this.getPosY() - 2);
-					g.drawLine(this.getPosX(), this.getPosY() + 2, this.getPosX(), this.getPosY() + 2);
-				}
+				forme = new BasicStroke(0);
 			}
-			else if(curseur.getType() == 1){
-				if (curseur.isDown()){
-					g.drawLine(this.getPosX()-2, this.getPosY(), this.getPosX()+2, this.getPosY());
-					g.drawLine(this.getPosX(), this.getPosY()-2, this.getPosX(), this.getPosY()+2);
-					g.drawOval(this.getPosX() - 2, this.getPosY() - 2 , 4, 4);
-				}
-				else{
-					g.drawLine(this.getPosX(), this.getPosY(), this.getPosX(), this.getPosY());
-					g.drawOval(this.getPosX() - 2, this.getPosY() - 2 , 4, 4);
-				}
+			else{
+				float[] dashArray = {2, 2};
+				forme = new BasicStroke(0, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 0, dashArray, 0);
+			}
+			g.setStroke(forme);
+			
+			//Affichage de la base du curseur
+			int rayonBase;
+			if (curseur.getEpaisseur() > 10)
+				rayonBase = curseur.getEpaisseur() / 2;
+			else rayonBase = 5;
+			g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY(), this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY());
+			g.drawLine(this.getPosX(), this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX(), this.getPosY() + (curseur.getEpaisseur() / 2));
+			if (curseur.isDown()){		
+				g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase , rayonBase * 2, rayonBase * 2);
 			}
 			
-			//Forme Gomme
-			
-			
-			
+			//Affichage de la fleche d'orientation
 			//Determinons le point d'arrivée du trait symbolisant l'orientation
-			double posX2 = this.getPosX() + 40 * Math.sin(curseur.getOrientation() * Math.PI / 180);
-			double posY2 = this.getPosY() + 40 * Math.cos(curseur.getOrientation() * Math.PI / 180);
+			int tailleTrait;
+			if (curseur.getEpaisseur() > 40)
+				tailleTrait = curseur.getEpaisseur();
+			else tailleTrait = 40;
+			double posX2 = this.getPosX() + tailleTrait * Math.sin(curseur.getOrientation() * Math.PI / 180);
+			double posY2 = this.getPosY() + tailleTrait * Math.cos(curseur.getOrientation() * Math.PI / 180);
 			//Dessinons le trait
+			g.setStroke(new BasicStroke(0));
 			g.drawLine(this.getPosX(), this.getPosY(), (int)posX2, (int)posY2);
+			g.setColor(Color.white);
+			g.drawLine(this.getPosX() - 1, this.getPosY() - 1, (int)posX2 - 1, (int)posY2 - 1);
+			
 		
 	}
 	
