@@ -2,11 +2,13 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class ZoneDessin extends JPanel {
+public class ZoneDessin extends JPanel{
 	int largeurDessin; //La largeur de la zone de dessin
 	int hauteurDessin; //La longueur de la zone de dessin
 	Color background;
@@ -14,6 +16,7 @@ public class ZoneDessin extends JPanel {
 	//Les bords de la zones de dessin
 	int ecartHorizontal;
 	int ecartVertical;
+	Controleur c;
 	
 	
     private Controleur controleur;
@@ -21,11 +24,18 @@ public class ZoneDessin extends JPanel {
     /**
      *  Constructeur de la zone de dessin
      */
-	ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur){
+	ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur, final Controleur c){
 		this.largeurDessin = largeurDessin;
 		this.hauteurDessin = hauteurDessin;
 		this.background = background;
 		this.curseur = curseur;
+		this.c = c;
+		
+		addMouseListener(new MouseAdapter() { 
+			public void mouseClicked(MouseEvent me) {
+				c.goTo(me.getX() - ecartHorizontal, me.getY() - ecartVertical);
+	        } 
+	    }); 
     }
 
 	/**
@@ -183,6 +193,7 @@ public class ZoneDessin extends JPanel {
 		g.setColor(Color.white);
 			g.drawLine(this.getPosX() - 1, this.getPosY() - 1, (int)posX2 - 1, (int)posY2 - 1);
 	}
+
 	
 	/*///
 	 * ACCESSEURS
