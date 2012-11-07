@@ -22,8 +22,6 @@ public class Controleur{
     public BarreOutils zb = null;
     public Curseur curseur = null;
 
-    public boolean history_already_save = false;
-
     /**
      *  Constructeur vide
      */
@@ -773,7 +771,7 @@ public class Controleur{
                 if ( !folder.exists() )
                 {
                     if ( !folder.mkdir() )
-                        term.addMessage("   /!i\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                        term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
                 }
                 
                 history = new File("../history/history" + formater.format(date) + ".txt");
@@ -785,10 +783,43 @@ public class Controleur{
             }
 
         }
-        else;
-            
-        /* TODO implenter le parametre */
+        else
+        {
 
+            String[] pathname_split = s.split("/");
+            String pathname;
+            int i = 0;
+
+            if ( pathname_split[0].equals("~") )
+            {
+                pathname = new String("/home/" + System.getProperty("user.name") + "/");
+                i = 1;
+            }
+            else
+                pathname = new String("");
+
+            for (i = i; i < pathname_split.length; i++)
+            {
+                if ( !pathname_split[i].equals("") )
+                    pathname += pathname_split[i] + "/";
+
+                File folder = new File(pathname);
+                if ( !folder.exists() )
+                {
+                    if ( !folder.mkdir() )
+                        term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                    else
+                        System.out.println("folder made on pathname[\"" + pathname + "\"]");
+                }
+                else
+                    System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
+            }
+
+            System.out.println(pathname);
+
+        }
+            
+/*
         try
         {
             history.createNewFile();
@@ -808,9 +839,7 @@ public class Controleur{
         {
             return COMMANDE_ERRONEE;
         }
-
-        this.setHistoAlreadySave(true);
-
+*/
         return SUCCESS;
 
     }
