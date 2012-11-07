@@ -131,8 +131,8 @@ public class BarreOutils extends JMenuBar {
 	    slider.setValue(curseur.getEpaisseur());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
-	    slider.setMinorTickSpacing(10);
-	    slider.setMajorTickSpacing(20);
+	    slider.setMinorTickSpacing(25);
+	    slider.setMajorTickSpacing(25);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setEpaisseur(((JSlider)event.getSource()).getValue());

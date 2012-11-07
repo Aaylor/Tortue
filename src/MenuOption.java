@@ -67,7 +67,7 @@ public class MenuOption extends JDialog{
 	
 	public MenuOption(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		this.setSize(270, 590);
+		this.setSize(300, 590);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		initComponent();
@@ -300,22 +300,22 @@ public class MenuOption extends JDialog{
 		labCouleurCurseur.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurCurseurPredefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurCurseurPredefinie.setLayout(new BoxLayout(panCouleurCurseurPredefinie, BoxLayout.LINE_AXIS));
-		couleurPredefinieComboBox.setMaximumSize(new Dimension(80, 18));
+		couleurPredefinieComboBox.setMaximumSize(new Dimension(100, 18));
 		couleurCurseurSpecifique.setAlignmentX(LEFT_ALIGNMENT);
 		
 		panCouleurRougeDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurRougeDefinir.setLayout(new BoxLayout(panCouleurRougeDefinir, BoxLayout.LINE_AXIS));
-		panCouleurRougeDefinir.setMaximumSize(new Dimension(95, 20));
+		panCouleurRougeDefinir.setMaximumSize(new Dimension(105, 20));
 		
 		panCouleurVertDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDefinir.setLayout(new BoxLayout(panCouleurVertDefinir, BoxLayout.LINE_AXIS));
-		panCouleurVertDefinir.setMaximumSize(new Dimension(95, 20));
+		panCouleurVertDefinir.setMaximumSize(new Dimension(105, 20));
 		
 		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDefinir.setLayout(new BoxLayout(panCouleurBleuDefinir, BoxLayout.LINE_AXIS));
-		panCouleurBleuDefinir.setMaximumSize(new Dimension(95, 20));
+		panCouleurBleuDefinir.setMaximumSize(new Dimension(105, 20));
 		
 			//Dessin
 		labTailleDessin.setAlignmentX(LEFT_ALIGNMENT);
@@ -334,15 +334,15 @@ public class MenuOption extends JDialog{
 		
 		panCouleurRougeDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurRougeDessinDefinie.setLayout(new BoxLayout(panCouleurRougeDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurRougeDessinDefinie.setMaximumSize(new Dimension(95, 20));
+		panCouleurRougeDessinDefinie.setMaximumSize(new Dimension(105, 20));
 		
 		panCouleurVertDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDessinDefinie.setLayout(new BoxLayout(panCouleurVertDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurVertDessinDefinie.setMaximumSize(new Dimension(95, 20));
+		panCouleurVertDessinDefinie.setMaximumSize(new Dimension(105, 20));
 		
 		panCouleurBleuDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDessinDefinie.setLayout(new BoxLayout(panCouleurBleuDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(95, 20));
+		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(105, 20));
 		
 		
 
