@@ -50,12 +50,14 @@ public class Main{
     	
     	
     	//Initialisation des composants
+    	Controleur c = new Controleur();
+    	
     	Curseur curseur = new Curseur(posXCurseur, posYCurseur, 90, 1, couleurCurseur, 0, 30);
-    	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, couleurBackgroundDessin, curseur);
+    	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, couleurBackgroundDessin, curseur, c);
     	BarreOutils barreOutils = new BarreOutils(curseur, zoneDessin);
     	Fenetre fenetre = new Fenetre(zoneDessin, barreOutils);
         
-        Controleur c = new Controleur();
+        
         c.___hydrate___(fenetre, curseur);
         
     }
