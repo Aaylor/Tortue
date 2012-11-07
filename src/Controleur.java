@@ -822,23 +822,22 @@ public class Controleur{
                 {
                     if ( pathname_split[i].indexOf('.') < 0 )
                     {
-                        history = new File(pathname + "/config" + formater.format(date) + ".txt");
+                        pathname += "config" + formater.format(date) + ".txt";
                     }
-                    else if  ( pathname_split[i].indexOf('.') == 1 )
+                    else if  ( pathname_split[i].indexOf('.') == 0 )
                     {
-                        pathname = pathname.substring(0,pathname.indexOf('.')) + "/config"
+                        pathname = pathname.substring(0,pathname.indexOf('.')) + "config"
                             + formater.format(date) + pathname.substring(pathname.indexOf('.'));
-                        history = new File (pathname);
                     }
                     else;
                 }
             }
 
+            history = new File (pathname);
             System.out.println(pathname);
 
         }
             
-/*
         try
         {
             history.createNewFile();
@@ -858,7 +857,7 @@ public class Controleur{
         {
             return COMMANDE_ERRONEE;
         }
-*/
+        
         return SUCCESS;
 
     }
