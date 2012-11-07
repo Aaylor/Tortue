@@ -328,7 +328,7 @@ public class Controleur{
             case 23:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
-                return exec();
+                return exec(commande_parser[1]);
             
             case 24:
                 if ( commande_parser.length > 3 )
@@ -790,22 +790,33 @@ public class Controleur{
 
             String[] pathname_split = s.split("/");
             String pathname;
-            int i = 0;
+            int i = 1;
+            boolean is_a_folder_name = true;
 
             if ( pathname_split[0].equals("~") )
             {
-                pathname = new String("/home/" + System.getProperty("user.name") + "/");
-                i = 1;
+                pathname = new String("/home/" + System.getProperty("user.name"));
+                i++;
             }
             else
-                pathname = new String("");
+                pathname = pathname_split[0];
 
-            for (i = i; i < pathname_split.length; i++)
+            while ( i < pathname_split.length )
             {
-                if ( !pathname_split[i].equals("") )
-                    pathname += pathname_split[i] + "/";
+                    
+                pathname += "/" +  pathname_split[i];
+
+                if ( i == pathname_split.length - 1 )
+                {
+                    if ( pathname_split[i].indexOf('.') >= 0 )
+                    {
+                        is_a_folder_name = !pathname_split[i].substring(pathname_split[i].indexOf('.')+1).equals("txt");
+                    }
+                }
 
                 File folder = new File(pathname);
+                if ( is_a_folder_name )
+                {
                     if ( !folder.exists() )
                     {
                         if ( !folder.mkdir() )
@@ -815,22 +826,16 @@ public class Controleur{
                     }
                     else
                         System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
-                
-                if ( i == pathname_split.length-1 )
-                {
-                    if ( pathname_split[i].indexOf('.') < 0 )
-                    {
-                        pathname += "history" + formater.format(date) + ".txt";
-                    }
-                    else if  ( pathname_split[i].indexOf('.') == 0 )
-                    {
-                        pathname = pathname.substring(0,pathname.indexOf('.')) + "history"
-                            + formater.format(date) + pathname.substring(pathname.indexOf('.'));
-                    }
-                    else;
                 }
+
+                i++;
             }
 
+            if ( is_a_folder_name )
+            {
+                pathname += "/history" + formater.format(date) + ".txt";
+            }
+                
             history = new File (pathname);
             System.out.println(pathname);
 
@@ -864,8 +869,30 @@ public class Controleur{
      *  Fonction qui lit un fichier et execute les lignes de commandes si celles-ci sont correctes
      *  @return si la fonction s'est bien déroulée
      */
-    public int exec()
+    public int exec(String pathname)
     {
+
+        File file_to_exec = new File(pathname);
+
+        /* TODO */
+
+        try
+        {
+            InputStream ips = new FileInputStream(file_to_exec);
+            InputStreamReader isr = new InputStreamReader(ips);
+            BufferedReader br = new BufferedReader(isr);
+            String ligne;
+
+            while ( (ligne=br.readLine()) != null )
+            {
+                if ( !this.commande(ligne) )
+                    return COMMANDE_ERRONEE;
+            }
+        }
+        catch (Exception e)
+        {
+            term.addMessage("   /!\\ LE FICHIER ENTRE EN ARGUMENT NE PEUT ETRE LU");
+        }
 
         return SUCCESS;
 
