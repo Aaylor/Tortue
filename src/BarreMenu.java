@@ -97,11 +97,11 @@ public class BarreMenu extends JMenuBar{
 	public void aPropos(){
 		JOptionPane aPropos = new JOptionPane();
 		aPropos.showMessageDialog(null,
-								"Carapuce est un projet Universitaire développé par 4 petits chenapans\n\n" +
-								"Mehdi Khelifi : Interfaces Graphiques\n" +
-								"Loïc Runarvot : Terminal\n" +
-								"Gauthier Lo : Commandes\n" +
-								"Frederic Mamath : Commandes",
+								"Carapuce est un projet Universitaire développé par 4 étudiants :\n\n" +
+								"Mehdi Khelifi\n" +
+								"Loïc Runarvot\n" +
+								"Gauthier Lo\n" +
+								"Frederic Mamath\n",
 								"A propos",
 								JOptionPane.INFORMATION_MESSAGE);
 	}

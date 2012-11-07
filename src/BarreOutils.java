@@ -1,8 +1,11 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -33,13 +36,44 @@ public class BarreOutils extends JMenuBar {
 		sliderBlue = sliderBlue();
 		sliderGreen = sliderGreen();
 		
-		//Ajout des boutons
-		this.add(boutonPoserCrayon);
-		this.add(boutonGomme);
-		this.add(slider);
-		/*this.add(sliderRed);
-		this.add(sliderGreen);
-		this.add(sliderBlue);*/
+		//Ajout des boutons		
+		JPanel panPrincipal = new JPanel();
+		panPrincipal.setLayout(new BoxLayout(panPrincipal, BoxLayout.PAGE_AXIS));
+		
+		JPanel panOutils = new JPanel();
+		panOutils.setLayout(new BoxLayout(panOutils, BoxLayout.LINE_AXIS));
+		panOutils.add(boutonPoserCrayon);
+		panOutils.add(boutonGomme);
+		panOutils.add(slider);
+		
+		JPanel panCurseur = new JPanel();
+		panCurseur.setLayout(new BoxLayout(panCurseur, BoxLayout.LINE_AXIS));
+		
+		JPanel panCurseurRouge = new JPanel();
+		panCurseurRouge.setLayout(new BoxLayout(panCurseurRouge, BoxLayout.PAGE_AXIS));
+		JLabel labRouge = new JLabel("Rouge");
+		panCurseurRouge.add(labRouge);
+		panCurseurRouge.add(sliderRed);
+		
+		JPanel panCurseurVert = new JPanel();
+		panCurseurVert.setLayout(new BoxLayout(panCurseurVert, BoxLayout.PAGE_AXIS));
+		JLabel labVert = new JLabel("Vert");
+		panCurseurVert.add(labVert);
+		panCurseurVert.add(sliderGreen);
+		
+		JPanel panCurseurBleu = new JPanel();
+		panCurseurBleu.setLayout(new BoxLayout(panCurseurBleu, BoxLayout.PAGE_AXIS));
+		JLabel labBleu = new JLabel("Bleu");
+		panCurseurBleu.add(labBleu);
+		panCurseurBleu.add(sliderBlue);
+		
+		panCurseur.add(panCurseurRouge);
+		panCurseur.add(panCurseurVert);
+		panCurseur.add(panCurseurBleu);
+		
+		panPrincipal.add(panOutils);
+		panPrincipal.add(panCurseur);
+		this.add(panPrincipal);
 		
 		
 		//Action des boutons
@@ -105,8 +139,6 @@ public class BarreOutils extends JMenuBar {
 	    slider.setValue(curseur.getEpaisseur());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
-	    slider.setMinorTickSpacing(10);
-	    slider.setMajorTickSpacing(20);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setCouleurRouge(((JSlider)event.getSource()).getValue());
@@ -124,8 +156,6 @@ public class BarreOutils extends JMenuBar {
 	    slider.setValue(curseur.getEpaisseur());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
-	    slider.setMinorTickSpacing(10);
-	    slider.setMajorTickSpacing(20);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setCouleurVert(((JSlider)event.getSource()).getValue());
@@ -143,8 +173,6 @@ public class BarreOutils extends JMenuBar {
 	    slider.setValue(curseur.getEpaisseur());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
-	    slider.setMinorTickSpacing(10);
-	    slider.setMajorTickSpacing(20);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setCouleurBleu(((JSlider)event.getSource()).getValue());
