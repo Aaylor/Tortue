@@ -758,7 +758,7 @@ public class Controleur{
      */
     public int savehistory(String s)
     {
-        String format = "yy-MM-yy_H:mm:ss";
+        String format = "yy-MM-yy_H-mm-ss";
         SimpleDateFormat formater = new SimpleDateFormat(format);
         Date date = new java.util.Date();
 
