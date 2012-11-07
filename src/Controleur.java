@@ -806,15 +806,15 @@ public class Controleur{
                     pathname += pathname_split[i] + "/";
 
                 File folder = new File(pathname);
-                if ( !folder.exists() )
-                {
-                    if ( !folder.mkdir() )
-                        term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                    if ( !folder.exists() )
+                    {
+                        if ( !folder.mkdir() )
+                            term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                        else
+                            System.out.println("folder made on pathname[\"" + pathname + "\"]");
+                    }
                     else
-                        System.out.println("folder made on pathname[\"" + pathname + "\"]");
-                }
-                else
-                    System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
+                        System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
                 
                 if ( i == pathname_split.length-1 )
                 {
