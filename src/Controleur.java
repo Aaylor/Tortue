@@ -820,7 +820,7 @@ public class Controleur{
                 {
                     if ( pathname_split[i].indexOf('.') < 0 )
                     {
-                        pathname +=
+                        pathname += "history" + formater.format(date) + ".txt";
                     }
                     else if  ( pathname_split[i].indexOf('.') == 0 )
                     {
