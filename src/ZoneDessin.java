@@ -180,7 +180,7 @@ public class ZoneDessin extends JPanel {
 		//Dessinons le trait
 		g.setStroke(new BasicStroke(0));
 		g.drawLine(this.getPosX(), this.getPosY(), (int)posX2, (int)posY2);
-		g.setColor(neg);
+		g.setColor(Color.white);
 			g.drawLine(this.getPosX() - 1, this.getPosY() - 1, (int)posX2 - 1, (int)posY2 - 1);
 	}
 	
