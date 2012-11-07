@@ -820,7 +820,7 @@ public class Controleur{
                 {
                     if ( pathname_split[i].indexOf('.') < 0 )
                     {
-                        pathname += "history" + formater.format(date) + ".txt";
+                        pathname +=
                     }
                     else if  ( pathname_split[i].indexOf('.') == 0 )
                     {
@@ -835,7 +835,7 @@ public class Controleur{
             System.out.println(pathname);
 
         }
-           /* 
+        
         try
         {
             history.createNewFile();
@@ -855,7 +855,7 @@ public class Controleur{
         {
             return COMMANDE_ERRONEE;
         }
-        */
+        
         return SUCCESS;
 
     }
