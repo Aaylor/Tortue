@@ -116,8 +116,8 @@ public class ZoneDessin extends JPanel {
 		g.setColor(new Color(180,180,180));//Couleur de fond
 		g.fillRect(0, 0, ecartHorizontal - 1, this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
 		g.fillRect(ecartHorizontal + largeurDessin, 0, this.getWidth(), this.getHeight());
-		g.fillRect(ecartHorizontal, 0, largeurDessin, ecartVertical);
-		g.fillRect(ecartHorizontal, largeurDessin + ecartVertical, largeurDessin, ecartVertical);
+		g.fillRect(ecartHorizontal - 1, 0, largeurDessin + 1, ecartVertical);
+		g.fillRect(ecartHorizontal - 1, largeurDessin + ecartVertical, largeurDessin + 1, ecartVertical);
 		
 		//Ombre du dessin
 		g.setColor(new Color(220,220,220));
