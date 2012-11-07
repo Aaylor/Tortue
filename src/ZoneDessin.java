@@ -127,10 +127,11 @@ public class ZoneDessin extends JPanel {
 		//ETAPE 3 : Afficher le curseur
 		//Deux curseurs à afficher : le curseur négatif (pour plus de lisibilité) et le curseur normal
 		//Initialisons la couleur négative
-		int negRed = 255 - curseur.getCouleur().getRed();
+		/*int negRed = 255 - curseur.getCouleur().getRed();
 		int negGreen = 255 - curseur.getCouleur().getGreen();
 		int negBlue = 255 - curseur.getCouleur().getBlue();
 		Color neg = new Color(negRed, negGreen, negBlue);		
+		*/
 		
 		//Forme du curseur en fonction de l'outil
 		BasicStroke forme;
@@ -153,7 +154,7 @@ public class ZoneDessin extends JPanel {
 		
 		//Dessin de la base
 		//Sous curseur negatif
-		g.setColor(neg);
+		g.setColor(Color.white);
 		g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY()  + 1, this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY()  + 1);
 		g.drawLine(this.getPosX() + 1, this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX() +1, this.getPosY()+ (curseur.getEpaisseur() / 2));
 		if (curseur.isDown()){		
@@ -161,7 +162,7 @@ public class ZoneDessin extends JPanel {
 		}
 		
 		//Curseur de la bonne couleur
-		g.setColor(curseur.getCouleur());
+		g.setColor(Color.black);
 		g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY(), this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY());
 		g.drawLine(this.getPosX(), this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX(), this.getPosY() + (curseur.getEpaisseur() / 2));
 		if (curseur.isDown()){		
