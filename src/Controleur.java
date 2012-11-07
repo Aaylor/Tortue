@@ -805,28 +805,26 @@ public class Controleur{
                 if ( !pathname_split[i].equals("") )
                     pathname += pathname_split[i] + "/";
 
-                if ( i < pathname_split.length-1 )
+                File folder = new File(pathname);
+                if ( !folder.exists() )
                 {
-                    File folder = new File(pathname);
-                    if ( !folder.exists() )
-                    {
-                        if ( !folder.mkdir() )
-                            term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
-                        else
-                            System.out.println("folder made on pathname[\"" + pathname + "\"]");
-                    }
+                    if ( !folder.mkdir() )
+                        term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
                     else
-                        System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
+                        System.out.println("folder made on pathname[\"" + pathname + "\"]");
                 }
                 else
+                    System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
+                
+                if ( i == pathname_split.length-1 )
                 {
                     if ( pathname_split[i].indexOf('.') < 0 )
                     {
-                        pathname += "config" + formater.format(date) + ".txt";
+                        pathname += "history" + formater.format(date) + ".txt";
                     }
                     else if  ( pathname_split[i].indexOf('.') == 0 )
                     {
-                        pathname = pathname.substring(0,pathname.indexOf('.')) + "config"
+                        pathname = pathname.substring(0,pathname.indexOf('.')) + "history"
                             + formater.format(date) + pathname.substring(pathname.indexOf('.'));
                     }
                     else;
@@ -837,7 +835,7 @@ public class Controleur{
             System.out.println(pathname);
 
         }
-            
+           /* 
         try
         {
             history.createNewFile();
@@ -857,7 +855,7 @@ public class Controleur{
         {
             return COMMANDE_ERRONEE;
         }
-        
+        */
         return SUCCESS;
 
     }
