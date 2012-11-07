@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -163,17 +164,20 @@ public class MenuOption extends JDialog{
 		
 		JPanel panCouleurRougeDefinir = new JPanel();
 		JLabel labRouge = new JLabel("Rouge : ");
+		panCouleurRougeDefinir.add(Box.createRigidArea(new Dimension(20,0)));
 		panCouleurRougeDefinir.add(labRouge);
 		panCouleurRougeDefinir.add(couleurCurseurRougeTextField);
 		
 		JPanel panCouleurVertDefinir = new JPanel();
 		JLabel labVert = new JLabel("Vert     : ");
+		panCouleurVertDefinir.add(Box.createRigidArea(new Dimension(20,0)));
 		panCouleurVertDefinir.add(labVert);
 		panCouleurVertDefinir.add(couleurCurseurVertTextField);
 		
 		JPanel panCouleurBleuDefinir = new JPanel();
 		
 		JLabel labBleu = new JLabel("Bleu     : ");
+		panCouleurBleuDefinir.add(Box.createRigidArea(new Dimension(20,0)));
 		panCouleurBleuDefinir.add(labBleu);
 		panCouleurBleuDefinir.add(couleurCurseurBleuTextField);
 		
@@ -226,16 +230,19 @@ public class MenuOption extends JDialog{
 		
 		JPanel panCouleurRougeDessinDefinie = new JPanel();
 		JLabel labDessinRouge = new JLabel("Rouge : ");
+		panCouleurRougeDessinDefinie.add(Box.createRigidArea(new Dimension(20,0)));
 		panCouleurRougeDessinDefinie.add(labDessinRouge);
 		panCouleurRougeDessinDefinie.add(couleurDessinRougeTextField);
 		
 		JPanel panCouleurVertDessinDefinie = new JPanel();
 		JLabel labDessinVert = new JLabel("Vert     : ");
+		panCouleurVertDessinDefinie.add(Box.createRigidArea(new Dimension(20,0)));
 		panCouleurVertDessinDefinie.add(labDessinVert);
 		panCouleurVertDessinDefinie.add(couleurDessinVertTextField);
 
 		JPanel panCouleurBleuDessinDefinie = new JPanel();
 		JLabel labDessinBleu = new JLabel("Bleu     : ");
+		panCouleurBleuDessinDefinie.add(Box.createRigidArea(new Dimension(20,0)));
 		panCouleurBleuDessinDefinie.add(labDessinBleu);
 		panCouleurBleuDessinDefinie.add(couleurDessinBleuTextField);
 		
@@ -298,17 +305,17 @@ public class MenuOption extends JDialog{
 		
 		panCouleurRougeDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurRougeDefinir.setLayout(new BoxLayout(panCouleurRougeDefinir, BoxLayout.LINE_AXIS));
-		panCouleurRougeDefinir.setMaximumSize(new Dimension(80, 20));
+		panCouleurRougeDefinir.setMaximumSize(new Dimension(95, 20));
 		
 		panCouleurVertDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDefinir.setLayout(new BoxLayout(panCouleurVertDefinir, BoxLayout.LINE_AXIS));
-		panCouleurVertDefinir.setMaximumSize(new Dimension(80, 20));
+		panCouleurVertDefinir.setMaximumSize(new Dimension(95, 20));
 		
 		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDefinir.setLayout(new BoxLayout(panCouleurBleuDefinir, BoxLayout.LINE_AXIS));
-		panCouleurBleuDefinir.setMaximumSize(new Dimension(80, 20));
+		panCouleurBleuDefinir.setMaximumSize(new Dimension(95, 20));
 		
 			//Dessin
 		labTailleDessin.setAlignmentX(LEFT_ALIGNMENT);
@@ -327,15 +334,15 @@ public class MenuOption extends JDialog{
 		
 		panCouleurRougeDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurRougeDessinDefinie.setLayout(new BoxLayout(panCouleurRougeDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurRougeDessinDefinie.setMaximumSize(new Dimension(80, 20));
+		panCouleurRougeDessinDefinie.setMaximumSize(new Dimension(95, 20));
 		
 		panCouleurVertDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDessinDefinie.setLayout(new BoxLayout(panCouleurVertDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurVertDessinDefinie.setMaximumSize(new Dimension(80, 20));
+		panCouleurVertDessinDefinie.setMaximumSize(new Dimension(95, 20));
 		
 		panCouleurBleuDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDessinDefinie.setLayout(new BoxLayout(panCouleurBleuDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(80, 20));
+		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(95, 20));
 		
 		
 

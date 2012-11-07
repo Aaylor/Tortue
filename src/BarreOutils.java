@@ -1,6 +1,8 @@
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -22,6 +24,7 @@ public class BarreOutils extends JMenuBar {
     private JSlider sliderRed;
     private JSlider sliderGreen;
     private JSlider sliderBlue;
+    private BarreOutilsVignette vignetteCouleur;
     /**
      *  Constructeur de la zone de bouton
      */
@@ -35,6 +38,10 @@ public class BarreOutils extends JMenuBar {
 		sliderRed = sliderRed();
 		sliderBlue = sliderBlue();
 		sliderGreen = sliderGreen();
+		vignetteCouleur = new BarreOutilsVignette(curseur);
+		vignetteCouleur.setMinimumSize(new Dimension(20, 20));
+		vignetteCouleur.setPreferredSize(new Dimension(20,20));
+		vignetteCouleur.setMaximumSize(new Dimension(20, 20));
 		
 		//Ajout des boutons		
 		JPanel panPrincipal = new JPanel();
@@ -42,12 +49,17 @@ public class BarreOutils extends JMenuBar {
 		
 		JPanel panOutils = new JPanel();
 		panOutils.setLayout(new BoxLayout(panOutils, BoxLayout.LINE_AXIS));
+		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
 		panOutils.add(boutonPoserCrayon);
+		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
 		panOutils.add(boutonGomme);
 		panOutils.add(slider);
 		
 		JPanel panCurseur = new JPanel();
 		panCurseur.setLayout(new BoxLayout(panCurseur, BoxLayout.LINE_AXIS));
+		panCurseur.add(Box.createRigidArea(new Dimension(5,0)));
+		panCurseur.add(vignetteCouleur);
+		panCurseur.add(Box.createRigidArea(new Dimension(5,0)));
 		
 		JPanel panCurseurRouge = new JPanel();
 		panCurseurRouge.setLayout(new BoxLayout(panCurseurRouge, BoxLayout.PAGE_AXIS));
@@ -136,13 +148,14 @@ public class BarreOutils extends JMenuBar {
 		   
 	    slider.setMaximum(255);
 	    slider.setMinimum(0);
-	    slider.setValue(curseur.getEpaisseur());
+	    slider.setValue(curseur.getCouleur().getRed());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setCouleurRouge(((JSlider)event.getSource()).getValue());
 	    	  zoneDessin.repaint();
+	    	  vignetteCouleur.repaint();
 	      }
 	    });	    
 	    return slider;
@@ -153,13 +166,14 @@ public class BarreOutils extends JMenuBar {
 		   
 	    slider.setMaximum(255);
 	    slider.setMinimum(0);
-	    slider.setValue(curseur.getEpaisseur());
+	    slider.setValue(curseur.getCouleur().getGreen());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setCouleurVert(((JSlider)event.getSource()).getValue());
 	    	  zoneDessin.repaint();
+	    	  vignetteCouleur.repaint();
 	      }
 	    });	    
 	    return slider;
@@ -170,13 +184,14 @@ public class BarreOutils extends JMenuBar {
 		   
 	    slider.setMaximum(255);
 	    slider.setMinimum(0);
-	    slider.setValue(curseur.getEpaisseur());
+	    slider.setValue(curseur.getCouleur().getBlue());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setCouleurBleu(((JSlider)event.getSource()).getValue());
 	    	  zoneDessin.repaint();
+	    	  vignetteCouleur.repaint();
 	      }
 	    });	    
 	    return slider;
