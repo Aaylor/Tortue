@@ -653,8 +653,10 @@ public class Controleur{
 
         System.out.println("couleur :: " + couleur);
         
-        Color c = StockageDonnee.liste_couleur.get(couleur);
-        
+        if(StockageDonnee.liste_couleur.containsKey(couleur)){
+        	Color c = StockageDonnee.liste_couleur.get(couleur);
+        	curseur.setCouleur(c);
+        }
         return SUCCESS;
 
     }
