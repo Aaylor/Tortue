@@ -76,7 +76,7 @@ public class Controleur{
      */
     public String[] parse(String s)
     {
-	    return s.toLowerCase().split(" ");
+	    return s.split(" ");
     }
 
     /**
@@ -127,7 +127,7 @@ public class Controleur{
         int valeur = 0;
         double valeur_x = 0;
         double valeur_y = 0;
-        switch ( StockageDonnee.getNumeroFonction( commande_parser[0] ) )
+        switch ( StockageDonnee.getNumeroFonction( commande_parser[0].toLowerCase() ) )
         {
             case 0:
                 if ( commande_parser.length > 1 )
@@ -803,19 +803,29 @@ public class Controleur{
                 if ( !pathname_split[i].equals("") )
                     pathname += pathname_split[i] + "/";
 
-                File folder = new File(pathname);
-                if ( !folder.exists() )
+                if ( i < pathname_split.length-1 )
                 {
-                    if ( !folder.mkdir() )
-                        term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                    File folder = new File(pathname);
+                    if ( !folder.exists() )
+                    {
+                        if ( !folder.mkdir() )
+                            term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                        else
+                            System.out.println("folder made on pathname[\"" + pathname + "\"]");
+                    }
                     else
-                        System.out.println("folder made on pathname[\"" + pathname + "\"]");
+                        System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
                 }
                 else
-                    System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
+                {
+                    if ( pathname_split[i].indexOf('.') < 0 )
+                    {
+                        history = new File(pathname + "/config" + formater.format(date) + ".txt");
+                    }
+                }
             }
 
-            System.out.println(pathname);
+            
 
         }
             
