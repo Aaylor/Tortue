@@ -24,12 +24,11 @@ public class ZoneDessin extends JPanel{
     /**
      *  Constructeur de la zone de dessin
      */
-	ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur, final Controleur c){
+	ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur){
 		this.largeurDessin = largeurDessin;
 		this.hauteurDessin = hauteurDessin;
 		this.background = background;
 		this.curseur = curseur;
-		this.c = c;
 		
 		addMouseListener(new MouseAdapter() { 
 			public void mouseClicked(MouseEvent me) {
@@ -238,6 +237,6 @@ public class ZoneDessin extends JPanel{
      */
     public void setControleur(Controleur c)
     {
-        this.controleur = c;
+        this.c = c;
     }
 }
