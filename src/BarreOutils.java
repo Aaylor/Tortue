@@ -16,6 +16,9 @@ public class BarreOutils extends JMenuBar {
     private JButton boutonPoserCrayon;
     private JButton boutonGomme;
     private JSlider slider;
+    private JSlider sliderRed;
+    private JSlider sliderGreen;
+    private JSlider sliderBlue;
     /**
      *  Constructeur de la zone de bouton
      */
@@ -26,11 +29,17 @@ public class BarreOutils extends JMenuBar {
 		boutonPoserCrayon = boutonPoserCrayon();
 		boutonGomme = boutonGomme();
 		slider = slider();
+		sliderRed = sliderRed();
+		sliderBlue = sliderBlue();
+		sliderGreen = sliderGreen();
 		
 		//Ajout des boutons
 		this.add(boutonPoserCrayon);
 		this.add(boutonGomme);
 		this.add(slider);
+		/*this.add(sliderRed);
+		this.add(sliderGreen);
+		this.add(sliderBlue);*/
 		
 		
 		//Action des boutons
@@ -85,6 +94,63 @@ public class BarreOutils extends JMenuBar {
 	      }
 	    });
 	    
+	    return slider;
+	}
+	
+	public JSlider sliderRed(){
+		JSlider slider = new JSlider();
+		   
+	    slider.setMaximum(255);
+	    slider.setMinimum(0);
+	    slider.setValue(curseur.getEpaisseur());
+	    slider.setPaintTicks(true);
+	    slider.setPaintLabels(true);
+	    slider.setMinorTickSpacing(10);
+	    slider.setMajorTickSpacing(20);
+	    slider.addChangeListener(new ChangeListener(){
+	      public void stateChanged(ChangeEvent event){
+	    	  curseur.setCouleurRouge(((JSlider)event.getSource()).getValue());
+	    	  zoneDessin.repaint();
+	      }
+	    });	    
+	    return slider;
+	}
+	
+	public JSlider sliderGreen(){
+		JSlider slider = new JSlider();
+		   
+	    slider.setMaximum(255);
+	    slider.setMinimum(0);
+	    slider.setValue(curseur.getEpaisseur());
+	    slider.setPaintTicks(true);
+	    slider.setPaintLabels(true);
+	    slider.setMinorTickSpacing(10);
+	    slider.setMajorTickSpacing(20);
+	    slider.addChangeListener(new ChangeListener(){
+	      public void stateChanged(ChangeEvent event){
+	    	  curseur.setCouleurVert(((JSlider)event.getSource()).getValue());
+	    	  zoneDessin.repaint();
+	      }
+	    });	    
+	    return slider;
+	}
+	
+	public JSlider sliderBlue(){
+		JSlider slider = new JSlider();
+		   
+	    slider.setMaximum(255);
+	    slider.setMinimum(0);
+	    slider.setValue(curseur.getEpaisseur());
+	    slider.setPaintTicks(true);
+	    slider.setPaintLabels(true);
+	    slider.setMinorTickSpacing(10);
+	    slider.setMajorTickSpacing(20);
+	    slider.addChangeListener(new ChangeListener(){
+	      public void stateChanged(ChangeEvent event){
+	    	  curseur.setCouleurBleu(((JSlider)event.getSource()).getValue());
+	    	  zoneDessin.repaint();
+	      }
+	    });	    
 	    return slider;
 	}
 	

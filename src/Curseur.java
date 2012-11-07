@@ -156,4 +156,13 @@ public class Curseur extends JPanel {
     	this.epaisseur=epaisseur;
     }
      
+    public void setCouleurRouge(int i){
+    	couleur = new Color(i, couleur.getGreen(), couleur.getBlue());
+    }
+    public void setCouleurVert(int i){
+    	couleur = new Color(couleur.getRed(), i, couleur.getBlue());
+    }
+    public void setCouleurBleu(int i){
+    	couleur = new Color(couleur.getRed(), couleur.getGreen(), i);
+    }
 }
