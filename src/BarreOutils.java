@@ -82,6 +82,7 @@ public class BarreOutils extends JMenuBar {
 		panCurseur.add(panCurseurRouge);
 		panCurseur.add(panCurseurVert);
 		panCurseur.add(panCurseurBleu);
+		panCurseur.setPreferredSize(new Dimension(this.getWidth(), 35));
 		
 		panPrincipal.add(panOutils);
 		panPrincipal.add(panCurseur);
