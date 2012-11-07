@@ -824,10 +824,17 @@ public class Controleur{
                     {
                         history = new File(pathname + "/config" + formater.format(date) + ".txt");
                     }
+                    else if  ( pathname_split[i].indexOf('.') == 1 )
+                    {
+                        pathname = pathname.substring(0,pathname.indexOf('.')) + "/config"
+                            + formater.format(date) + pathname.substring(pathname.indexOf('.'));
+                        history = new File (pathname);
+                    }
+                    else;
                 }
             }
 
-            
+            System.out.println(pathname);
 
         }
             
