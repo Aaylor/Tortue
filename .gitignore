@@ -24,7 +24,6 @@
 #   Logs & Docs files   #
 #########################
 *.doc
-*.txt
 *.rtf
 *.swo
 
@@ -37,6 +36,7 @@
 build/*
 javadoc/*
 bin/*
+config/*
 
 #######################
 #   Temporary files   #

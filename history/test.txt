@@ -1,0 +1,27 @@
+pendown
+forward 100
+backward 90
+backward 10
+penup
+goto 0 0
+goto 200 0
+goto 180 0
+goto 150 0
+goto 160 0
+goto 160 50
+down
+pendown
+forward 20
+forward 20
+backward 30
+backward 10
+penup
+goto 200 0
+goto 250 0
+goto 230 0
+goto 230 50
+pendown
+forward 40
+backward 40
+penup
+goto 0 0
