@@ -73,7 +73,13 @@ public class Terminal extends JPanel implements KeyListener{
                 this.champ_de_commande.setText(StockageDonnee.getLCEG(compteur_commandes));
             }
             else
+            {
+                if ( compteur_commandes + 1 < StockageDonnee.getSize_LCEG()+1 )
+                {
+                    compteur_commandes++;
+                }
                 this.champ_de_commande.setText("");
+            }
 
         }
 

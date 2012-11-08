@@ -292,6 +292,22 @@ public class StockageDonnee
     }
 
     /**
+     *  Fonction vidant la collection correspondante
+     */
+    public static void videLCEC()
+    {
+        liste_commande_entree_correcte.clear();
+    }
+
+    /**
+     *  Fonction vidant la collection correspondante
+     */
+    public static void videListeDessin()
+    {
+        liste_dessin.clear();
+    }
+    
+    /**
      *  Fonction renvoyant la taille de la collection
      *  @return taille
      */

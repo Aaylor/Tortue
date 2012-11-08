@@ -882,11 +882,19 @@ public class Controleur{
             InputStreamReader isr = new InputStreamReader(ips);
             BufferedReader br = new BufferedReader(isr);
             String ligne;
+            int i = 1;
 
             while ( (ligne=br.readLine()) != null )
             {
                 if ( !this.commande(ligne) )
+                {
+                    StockageDonnee.videLCEC();
+                    StockageDonnee.videListeDessin();
+                    StockageDonnee.setParamErreur("ligne " + i);
+                    zd.repaint();
                     return COMMANDE_ERRONEE;
+                }
+                i++;                
             }
         }
         catch (Exception e)
