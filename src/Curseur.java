@@ -17,7 +17,7 @@ public class Curseur extends JPanel {
 	private Controleur controleur;
 	private boolean isDown=false;//par defaut false: donc penup
 	private int epaisseur;
-	private int forme;
+	private int forme;//0 : Rond, 1 : Carre
 
 	
 	/////////////////////

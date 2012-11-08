@@ -231,6 +231,10 @@ public class ZoneDessin extends JPanel{
     	return background;
     }
     
+	/*///
+	 * MODIFIEURS
+	 //*/
+    
     /**
      *  Modifie le controleur
      *  @param c nouveau controleur
@@ -238,5 +242,9 @@ public class ZoneDessin extends JPanel{
     public void setControleur(Controleur c)
     {
         this.c = c;
+    }
+    
+    public void setBackground(Color c){
+    	background = c;
     }
 }
