@@ -64,7 +64,16 @@ public class ZoneDessin extends JPanel{
 			t = StockageDonnee.liste_dessin.get(i);
 			//Initialisons les propriétés de l'objet graphics
 			g.setColor(t.getColor());
-			g.setStroke(new BasicStroke(t.getEpaisseur(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+			int cap; int join;
+			if(t.getForme() == 0){
+				cap = BasicStroke.CAP_ROUND;
+				join = BasicStroke.JOIN_ROUND;
+			}
+			else{
+				cap = BasicStroke.CAP_BUTT;
+				join = BasicStroke.CAP_ROUND;
+			}
+			g.setStroke(new BasicStroke(t.getEpaisseur(), cap, join));
 			
 			System.out.println("Position X Début : " + posXAbsolue(t.getXOrigine()));
 			System.out.println("Position Y Début : " + posYAbsolue(t.getYOrigine()));
@@ -76,6 +85,11 @@ public class ZoneDessin extends JPanel{
 			//Si le t est une droite/point
 			if (t.getType() == 1 || t.getType() == 0){
 				g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
+				//Dans le cas d'une forme carré, on va dessiner des carré aux points de départ/arrivée pour un effet pls propre
+				if(t.getForme() == 1){
+					g.setStroke(new BasicStroke());
+					g.fillRect(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2, posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+				}
 			}
 
 			//Si le t est un Rectangle
@@ -164,18 +178,26 @@ public class ZoneDessin extends JPanel{
 		//Dessin de la base
 		//Sous curseur negatif
 		g.setColor(Color.white);
+		
 		g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY()  + 1, this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY()  + 1);
 		g.drawLine(this.getPosX() + 1, this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX() +1, this.getPosY()+ (curseur.getEpaisseur() / 2));
 		if (curseur.isDown()){		
-			g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase + 1, rayonBase * 2, rayonBase * 2);
+			if(curseur.getForme() == 0)
+				g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase + 1, rayonBase * 2, rayonBase * 2);
+			else
+				g.drawRect(this.getPosX() - curseur.getEpaisseur()/2 + 1, this.getPosY() - curseur.getEpaisseur()/2 + 1, curseur.getEpaisseur(), curseur.getEpaisseur());
 		}
+		
 		
 		//Curseur de la bonne couleur
 		g.setColor(Color.black);
 		g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY(), this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY());
 		g.drawLine(this.getPosX(), this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX(), this.getPosY() + (curseur.getEpaisseur() / 2));
-		if (curseur.isDown()){		
-			g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase , rayonBase * 2, rayonBase * 2);
+		if (curseur.isDown()){	
+			if(curseur.getForme() == 0)
+				g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase , rayonBase * 2, rayonBase * 2);
+			else
+				g.drawRect(this.getPosX() - curseur.getEpaisseur()/2, this.getPosY() - curseur.getEpaisseur()/2, curseur.getEpaisseur(), curseur.getEpaisseur());
 		}
 		
 		//Affichage de la fleche d'orientation
