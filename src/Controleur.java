@@ -667,8 +667,13 @@ public class Controleur{
      */
     public int setBackgroundColor(String bgColor)
     {
-
-        System.out.println("couleur :: " + bgColor);
+    	System.out.println("couleur :: " + bgColor);
+        
+        if(StockageDonnee.liste_couleur.containsKey(bgColor)){
+        	Color c = StockageDonnee.liste_couleur.get(bgColor);
+        	zd.setBackground(c);
+        }
+        
         return SUCCESS;
 
     }
