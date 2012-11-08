@@ -84,11 +84,31 @@ public class ZoneDessin extends JPanel{
 			
 			//Si le t est une droite/point
 			if (t.getType() == 1 || t.getType() == 0){
-				g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
+				if(t.getForme() == 0)
+					g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
 				//Dans le cas d'une forme carré, on va dessiner des carré aux points de départ/arrivée pour un effet pls propre
-				if(t.getForme() == 1){
+				else{
 					g.setStroke(new BasicStroke());
 					g.fillRect(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2, posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+					g.fillRect(posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+					int[] x = {posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2,
+							posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, 
+							posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2,
+							posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2
+							};
+					int[] y = {posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2,
+							posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2,
+							posYAbsolue(t.getYArrivee()) + t.getEpaisseur()/2,
+							posYAbsolue(t.getYOrigine()) + t.getEpaisseur()/2
+							};
+					g.fillPolygon(x, y, 4);
+					int[] x2 = {posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2,
+							posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2, 
+							posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2,
+							posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2
+							};
+					g.fillPolygon(x2, y, 4);
+							
 				}
 			}
 
@@ -150,11 +170,6 @@ public class ZoneDessin extends JPanel{
 		//ETAPE 3 : Afficher le curseur
 		//Deux curseurs à afficher : le curseur négatif (pour plus de lisibilité) et le curseur normal
 		//Initialisons la couleur négative
-		/*int negRed = 255 - curseur.getCouleur().getRed();
-		int negGreen = 255 - curseur.getCouleur().getGreen();
-		int negBlue = 255 - curseur.getCouleur().getBlue();
-		Color neg = new Color(negRed, negGreen, negBlue);		
-		*/
 		
 		//Forme du curseur en fonction de l'outil
 		BasicStroke forme;

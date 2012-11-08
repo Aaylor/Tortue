@@ -126,12 +126,12 @@ public class BarreOutils extends JMenuBar {
 		boutonForme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				if (curseur.getForme() == 0){
-					boutonForme.setText("Carré");
+					boutonForme.setText("Rond");
 					curseur.setForme(1);
 					zoneDessin.repaint();
 				}
 				else{
-					boutonForme.setText("Rond");
+					boutonForme.setText("Carré");
 					curseur.setForme(0);
 					zoneDessin.repaint();
 				}
