@@ -15,7 +15,8 @@ public class Traceur extends JPanel{
 	private int y3;
 	private int hauteur;
 	private int largeur;
-	private boolean estRempli; //true : le rectanlge ou cercle sera remplie 
+	private boolean estRempli; //true : le rectanlge ou cercle sera remplie
+	private int forme; //0: rond il s'agit du curseur
 	
 	
 	/* constructeur */
@@ -27,6 +28,7 @@ public class Traceur extends JPanel{
 		this.x_arrivee=x_arrivee;
 		this.y_arrivee=y_arrivee;
 		this.type=type;
+		//this.forme=forme;
 			
 	}
 	
