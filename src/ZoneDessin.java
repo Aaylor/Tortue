@@ -91,6 +91,7 @@ public class ZoneDessin extends JPanel{
 					g.setStroke(new BasicStroke());
 					g.fillRect(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2, posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
 					g.fillRect(posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+					//Et on trace deux version du trait entre les points (en fait si on ne laisse qu'une seule des deux version, certains angles seront mal déssiné
 					int[] x = {posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2,
 							posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, 
 							posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2,
