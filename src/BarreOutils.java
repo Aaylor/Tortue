@@ -103,7 +103,7 @@ public class BarreOutils extends JMenuBar {
 				}
 				else{
 					boutonPoserCrayon.setText("Lever l'outil");
-					controleur.commande("pendown");
+					controleur.commande("penup");
 					zoneDessin.repaint();
 
 				}
