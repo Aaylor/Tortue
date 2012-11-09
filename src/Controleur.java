@@ -62,6 +62,7 @@ public class Controleur{
         s = rework_command(s);
 
 		commande_parser = parse(s);
+        term.addMessage(" > " + s);
 
         int numero_renvoie = init(commande_parser);
         return numero_renvoie == 0 ? StockageDonnee.ajoutLCEG(s)
@@ -240,7 +241,11 @@ public class Controleur{
                 else
                     return PARAM_INCORRECTE;
 
-                return forward(valeur);
+                retour = forward(valeur);
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, false);
+
+                return retour;
             
             case 10:
                 if ( commande_parser.length < 2 )
@@ -254,7 +259,11 @@ public class Controleur{
                 else
                     return PARAM_INCORRECTE;
 
-                return backward(valeur);
+                retour = backward(valeur);
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, false);
+
+                return retour;
             
             case 11:
                 if ( commande_parser.length > 3 )

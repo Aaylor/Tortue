@@ -44,7 +44,6 @@ public class Terminal extends JPanel implements KeyListener{
         if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER
                 && !this.champ_de_commande.getText().equals(""))
         {
-            Terminal.historique.append("\n > "+this.champ_de_commande.getText().trim());
             controleur.commande(this.champ_de_commande.getText());
             
             Terminal.historique.setCaretPosition(Terminal.historique.getDocument().getLength());

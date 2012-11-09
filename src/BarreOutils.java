@@ -98,12 +98,12 @@ public class BarreOutils extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0){
 				if (curseur.isDown()){
 					boutonPoserCrayon.setText("Poser l'outil");
-					curseur.setIsDown(false);
+					controleur.commande("pendown");
 					zoneDessin.repaint();
 				}
 				else{
 					boutonPoserCrayon.setText("Lever l'outil");
-					curseur.setIsDown(true);
+					controleur.commande("pendown");
 					zoneDessin.repaint();
 
 				}
