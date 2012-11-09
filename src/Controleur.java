@@ -63,6 +63,7 @@ public class Controleur{
 
 		commande_parser = parse(s);
         term.addMessage(" > " + s);
+        term.replaceHistorique();
 
         int numero_renvoie = init(commande_parser);
         return numero_renvoie == 0 ? StockageDonnee.ajoutLCEG(s)

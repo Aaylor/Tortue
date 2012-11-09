@@ -98,13 +98,13 @@ public class BarreOutils extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0){
 				if (curseur.isDown()){
 					boutonPoserCrayon.setText("Poser l'outil");
-					controleur.commande("pendown");
+					controleur.commande("penup");
 					zoneDessin.repaint();
 				}
 				else{
 					boutonPoserCrayon.setText("Lever l'outil");
-					controleur.commande("penup");
-					zoneDessin.repaint();
+					controleur.commande("pendown");
+                    zoneDessin.repaint();
 
 				}
 			}
@@ -113,12 +113,12 @@ public class BarreOutils extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0){
 				if (curseur.getType() == 0){
 					boutonGomme.setText("Crayon");
-					curseur.setType(1);
+                    controleur.commande("eraser");
 					zoneDessin.repaint();
 				}
 				else{
 					boutonGomme.setText("Gomme");
-					curseur.setType(0);
+                    controleur.commande("pencil");
 					zoneDessin.repaint();
 				}
 			}
@@ -172,8 +172,11 @@ public class BarreOutils extends JMenuBar {
 	    slider.setPaintLabels(true);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
-	    	  curseur.setCouleurRouge(((JSlider)event.getSource()).getValue());
-	    	  zoneDessin.repaint();
+	    	  int r = ((JSlider)event.getSource()).getValue();
+	    	  curseur.setCouleurRouge(r); /* A ENLEVER */
+	    	  controleur.commande("setcolor " + r + " " + curseur.getCouleur().getGreen()
+                  + " " + curseur.getCouleur().getBlue());
+              zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
 	    });	    
@@ -190,7 +193,10 @@ public class BarreOutils extends JMenuBar {
 	    slider.setPaintLabels(true);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
-	    	  curseur.setCouleurVert(((JSlider)event.getSource()).getValue());
+	    	  int g = ((JSlider)event.getSource()).getValue(); /* A ENLEVER */
+	    	  curseur.setCouleurVert(g);
+              controleur.commande("setcolor " + curseur.getCouleur().getRed() + " " + g
+                  + " " + curseur.getCouleur().getBlue());
 	    	  zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
@@ -208,7 +214,10 @@ public class BarreOutils extends JMenuBar {
 	    slider.setPaintLabels(true);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
-	    	  curseur.setCouleurBleu(((JSlider)event.getSource()).getValue());
+	    	  int b = ((JSlider)event.getSource()).getValue(); /* A ENLEVER */
+	    	  curseur.setCouleurBleu(b);
+              controleur.commande("setcolor " + curseur.getCouleur().getRed() + " "
+                  + curseur.getCouleur().getGreen() + " " + b);
 	    	  zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
