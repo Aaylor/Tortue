@@ -20,7 +20,7 @@ public class Traceur extends JPanel{
 	
 	
 	/* constructeur */
-	public Traceur(int type, int epaisseur, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee){
+	public Traceur(int type, int epaisseur, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee, int forme){
 		this.epaisseur=epaisseur;
 		this.couleur=couleur;
 		this.x_origine=x_origine;
@@ -28,7 +28,7 @@ public class Traceur extends JPanel{
 		this.x_arrivee=x_arrivee;
 		this.y_arrivee=y_arrivee;
 		this.type=type;
-		//this.forme=forme;
+		this.forme=forme;
 			
 	}
 	
@@ -46,6 +46,7 @@ public class Traceur extends JPanel{
 	public int getHauteur(){ return this.hauteur; }
 	public int getLargeur(){ return this.largeur; }
 	public boolean estRempli(){ return this.estRempli();}
+	public int getForme(){ return this.forme; }
 	
 	
 	/*modifieurs*/
@@ -89,5 +90,7 @@ public class Traceur extends JPanel{
 	public void estRempli(boolean estRempli){
 		this.estRempli=estRempli;
 	}
-	
+	public void setForme(int forme){
+		this.forme=forme;
+	}
 }

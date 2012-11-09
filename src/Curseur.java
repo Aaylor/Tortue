@@ -17,6 +17,7 @@ public class Curseur extends JPanel {
 	private Controleur controleur;
 	private boolean isDown=false;//par defaut false: donc penup
 	private int epaisseur;
+	private int forme;//0 : Rond, 1 : Carre
 
 	
 	/////////////////////
@@ -25,7 +26,7 @@ public class Curseur extends JPanel {
     /**
 	 * Constructeur test
 	 */
-	Curseur (int posX, int posY, int orientation, int taille, Color couleur, int type, int epaisseur) {
+	Curseur (int posX, int posY, int orientation, int taille, Color couleur, int type, int epaisseur, int forme) {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;
@@ -33,6 +34,7 @@ public class Curseur extends JPanel {
 		this.couleur = couleur;
 		this.type = type;
 		this.epaisseur = epaisseur;
+		this.forme=forme;
     }	
 	
 	//////////////////
@@ -89,6 +91,9 @@ public class Curseur extends JPanel {
 		return this.epaisseur;
 	}
 	
+	public int getForme(){
+		return this.forme;
+	}
 	/////////////////
 	//  MODIFIEURS //
 	/////////////////
@@ -126,7 +131,11 @@ public class Curseur extends JPanel {
 	public void setType (int type) {
 		this.type = type;
 	}
-
+	
+	public void setForme(int forme){
+		this.forme=forme;
+	}
+	
     /**
      *  Modifieur de la variable couleur
      *  @param couleur nouvelle valeur de couleur

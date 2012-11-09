@@ -2,8 +2,10 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
@@ -33,8 +35,17 @@ public class ZoneDessin extends JPanel{
 		addMouseListener(new MouseAdapter() { 
 			public void mouseClicked(MouseEvent me) {
 				c.goTo(me.getX() - ecartHorizontal, me.getY() - ecartVertical);
-	        } 
-	    }); 
+				repaint();
+	        }
+	    });
+		this.addMouseMotionListener(new MouseMotionListener(){
+		      public void mouseDragged(MouseEvent me) {
+		    	  c.goTo(me.getX() - ecartHorizontal, me.getY() - ecartVertical);
+		    	  repaint();
+		      }
+
+		      public void mouseMoved(MouseEvent e) {}
+		    });
     }
 
 	/**
@@ -64,7 +75,16 @@ public class ZoneDessin extends JPanel{
 			t = StockageDonnee.liste_dessin.get(i);
 			//Initialisons les propriétés de l'objet graphics
 			g.setColor(t.getColor());
-			g.setStroke(new BasicStroke(t.getEpaisseur(), BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+			int cap; int join;
+			if(t.getForme() == 0){
+				cap = BasicStroke.CAP_ROUND;
+				join = BasicStroke.JOIN_ROUND;
+			}
+			else{
+				cap = BasicStroke.CAP_BUTT;
+				join = BasicStroke.CAP_ROUND;
+			}
+			g.setStroke(new BasicStroke(t.getEpaisseur(), cap, join));
 			
 			System.out.println("Position X Début : " + posXAbsolue(t.getXOrigine()));
 			System.out.println("Position Y Début : " + posYAbsolue(t.getYOrigine()));
@@ -75,7 +95,33 @@ public class ZoneDessin extends JPanel{
 			
 			//Si le t est une droite/point
 			if (t.getType() == 1 || t.getType() == 0){
-				g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
+				if(t.getForme() == 0)
+					g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
+				//Dans le cas d'une forme carré, on va dessiner des carré aux points de départ/arrivée pour un effet pls propre
+				else{
+					g.setStroke(new BasicStroke());
+					g.fillRect(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2, posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+					g.fillRect(posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+					//Et on trace deux version du trait entre les points (en fait si on ne laisse qu'une seule des deux version, certains angles seront mal déssiné
+					int[] x = {posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2,
+							posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, 
+							posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2,
+							posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2
+							};
+					int[] y = {posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2,
+							posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2,
+							posYAbsolue(t.getYArrivee()) + t.getEpaisseur()/2,
+							posYAbsolue(t.getYOrigine()) + t.getEpaisseur()/2
+							};
+					g.fillPolygon(x, y, 4);
+					int[] x2 = {posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2,
+							posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2, 
+							posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2,
+							posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2
+							};
+					g.fillPolygon(x2, y, 4);
+							
+				}
 			}
 
 			//Si le t est un Rectangle
@@ -136,11 +182,6 @@ public class ZoneDessin extends JPanel{
 		//ETAPE 3 : Afficher le curseur
 		//Deux curseurs à afficher : le curseur négatif (pour plus de lisibilité) et le curseur normal
 		//Initialisons la couleur négative
-		/*int negRed = 255 - curseur.getCouleur().getRed();
-		int negGreen = 255 - curseur.getCouleur().getGreen();
-		int negBlue = 255 - curseur.getCouleur().getBlue();
-		Color neg = new Color(negRed, negGreen, negBlue);		
-		*/
 		
 		//Forme du curseur en fonction de l'outil
 		BasicStroke forme;
@@ -164,18 +205,26 @@ public class ZoneDessin extends JPanel{
 		//Dessin de la base
 		//Sous curseur negatif
 		g.setColor(Color.white);
+		
 		g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY()  + 1, this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY()  + 1);
 		g.drawLine(this.getPosX() + 1, this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX() +1, this.getPosY()+ (curseur.getEpaisseur() / 2));
 		if (curseur.isDown()){		
-			g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase + 1, rayonBase * 2, rayonBase * 2);
+			if(curseur.getForme() == 0)
+				g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase + 1, rayonBase * 2, rayonBase * 2);
+			else
+				g.drawRect(this.getPosX() - curseur.getEpaisseur()/2 + 1, this.getPosY() - curseur.getEpaisseur()/2 + 1, curseur.getEpaisseur(), curseur.getEpaisseur());
 		}
+		
 		
 		//Curseur de la bonne couleur
 		g.setColor(Color.black);
 		g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY(), this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY());
 		g.drawLine(this.getPosX(), this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX(), this.getPosY() + (curseur.getEpaisseur() / 2));
-		if (curseur.isDown()){		
-			g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase , rayonBase * 2, rayonBase * 2);
+		if (curseur.isDown()){	
+			if(curseur.getForme() == 0)
+				g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase , rayonBase * 2, rayonBase * 2);
+			else
+				g.drawRect(this.getPosX() - curseur.getEpaisseur()/2, this.getPosY() - curseur.getEpaisseur()/2, curseur.getEpaisseur(), curseur.getEpaisseur());
 		}
 		
 		//Affichage de la fleche d'orientation
@@ -231,6 +280,10 @@ public class ZoneDessin extends JPanel{
     	return background;
     }
     
+	/*///
+	 * MODIFIEURS
+	 //*/
+    
     /**
      *  Modifie le controleur
      *  @param c nouveau controleur
@@ -238,5 +291,9 @@ public class ZoneDessin extends JPanel{
     public void setControleur(Controleur c)
     {
         this.c = c;
+    }
+    
+    public void setBackground(Color c){
+    	background = c;
     }
 }
