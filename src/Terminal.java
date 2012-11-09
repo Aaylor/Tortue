@@ -44,10 +44,7 @@ public class Terminal extends JPanel implements KeyListener{
         if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER
                 && !this.champ_de_commande.getText().equals(""))
         {
-            Terminal.historique.append("\n > "+this.champ_de_commande.getText().trim());
             controleur.commande(this.champ_de_commande.getText());
-            
-            Terminal.historique.setCaretPosition(Terminal.historique.getDocument().getLength());
             
             this.champ_de_commande.setText("");
             this.compteur_commandes = StockageDonnee.getSize_LCEG();
@@ -188,6 +185,14 @@ public class Terminal extends JPanel implements KeyListener{
     public void addMessage(String message)
     {
         this.historique.append("\n" + message);
+    }
+
+    /**
+     *  Replace l'historique vers le bas
+     */
+    public void replaceHistorique()
+    {
+        Terminal.historique.setCaretPosition(Terminal.historique.getDocument().getLength());
     }
 
     /**

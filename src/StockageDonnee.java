@@ -24,7 +24,8 @@ public class StockageDonnee
                             && init_ldessin()
                             && init_ldc()
                             && init_le()
-                            && init_manuel();
+                            && init_manuel()
+                            && init_liste_couleur();
 
     }
 
@@ -196,7 +197,9 @@ public class StockageDonnee
     }
     
     public static boolean init_liste_couleur(){
-    	
+    
+        liste_couleur = new Hashtable<String, Color>();
+
     	liste_couleur.put("black", Color.black);
     	liste_couleur.put("blue", Color.blue);
     	liste_couleur.put("cyan", Color.cyan);
@@ -275,9 +278,35 @@ public class StockageDonnee
      *  Fonction ajoutant la commande à la collection correspondante
      *  @param commande Commande entrée par l'utilisateur
      */
-    public static boolean ajoutLCEC(String commande)
+    public static boolean ajoutLCEC(String[] commande, boolean verifLastCommand)
     {
-        liste_commande_entree_correcte.add(commande);
+
+        String s = "";
+        for (int i = 0; i < commande.length; i++)
+        {
+            s += commande[i] + " ";
+        }
+
+        if ( verifLastCommand && getSize_LCEC() > 0)
+        {
+            String last_command = getLCEC(getSize_LCEC()-1);
+            if ( last_command.indexOf(" ") >= 0 )
+                last_command = last_command.substring(0,last_command.indexOf(" "));
+
+            if ( commande[0].toLowerCase().equals(last_command) )
+            {
+                liste_commande_entree_correcte.set(getSize_LCEC()-1, s);
+            }
+            else
+            {
+                liste_commande_entree_correcte.add(s);
+            }
+        }
+        else
+        {
+            liste_commande_entree_correcte.add(s);
+        }
+            
         return true;
     }
 
