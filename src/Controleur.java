@@ -64,7 +64,7 @@ public class Controleur{
 		commande_parser = parse(s);
 
         int numero_renvoie = init(commande_parser);
-        return numero_renvoie == 0 ? StockageDonnee.ajoutLCEC(s) && StockageDonnee.ajoutLCEG(s)
+        return numero_renvoie == 0 ? StockageDonnee.ajoutLCEG(s)
                   : StockageDonnee.ajoutLCEG(s) && this.setMessageErreur(numero_renvoie);
 
     }
@@ -125,6 +125,8 @@ public class Controleur{
     public int init(String[] commande_parser)
     {
         int valeur = 0;
+        int retour = 0;
+        int r, g, b;
         double valeur_x = 0;
         double valeur_y = 0;
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0].toLowerCase() ) )
@@ -132,42 +134,81 @@ public class Controleur{
             case 0:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                return pendown();
+                
+                retour = pendown();
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
+
             
             case 1:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                return penup();
-           
+
+                retour = penup();
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
             case 2:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                return pencil();
+                
+                retour = pencil();
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
 
             case 3:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                return eraser();
+
+                retour = eraser();
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
             
+                return retour;
+
             case 4:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                return up();
+
+                retour = up();
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
             
             case 5:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                return down();
+                
+                retour = down();
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
             
             case 6:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                return left();
+                
+                retour = left();
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
             
             case 7:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                return right();
+                
+                retour = right();
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
             
             case 8:
                 if ( commande_parser.length > 2 )
@@ -181,7 +222,11 @@ public class Controleur{
                 else
                     return PARAM_INCORRECTE;
 
-                return rotate(valeur);
+                retour = rotate(valeur);
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
             
             case 9:
                 if ( commande_parser.length < 2 )
@@ -213,8 +258,10 @@ public class Controleur{
             
             case 11:
                 if ( commande_parser.length > 3 )
+                {
                     return NOMBRE_PARAM_SUP;
-                else if ( commande_parser.length <= 2 )
+                }
+                else if ( commande_parser.length < 3 )
                 {
                     return NOMBRE_PARAM_LESS;
                 }
@@ -229,7 +276,16 @@ public class Controleur{
                 else
                     return PARAM_INCORRECTE;
 
-                return goTo(valeur_x, valeur_y);
+                retour = goTo(valeur_x, valeur_y);
+                
+                boolean verif = false;
+                if ( !curseur.isDown() )
+                    verif = true;
+                
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, verif);
+
+                return retour;
             
             case 12:
                 if ( commande_parser.length > 2 )
@@ -243,29 +299,120 @@ public class Controleur{
                 else
                     return PARAM_INCORRECTE;
 
-                return cursorWidth(valeur);
-            
+                retour = cursorWidth(valeur);
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
             case 13:
-                if ( commande_parser.length > 2 )
+                if ( commande_parser.length > 4 )
                     return NOMBRE_PARAM_SUP;
-                else if ( commande_parser.length < 2 )
+                else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
                     return NOMBRE_PARAM_LESS;
                 else;
 
-                return setColor(commande_parser[1]);
-            
+                if ( commande_parser.length == 2 )
+                {
+                    retour = setColor(commande_parser[1]);
+                }
+                else if ( commande_parser.length == 4 )
+                {
+                    if ( isInt(commande_parser[1]) )
+                    {
+                        r = Integer.parseInt(commande_parser[1]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[1]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[2]) )
+                    {
+                        g = Integer.parseInt(commande_parser[2]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[2]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[3]) )
+                    {
+                        b = Integer.parseInt(commande_parser[3]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[3]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    retour = setColor(r,g,b);
+
+                }
+                else;
+
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+           
+                return retour;
+
             case 14:
-                if ( commande_parser.length > 2 )
+                if ( commande_parser.length > 4 )
                     return NOMBRE_PARAM_SUP;
-                else if ( commande_parser.length < 2 )
+                else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
                     return NOMBRE_PARAM_LESS;
                 else;
 
-                return setBackgroundColor(commande_parser[1]);
+                if ( commande_parser.length == 2 )
+                {
+                    retour = setBackgroundColor(commande_parser[1]);
+                }
+                else if ( commande_parser.length == 4 )
+                {
+                    if ( isInt(commande_parser[1]) )
+                    {
+                        r = Integer.parseInt(commande_parser[1]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[1]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[2]) )
+                    {
+                        g = Integer.parseInt(commande_parser[2]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[2]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[3]) )
+                    {
+                        b = Integer.parseInt(commande_parser[3]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[3]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    retour = setBackgroundColor(r,g,b);
+
+                }
+                else;
+
+                if ( retour == 0 )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+           
+                return retour;
             
             case 15:
                 /* TODO */
                 doFigure();
+
                 break;
             
             case 16:
@@ -335,11 +482,11 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
 
                 if ( commande_parser.length == 1 )
-                    return repeat(1,1);
+                    retour = repeat(1,1);
                 else if ( commande_parser.length == 2 )
                 {
                     if ( isInt(commande_parser[1]) )
-                        return repeat(Integer.parseInt(commande_parser[1]),1);
+                        retour = repeat(Integer.parseInt(commande_parser[1]),1);
                     else
                         return PARAM_INCORRECTE;
                 }
@@ -347,7 +494,7 @@ public class Controleur{
                 {
                     if ( isInt(commande_parser[1]) && isInt(commande_parser[1]) )
                     {
-                        return repeat(Integer.parseInt(commande_parser[1]),
+                        retour = repeat(Integer.parseInt(commande_parser[1]),
                                         Integer.parseInt(commande_parser[2]));
                     }
                     else
@@ -662,6 +809,16 @@ public class Controleur{
     }
 
     /**
+     *  Fonction qui permet de changer la couleur (int RGB)
+     *  @return si la fonction s'est bien déroulée.
+     */
+    public int setColor(int red, int green, int blue)
+    {
+        System.out.println("R: " + red + "\nG: " + green + "\nB: " + blue);
+        return SUCCESS;
+    }
+
+    /**
      *  Fonction qui permet de changer la couleur du fond d'écran
      *  @return si la fonction s'est bien déroulée.
      */
@@ -671,6 +828,16 @@ public class Controleur{
         System.out.println("couleur :: " + bgColor);
         return SUCCESS;
 
+    }
+
+    /**
+     *  Fonction qui permet de changer la couleur du fond d'écran (int RGB)
+     *  @return si la fonction s'est bien déroulée.
+     */
+    public int setBackgroundColor(int red, int green, int blue)
+    {
+        System.out.println("R: " + red + "\nG: " + green + "\nB: " + blue);
+        return SUCCESS;
     }
 
     /**
@@ -874,7 +1041,7 @@ public class Controleur{
 
         File file_to_exec = new File(pathname);
 
-        /* TODO */
+        /* file_to_exec.exists() */
 
         try
         {
