@@ -160,6 +160,7 @@ public class MenuOption extends JDialog{
 			couleurPredefinieComboBox.addItem(couleursPredefinie[i]);
 		panCouleurCurseurPredefinie.add(couleurCurseurPredefinie);
 		panCouleurCurseurPredefinie.add(couleurPredefinieComboBox);
+		couleurPredefinieComboBox.setEnabled(false);
 		
 		
 		JPanel panCouleurRougeDefinir = new JPanel();
@@ -227,6 +228,7 @@ public class MenuOption extends JDialog{
 		couleurPredefinieDessinComboBox.setSelectedIndex(10);
 		panCouleurDessinPredefinie.add(couleurDessinPredefinie);
 		panCouleurDessinPredefinie.add(couleurPredefinieDessinComboBox);
+		couleurPredefinieDessinComboBox.setEnabled(false);
 		
 		JPanel panCouleurRougeDessinDefinie = new JPanel();
 		JLabel labDessinRouge = new JLabel("Rouge : ");
@@ -258,18 +260,6 @@ public class MenuOption extends JDialog{
 		JPanel EnregistrerAnnuler = new JPanel();
 		JButton buttonEnregistrer = new JButton("Enregistrer");
 		JButton buttonAnnuler = new JButton("Annuler");
-		
-		buttonEnregistrer.addActionListener(new ActionListener(){
-		      public void actionPerformed(ActionEvent arg0) {
-		    	  verificationDesValeurs();
-		    	  setVisible(false);
-		      }      
-		    });
-		buttonAnnuler.addActionListener(new ActionListener(){
-	      public void actionPerformed(ActionEvent arg0) {
-	        setVisible(false);
-	      }      
-	    });
 		
 		EnregistrerAnnuler.add(buttonEnregistrer);
 		EnregistrerAnnuler.add(buttonAnnuler);
@@ -344,8 +334,53 @@ public class MenuOption extends JDialog{
 		panCouleurBleuDessinDefinie.setLayout(new BoxLayout(panCouleurBleuDessinDefinie, BoxLayout.LINE_AXIS));
 		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(105, 20));
 		
-		
+		  /////////////////////////////////////////////////
+		 //       INTERACTIONS AVEC LES BOUTONS         //
+		/////////////////////////////////////////////////
 
+		buttonEnregistrer.addActionListener(new ActionListener(){
+		      public void actionPerformed(ActionEvent arg0) {
+		    	  verificationDesValeurs();
+		    	  setVisible(false);
+		      }      
+		    });
+		buttonAnnuler.addActionListener(new ActionListener(){
+	      public void actionPerformed(ActionEvent arg0) {
+	        setVisible(false);
+	      }      
+	    });
+		couleurCurseurPredefinie.addActionListener(new ActionListener(){
+		      public void actionPerformed(ActionEvent arg0) {
+		    	  couleurCurseurRougeTextField.setEnabled(false);
+		    	  couleurCurseurVertTextField.setEnabled(false);
+		    	  couleurCurseurBleuTextField.setEnabled(false);
+		    	  couleurPredefinieComboBox.setEnabled(true);
+		      }      
+		    });
+		couleurCurseurSpecifique.addActionListener(new ActionListener(){
+		      public void actionPerformed(ActionEvent arg0) {
+		    	  couleurCurseurRougeTextField.setEnabled(true);
+		    	  couleurCurseurVertTextField.setEnabled(true);
+		    	  couleurCurseurBleuTextField.setEnabled(true);
+		    	  couleurPredefinieComboBox.setEnabled(false);
+		      }      
+		    });
+		couleurDessinPredefinie.addActionListener(new ActionListener(){
+		      public void actionPerformed(ActionEvent arg0) {
+		    	  couleurDessinRougeTextField.setEnabled(false);
+		    	  couleurDessinVertTextField.setEnabled(false);
+		    	  couleurDessinBleuTextField.setEnabled(false);
+		    	  couleurPredefinieDessinComboBox.setEnabled(true);
+		      }      
+		    });
+		couleurDessinSpecifique.addActionListener(new ActionListener(){
+		      public void actionPerformed(ActionEvent arg0) {
+		    	  couleurDessinRougeTextField.setEnabled(true);
+		    	  couleurDessinVertTextField.setEnabled(true);
+		    	  couleurDessinBleuTextField.setEnabled(true);
+		    	  couleurPredefinieDessinComboBox.setEnabled(false);
+		      }      
+		    });
 	}
 
 	private void verificationDesValeurs(){

@@ -20,6 +20,7 @@ public class BarreOutils extends JMenuBar {
     private Controleur controleur;
     private JButton boutonPoserCrayon;
     private JButton boutonGomme;
+    private JButton boutonForme;
     private JSlider slider;
     private JSlider sliderRed;
     private JSlider sliderGreen;
@@ -34,6 +35,7 @@ public class BarreOutils extends JMenuBar {
 		this.zoneDessin = zoneDessin;
 		boutonPoserCrayon = boutonPoserCrayon();
 		boutonGomme = boutonGomme();
+		boutonForme = boutonForme();
 		slider = slider();
 		sliderRed = sliderRed();
 		sliderBlue = sliderBlue();
@@ -53,6 +55,8 @@ public class BarreOutils extends JMenuBar {
 		panOutils.add(boutonPoserCrayon);
 		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
 		panOutils.add(boutonGomme);
+		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
+		panOutils.add(boutonForme);
 		panOutils.add(slider);
 		
 		JPanel panCurseur = new JPanel();
@@ -115,6 +119,20 @@ public class BarreOutils extends JMenuBar {
 				else{
 					boutonGomme.setText("Gomme");
 					curseur.setType(0);
+					zoneDessin.repaint();
+				}
+			}
+		});
+		boutonForme.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				if (curseur.getForme() == 0){
+					boutonForme.setText("Rond");
+					curseur.setForme(1);
+					zoneDessin.repaint();
+				}
+				else{
+					boutonForme.setText("Carré");
+					curseur.setForme(0);
 					zoneDessin.repaint();
 				}
 			}
@@ -224,6 +242,18 @@ public class BarreOutils extends JMenuBar {
 		return bouton;
 	}
 	
+	 /**
+	  * Fonction renvoyant le Bouton Forme Rond/Carre
+	  */
+	public JButton boutonForme(){
+		JButton bouton = new JButton();
+		//Texte contenu dans le bouton
+		if (curseur.getForme() == 0) bouton.setText("Carré");
+		else bouton.setText("Rond");
+		
+		//Return du bouton
+		return bouton;
+	}
 	
     /**
      *  Modifieur du controleur
