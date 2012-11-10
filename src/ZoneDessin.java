@@ -296,4 +296,8 @@ public class ZoneDessin extends JPanel{
     public void setBackground(Color c){
     	background = c;
     }
+    public void setLargeur(int l){largeurDessin = l;}
+    public void setHauteur(int h){hauteurDessin = h;}
+    
+    
 }
