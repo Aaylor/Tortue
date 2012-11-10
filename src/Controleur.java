@@ -879,7 +879,7 @@ public class Controleur{
         System.out.println("value :: " + valeur);
         
         zd.setLargeur(valeur);
-        
+        this.zd.repaint();
         return SUCCESS;
 
     }
@@ -894,7 +894,7 @@ public class Controleur{
         System.out.println("value :: " + valeur);
         
         zd.setHauteur(valeur);
-        
+        this.zd.repaint();
         return SUCCESS;
     
     }
