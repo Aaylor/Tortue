@@ -111,16 +111,7 @@ public class BarreOutils extends JMenuBar {
 		});
 		boutonGomme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				if (curseur.getType() == 0){
-					boutonGomme.setText("Crayon");
-                    controleur.commande("eraser");
-					zoneDessin.repaint();
-				}
-				else{
-					boutonGomme.setText("Gomme");
-                    controleur.commande("pencil");
-					zoneDessin.repaint();
-				}
+				interactionBoutonForme();
 			}
 		});
 		boutonForme.addActionListener(new ActionListener(){
@@ -263,6 +254,24 @@ public class BarreOutils extends JMenuBar {
 		//Return du bouton
 		return bouton;
 	}
+	
+	/**
+	 *  Fonction gérant l'interaction avec le bouton d'outil 
+	 *  Appelée lors d'un clic gauche sur le bouton d'outil ou lors d'un clic droit sur la zone de dessin
+	 */
+	public void interactionBoutonForme(){
+		if (curseur.getType() == 0){
+			boutonGomme.setText("Crayon");
+            controleur.commande("eraser");
+			zoneDessin.repaint();
+		}
+		else{
+			boutonGomme.setText("Gomme");
+            controleur.commande("pencil");
+			zoneDessin.repaint();
+		}
+	}
+	
 	
     /**
      *  Modifieur du controleur

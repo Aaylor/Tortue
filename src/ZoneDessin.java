@@ -19,6 +19,7 @@ public class ZoneDessin extends JPanel{
 	int ecartHorizontal;
 	int ecartVertical;
 	Controleur c;
+	BarreOutils barreOutils;
 	
 	
     private Controleur controleur;
@@ -34,14 +35,20 @@ public class ZoneDessin extends JPanel{
 		
 		addMouseListener(new MouseAdapter() { 
 			public void mouseClicked(MouseEvent me) {
-				c.goTo(me.getX() - ecartHorizontal, me.getY() - ecartVertical);
+				System.out.println(me.getButton());
+				if(me.getButton() == MouseEvent.BUTTON1){
+					c.goTo(me.getX() - ecartHorizontal, me.getY() - ecartVertical);
 				repaint();
+		        }
+				else if (me.getButton() == MouseEvent.BUTTON3){
+					barreOutils.interactionBoutonForme();
+				}
+				
 	        }
 	    });
 		this.addMouseMotionListener(new MouseMotionListener(){
-		      public void mouseDragged(MouseEvent me) {
-		    	  c.goTo(me.getX() - ecartHorizontal, me.getY() - ecartVertical);
-		    	  repaint();
+		      public void mouseDragged(MouseEvent e) {
+	    		  c.goTo(e.getX() - ecartHorizontal, e.getY() - ecartVertical);
 		      }
 
 		      public void mouseMoved(MouseEvent e) {}
@@ -296,8 +303,12 @@ public class ZoneDessin extends JPanel{
     public void setBackground(Color c){
     	background = c;
     }
-    public void setLargeur(int l){largeurDessin = l;}
-    public void setHauteur(int h){hauteurDessin = h;}
-    
+    public void setLargeur(int l){
+    	largeurDessin = l;
+    }
+    public void setHauteur(int h){
+    	hauteurDessin = h;
+    }
+    public void setBarreOutils(BarreOutils b){ barreOutils = b;}
     
 }
