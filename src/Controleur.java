@@ -797,6 +797,9 @@ public class Controleur{
     {
 
         System.out.println("valeur :: " + valeur);
+        
+        curseur.setTaille(valeur);
+        
         return SUCCESS;
 
     }
@@ -872,8 +875,11 @@ public class Controleur{
      */
     public int width(int valeur)
     {
-
+    	
         System.out.println("value :: " + valeur);
+        
+        zd.setLargeur(valeur);
+        
         return SUCCESS;
 
     }
@@ -886,6 +892,9 @@ public class Controleur{
     {
 
         System.out.println("value :: " + valeur);
+        
+        zd.setHauteur(valeur);
+        
         return SUCCESS;
     
     }
