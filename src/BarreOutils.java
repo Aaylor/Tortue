@@ -276,6 +276,10 @@ public class BarreOutils extends JMenuBar {
 		}
 	}
 	
+	public void interactionSliderEpaisseur(int v){
+		slider.setValue(slider.getValue() + v);
+	}
+	
     /**
      *  Modifieur du controleur
      *  @param c nouveau controleur

@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
@@ -45,10 +47,14 @@ public class ZoneDessin extends JPanel{
 					clicSouris(e.getX(), e.getY());
 			}
 		});
+		this.addMouseWheelListener(new  MouseWheelListener(){
+			public void mouseWheelMoved(MouseWheelEvent e) {
+				barreOutils.interactionSliderEpaisseur(-e.getWheelRotation()*4);
+			}
+		});
     }
 	
 	public void clicSouris(int posX, int posY){
-		System.out.println(clicSouris);
 		switch(clicSouris){
 			case 1 :
 				c.goTo(posX - ecartHorizontal, posY - ecartVertical);
