@@ -57,8 +57,10 @@ public class ZoneDessin extends JPanel{
 	public void clicSouris(int posX, int posY){
 		switch(clicSouris){
 			case 1 :
+				//if((posX > ecartHorizontal - 30) && (posX < ecartHorizontal + largeurDessin + 30) && (posY > ecartVertical - 30) && (posY < ecartVertical + hauteurDessin + 30)){
 				c.goTo(posX - ecartHorizontal, posY - ecartVertical);
 				repaint();
+				//}
 				break;
 			case 2 :
 				barreOutils.interactionBoutonOutil();
