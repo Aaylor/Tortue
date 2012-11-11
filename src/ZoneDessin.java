@@ -2,12 +2,11 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputAdapter;
 
 @SuppressWarnings("serial")
 public class ZoneDessin extends JPanel{
@@ -20,6 +19,7 @@ public class ZoneDessin extends JPanel{
 	int ecartVertical;
 	Controleur c;
 	BarreOutils barreOutils;
+	private int clicSouris;//1 : Clic gauche, 3 : Clic Droit
 	
 	
     private Controleur controleur;
@@ -33,28 +33,34 @@ public class ZoneDessin extends JPanel{
 		this.background = background;
 		this.curseur = curseur;
 		
-		addMouseListener(new MouseAdapter() { 
-			public void mouseClicked(MouseEvent me) {
-				System.out.println(me.getButton());
-				if(me.getButton() == MouseEvent.BUTTON1){
-					c.goTo(me.getX() - ecartHorizontal, me.getY() - ecartVertical);
-				repaint();
-		        }
-				else if (me.getButton() == MouseEvent.BUTTON3){
-					barreOutils.interactionBoutonForme();
-				}
-				
+		this.addMouseListener(new MouseAdapter() {			
+			public void mousePressed(MouseEvent e) {
+				clicSouris = e.getButton();
+				clicSouris(e.getX(), e.getY());
 	        }
 	    });
-		this.addMouseMotionListener(new MouseMotionListener(){
-		      public void mouseDragged(MouseEvent e) {
-	    		  c.goTo(e.getX() - ecartHorizontal, e.getY() - ecartVertical);
-		      }
-
-		      public void mouseMoved(MouseEvent e) {}
-		    });
+		this.addMouseMotionListener(new MouseInputAdapter(){
+			public void mouseDragged(MouseEvent e) {
+				if(clicSouris == 1)
+					clicSouris(e.getX(), e.getY());
+			}
+		});
     }
-
+	
+	public void clicSouris(int posX, int posY){
+		System.out.println(clicSouris);
+		switch(clicSouris){
+			case 1 :
+				c.goTo(posX - ecartHorizontal, posY - ecartVertical);
+				repaint();
+				break;
+			case 3 :
+				barreOutils.interactionBoutonForme();
+				break;
+		}
+				
+	}
+	
 	/**
 	 * Methode dessinant la zone de dessin puis le curseur
 	 */
@@ -93,12 +99,13 @@ public class ZoneDessin extends JPanel{
 			}
 			g.setStroke(new BasicStroke(t.getEpaisseur(), cap, join));
 			
-			System.out.println("Position X Début : " + posXAbsolue(t.getXOrigine()));
+			/*System.out.println("Position X Début : " + posXAbsolue(t.getXOrigine()));
 			System.out.println("Position Y Début : " + posYAbsolue(t.getYOrigine()));
 			System.out.println("Position X Fin : " + posXAbsolue(t.getXArrivee()));
 			System.out.println("Position Y Fin : " + posYAbsolue(t.getYArrivee()));
 			System.out.println("Couleur Curseur : " + t.getColor());
 			System.out.println("Epaisseur : " + t.getEpaisseur());
+			*/
 			
 			//Si le t est une droite/point
 			if (t.getType() == 1 || t.getType() == 0){
