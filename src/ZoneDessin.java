@@ -54,8 +54,11 @@ public class ZoneDessin extends JPanel{
 				c.goTo(posX - ecartHorizontal, posY - ecartVertical);
 				repaint();
 				break;
+			case 2 :
+				barreOutils.interactionBoutonOutil();
+				break;
 			case 3 :
-				barreOutils.interactionBoutonForme();
+				barreOutils.interactionBoutonPoserOutil();
 				break;
 		}
 				

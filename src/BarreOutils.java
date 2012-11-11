@@ -96,22 +96,12 @@ public class BarreOutils extends JMenuBar {
 		//Action des boutons
 		boutonPoserCrayon.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				if (curseur.isDown()){
-					boutonPoserCrayon.setText("Poser l'outil");
-					controleur.commande("penup");
-					zoneDessin.repaint();
-				}
-				else{
-					boutonPoserCrayon.setText("Lever l'outil");
-					controleur.commande("pendown");
-                    zoneDessin.repaint();
-
-				}
+				interactionBoutonPoserOutil();
 			}
 		});
 		boutonGomme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				interactionBoutonForme();
+				interactionBoutonOutil();
 			}
 		});
 		boutonForme.addActionListener(new ActionListener(){
@@ -259,7 +249,7 @@ public class BarreOutils extends JMenuBar {
 	 *  Fonction gérant l'interaction avec le bouton d'outil 
 	 *  Appelée lors d'un clic gauche sur le bouton d'outil ou lors d'un clic droit sur la zone de dessin
 	 */
-	public void interactionBoutonForme(){
+	public void interactionBoutonOutil(){
 		if (curseur.getType() == 0){
 			boutonGomme.setText("Crayon");
             controleur.commande("eraser");
@@ -272,6 +262,19 @@ public class BarreOutils extends JMenuBar {
 		}
 	}
 	
+	
+	public void interactionBoutonPoserOutil(){
+		if (curseur.isDown()){
+			boutonPoserCrayon.setText("Poser l'outil");
+			controleur.commande("penup");
+			zoneDessin.repaint();
+		}
+		else{
+			boutonPoserCrayon.setText("Lever l'outil");
+			controleur.commande("pendown");
+            zoneDessin.repaint();
+		}
+	}
 	
     /**
      *  Modifieur du controleur
