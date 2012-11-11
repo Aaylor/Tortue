@@ -75,22 +75,14 @@ public class ZoneDessin extends JPanel{
 	 */
 	public void paintComponent(Graphics gd){
 		Graphics2D g = (Graphics2D)gd;
-		//ETAPE 1 : Afficher toutes les anciennes actions
-		//Background
-			//Fond de la zone de dessin
-			g.setColor(new Color(180,180,180));//Couleur de fond
-			g.fillRect(0, 0, this.getWidth(), this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
-			//Calcul de l'ecart de la zone de dessin pour centrer le dessin
-			ecartHorizontal = (this.getWidth() - largeurDessin)/2;
-			ecartVertical = (this.getHeight() - hauteurDessin)/2;
-			
-			//Ombre de l'image
-			g.setColor(new Color(220,220,220));
-			g.fillRect(ecartHorizontal + 5, ecartVertical + 5, this.largeurDessin, this.hauteurDessin);
-			//Image
+		//Calcul de l'ecart de la zone de dessin pour centrer le dessin
+		ecartHorizontal = (this.getWidth() - largeurDessin)/2;
+		ecartVertical = (this.getHeight() - hauteurDessin)/2;
+		
+		//ETAPE 1 : Afficher la zone de dessin
 			g.setColor(background);//Couleur de fond du dessin
 			g.fillRect(ecartHorizontal, ecartVertical, this.largeurDessin, this.hauteurDessin);
-			
+							
 		//ETAPE 2 : Afficher les traceurs
 		Traceur t;
 		for (int i = 0; i < StockageDonnee.liste_dessin.size(); i ++){
@@ -192,7 +184,7 @@ public class ZoneDessin extends JPanel{
 		g.setStroke(new BasicStroke());
 		//Fond de la zone de dessin
 		g.setColor(new Color(180,180,180));//Couleur de fond
-		g.fillRect(0, 0, ecartHorizontal - 1, this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
+		g.fillRect(0, 0, ecartHorizontal, this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
 		g.fillRect(ecartHorizontal + largeurDessin, 0, this.getWidth(), this.getHeight());
 		g.fillRect(ecartHorizontal - 1, 0, largeurDessin + 1, ecartVertical);
 		g.fillRect(ecartHorizontal - 1, largeurDessin + ecartVertical, largeurDessin + 1, ecartVertical);
