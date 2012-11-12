@@ -1006,20 +1006,22 @@ public class Controleur{
         BufferedImage tmpSave = new BufferedImage(  zd.getLargeurDessin(),
                                                     zd.getHauteurDessin(),
                                                     BufferedImage.TYPE_3BYTE_BGR);
-        Graphics g = tmpSave.getGraphics();
-        g.setColor(Color.WHITE);
-        g.fillRect(0, 0, zd.getLargeurDessin(), zd.getHauteurDessin());
-        zd.paint(g);
-
         try
         {
-            ImageIO.write(tmpSave, "PNG", dessin);
+            Robot r = new Robot();
+            Rectangle rrr = new Rectangle(  zd.getEcartHorizontal(), zd.getEcartVertical(),
+                                            zd.getLargeurDessin(), zd.getHauteurDessin());
+            BufferedImage test = r.createScreenCapture(rrr);
+            System.out.println(rrr.toString());
+            Graphics2D g = test.createGraphics();
+            zd.paint(g);
+            ImageIO.write(test, "PNG", dessin);
         }
         catch (Exception e)
         {
-            System.out.println("error");
+            System.out.println("zhjrkjzehrjze");
         }
-
+        
         System.out.println("done");
         return SUCCESS;
 
