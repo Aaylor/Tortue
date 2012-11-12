@@ -1,5 +1,6 @@
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
@@ -34,7 +35,7 @@ public class ZoneDessin extends JPanel{
 		this.hauteurDessin = hauteurDessin;
 		this.background = background;
 		this.curseur = curseur;
-		
+
 		this.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
 				clicSouris = e.getButton();

@@ -1003,12 +1003,12 @@ public class Controleur{
                 
         }*/
             
-        BufferedImage tmpSave = new BufferedImage(  zd.getPreferredSize().width,
-                                                    300,
+        BufferedImage tmpSave = new BufferedImage(  zd.getLargeurDessin(),
+                                                    zd.getHauteurDessin(),
                                                     BufferedImage.TYPE_3BYTE_BGR);
         Graphics g = tmpSave.getGraphics();
         g.setColor(Color.WHITE);
-        g.fillRect(0, 0, zd.getPreferredSize().width, zd.getPreferredSize().height);
+        g.fillRect(0, 0, zd.getLargeurDessin(), zd.getHauteurDessin());
         zd.paint(g);
 
         try
