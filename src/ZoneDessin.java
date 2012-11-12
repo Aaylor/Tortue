@@ -292,7 +292,7 @@ public class ZoneDessin extends JPanel{
     	return largeurDessin;
     }
     public int getHauteurDessin(){
-    	return largeurDessin;
+    	return hauteurDessin;
     }
     public Color getBackground(){
     	return background;
