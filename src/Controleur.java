@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.awt.Color;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import javax.swing.JPanel;
+import javax.imageio.ImageIO;
 
 public class Controleur{
 
@@ -466,7 +469,11 @@ public class Controleur{
             case 20:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
-                return save();
+
+                if ( commande_parser.length == 2 )
+                    return save(commande_parser[1]);
+
+                return save("");
             
             case 21:
                 if ( commande_parser.length > 2 )
@@ -925,9 +932,95 @@ public class Controleur{
      *  Fonction qui permet de sauvegarder un document en une image
      *  @return si la fonction s'est bien déroulée.
      */
-    public int save()
+    public int save(String pathname)
     {
+        String format = "yy-MM-yy_H-mm-ss";
+        SimpleDateFormat formater = new SimpleDateFormat(format);
+        Date date = new java.util.Date();
 
+        File dessin = new File("");
+
+        if ( pathname.equals("") )
+        {
+            try
+            {
+                File folder = new File("../save");
+                if ( !folder.exists() )
+                {
+                    if ( !folder.mkdir() )
+                        term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                }
+                
+                dessin = new File("../save/save" + formater.format(date) + ".png");
+                
+            }
+            catch (Exception e)
+            {
+                return COMMANDE_ERRONEE;
+            }
+        }/*
+        else
+        {
+            String[] pathname_split = s.split("/");
+            String pathname;
+            int i = 1;
+            boolean is_a_folder_name = true;
+
+            if ( pathname_split[0].equals("~") )
+            {
+                pathname = new String("/home/" + System.getProperty("user.name"));
+                i++;
+            }
+            else
+                pathname = pathname_split[0];
+
+            while ( i < pathname_split.length )
+            {
+                    
+                pathname += "/" +  pathname_split[i];
+
+                if ( i == pathname_split.length - 1 )
+                {
+                    if ( pathname_split[i].indexOf('.') >= 0 )
+                    {
+                        is_a_folder_name = !pathname_split[i].substring(pathname_split[i].indexOf('.')+1).equals("png");
+                    }
+                }
+
+                File folder = new File(pathname);
+                if ( is_a_folder_name )
+                {
+                    if ( !folder.exists() )
+                    {
+                        if ( !folder.mkdir() )
+                            term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                    }
+                }
+
+                i++;
+            }
+
+                
+        }*/
+            
+        BufferedImage tmpSave = new BufferedImage(  zd.getPreferredSize().width,
+                                                    300,
+                                                    BufferedImage.TYPE_3BYTE_BGR);
+        Graphics g = tmpSave.getGraphics();
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, zd.getPreferredSize().width, zd.getPreferredSize().height);
+        zd.paint(g);
+
+        try
+        {
+            ImageIO.write(tmpSave, "PNG", dessin);
+        }
+        catch (Exception e)
+        {
+            System.out.println("error");
+        }
+
+        System.out.println("done");
         return SUCCESS;
 
     }
