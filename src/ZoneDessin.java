@@ -190,7 +190,7 @@ public class ZoneDessin extends JPanel{
 		g.fillRect(0, 0, ecartHorizontal, this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
 		g.fillRect(ecartHorizontal + largeurDessin, 0, this.getWidth(), this.getHeight());
 		g.fillRect(ecartHorizontal - 1, 0, largeurDessin + 1, ecartVertical);
-		g.fillRect(ecartHorizontal - 1, largeurDessin + ecartVertical, largeurDessin + 1, ecartVertical);
+		g.fillRect(ecartHorizontal - 1, hauteurDessin + ecartVertical, largeurDessin + 1, ecartVertical);
 		
 		//Ombre du dessin
 		g.setColor(new Color(220,220,220));
@@ -199,7 +199,6 @@ public class ZoneDessin extends JPanel{
 		
 		//ETAPE 3 : Afficher le curseur
 		//Deux curseurs à afficher : le curseur négatif (pour plus de lisibilité) et le curseur normal
-		//Initialisons la couleur négative
 		
 		//Forme du curseur en fonction de l'outil
 		BasicStroke forme;
