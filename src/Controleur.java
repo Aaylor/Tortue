@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.*;
 import javax.imageio.ImageIO;
 
 public class Controleur{
@@ -934,32 +936,27 @@ public class Controleur{
      */
     public int save(String pathname)
     {
-        String format = "yy-MM-yy_H-mm-ss";
-        SimpleDateFormat formater = new SimpleDateFormat(format);
-        Date date = new java.util.Date();
+        JFileChooser chooser = new JFileChooser();
+        String path_to_drawing = "";
 
-        File dessin = new File("");
+        /*
+        FileFilter filter = new ExampleFileFilter();
+        filter.addExtension("png");
+        filter.addDescription("Images png");
+        chooser.setFileFilter(filter);
+        */
 
-        if ( pathname.equals("") )
+        int returnVal = chooser.showSaveDialog(zd);
+        if ( returnVal == JFileChooser.APPROVE_OPTION )
         {
-            try
+            path_to_drawing = chooser.getSelectedFile().getAbsolutePath();
+            if ( !path_to_drawing.endsWith(".png") )
             {
-                File folder = new File("../save");
-                if ( !folder.exists() )
-                {
-                    if ( !folder.mkdir() )
-                        term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
-                }
-                
-                dessin = new File("../save/save" + formater.format(date) + ".png");
-                
-            }
-            catch (Exception e)
-            {
-                return COMMANDE_ERRONEE;
+                path_to_drawing += ".png";
             }
         }
-            
+
+        File dessin = new File(path_to_drawing);
         BufferedImage tmpSave = new BufferedImage(  1000,
                                                     1000,
                                                     BufferedImage.TYPE_3BYTE_BGR);
