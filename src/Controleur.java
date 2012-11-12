@@ -958,64 +958,21 @@ public class Controleur{
             {
                 return COMMANDE_ERRONEE;
             }
-        }/*
-        else
-        {
-            String[] pathname_split = s.split("/");
-            String pathname;
-            int i = 1;
-            boolean is_a_folder_name = true;
-
-            if ( pathname_split[0].equals("~") )
-            {
-                pathname = new String("/home/" + System.getProperty("user.name"));
-                i++;
-            }
-            else
-                pathname = pathname_split[0];
-
-            while ( i < pathname_split.length )
-            {
-                    
-                pathname += "/" +  pathname_split[i];
-
-                if ( i == pathname_split.length - 1 )
-                {
-                    if ( pathname_split[i].indexOf('.') >= 0 )
-                    {
-                        is_a_folder_name = !pathname_split[i].substring(pathname_split[i].indexOf('.')+1).equals("png");
-                    }
-                }
-
-                File folder = new File(pathname);
-                if ( is_a_folder_name )
-                {
-                    if ( !folder.exists() )
-                    {
-                        if ( !folder.mkdir() )
-                            term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
-                    }
-                }
-
-                i++;
-            }
-
-                
-        }*/
+        }
             
-        BufferedImage tmpSave = new BufferedImage(  zd.getLargeurDessin(),
-                                                    zd.getHauteurDessin(),
+        BufferedImage tmpSave = new BufferedImage(  1000,
+                                                    1000,
                                                     BufferedImage.TYPE_3BYTE_BGR);
+     
+        Graphics2D g = (Graphics2D)tmpSave.getGraphics();
+        zd.paint(g);
+
+        BufferedImage final_image = tmpSave.getSubimage(    zd.getEcartHorizontal(), zd.getEcartVertical(),
+                                                            zd.getLargeurDessin(), zd.getHauteurDessin()    );
+
         try
         {
-            Robot r = new Robot();
-            Rectangle rrr = new Rectangle(  zd.getEcartHorizontal(), zd.getEcartVertical(),
-                                            zd.getLargeurDessin(), zd.getHauteurDessin());
-            BufferedImage test = r.createScreenCapture(rrr);
-            System.out.println(rrr.toString());
-            Graphics2D g = test.createGraphics();
-            zd.paint(g);
-            ImageIO.write(test, "PNG", dessin);
+            ImageIO.write(final_image, "PNG", dessin);
         }
         catch (Exception e)
         {
