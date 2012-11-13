@@ -115,8 +115,6 @@ public class Controleur{
                 i++;
         }
 
-        System.out.println("command : " + s);
-        System.out.print("\n");
         return s;
     }
 
@@ -537,7 +535,7 @@ public class Controleur{
                 }
                 
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, false);
 
                 return retour;
                 
