@@ -60,22 +60,27 @@ public class Controleur{
      *  @param s Commande entrée par l'utilisateur
      *  @return Si la fonction s'est correctement déroulée
      */
-    public boolean commande(String s, boolean write_in_term)
+    public boolean commande(String s, boolean write)
     {
 
 	    String[] commande_parser;
         s = rework_command(s);
 
 		commande_parser = parse(s);
-        if ( write_in_term )
+        if ( write )
         {
             term.addMessage(" > " + s);
             term.replaceHistorique();
+            StockageDonnee.ajoutLCEG(s);
         }
 
-        int numero_renvoie = init(commande_parser);
-        return numero_renvoie == 0 ? StockageDonnee.ajoutLCEG(s)
-                  : StockageDonnee.ajoutLCEG(s) && this.setMessageErreur(numero_renvoie);
+        int numero_renvoie = init(commande_parser,write);
+        if ( numero_renvoie != 0 )
+        {
+            this.setMessageErreur(numero_renvoie);
+        }
+
+        return true;
 
     }
 
@@ -99,6 +104,9 @@ public class Controleur{
         s = s.trim();
 
         int i = 0;
+        if ( s.indexOf(" ") > 0 )
+            i = s.indexOf(" ");
+
         while ( i+1 < s.length() )
         {
             if ( (s.charAt(i) == ' ') && (s.charAt(i+1) == ' ') )
@@ -107,6 +115,8 @@ public class Controleur{
                 i++;
         }
 
+        System.out.println("command : " + s);
+        System.out.print("\n");
         return s;
     }
 
@@ -132,7 +142,7 @@ public class Controleur{
      *  @param commande_parser Tableau contenant le nom de la commande ainsi que ses arguments
      *  @return 0 si la fonction s'est bien déroulée.
      */
-    public int init(String[] commande_parser)
+    public int init(String[] commande_parser, boolean write)
     {
         int valeur = 0;
         int retour = 0;
@@ -146,7 +156,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
                 
                 retour = pendown();
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
@@ -157,7 +167,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
 
                 retour = penup();
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
             case 2:
@@ -165,7 +175,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
                 
                 retour = pencil();
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
@@ -175,7 +185,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
 
                 retour = eraser();
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
             
                 return retour;
@@ -185,7 +195,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
 
                 retour = up();
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
@@ -195,7 +205,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
                 
                 retour = down();
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
@@ -205,7 +215,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
                 
                 retour = left();
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
@@ -215,7 +225,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
                 
                 retour = right();
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
@@ -233,7 +243,7 @@ public class Controleur{
                     return PARAM_INCORRECTE;
 
                 retour = rotate(valeur);
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
@@ -251,7 +261,7 @@ public class Controleur{
                     return PARAM_INCORRECTE;
 
                 retour = forward(valeur);
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false);
 
                 return retour;
@@ -269,7 +279,7 @@ public class Controleur{
                     return PARAM_INCORRECTE;
 
                 retour = backward(valeur);
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false);
 
                 return retour;
@@ -300,7 +310,7 @@ public class Controleur{
                 if ( !curseur.isDown() )
                     verif = true;
                 
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, verif);
 
                 return retour;
@@ -318,7 +328,7 @@ public class Controleur{
                     return PARAM_INCORRECTE;
 
                 retour = cursorWidth(valeur);
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
             case 13:
@@ -369,7 +379,7 @@ public class Controleur{
                 }
                 else;
 
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
            
                 return retour;
@@ -422,7 +432,7 @@ public class Controleur{
                 }
                 else;
 
-                if ( retour == 0 )
+                if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
            
                 return retour;
@@ -504,12 +514,14 @@ public class Controleur{
                 if ( commande_parser.length > 3 )
                     return NOMBRE_PARAM_SUP;
 
+                int debut = StockageDonnee.getSize_LCEC();
+
                 if ( commande_parser.length == 1 )
-                    retour = repeat(1,1);
+                    retour = repeat(1,1,debut);
                 else if ( commande_parser.length == 2 )
                 {
                     if ( isInt(commande_parser[1]) )
-                        retour = repeat(Integer.parseInt(commande_parser[1]),1);
+                        retour = repeat(Integer.parseInt(commande_parser[1]),1,debut);
                     else
                         return PARAM_INCORRECTE;
                 }
@@ -518,11 +530,14 @@ public class Controleur{
                     if ( isInt(commande_parser[1]) && isInt(commande_parser[1]) )
                     {
                         retour = repeat(Integer.parseInt(commande_parser[1]),
-                                        Integer.parseInt(commande_parser[2]));
+                                        Integer.parseInt(commande_parser[2]),debut);
                     }
                     else
                         return PARAM_INCORRECTE;
                 }
+                
+                if ( retour == 0 && write )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
                 
@@ -1201,9 +1216,14 @@ public class Controleur{
      *  Fonction qui répète les dernières commandes lancés par l'utilisateur
      *  @return si la fonction s'est bien déroulée.
      */
-    public int repeat(int nombre_de_commandes, int nombre_de_repetition)
+    public int repeat(int nombre_de_commandes, int nombre_de_repetition, int debut)
     {
         String[] commands = new String[nombre_de_commandes];
+
+        if ( debut <= 0 )
+        {
+            return COMMANDE_ERRONEE;
+        }
 
         if ( nombre_de_commandes > StockageDonnee.getSize_LCEC() )
         {
@@ -1211,12 +1231,12 @@ public class Controleur{
         }
 
         int i = 0;
-        int debut = StockageDonnee.getSize_LCEC()-nombre_de_commandes; 
+        int increment = debut-nombre_de_commandes;
+        int in = increment;
         while ( i < nombre_de_commandes )
         {
-            commands[i] = StockageDonnee.getLCEC(debut);
-
-            debut++;
+            commands[i] = StockageDonnee.getLCEC(increment);
+            increment++;
             i++;
         }
 
@@ -1227,7 +1247,30 @@ public class Controleur{
             i=0;
             while ( i < commands.length )
             {
-                commande(commands[i], true);
+                if ( commands[i].startsWith("repeat") )
+                {
+                    String[] s = commands[i].split(" ");
+                    int parse1 = 1;
+                    int parse2 = 1;
+
+                    if ( s.length == 2 )
+                    {
+                        parse1 = Integer.parseInt(s[1]);
+                    }
+                    else if ( s.length == 3 )
+                    {
+                        parse1 = Integer.parseInt(s[1]);
+                        parse2 = Integer.parseInt(s[2]);
+                    }
+                    else;
+                   
+                    repeat(parse1, parse2, in-i, increment-i);
+                }
+                else
+                {
+                    System.out.println("i : " + i + "\nj : " + j);
+                    commande(commands[i], false);
+                }
                 i++;
             }
 
@@ -1238,6 +1281,76 @@ public class Controleur{
 
         return SUCCESS;
 
+    }
+
+    /**
+     *  Fonction qui aide à la répétition
+     * TODO
+     */
+    public int repeat(int nombre_de_commandes, int nombre_de_repetition, int debut, int pos)
+    {
+        String[] commands = new String[nombre_de_commandes];
+
+        if ( debut <= 0 )
+        {
+            debut = 0;
+        }
+
+        if ( nombre_de_commandes > StockageDonnee.getSize_LCEC() )
+        {
+            nombre_de_commandes = StockageDonnee.getSize_LCEC();
+        }
+
+        int i = 0;
+        int increment = pos-nombre_de_commandes;
+        int in = increment;
+        while ( i < nombre_de_commandes )
+        {
+            commands[i] = StockageDonnee.getLCEC(increment);
+            increment++;
+            i++;
+        }
+
+        int j = 1;
+        while ( j <= nombre_de_repetition )
+        {
+
+            i=0;
+            while ( i < commands.length )
+            {
+                if ( commands[i].startsWith("repeat") )
+                {
+                    String[] s = commands[i].split(" ");
+                    int parse1 = 1;
+                    int parse2 = 1;
+
+                    if ( s.length == 2 )
+                    {
+                        parse1 = Integer.parseInt(s[1]);
+                    }
+                    else if ( s.length == 3 )
+                    {
+                        parse1 = Integer.parseInt(s[1]);
+                        parse2 = Integer.parseInt(s[2]);
+                    }
+                    else;
+                   
+                    repeat(parse1, parse2, in-i, increment-i);
+                }
+                else
+                {
+                    System.out.println("i : " + i + "\nj : " + j);
+                    commande(commands[i], false);
+                }
+                i++;
+            }
+
+            j++;
+
+        }
+
+
+        return SUCCESS;
     }
 
     /**
