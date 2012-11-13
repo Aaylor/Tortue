@@ -820,9 +820,6 @@ public class Controleur{
      */
     public int setColor(String couleur)
     {
-
-        System.out.println("couleur :: " + couleur);
-        
         if(StockageDonnee.liste_couleur.containsKey(couleur)){
         	Color c = StockageDonnee.liste_couleur.get(couleur);
         	curseur.setCouleur(c);
@@ -837,7 +834,7 @@ public class Controleur{
      */
     public int setColor(int red, int green, int blue)
     {
-        System.out.println("R: " + red + "\nG: " + green + "\nB: " + blue);
+        curseur.setCouleur(new Color(red,green,blue));
         return SUCCESS;
     }
 
