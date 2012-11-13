@@ -469,18 +469,19 @@ public class Controleur{
                 return open();
             
             case 20:
-                if ( commande_parser.length > 2 )
+                if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
 
-                if ( commande_parser.length == 2 )
-                    return save(commande_parser[1]);
-
-                return save("");
+                return save();
             
             case 21:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
-                return saveas();
+                
+                if ( commande_parser.length == 2 )
+                    return saveas(commande_parser[1]);
+
+                return saveas("");
             
             case 22:
                 if ( commande_parser.length > 2 )
@@ -934,49 +935,41 @@ public class Controleur{
      *  Fonction qui permet de sauvegarder un document en une image
      *  @return si la fonction s'est bien déroulée.
      */
-    public int save(String pathname)
+    public int save()
     {
-        JFileChooser chooser = new JFileChooser();
-        String path_to_drawing = "";
+        
+        String path_to_drawing = StockageDonnee.getPathname();
 
-        /*
-        FileFilter filter = new ExampleFileFilter();
-        filter.addExtension("png");
-        filter.addDescription("Images png");
-        chooser.setFileFilter(filter);
-        */
+        if ( !path_to_drawing.equals("") )
+        { 
+            File dessin = new File(path_to_drawing);
 
-        int returnVal = chooser.showSaveDialog(zd);
-        if ( returnVal == JFileChooser.APPROVE_OPTION )
-        {
-            path_to_drawing = chooser.getSelectedFile().getAbsolutePath();
-            if ( !path_to_drawing.endsWith(".png") )
-            {
-                path_to_drawing += ".png";
-            }
-        }
-
-        File dessin = new File(path_to_drawing);
-        BufferedImage tmpSave = new BufferedImage(  1000,
-                                                    1000,
-                                                    BufferedImage.TYPE_3BYTE_BGR);
+            BufferedImage tmpSave = new BufferedImage(  1000,
+                                                        1000,
+                                                        BufferedImage.TYPE_3BYTE_BGR);
      
-        Graphics2D g = (Graphics2D)tmpSave.getGraphics();
-        zd.paint(g);
+            Graphics2D g = (Graphics2D)tmpSave.getGraphics();
+            zd.paint(g);
 
-        BufferedImage final_image = tmpSave.getSubimage(    zd.getEcartHorizontal(), zd.getEcartVertical(),
-                                                            zd.getLargeurDessin(), zd.getHauteurDessin()    );
+            BufferedImage final_image = tmpSave.getSubimage(    zd.getEcartHorizontal(), zd.getEcartVertical(),
+                                                                zd.getLargeurDessin(), zd.getHauteurDessin()    );
 
-        try
-        {
-            ImageIO.write(final_image, "PNG", dessin);
+            try
+            {
+                ImageIO.write(final_image, "PNG", dessin);
+                StockageDonnee.changeImageSave();
+            }
+            catch (Exception e)
+            {
+                System.out.println("zhjrkjzehrjze");
+            }
+        
         }
-        catch (Exception e)
+        else
         {
-            System.out.println("zhjrkjzehrjze");
+            return saveas("");
         }
         
-        System.out.println("done");
         return SUCCESS;
 
     }
@@ -985,9 +978,65 @@ public class Controleur{
      *  Fonction qui sauvegarde dans un dossier donner par l'utilisateur
      *  @return si la fonction s'est bien déroulée
      */
-    public int saveas()
+    public int saveas(String pathname)
     {
-    
+
+        String path_to_drawing = pathname;
+      
+        if ( pathname.equals("") )
+        {
+            JFileChooser chooser = new JFileChooser();
+        
+            /*
+            FileFilter filter = new ExampleFileFilter();
+            filter.addExtension("png");
+            filter.addDescription("Images png");
+            chooser.setFileFilter(filter);
+            */
+        
+            int returnVal = chooser.showSaveDialog(zd);
+            if ( returnVal == JFileChooser.APPROVE_OPTION )
+            {
+                path_to_drawing = chooser.getSelectedFile().getAbsolutePath();
+                if ( !path_to_drawing.endsWith(".png") )
+                {
+                    path_to_drawing += ".png";
+                }
+            }
+
+        }
+        else
+        {
+            /* TODO */
+        }
+
+        File dessin = new File(path_to_drawing);
+
+        if ( !path_to_drawing.equals("") )
+        {
+            BufferedImage tmpSave = new BufferedImage(  1000,
+                                                        1000,
+                                                        BufferedImage.TYPE_3BYTE_BGR);
+     
+            Graphics2D g = (Graphics2D)tmpSave.getGraphics();
+            zd.paint(g);
+
+            BufferedImage final_image = tmpSave.getSubimage(    zd.getEcartHorizontal(), zd.getEcartVertical(),
+                                                                zd.getLargeurDessin(), zd.getHauteurDessin()    );
+
+            try
+            {
+                ImageIO.write(final_image, "PNG", dessin);
+                StockageDonnee.setPathname(path_to_drawing);
+            }
+            catch (Exception e)
+            {
+                System.out.println("zhjrkjzehrjze");
+            }
+        
+            System.out.println("done");
+        }
+            
         return SUCCESS;
 
     }

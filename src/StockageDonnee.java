@@ -12,6 +12,10 @@ public class StockageDonnee
     public static Hashtable<Integer, String> liste_erreurs;
     public static Hashtable<String, String> manuel;
     public static Hashtable<String, Color> liste_couleur;
+    
+    
+    public static String pathname_save = new String("");
+    public static boolean image_save = false;
 
     /**
      *  Fonction qui initialise toutes les collections
@@ -306,7 +310,8 @@ public class StockageDonnee
         {
             liste_commande_entree_correcte.add(s);
         }
-            
+           
+        changeImageSave();
         return true;
     }
 
@@ -363,5 +368,47 @@ public class StockageDonnee
         return manuel.get( commande );
     }
     
+    /**
+     *  Fonction qui ajoute le pathname lors de la sauvegarde
+     *  @param pathname
+     */
+    public static void setPathname(String pathname)
+    {
+        pathname_save = pathname;
+    }
+
+    /**
+     *  Fonction qui renvoie le pathname
+     *  @return pathname
+     */
+    public static String getPathname()
+    {
+        return pathname_save;
+    }
     
+    /**
+     *  Vide le pathname
+     */
+    public static void videPathname()
+    {
+        setPathname("");
+    }
+
+    /**
+     *  Fonction qui change la valeur du boolean
+     */
+    public static void changeImageSave()
+    {
+        image_save = !image_save;
+    }
+
+    /**
+     *  Fonction qui renvoie la valeur de la sauvegarde de l'image
+     *  @return boolean
+     */
+    public static boolean getImageSave()
+    {
+        return image_save;
+    }
+
 }
