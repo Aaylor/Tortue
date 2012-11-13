@@ -60,15 +60,18 @@ public class Controleur{
      *  @param s Commande entrée par l'utilisateur
      *  @return Si la fonction s'est correctement déroulée
      */
-    public boolean commande(String s)
+    public boolean commande(String s, boolean write_in_term)
     {
 
 	    String[] commande_parser;
         s = rework_command(s);
 
 		commande_parser = parse(s);
-        term.addMessage(" > " + s);
-        term.replaceHistorique();
+        if ( write_in_term )
+        {
+            term.addMessage(" > " + s);
+            term.replaceHistorique();
+        }
 
         int numero_renvoie = init(commande_parser);
         return numero_renvoie == 0 ? StockageDonnee.ajoutLCEG(s)
@@ -520,6 +523,8 @@ public class Controleur{
                     else
                         return PARAM_INCORRECTE;
                 }
+
+                return retour;
                 
             case 25:
                 if ( commande_parser.length > 1 )
@@ -1172,7 +1177,7 @@ public class Controleur{
 
             while ( (ligne=br.readLine()) != null )
             {
-                if ( !this.commande(ligne) )
+                if ( !this.commande(ligne, true) )
                 {
                     StockageDonnee.videLCEC();
                     StockageDonnee.videListeDessin();
@@ -1198,9 +1203,39 @@ public class Controleur{
      */
     public int repeat(int nombre_de_commandes, int nombre_de_repetition)
     {
+        String[] commands = new String[nombre_de_commandes];
 
-        System.out.println("value 1 :: " + nombre_de_commandes 
-                + "\nvalue 2 :: " + nombre_de_repetition);
+        if ( nombre_de_commandes > StockageDonnee.getSize_LCEC() )
+        {
+            nombre_de_commandes = StockageDonnee.getSize_LCEC();
+        }
+
+        int i = 0;
+        int debut = StockageDonnee.getSize_LCEC()-nombre_de_commandes; 
+        while ( i < nombre_de_commandes )
+        {
+            commands[i] = StockageDonnee.getLCEC(debut);
+
+            debut++;
+            i++;
+        }
+
+        int j = 1;
+        while ( j <= nombre_de_repetition )
+        {
+
+            i=0;
+            while ( i < commands.length )
+            {
+                commande(commands[i], true);
+                i++;
+            }
+
+            j++;
+
+        }
+
+
         return SUCCESS;
 
     }

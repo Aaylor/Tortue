@@ -155,7 +155,7 @@ public class BarreOutils extends JMenuBar {
 	      public void stateChanged(ChangeEvent event){
 	    	  int r = ((JSlider)event.getSource()).getValue();
 	    	  controleur.commande("setcolor " + r + " " + curseur.getCouleur().getGreen()
-                  + " " + curseur.getCouleur().getBlue());
+                  + " " + curseur.getCouleur().getBlue(), true);
               zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
@@ -175,7 +175,7 @@ public class BarreOutils extends JMenuBar {
 	      public void stateChanged(ChangeEvent event){
 	    	  int g = ((JSlider)event.getSource()).getValue();
               controleur.commande("setcolor " + curseur.getCouleur().getRed() + " " + g
-                  + " " + curseur.getCouleur().getBlue());
+                  + " " + curseur.getCouleur().getBlue(), true);
 	    	  zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
@@ -195,7 +195,7 @@ public class BarreOutils extends JMenuBar {
 	      public void stateChanged(ChangeEvent event){
 	    	  int b = ((JSlider)event.getSource()).getValue(); /* A ENLEVER */
               controleur.commande("setcolor " + curseur.getCouleur().getRed() + " "
-                  + curseur.getCouleur().getGreen() + " " + b);
+                  + curseur.getCouleur().getGreen() + " " + b, true);
 	    	  zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
@@ -249,12 +249,12 @@ public class BarreOutils extends JMenuBar {
 	public void interactionBoutonOutil(){
 		if (curseur.getType() == 0){
 			boutonGomme.setText("Crayon");
-            controleur.commande("eraser");
+            controleur.commande("eraser", true);
 			zoneDessin.repaint();
 		}
 		else{
 			boutonGomme.setText("Gomme");
-            controleur.commande("pencil");
+            controleur.commande("pencil", true);
 			zoneDessin.repaint();
 		}
 	}
@@ -263,12 +263,12 @@ public class BarreOutils extends JMenuBar {
 	public void interactionBoutonPoserOutil(){
 		if (curseur.isDown()){
 			boutonPoserCrayon.setText("Poser l'outil");
-			controleur.commande("penup");
+			controleur.commande("penup", true);
 			zoneDessin.repaint();
 		}
 		else{
 			boutonPoserCrayon.setText("Lever l'outil");
-			controleur.commande("pendown");
+			controleur.commande("pendown", true);
             zoneDessin.repaint();
 		}
 	}

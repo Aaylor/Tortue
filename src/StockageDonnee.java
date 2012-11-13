@@ -279,6 +279,15 @@ public class StockageDonnee
     }
 
     /**
+     *  Fonction renvoyant le traceur selon son numéro
+     *  @return le traceur
+     */
+    public static Traceur getListeDessin(int i)
+    {
+        return liste_dessin.get( i );
+    }
+
+    /**
      *  Fonction ajoutant la commande à la collection correspondante
      *  @param commande Commande entrée par l'utilisateur
      */
@@ -326,6 +335,16 @@ public class StockageDonnee
     }
 
     /**
+     *  Fonction ajoutant la commande à la collection correspondante
+     *  @param Traceur
+     */
+    public static boolean ajoutListeDessin(Traceur t)
+    {
+        liste_dessin.add(t);
+        return true;
+    }
+
+    /**
      *  Fonction vidant la collection correspondante
      */
     public static void videLCEC()
@@ -357,6 +376,15 @@ public class StockageDonnee
     public static int getSize_LCEC()
     {
         return liste_commande_entree_correcte.size();
+    }
+
+    /**
+     *  Fonction renvoyant la taille de la collection
+     *  @return taille
+     */
+    public static int getSize_ListeDessin()
+    {
+        return liste_dessin.size();
     }
 
     /**
