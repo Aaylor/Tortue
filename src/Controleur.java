@@ -820,13 +820,9 @@ public class Controleur{
      */
     public int cursorWidth(int valeur)
     {
-
-        System.out.println("valeur :: " + valeur);
-        
         curseur.setTaille(valeur);
         
         return SUCCESS;
-
     }
 
     /**
