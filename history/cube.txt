@@ -1,0 +1,41 @@
+##################################################
+##################################################
+##             HISTORIQUE GENERE LE             ##
+##              12-11-12_20-42-06               ##
+##################################################
+##################################################
+
+new
+width 400
+height 400
+pendown 
+penup 
+goto 200 200 
+setcolor 0 0 0 
+down 
+pendown 
+penup 
+pendown 
+forward 150 
+rotate 30 
+forward 50 
+forward 50 
+up 
+forward 150 
+goto 200 200 
+rotate 180 
+forward 150 
+down 
+forward 150 
+right 
+forward 150 
+penup 
+pendown 
+penup 
+goto 50 200 
+rotate 30 
+goto 50 200 
+pendown 
+forward 100 
+right 
+forward 150 

@@ -107,7 +107,7 @@ public class Controleur{
         if ( s.indexOf(" ") > 0 )
             i = s.indexOf(" ");
 
-        while ( i+1 < s.length() )
+        while ( (i > 0) && (i+1 < s.length()) )
         {
             if ( (s.charAt(i) == ' ') && (s.charAt(i+1) == ' ') )
                 s = s.substring(0,i) + s.substring(i+1);
@@ -681,10 +681,7 @@ public class Controleur{
      */
     public int rotate(int valeur)
     {
-        /*  TODO
-         *  FAIRE DES TESTS SUR LA VARIABLE valeur
-         */
-    	this.curseur.setOrientation(valeur);
+    	this.curseur.setOrientation(valeur+90);
         this.zd.repaint();
         return SUCCESS;
     }
@@ -862,15 +859,12 @@ public class Controleur{
      */
     public int setBackgroundColor(String bgColor)
     {
-    	System.out.println("couleur :: " + bgColor);
-        
         if(StockageDonnee.liste_couleur.containsKey(bgColor)){
         	Color c = StockageDonnee.liste_couleur.get(bgColor);
         	zd.setBackground(c);
         }
-        
-        return SUCCESS;
 
+        return SUCCESS;
     }
 
     /**
@@ -889,9 +883,7 @@ public class Controleur{
      */
     public int doFigure()
     {
-
         return SUCCESS;
-
     }
 
     /**
@@ -900,13 +892,9 @@ public class Controleur{
      */
     public int width(int valeur)
     {
-    	
-        System.out.println("value :: " + valeur);
-        
         zd.setLargeur(valeur);
         this.zd.repaint();
         return SUCCESS;
-
     }
 
     /**
@@ -915,13 +903,9 @@ public class Controleur{
      */
     public int height(int valeur)
     {
-
-        System.out.println("value :: " + valeur);
-        
         zd.setHauteur(valeur);
         this.zd.repaint();
         return SUCCESS;
-    
     }
 
     /**
@@ -930,9 +914,7 @@ public class Controleur{
      */
     public int newFile()
     {
-
         return SUCCESS;
-
     }
 
     /**
@@ -1152,6 +1134,23 @@ public class Controleur{
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter fSortie = new PrintWriter(bw);
 
+            fSortie.println("##################################################");
+            fSortie.flush();
+            fSortie.println("##################################################");
+            fSortie.flush();
+            fSortie.println("##             HISTORIQUE GENERE LE             ##");
+            fSortie.flush();
+            fSortie.println("##              " + formater.format(date) + "               ##");
+            fSortie.flush();
+            fSortie.println("##################################################");
+            fSortie.flush();
+            fSortie.println("##################################################\n");
+            fSortie.flush();
+
+            fSortie.println("new");
+            fSortie.println("width " + zd.getLargeurDessin());
+            fSortie.println("height " + zd.getHauteurDessin());
+
             for (int i = 0; i < StockageDonnee.getSize_LCEC(); i++)
             {
                 fSortie.println(StockageDonnee.getLCEC(i));
@@ -1171,6 +1170,7 @@ public class Controleur{
 
     /**
      *  Fonction qui lit un fichier et execute les lignes de commandes si celles-ci sont correctes
+     *  @param pathname
      *  @return si la fonction s'est bien déroulée
      */
     public int exec(String pathname)
@@ -1178,40 +1178,50 @@ public class Controleur{
 
         File file_to_exec = new File(pathname);
 
-        /* file_to_exec.exists() */
-
-        try
+        if ( file_to_exec.exists() )
         {
-            InputStream ips = new FileInputStream(file_to_exec);
-            InputStreamReader isr = new InputStreamReader(ips);
-            BufferedReader br = new BufferedReader(isr);
-            String ligne;
-            int i = 1;
-
-            while ( (ligne=br.readLine()) != null )
+            try
             {
-                if ( !this.commande(ligne, true) )
-                {
-                    StockageDonnee.videLCEC();
-                    StockageDonnee.videListeDessin();
-                    StockageDonnee.setParamErreur("ligne " + i);
-                    zd.repaint();
-                    return COMMANDE_ERRONEE;
-                }
-                i++;                
-            }
-        }
-        catch (Exception e)
-        {
-            term.addMessage("   /!\\ LE FICHIER ENTRE EN ARGUMENT NE PEUT ETRE LU");
-        }
+                InputStream ips = new FileInputStream(file_to_exec);
+                InputStreamReader isr = new InputStreamReader(ips);
+                BufferedReader br = new BufferedReader(isr);
+                String ligne;
+                int i = 1;
 
-        return SUCCESS;
+                while ( (ligne=br.readLine()) != null )
+                {
+                    ligne = ligne.trim();
+                    if ( !ligne.startsWith("#") && !ligne.equals("") && !this.commande(ligne, true) )
+                    {
+                        StockageDonnee.videLCEC();
+                        StockageDonnee.videListeDessin();
+                        StockageDonnee.setParamErreur("ligne " + i);
+                        zd.repaint();
+                        return COMMANDE_ERRONEE;
+                    }
+                    i++;                
+                }
+            }
+            catch (Exception e)
+            {
+                term.addMessage("   /!\\ LE FICHIER ENTRE EN ARGUMENT NE PEUT ETRE LU");
+            }
+
+            return SUCCESS;
+
+        }
+        else
+        {
+            return COMMANDE_ERRONEE;
+        }
 
     }
 
     /**
      *  Fonction qui répète les dernières commandes lancés par l'utilisateur
+     *  @param nombre_de_commandes
+     *  @param nombre_de_repetition
+     *  @param debut
      *  @return si la fonction s'est bien déroulée.
      */
     public int repeat(int nombre_de_commandes, int nombre_de_repetition, int debut)
@@ -1229,19 +1239,18 @@ public class Controleur{
         }
 
         int i = 0;
-        int increment = debut-nombre_de_commandes;
-        int in = increment;
+        int position_liste = debut-nombre_de_commandes;
+        int in = position_liste;
         while ( i < nombre_de_commandes )
         {
-            commands[i] = StockageDonnee.getLCEC(increment);
-            increment++;
+            commands[i] = StockageDonnee.getLCEC(position_liste);
+            position_liste++;
             i++;
         }
 
         int j = 1;
         while ( j <= nombre_de_repetition )
         {
-
             i=0;
             while ( i < commands.length )
             {
@@ -1262,20 +1271,16 @@ public class Controleur{
                     }
                     else;
                    
-                    repeat(parse1, parse2, in-i, increment-i);
+                    repeat(parse1, parse2, in-i, position_liste-i);
                 }
                 else
                 {
-                    System.out.println("i : " + i + "\nj : " + j);
                     commande(commands[i], false);
                 }
                 i++;
             }
-
             j++;
-
         }
-
 
         return SUCCESS;
 
@@ -1283,7 +1288,11 @@ public class Controleur{
 
     /**
      *  Fonction qui aide à la répétition
-     * TODO
+     *  @param nombre_de_commandes
+     *  @param nombre_de_repetition
+     *  @param debut
+     *  @param pos
+     *  @return l'entier correspondant à l'erreur
      */
     public int repeat(int nombre_de_commandes, int nombre_de_repetition, int debut, int pos)
     {
@@ -1300,12 +1309,12 @@ public class Controleur{
         }
 
         int i = 0;
-        int increment = pos-nombre_de_commandes;
-        int in = increment;
+        int position_liste = pos-nombre_de_commandes;
+        int in = position_liste;
         while ( i < nombre_de_commandes )
         {
-            commands[i] = StockageDonnee.getLCEC(increment);
-            increment++;
+            commands[i] = StockageDonnee.getLCEC(position_liste);
+            position_liste++;
             i++;
         }
 
@@ -1313,12 +1322,12 @@ public class Controleur{
         while ( j <= nombre_de_repetition )
         {
 
-            i=0;
-            while ( i < commands.length )
+            i=1;
+            while ( i <= commands.length )
             {
-                if ( commands[i].startsWith("repeat") )
+                if ( commands[i-1].startsWith("repeat") )
                 {
-                    String[] s = commands[i].split(" ");
+                    String[] s = commands[i-1].split(" ");
                     int parse1 = 1;
                     int parse2 = 1;
 
@@ -1333,21 +1342,17 @@ public class Controleur{
                     }
                     else;
                    
-                    repeat(parse1, parse2, in-i, increment-i);
+                    repeat(parse1, parse2, in-i, position_liste-i);
                 }
                 else
                 {
-                    System.out.println("i : " + i + "\nj : " + j);
-                    commande(commands[i], false);
+                    commande(commands[i-1], false);
                 }
                 i++;
             }
-
             j++;
-
         }
-
-
+        
         return SUCCESS;
     }
 

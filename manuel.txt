@@ -1,0 +1,141 @@
+############
+## MANUEL ##
+############
+
+pendown :
+    Pose le stylo sur la feuille et permet
+    l'écriture.
+
+penup :
+    Lève le stylo de la feuille et empêche
+    l'écriture.
+
+pencil :
+    Passe en mode stylo, écrivant de la couleur
+    donnée par l'utilisateur.
+
+eraser :
+    Passe en mode gomme, écrivant selon la
+    couleur du fond d'écran de l'utilisateur.
+
+up :
+    Dirige le curseur vers le haut.
+
+down :
+    Dirige le curseur vers le bas.
+
+left :
+    Dirige le curseur vers la gauche.
+
+right :
+    Dirige le curseur vers la droite.
+
+rotate :
+    syntaxe :
+        rotate <angle>
+    Fais une rotation du curseur dans le sens
+    trigonométrique. ( L'angle 0 est ainsi dirigé
+    vers la droite )
+
+forward :
+    syntaxe :
+        forward <int pixel>
+    Fais avancer le curseur de <int pixel> vers
+    l'avant, selon l'angle et la couleur donné
+    par l'utilisateur.
+
+backward :
+    syntaxe :
+        backward <int pixel>
+    Fais reculer le curseur de <int pixel> vers
+    l'avant, selon l'angle et la couleur donné
+    par l'utilisateur.
+    
+goto :
+    syntaxe :
+        goto <int x> <int y>
+    Déplace le curseur vers la position (x,y) donné par
+    l'utilisateur. Si le curseur est posé sur la feuille,
+    dessine un trait entre la position courante et la
+    position (x,y).
+
+cursorwidth :
+    syntaxe :
+        cursorwidth <int epaisseur>
+    Change la largeur du curseur selon l'epaisseur donné
+    par l'utilisateur.
+
+setcolor :
+    syntaxe :
+        setcolor <int r> <int g> <int b>
+        setcolor <color name>
+    Change la couleur du curseur selon, soit du nom de la couleur,
+    soit des valeurs RGB.
+
+setbackgroundcolor :
+    syntaxe :
+        setbackgroundcolor <int r> <int g> <int b>
+        setbackgroundcolor <color name>
+    Change la couleur de l'arrière selon, soit du nom de la couleur,
+    soit des valeurs RGB.
+
+do :
+    /* TODO */
+
+width :
+    syntaxe :
+        width <int largeur>
+    Change la largeur de la zone de dessin.
+
+height :
+    syntaxe :
+        height <int hauteur>
+    Change la hauteur de la zone de dessin.
+
+new :
+    /* TODO */
+
+open :
+    /* TODO */
+
+save :
+    Sauvegarde l'image.
+    Si l'image n'a pas encore été sauvegardé, appelle
+    la fonction saveas.
+
+saveas :
+    syntax :
+        saveas
+        saveas <pathname>
+    Sauvegarde l'image à l'endroit selectionné.
+
+savehistory :
+    syntax :
+        savehistory
+        savehistory <pathname>
+    Sauvegarde l'historique, soit à l'endroit selectionné
+    par l'utilisateur, soit dans le dossier history.
+
+exec :
+    syntax :
+        exec /* TODO */
+        exec <pathname>
+    Execute le script (extension .txt), et dessine
+    selon les commandes de l'historique.
+
+repeat :
+    syntax :
+        repeat
+        repeat <int nombre_de_commandes>
+        repeat <int nombre_de_commandes> <int nombre_de_repetitions>
+    Répètre les N dernières commandes M fois.
+    Si aucun arguments n'es entrée, repète la dernière actions.
+
+clear :
+    Efface le terminal.
+
+man :
+    syntax :
+        man <commande>
+    Affiche le manuel de la commande entrée par l'utilisateur.
+
