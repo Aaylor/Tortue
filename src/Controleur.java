@@ -101,19 +101,10 @@ public class Controleur{
      */
     public String rework_command(String s)
     {
+        String regex = "\\s{2,}";
+        
         s = s.trim();
-
-        int i = 0;
-        if ( s.indexOf(" ") > 0 )
-            i = s.indexOf(" ");
-
-        while ( (i > 0) && (i+1 < s.length()) )
-        {
-            if ( (s.charAt(i) == ' ') && (s.charAt(i+1) == ' ') )
-                s = s.substring(0,i) + s.substring(i+1);
-            else
-                i++;
-        }
+        s = s.replaceAll(regex, " ");
 
         return s;
     }
@@ -1038,27 +1029,30 @@ public class Controleur{
      *  Fonction qui sauvegarde l'historique dans un format .txt
      *  @return si la fonction s'est bien déroulée
      */
-    public int savehistory(String s)
+    public int savehistory(String pathname)
     {
         String format = "yy-MM-yy_H-mm-ss";
         SimpleDateFormat formater = new SimpleDateFormat(format);
         Date date = new java.util.Date();
 
+        File current = new File(System.getProperty("user.dir"));
         File history;
 
-        if ( s.equals("") )
+        if ( pathname.equals("") )
         {
             
             try
             {
-                File folder = new File("../history");
+                File folder = new File(current.getParent() + File.separator + "history");
                 if ( !folder.exists() )
                 {
                     if ( !folder.mkdir() )
                         term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
                 }
                 
-                history = new File("../history/history" + formater.format(date) + ".txt");
+                history = new File(current.getParent()
+                        + File.separator + "history" 
+                        + File.separator + "history" + formater.format(date) + ".txt");
                 
             }
             catch (Exception e)
@@ -1069,58 +1063,43 @@ public class Controleur{
         }
         else
         {
-
-            String[] pathname_split = s.split("/");
-            String pathname;
-            int i = 1;
-            boolean is_a_folder_name = true;
-
-            if ( pathname_split[0].equals("~") )
+            String regex = "(.*)[\\.][tT][xX][tT]$";
+            
+            if ( pathname.matches("^\\~") )
             {
-                pathname = new String("/home/" + System.getProperty("user.name"));
-                i++;
+                pathname = pathname.replaceAll("^\\~", "/home/" + System.getProperty("user.name"));
             }
+
+            if ( pathname.matches(regex) )
+            {
+                history = new File(pathname);
+            } 
             else
-                pathname = pathname_split[0];
-
-            while ( i < pathname_split.length )
             {
-                    
-                pathname += "/" +  pathname_split[i];
-
-                if ( i == pathname_split.length - 1 )
-                {
-                    if ( pathname_split[i].indexOf('.') >= 0 )
-                    {
-                        is_a_folder_name = !pathname_split[i].substring(pathname_split[i].indexOf('.')+1).equals("txt");
-                    }
-                }
-
-                File folder = new File(pathname);
-                if ( is_a_folder_name )
-                {
-                    if ( !folder.exists() )
-                    {
-                        if ( !folder.mkdir() )
-                            term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
-                        else
-                            System.out.println("folder made on pathname[\"" + pathname + "\"]");
-                    }
-                    else
-                        System.out.println("folder with pathname[\"" + pathname + "\"] already exist");
-                }
-
-                i++;
-            }
-
-            if ( is_a_folder_name )
-            {
-                pathname += "/history" + formater.format(date) + ".txt";
+                history = new File(pathname + File.separator
+                        + "history" + formater.format(date) + ".txt");
             }
                 
-            history = new File (pathname);
-            System.out.println(pathname);
+            File tmp = new File(new File(pathname).getParent());
 
+            try
+            {
+                if ( !tmp.exists() )
+                {
+                    try
+                    {
+                        tmp.mkdirs();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println("peut pas creer");
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("peut pas accéder");
+            }
         }
         
         try
@@ -1134,9 +1113,9 @@ public class Controleur{
             fSortie.flush();
             fSortie.println("##################################################");
             fSortie.flush();
-            fSortie.println("##             HISTORIQUE GENERE LE             ##");
+            fSortie.println("##\t\tHISTORIQUE GENERE LE\t\t##");
             fSortie.flush();
-            fSortie.println("##              " + formater.format(date) + "               ##");
+            fSortie.println("##\t\t" + formater.format(date) + "\t\t##");
             fSortie.flush();
             fSortie.println("##################################################");
             fSortie.flush();
