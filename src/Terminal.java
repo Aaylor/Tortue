@@ -87,13 +87,15 @@ public class Terminal extends JPanel implements KeyListener{
             ArrayList<String> proposition_completion = auto_completion( this.champ_de_commande.getText().trim() );
 
             if ( proposition_completion.size() == 1 )
+            {
                 this.champ_de_commande.setText(proposition_completion.get(0));
+            }
             else if ( proposition_completion.size() > 1 )
             {
-                String display_proposition = "\n > " + this.champ_de_commande.getText() + "\n";
+                String display_proposition = " > " + this.champ_de_commande.getText() + "\n";
                 for ( int i = 0; i < proposition_completion.size(); i++)
                     display_proposition += "  " + proposition_completion.get(i);
-                Terminal.historique.append(display_proposition);
+                this.addMessage(display_proposition);
             }
             else;
 
@@ -184,7 +186,8 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public void addMessage(String message)
     {
-        this.historique.append("\n" + message);
+        Terminal.historique.append("\n" + message);
+        this.replaceHistorique();
     }
 
     /**

@@ -70,7 +70,6 @@ public class Controleur{
         if ( write )
         {
             term.addMessage(" > " + s);
-            term.replaceHistorique();
             StockageDonnee.ajoutLCEG(s);
         }
 
