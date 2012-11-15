@@ -991,15 +991,47 @@ public class Controleur{
         }
         else
         {
-            /* TODO */
+            String regex = "(.*)[\\.]([pP][nN][gG]|[jJ][pP][gG]|[gG][iI][fF])";
+            
+            if ( path_to_drawing.matches("^\\~"));
+            {
+                path_to_drawing = path_to_drawing.replaceAll("^\\~", "/home/" + System.getProperty("user.name"));
+            }
+
+            if ( !path_to_drawing.matches(regex) )
+            {
+                path_to_drawing += File.separator + "save" + getCurDate() + ".png";    
+            }
+
+            File tmp = new File(path_to_drawing).getParentFile();
+            
+            try
+            {
+                if ( !tmp.exists() )
+                {
+                    try
+                    {
+                        tmp.mkdirs();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println("peut pas creer");
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.println("peut pas accéder");
+            }
         }
 
         File dessin = new File(path_to_drawing);
+        System.out.println(path_to_drawing);
 
         if ( !path_to_drawing.equals("") )
         {
-            BufferedImage tmpSave = new BufferedImage(  1000,
-                                                        1000,
+            BufferedImage tmpSave = new BufferedImage(  2000,
+                                                        2000,
                                                         BufferedImage.TYPE_3BYTE_BGR);
      
             Graphics2D g = (Graphics2D)tmpSave.getGraphics();
@@ -1010,17 +1042,16 @@ public class Controleur{
 
             try
             {
-                ImageIO.write(final_image, "PNG", dessin);
+                ImageIO.write(final_image, path_to_drawing.substring(path_to_drawing.lastIndexOf(".")+1).toUpperCase(), dessin);
                 StockageDonnee.setPathname(path_to_drawing);
             }
             catch (Exception e)
             {
                 System.out.println("zhjrkjzehrjze");
             }
-        
-            System.out.println("done");
         }
-            
+           
+        StockageDonnee.changeImageSave();
         return SUCCESS;
 
     }
@@ -1031,9 +1062,6 @@ public class Controleur{
      */
     public int savehistory(String pathname)
     {
-        String format = "yy-MM-yy_H-mm-ss";
-        SimpleDateFormat formater = new SimpleDateFormat(format);
-        Date date = new java.util.Date();
 
         File current = new File(System.getProperty("user.dir"));
         File history;
@@ -1052,7 +1080,7 @@ public class Controleur{
                 
                 history = new File(current.getParent()
                         + File.separator + "history" 
-                        + File.separator + "history" + formater.format(date) + ".txt");
+                        + File.separator + "history" + getCurDate() + ".txt");
                 
             }
             catch (Exception e)
@@ -1077,7 +1105,7 @@ public class Controleur{
             else
             {
                 history = new File(pathname + File.separator
-                        + "history" + formater.format(date) + ".txt");
+                        + "history" + getCurDate() + ".txt");
             }
                 
             File tmp = new File(new File(pathname).getParent());
@@ -1115,7 +1143,7 @@ public class Controleur{
             fSortie.flush();
             fSortie.println("##\t\tHISTORIQUE GENERE LE\t\t##");
             fSortie.flush();
-            fSortie.println("##\t\t" + formater.format(date) + "\t\t##");
+            fSortie.println("##\t\t" + getCurDate() + "\t\t##");
             fSortie.flush();
             fSortie.println("##################################################");
             fSortie.flush();
@@ -1419,5 +1447,14 @@ public class Controleur{
         return true;
     }
 
+    public String getCurDate()
+    {
+        String format = "yy-MM-yy_H-mm-ss";
+        SimpleDateFormat formater = new SimpleDateFormat(format);
+        Date date = new java.util.Date();
+
+        return formater.format(date);
+    }
+ 
 
 }
