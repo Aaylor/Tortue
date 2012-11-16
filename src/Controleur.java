@@ -71,7 +71,7 @@ public class Controleur{
             if ( (commande_parser[0].equalsIgnoreCase("setcolor") || commande_parser[0].equalsIgnoreCase("cursorwidth")) 
                     && StockageDonnee.lastCommande().equalsIgnoreCase(commande_parser[0]) )
             {
-                term.remplace(s, Terminal.historique.getText().lastIndexOf(commande_parser[0]));  
+                term.remplace(s, Terminal.historique.getText().toLowerCase().lastIndexOf(commande_parser[0].toLowerCase()));  
             }
             else
             {

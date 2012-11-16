@@ -136,7 +136,7 @@ public class BarreOutils extends JMenuBar {
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  curseur.setEpaisseur(((JSlider)event.getSource()).getValue());/*A ENLEVER PAR LA SUITE*/
-	    	  controleur.commande("cursorWidth " + ((JSlider)event.getSource()).getValue(), true);
+	    	  controleur.commande("cursorwidth " + ((JSlider)event.getSource()).getValue(), true);
 	    	  zoneDessin.repaint();
 	      }
 	    });
@@ -275,7 +275,7 @@ public class BarreOutils extends JMenuBar {
 	
 	public void interactionSliderEpaisseur(int v){
 		slider.setValue(slider.getValue() + v); /*A ENLEVER PAR LA SUITE*/
-		controleur.commande("cursorWidth " + slider.getValue(), true);
+		controleur.commande("cursorwidth " + slider.getValue(), true);
 		zoneDessin.repaint();
 	}
 	
