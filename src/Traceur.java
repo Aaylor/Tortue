@@ -45,7 +45,7 @@ public class Traceur extends JPanel{
 	public int getY3(){ return this.y3; }
 	public int getHauteur(){ return this.hauteur; }
 	public int getLargeur(){ return this.largeur; }
-	public boolean estRempli(){ return this.estRempli();}
+	public boolean estRempli(){ return this.estRempli;}
 	public int getForme(){ return this.forme; }
 	
 	
@@ -85,7 +85,7 @@ public class Traceur extends JPanel{
 		this.x3=x;
 	}
 	public void setY3(int y){
-		this.x3=y;
+		this.y3=y;
 	}
 	public void estRempli(boolean estRempli){
 		this.estRempli=estRempli;
