@@ -295,15 +295,15 @@ public class StockageDonnee
     {
 
         String s = "";
-        for (int i = 0; i < commande.length; i++)
+        for (String cmd : commande)
         {
-            s += commande[i] + " ";
+            s += cmd + " ";
         }
 
         if ( verifLastCommand && getSize_LCEC() > 0)
         {
             String last_command = getLCEC(getSize_LCEC()-1);
-            if ( last_command.indexOf(" ") >= 0 )
+            if ( last_command.contains(" ") )
                 last_command = last_command.substring(0,last_command.indexOf(" "));
 
             if ( commande[0].toLowerCase().equals(last_command) )
@@ -336,7 +336,7 @@ public class StockageDonnee
 
     /**
      *  Fonction ajoutant la commande à la collection correspondante
-     *  @param Traceur
+     *  @param Traceur Traceur à ajouter.
      */
     public static boolean ajoutListeDessin(Traceur t)
     {
@@ -398,7 +398,7 @@ public class StockageDonnee
     
     /**
      *  Fonction qui ajoute le pathname lors de la sauvegarde
-     *  @param pathname
+     *  @param pathname Chemin.
      */
     public static void setPathname(String pathname)
     {

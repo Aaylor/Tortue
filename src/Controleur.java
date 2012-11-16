@@ -11,25 +11,25 @@ import javax.imageio.ImageIO;
 
 public class Controleur{
 
-    public static final int SUCCESS = 0;
-    public static final int COMMANDE_ERRONEE = 100;
-    public static final int NOMBRE_PARAM_LESS = 200; 
-    public static final int NOMBRE_PARAM_SUP = 201;
-    public static final int PARAM_INCORRECTE = 202;
+    private static final int SUCCESS = 0;
+    private static final int COMMANDE_ERRONEE = 100;
+    private static final int NOMBRE_PARAM_LESS = 200; 
+    private static final int NOMBRE_PARAM_SUP = 201;
+    private static final int PARAM_INCORRECTE = 202;
     /* 
      * TODO
      * mettre en constante les autres erreurs
      */
     
-    public Terminal term = null;
-    public ZoneDessin zd = null;
-    public BarreOutils zb = null;
-    public Curseur curseur = null;
+    private Terminal term = null;
+    private ZoneDessin zd = null;
+    private BarreOutils zb = null;
+    private Curseur curseur = null;
 
     /**
      *  Constructeur vide
      */
-    public Controleur(){};
+    public Controleur(){}
 
 
     /**
@@ -1181,7 +1181,7 @@ public class Controleur{
 
     /**
      *  Fonction qui lit un fichier et execute les lignes de commandes si celles-ci sont correctes
-     *  @param pathname
+     *  @param pathname Chemin du fichier
      *  @return si la fonction s'est bien déroulée
      */
     public int exec(String pathname)
@@ -1230,9 +1230,9 @@ public class Controleur{
 
     /**
      *  Fonction qui répète les dernières commandes lancés par l'utilisateur
-     *  @param nombre_de_commandes
-     *  @param nombre_de_repetition
-     *  @param debut
+     *  @param nombre_de_commandes Nombres de commandes
+     *  @param nombre_de_repetition Nombres de répétitions
+     *  @param debut Permet de déterminer où se trouve le début des fonctions à répéter
      *  @return si la fonction s'est bien déroulée.
      */
     public int repeat(int nombre_de_commandes, int nombre_de_repetition, int debut)
@@ -1299,10 +1299,10 @@ public class Controleur{
 
     /**
      *  Fonction qui aide à la répétition
-     *  @param nombre_de_commandes
-     *  @param nombre_de_repetition
-     *  @param debut
-     *  @param pos
+     *  @param nombre_de_commandes Nombres de commandes
+     *  @param nombre_de_repetition Nombres de répétitions
+     *  @param debut Permet de déterminer où se trouves les premières fonctions à répéter
+     *  @param pos Position de la fonction repeat dans le tableau
      *  @return l'entier correspondant à l'erreur
      */
     public int repeat(int nombre_de_commandes, int nombre_de_repetition, int debut, int pos)

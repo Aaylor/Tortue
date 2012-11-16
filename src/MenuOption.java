@@ -451,57 +451,57 @@ public class MenuOption extends JDialog{
 				}
 				
 				if(couleur.equals("Noir")){
-					tabValeurs[i + 0] = 0;
+					tabValeurs[i    ] = 0;
 					tabValeurs[i + 1] = 0;
 					tabValeurs[i + 2] = 0;
 				}
 				if(couleur.equals("Bleu")){
-					tabValeurs[i + 0] = 0;
+					tabValeurs[i    ] = 0;
 					tabValeurs[i + 1] = 0;
 					tabValeurs[i + 2] = 255;
 				}
 				if(couleur.equals("Cyan")){
-					tabValeurs[i + 0] = 0;
+					tabValeurs[i    ] = 0;
 					tabValeurs[i + 1] = 255;
 					tabValeurs[i + 2] = 255;
 				}
 				if(couleur.equals("Gris")){
-					tabValeurs[i + 0] = 166;
+					tabValeurs[i    ] = 166;
 					tabValeurs[i + 1] = 166;
 					tabValeurs[i + 2] = 166;
 				}
 				if(couleur.equals("Vert")){
-					tabValeurs[i + 0] = 0;
+					tabValeurs[i    ] = 0;
 					tabValeurs[i + 1] = 255;
 					tabValeurs[i + 2] = 0;
 				}
 				if(couleur.equals("Magenta")){
-					tabValeurs[i + 0] = 255;
+					tabValeurs[i    ] = 255;
 					tabValeurs[i + 1] = 0;
 					tabValeurs[i + 2] = 255;
 				}
 				if(couleur.equals("Orange")){
-					tabValeurs[i + 0] = 255;
+					tabValeurs[i    ] = 255;
 					tabValeurs[i + 1] = 127;
 					tabValeurs[i + 2] = 0;
 				}
 				if(couleur.equals("Rose")){
-					tabValeurs[i + 0] = 255;
+					tabValeurs[i    ] = 255;
 					tabValeurs[i + 1] = 0;
 					tabValeurs[i + 2] = 127;
 				}
 				if(couleur.equals("Rouge")){
-					tabValeurs[i + 0] = 255;
+					tabValeurs[i    ] = 255;
 					tabValeurs[i + 1] = 0;
 					tabValeurs[i + 2] = 0;
 				}
 				if(couleur.equals("Jaune")){
-					tabValeurs[i + 0] = 255;
+					tabValeurs[i    ] = 255;
 					tabValeurs[i + 1] = 255;
 					tabValeurs[i + 2] = 102;
 				}
 				if(couleur.equals("Blanc")){
-					tabValeurs[i + 0] = 255;
+					tabValeurs[i    ] = 255;
 					tabValeurs[i + 1] = 255;
 					tabValeurs[i + 2] = 255;
 				}

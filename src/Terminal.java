@@ -9,12 +9,11 @@ import java.util.Enumeration;
 @SuppressWarnings("serial")
 public class Terminal extends JPanel implements KeyListener{
 
-    public static JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
+    private static JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
     private static JScrollPane scroll_pane = new JScrollPane(historique, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     
     private Controleur controleur;
     private int compteur_commandes = -1;
-    private String message_erreur = "";
     private JTextField champ_de_commande;
 
     /**
@@ -37,7 +36,7 @@ public class Terminal extends JPanel implements KeyListener{
 
     /**
      *  Evenement lors de la pression des touches
-     *  @param keyEvent
+     *  @param keyEvent Event.
      */
     public void keyPressed(KeyEvent keyEvent)
     {
@@ -92,8 +91,14 @@ public class Terminal extends JPanel implements KeyListener{
             else if ( proposition_completion.size() > 1 )
             {
                 String display_proposition = " > " + this.champ_de_commande.getText() + "\n";
-                for ( int i = 0; i < proposition_completion.size(); i++)
+               /* for ( int i = 0; i < proposition_completion.size(); i++)
                     display_proposition += "  " + proposition_completion.get(i);
+                */
+                for ( String proposition : proposition_completion )
+                {
+                    display_proposition += "  " + proposition;
+                }
+                
                 this.addMessage(display_proposition);
             }
             else;
@@ -106,7 +111,7 @@ public class Terminal extends JPanel implements KeyListener{
 
     /**
      *  (IGNORE)
-     *  @param keyEvent
+     *  @param keyEvent Event.
      */
     public void keyReleased(KeyEvent keyEvent)
     {
@@ -115,7 +120,7 @@ public class Terminal extends JPanel implements KeyListener{
 
     /**
      *  (IGNORE)
-     *  @param keyEvent
+     *  @param keyEvent Event.
      */
     public void keyTyped(KeyEvent keyEvent)
     {
@@ -181,7 +186,7 @@ public class Terminal extends JPanel implements KeyListener{
 
     /**
      *  Ajoute un message sur l'historique
-     *  @param message
+     *  @param message Message à ajouter.
      */
     public void addMessage(String message)
     {
@@ -216,7 +221,7 @@ public class Terminal extends JPanel implements KeyListener{
 
     /**
      *  Retoune la position de la chaîne de caractère donnée
-     *  @param s
+     *  @param s String à rechercher.
      *  @return Index
      */
     public int getLastIndexOf(String s)
