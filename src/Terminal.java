@@ -221,7 +221,8 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public int getLastIndexOf(String s)
     {
-        return s.lastIndexOf(s);
+        String term_text = historique.getText().toLowerCase();
+        return term_text.lastIndexOf(s.toLowerCase());
     }
 
     /**
