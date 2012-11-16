@@ -9,7 +9,7 @@ import java.util.Enumeration;
 @SuppressWarnings("serial")
 public class Terminal extends JPanel implements KeyListener{
 
-    private static JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
+    public static JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
     private static JScrollPane scroll_pane = new JScrollPane(historique, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     
     private Controleur controleur;
@@ -47,7 +47,6 @@ public class Terminal extends JPanel implements KeyListener{
             controleur.commande(this.champ_de_commande.getText(), true);
             
             this.champ_de_commande.setText("");
-            this.compteur_commandes = StockageDonnee.getSize_LCEG();
         }
 
         else if ( keyEvent.getKeyCode() == KeyEvent.VK_UP)
@@ -199,12 +198,40 @@ public class Terminal extends JPanel implements KeyListener{
     }
 
     /**
+     *  Replace le compteur à l'endroit initial pour les touches UP \& DOWN
+     */
+    public void replaceCompteur()
+    {
+        this.compteur_commandes = StockageDonnee.getSize_LCEG();
+    }
+
+    /**
      *  Supprime l'affichage courant de l'historique (mais garde en
-     *  mémoire les commandes.
+     *  mémoire les commandes).
      */
     public void clear()
     {
         Terminal.historique.setText("");
+    }
+
+    /**
+     *  Retoune la position de la chaîne de caractère donnée
+     *  @param s
+     *  @return Index
+     */
+    public int getLastIndexOf(String s)
+    {
+        return s.lastIndexOf(s);
+    }
+
+    /**
+     *  Remplace par une chaîne de caractère, à la position donnée, dans l'historique du terminal
+     *  @param remplacement Chaîne de caractère qui va remplacer l'ancienne
+     *  @param pos Position a partir de laquelle elle va changer
+     */
+    public void remplace(String remplacement, int pos)
+    {
+        Terminal.historique.replaceRange(remplacement, pos, Terminal.historique.getText().length());
     }
 
 }

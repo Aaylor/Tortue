@@ -439,4 +439,23 @@ public class StockageDonnee
         return image_save;
     }
 
+    /**
+     *  Fonction renvoyant la dernière commande entrée
+     *  @return la dernière commande
+     */
+    public static String lastCommande()
+    {
+        if ( getSize_LCEC() > 0 )
+        {
+            String s = getLCEC(getSize_LCEC()-1);
+            if ( s.indexOf(" ") > 0 )
+            {
+                s = s.substring(0, s.indexOf(" "));
+            }
+
+            return s;
+        }
+        return "";
+    }
+
 }

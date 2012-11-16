@@ -16,7 +16,6 @@ public class Controleur{
     public static final int NOMBRE_PARAM_LESS = 200; 
     public static final int NOMBRE_PARAM_SUP = 201;
     public static final int PARAM_INCORRECTE = 202;
-    public static final int HISTO_ALREADY_SAVE = 900;
     /* 
      * TODO
      * mettre en constante les autres erreurs
@@ -69,7 +68,15 @@ public class Controleur{
 		commande_parser = parse(s);
         if ( write )
         {
-            term.addMessage(" > " + s);
+            if ( (commande_parser[0].equalsIgnoreCase("setcolor") || commande_parser[0].equalsIgnoreCase("cursorwidth")) 
+                    && StockageDonnee.lastCommande().equalsIgnoreCase(commande_parser[0]) )
+            {
+                term.remplace(s, Terminal.historique.getText().lastIndexOf(commande_parser[0]));  
+            }
+            else
+            {
+                term.addMessage(" > " + s);
+            }
             StockageDonnee.ajoutLCEG(s);
         }
 
@@ -79,6 +86,7 @@ public class Controleur{
             this.setMessageErreur(numero_renvoie);
         }
 
+        term.replaceCompteur();
         return true;
 
     }
@@ -325,6 +333,7 @@ public class Controleur{
                 else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
                     return NOMBRE_PARAM_LESS;
                 else;
+        
 
                 if ( commande_parser.length == 2 )
                 {
