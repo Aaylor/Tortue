@@ -1,11 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
@@ -29,7 +32,7 @@ public class Fenetre extends JFrame{
 			this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setMinimumSize(new Dimension(1024, 600));
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setIconImage(new ImageIcon("../img/icone.png" ).getImage());
 		
 		//Ajout de la barre de menu
@@ -60,6 +63,14 @@ public class Fenetre extends JFrame{
 		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
 		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, 10000));
 		
+		
+		//Definissons l'action lors du clic sur la croix rouge
+		WindowListener exitListener = new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                barreMenu.quitter();
+            }
+        };
+        this.addWindowListener(exitListener);
 	}
 	
     /**
