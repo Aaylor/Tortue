@@ -22,7 +22,7 @@ public class BarreOutils extends JMenuBar {
     private JToggleButton boutonPoserCrayon;
     private JToggleButton boutonGomme;
     private JToggleButton boutonForme;
-    private JSlider slider;
+    private JSlider sliderEpaisseur;
     private JSlider sliderRed;
     private JSlider sliderGreen;
     private JSlider sliderBlue;
@@ -37,7 +37,7 @@ public class BarreOutils extends JMenuBar {
 		boutonPoserCrayon = boutonPoserCrayon();
 		boutonGomme = boutonGomme();
 		boutonForme = boutonForme();
-		slider = slider();
+		sliderEpaisseur = sliderEpaisseur();
 		sliderRed = sliderRed();
 		sliderBlue = sliderBlue();
 		sliderGreen = sliderGreen();
@@ -58,7 +58,14 @@ public class BarreOutils extends JMenuBar {
 		panOutils.add(boutonGomme);
 		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
 		panOutils.add(boutonForme);
-		panOutils.add(slider);
+		
+		JPanel panSliderEpaisseur = new JPanel();
+		panSliderEpaisseur.setLayout(new BoxLayout(panSliderEpaisseur, BoxLayout.PAGE_AXIS));
+		JLabel labEpaisseur = new JLabel("Epaisseur");
+		panSliderEpaisseur.add(labEpaisseur);
+		panSliderEpaisseur.add(sliderEpaisseur);
+		panOutils.add(panSliderEpaisseur);
+		
 		
 		JPanel panCurseur = new JPanel();
 		panCurseur.setLayout(new BoxLayout(panCurseur, BoxLayout.LINE_AXIS));
@@ -122,7 +129,7 @@ public class BarreOutils extends JMenuBar {
         
     }
     
-	public JSlider slider(){
+	public JSlider sliderEpaisseur(){
 		JSlider slider = new JSlider();
 		   
 	    slider.setMaximum(100);
@@ -280,8 +287,8 @@ public class BarreOutils extends JMenuBar {
 	}
 	
 	public void interactionSliderEpaisseur(int v){
-		slider.setValue(slider.getValue() + v);
-		controleur.commande("cursorwidth " + slider.getValue(), true);
+		sliderEpaisseur.setValue(sliderEpaisseur.getValue() + v);
+		controleur.commande("cursorwidth " + sliderEpaisseur.getValue(), true);
 		zoneDessin.repaint();
 	}
 	
