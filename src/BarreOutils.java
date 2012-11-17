@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -207,11 +207,14 @@ public class BarreOutils extends JMenuBar {
 	  * Fonction renvoyant le Bouton Lever/Poser le Crayon
 	  */
 	public JToggleButton boutonPoserCrayon(){
-		JToggleButton bouton = new JToggleButton();
-		//Texte contenu dans le bouton
-		bouton.setText("Poser le crayon");
-		if (curseur.isDown()) bouton.isSelected();
+		ImageIcon icon = new ImageIcon("img/crayon_pose.png");
+		JToggleButton bouton = new JToggleButton(icon);
+		bouton.setToolTipText("Poser l'outil");
+		bouton.setPreferredSize(new Dimension(40,40));
+		bouton.setMaximumSize(new Dimension(40,40));
+		bouton.setMinimumSize(new Dimension(40,40));
 		
+		if (curseur.isDown()) bouton.isSelected();
 		//Return du bouton
 		return bouton;
 	}
@@ -220,9 +223,13 @@ public class BarreOutils extends JMenuBar {
 	  * Fonction renvoyant le Bouton Crayon/Gomme
 	  */
 	public JToggleButton boutonGomme(){
-		JToggleButton bouton = new JToggleButton();
-		//Texte contenu dans le bouton
-		bouton.setText("Gomme");
+		ImageIcon icon = new ImageIcon("img/gomme.png");
+		JToggleButton bouton = new JToggleButton(icon);
+		bouton.setToolTipText("Utiliser la gomme");
+		bouton.setPreferredSize(new Dimension(40,40));
+		bouton.setMaximumSize(new Dimension(40,40));
+		bouton.setMinimumSize(new Dimension(40,40));
+		
 		if (curseur.getType() == 1) bouton.isSelected();
 		
 		//Return du bouton
@@ -233,9 +240,13 @@ public class BarreOutils extends JMenuBar {
 	  * Fonction renvoyant le Bouton Forme Rond/Carre
 	  */
 	public JToggleButton boutonForme(){
-		JToggleButton bouton = new JToggleButton();
-		//Texte contenu dans le bouton
-		bouton.setText("Carré");
+		ImageIcon icon = new ImageIcon("img/forme_carre.png");
+		JToggleButton bouton = new JToggleButton(icon);
+		bouton.setToolTipText("Utiliser une forme carré");
+		bouton.setPreferredSize(new Dimension(40,40));
+		bouton.setMaximumSize(new Dimension(40,40));
+		bouton.setMinimumSize(new Dimension(40,40));
+		
 		if (curseur.getForme() == 1) bouton.isSelected();
 		
 		//Return du bouton
