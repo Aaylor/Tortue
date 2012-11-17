@@ -47,8 +47,11 @@ public class BarreOutils extends JMenuBar {
 		vignetteCouleur.setMaximumSize(new Dimension(20, 20));
 		
 		//Ajout des boutons		
+		
 		JPanel panPrincipal = new JPanel();
 		panPrincipal.setLayout(new BoxLayout(panPrincipal, BoxLayout.PAGE_AXIS));
+		
+		//Premiere ligne de la partie d'outils
 		
 		JPanel panOutils = new JPanel();
 		panOutils.setLayout(new BoxLayout(panOutils, BoxLayout.LINE_AXIS));
@@ -65,6 +68,10 @@ public class BarreOutils extends JMenuBar {
 		panSliderEpaisseur.add(labEpaisseur);
 		panSliderEpaisseur.add(sliderEpaisseur);
 		panOutils.add(panSliderEpaisseur);
+		
+		//panOutils.setPreferredSize(new Dimension(this.getWidth(), 55));
+		
+		//Seconde ligne de la partie d'outils
 		
 		
 		JPanel panCurseur = new JPanel();
