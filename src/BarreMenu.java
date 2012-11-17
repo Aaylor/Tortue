@@ -10,6 +10,8 @@ public class BarreMenu extends JMenuBar{
 	//JMenu "Fichier"
 	JMenu menuFichier = new JMenu("Fichier");
 	JMenuItem nouveau = new JMenuItem("Nouveau");
+	JMenuItem ouvrirImage = new JMenuItem("Ouvrir une image");
+	JMenuItem ouvrirHistorique = new JMenuItem("Ouvrir un historique");
 	JMenuItem enregistrerImage = new JMenuItem("Enregistrer l'image");
     JMenuItem enregistrerHistorique = new JMenuItem("Enregistrer l'historique");
     JMenuItem quitter = new JMenuItem("Quitter");
@@ -28,6 +30,8 @@ public class BarreMenu extends JMenuBar{
 		//Menu "Fichier"
 		this.add(menuFichier);
 		menuFichier.add(nouveau);
+		menuFichier.add(ouvrirImage);
+		menuFichier.add(ouvrirHistorique);
         menuFichier.add(enregistrerImage);
         menuFichier.add(enregistrerHistorique);
 		menuFichier.add(quitter);
@@ -42,6 +46,16 @@ public class BarreMenu extends JMenuBar{
 		nouveau.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				nouveau();
+			}
+		});
+		ouvrirImage.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				ouvrirImage();
+			}
+		});
+		ouvrirHistorique.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				ouvrirHistorique();
 			}
 		});
 		enregistrerImage.addActionListener(new ActionListener(){
@@ -73,12 +87,21 @@ public class BarreMenu extends JMenuBar{
 		
 	}
 	
-	public void nouveau(){}
-	
-	public void enregistrerImage(){}
+	public void nouveau(){
+		controleur.commande("new", true);
+	}
+	public void ouvrirImage(){
+		controleur.commande("openImage", true);
+	}
+	public void ouvrirHistorique(){
+		controleur.commande("openHistory", true);
+	}	
+	public void enregistrerImage(){
+		controleur.commande("save", true);
+	}
 	
 	public void enregistrerHistorique(){
-	
+		controleur.commande("saveHistory", true);
 	}
 	
 	public void quitter(){
