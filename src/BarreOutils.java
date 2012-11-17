@@ -228,7 +228,8 @@ public class BarreOutils extends JMenuBar {
 		bouton.setMaximumSize(new Dimension(40,40));
 		bouton.setMinimumSize(new Dimension(40,40));
 		
-		if (curseur.isDown()) bouton.isSelected();
+		if (curseur.isDown()) bouton.setSelected(true);
+		else bouton.setSelected(false);
 		//Return du bouton
 		return bouton;
 	}
@@ -244,7 +245,7 @@ public class BarreOutils extends JMenuBar {
 		bouton.setMaximumSize(new Dimension(40,40));
 		bouton.setMinimumSize(new Dimension(40,40));
 		
-		if (curseur.getType() == 1) bouton.isSelected();
+		if (curseur.getType() == 1) bouton.setSelected(true);
 		
 		//Return du bouton
 		return bouton;
@@ -280,6 +281,8 @@ public class BarreOutils extends JMenuBar {
             controleur.commande("pencil", true);
 			zoneDessin.repaint();
 		}
+		if (curseur.getType() == 1) boutonGomme.setSelected(true);
+ 		else boutonGomme.setSelected(false);
 	}
 	
 	public void interactionBoutonPoserOutil(){
@@ -291,6 +294,8 @@ public class BarreOutils extends JMenuBar {
 			controleur.commande("pendown", true);
             zoneDessin.repaint();
 		}
+		if (curseur.isDown()) boutonPoserCrayon.setSelected(true);
+ 		else boutonPoserCrayon.setSelected(false);
 	}
 	
 	public void interactionSliderEpaisseur(int v){
