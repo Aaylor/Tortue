@@ -96,5 +96,7 @@ public class Fenetre extends JFrame{
         return this.barreOutils;
     }
 
-
+    public BarreMenu getBarreMenu(){
+    	return this.barreMenu;
+    }
 }

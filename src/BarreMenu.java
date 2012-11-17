@@ -5,11 +5,13 @@ import java.awt.event.ActionListener;
 
 @SuppressWarnings("serial")
 public class BarreMenu extends JMenuBar{
+	
+	private Controleur controleur;
 	//JMenu "Fichier"
 	JMenu menuFichier = new JMenu("Fichier");
 	JMenuItem nouveau = new JMenuItem("Nouveau");
-	JMenuItem enregistrer = new JMenuItem("Enregistrer");
-    JMenuItem enregistrerSous = new JMenuItem("Enregistrer sous");
+	JMenuItem enregistrerImage = new JMenuItem("Enregistrer l'image");
+    JMenuItem enregistrerHistorique = new JMenuItem("Enregistrer l'historique");
     JMenuItem quitter = new JMenuItem("Quitter");
     
     //JMenu "Outils"
@@ -26,8 +28,8 @@ public class BarreMenu extends JMenuBar{
 		//Menu "Fichier"
 		this.add(menuFichier);
 		menuFichier.add(nouveau);
-        menuFichier.add(enregistrer);
-        menuFichier.add(enregistrerSous);
+        menuFichier.add(enregistrerImage);
+        menuFichier.add(enregistrerHistorique);
 		menuFichier.add(quitter);
 		
 		//Menu "Outils"
@@ -42,14 +44,14 @@ public class BarreMenu extends JMenuBar{
 				nouveau();
 			}
 		});
-		enregistrer.addActionListener(new ActionListener(){
+		enregistrerImage.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				enregistrer();
+				enregistrerImage();
 			}
 		});
-		enregistrerSous.addActionListener(new ActionListener(){
+		enregistrerHistorique.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				enregistrerSous();
+				enregistrerHistorique();
 			}
 		});
 		quitter.addActionListener(new ActionListener(){
@@ -73,9 +75,11 @@ public class BarreMenu extends JMenuBar{
 	
 	public void nouveau(){}
 	
-	public void enregistrer(){}
+	public void enregistrerImage(){}
 	
-	public void enregistrerSous(){}
+	public void enregistrerHistorique(){
+	
+	}
 	
 	public void quitter(){
 
@@ -85,7 +89,7 @@ public class BarreMenu extends JMenuBar{
 		JOptionPane quitter = new JOptionPane();
 		int option = quitter.showConfirmDialog(null, "Voulez vous sauvegarder votre travail avant de fermer le programme ?", "Sauvegarder", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 		if (option == JOptionPane.OK_OPTION){
-			enregistrer();
+			enregistrerHistorique();
 			System.exit(0);
 		}
 		if (option == JOptionPane.NO_OPTION){
@@ -108,4 +112,13 @@ public class BarreMenu extends JMenuBar{
 
 	public void options(){}
 	
+	
+    /**
+     *  Modifieur du controleur
+     *  @param c nouveau controleur
+     */
+    public void setControleur(Controleur c)
+    {
+        this.controleur = c;
+    } 
 }
