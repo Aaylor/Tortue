@@ -888,6 +888,7 @@ public class Controleur{
     public int width(int valeur)
     {
         zd.setLargeur(valeur);
+        zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
         this.zd.repaint();
         return SUCCESS;
     }
@@ -899,6 +900,7 @@ public class Controleur{
     public int height(int valeur)
     {
         zd.setHauteur(valeur);
+        zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
         this.zd.repaint();
         return SUCCESS;
     }

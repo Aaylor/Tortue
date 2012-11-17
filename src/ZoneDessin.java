@@ -191,7 +191,7 @@ public class ZoneDessin extends JPanel{
 		g.fillRect(0, 0, ecartHorizontal, this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
 		g.fillRect(ecartHorizontal + largeurDessin, 0, this.getWidth(), this.getHeight());
 		g.fillRect(ecartHorizontal - 1, 0, largeurDessin + 1, ecartVertical);
-		g.fillRect(ecartHorizontal - 1, hauteurDessin + ecartVertical, largeurDessin + 1, ecartVertical);
+		g.fillRect(ecartHorizontal - 1, hauteurDessin + ecartVertical, largeurDessin + 1, ecartVertical+1);
 		
 		//Ombre du dessin
 		g.setColor(new Color(220,220,220));
@@ -257,7 +257,13 @@ public class ZoneDessin extends JPanel{
 		g.setStroke(new BasicStroke(0));
 		g.drawLine(this.getPosX(), this.getPosY(), (int)posX2, (int)posY2);
 		g.setColor(Color.white);
-			g.drawLine(this.getPosX() - 1, this.getPosY() - 1, (int)posX2 - 1, (int)posY2 - 1);
+		g.drawLine(this.getPosX() - 1, this.getPosY() - 1, (int)posX2 - 1, (int)posY2 - 1);
+		
+		
+		//DETERMINONS LA TAILLE DU JPANEL
+		this.setPreferredSize(new Dimension(largeurDessin, hauteurDessin));
+		this.setMinimumSize(new Dimension(largeurDessin, hauteurDessin));
+		this.setMaximumSize(new Dimension(largeurDessin, hauteurDessin));
 	}
 
 	
