@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -18,9 +19,9 @@ public class BarreOutils extends JMenuBar {
 	private ZoneDessin zoneDessin;
 	
     private Controleur controleur;
-    private JButton boutonPoserCrayon;
-    private JButton boutonGomme;
-    private JButton boutonForme;
+    private JToggleButton boutonPoserCrayon;
+    private JToggleButton boutonGomme;
+    private JToggleButton boutonForme;
     private JSlider slider;
     private JSlider sliderRed;
     private JSlider sliderGreen;
@@ -107,12 +108,10 @@ public class BarreOutils extends JMenuBar {
 		boutonForme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				if (curseur.getForme() == 0){
-					boutonForme.setText("Rond");
 					curseur.setForme(1);
 					zoneDessin.repaint();
 				}
 				else{
-					boutonForme.setText("Carré");
 					curseur.setForme(0);
 					zoneDessin.repaint();
 				}
@@ -207,11 +206,11 @@ public class BarreOutils extends JMenuBar {
 	 /**
 	  * Fonction renvoyant le Bouton Lever/Poser le Crayon
 	  */
-	public JButton boutonPoserCrayon(){
-		JButton bouton = new JButton();
+	public JToggleButton boutonPoserCrayon(){
+		JToggleButton bouton = new JToggleButton();
 		//Texte contenu dans le bouton
-		if (curseur.isDown()) bouton.setText("Lever le crayon");
-		else bouton.setText("Poser le Crayon");
+		bouton.setText("Poser le crayon");
+		if (curseur.isDown()) bouton.isSelected();
 		
 		//Return du bouton
 		return bouton;
@@ -220,11 +219,11 @@ public class BarreOutils extends JMenuBar {
 	 /**
 	  * Fonction renvoyant le Bouton Crayon/Gomme
 	  */
-	public JButton boutonGomme(){
-		JButton bouton = new JButton();
+	public JToggleButton boutonGomme(){
+		JToggleButton bouton = new JToggleButton();
 		//Texte contenu dans le bouton
-		if (curseur.getType() == 1) bouton.setText("Crayon");
-		else bouton.setText("Gomme");
+		bouton.setText("Gomme");
+		if (curseur.getType() == 1) bouton.isSelected();
 		
 		//Return du bouton
 		return bouton;
@@ -233,11 +232,11 @@ public class BarreOutils extends JMenuBar {
 	 /**
 	  * Fonction renvoyant le Bouton Forme Rond/Carre
 	  */
-	public JButton boutonForme(){
-		JButton bouton = new JButton();
+	public JToggleButton boutonForme(){
+		JToggleButton bouton = new JToggleButton();
 		//Texte contenu dans le bouton
-		if (curseur.getForme() == 0) bouton.setText("Carré");
-		else bouton.setText("Rond");
+		bouton.setText("Carré");
+		if (curseur.getForme() == 1) bouton.isSelected();
 		
 		//Return du bouton
 		return bouton;
@@ -249,12 +248,10 @@ public class BarreOutils extends JMenuBar {
 	 */
 	public void interactionBoutonOutil(){
 		if (curseur.getType() == 0){
-			boutonGomme.setText("Crayon");
             controleur.commande("eraser", true);
 			zoneDessin.repaint();
 		}
 		else{
-			boutonGomme.setText("Gomme");
             controleur.commande("pencil", true);
 			zoneDessin.repaint();
 		}
@@ -262,19 +259,17 @@ public class BarreOutils extends JMenuBar {
 	
 	public void interactionBoutonPoserOutil(){
 		if (curseur.isDown()){
-			boutonPoserCrayon.setText("Poser l'outil");
 			controleur.commande("penup", true);
 			zoneDessin.repaint();
 		}
 		else{
-			boutonPoserCrayon.setText("Lever l'outil");
 			controleur.commande("pendown", true);
             zoneDessin.repaint();
 		}
 	}
 	
 	public void interactionSliderEpaisseur(int v){
-		slider.setValue(slider.getValue() + v); /*A ENLEVER PAR LA SUITE*/
+		slider.setValue(slider.getValue() + v);
 		controleur.commande("cursorwidth " + slider.getValue(), true);
 		zoneDessin.repaint();
 	}
