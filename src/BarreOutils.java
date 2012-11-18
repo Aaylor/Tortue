@@ -140,7 +140,7 @@ public class BarreOutils extends JMenuBar {
 		JSlider slider = new JSlider();
 		   
 	    slider.setMaximum(100);
-	    slider.setMinimum(0);
+	    slider.setMinimum(1);
 	    slider.setValue(curseur.getEpaisseur());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
