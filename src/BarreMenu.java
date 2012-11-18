@@ -91,17 +91,17 @@ public class BarreMenu extends JMenuBar{
 		controleur.commande("new", true);
 	}
 	public void ouvrirImage(){
-		controleur.commande("openImage", true);
+		controleur.commande("open", true);
 	}
 	public void ouvrirHistorique(){
-		controleur.commande("openHistory", true);
+		controleur.commande("exec", true);
 	}	
 	public void enregistrerImage(){
 		controleur.commande("save", true);
 	}
 	
 	public void enregistrerHistorique(){
-		controleur.commande("saveHistory", true);
+		controleur.commande("savehistory", true);
 	}
 	
 	public void quitter(){
