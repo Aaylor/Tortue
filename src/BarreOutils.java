@@ -224,9 +224,9 @@ public class BarreOutils extends JMenuBar {
 		ImageIcon icon = new ImageIcon("img/crayon_pose.png");
 		JToggleButton bouton = new JToggleButton(icon);
 		bouton.setToolTipText("Poser l'outil");
-		bouton.setPreferredSize(new Dimension(40,40));
-		bouton.setMaximumSize(new Dimension(40,40));
-		bouton.setMinimumSize(new Dimension(40,40));
+		bouton.setPreferredSize(new Dimension(30,30));
+		bouton.setMaximumSize(new Dimension(30,30));
+		bouton.setMinimumSize(new Dimension(30,30));
 		
 		if (curseur.isDown()) bouton.setSelected(true);
 		else bouton.setSelected(false);
@@ -241,9 +241,9 @@ public class BarreOutils extends JMenuBar {
 		ImageIcon icon = new ImageIcon("img/gomme.png");
 		JToggleButton bouton = new JToggleButton(icon);
 		bouton.setToolTipText("Utiliser la gomme");
-		bouton.setPreferredSize(new Dimension(40,40));
-		bouton.setMaximumSize(new Dimension(40,40));
-		bouton.setMinimumSize(new Dimension(40,40));
+		bouton.setPreferredSize(new Dimension(30,30));
+		bouton.setMaximumSize(new Dimension(30,30));
+		bouton.setMinimumSize(new Dimension(30,30));
 		
 		if (curseur.getType() == 1) bouton.setSelected(true);
 		
@@ -258,9 +258,9 @@ public class BarreOutils extends JMenuBar {
 		ImageIcon icon = new ImageIcon("img/forme_carre.png");
 		JToggleButton bouton = new JToggleButton(icon);
 		bouton.setToolTipText("Utiliser une forme carré");
-		bouton.setPreferredSize(new Dimension(40,40));
-		bouton.setMaximumSize(new Dimension(40,40));
-		bouton.setMinimumSize(new Dimension(40,40));
+		bouton.setPreferredSize(new Dimension(30,30));
+		bouton.setMaximumSize(new Dimension(30,30));
+		bouton.setMinimumSize(new Dimension(30,30));
 		
 		if (curseur.getForme() == 1) bouton.isSelected();
 		
