@@ -4,11 +4,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -18,10 +19,10 @@ public class BarreOutils extends JMenuBar {
 	private ZoneDessin zoneDessin;
 	
     private Controleur controleur;
-    private JButton boutonPoserCrayon;
-    private JButton boutonGomme;
-    private JButton boutonForme;
-    private JSlider slider;
+    private JToggleButton boutonPoserCrayon;
+    private JToggleButton boutonGomme;
+    private JToggleButton boutonForme;
+    private JSlider sliderEpaisseur;
     private JSlider sliderRed;
     private JSlider sliderGreen;
     private JSlider sliderBlue;
@@ -36,7 +37,7 @@ public class BarreOutils extends JMenuBar {
 		boutonPoserCrayon = boutonPoserCrayon();
 		boutonGomme = boutonGomme();
 		boutonForme = boutonForme();
-		slider = slider();
+		sliderEpaisseur = sliderEpaisseur();
 		sliderRed = sliderRed();
 		sliderBlue = sliderBlue();
 		sliderGreen = sliderGreen();
@@ -46,8 +47,11 @@ public class BarreOutils extends JMenuBar {
 		vignetteCouleur.setMaximumSize(new Dimension(20, 20));
 		
 		//Ajout des boutons		
+		
 		JPanel panPrincipal = new JPanel();
 		panPrincipal.setLayout(new BoxLayout(panPrincipal, BoxLayout.PAGE_AXIS));
+		
+		//Premiere ligne de la partie d'outils
 		
 		JPanel panOutils = new JPanel();
 		panOutils.setLayout(new BoxLayout(panOutils, BoxLayout.LINE_AXIS));
@@ -57,7 +61,18 @@ public class BarreOutils extends JMenuBar {
 		panOutils.add(boutonGomme);
 		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
 		panOutils.add(boutonForme);
-		panOutils.add(slider);
+		
+		JPanel panSliderEpaisseur = new JPanel();
+		panSliderEpaisseur.setLayout(new BoxLayout(panSliderEpaisseur, BoxLayout.PAGE_AXIS));
+		JLabel labEpaisseur = new JLabel("Epaisseur");
+		panSliderEpaisseur.add(labEpaisseur);
+		panSliderEpaisseur.add(sliderEpaisseur);
+		panOutils.add(panSliderEpaisseur);
+		
+		//panOutils.setPreferredSize(new Dimension(this.getWidth(), 55));
+		
+		//Seconde ligne de la partie d'outils
+		
 		
 		JPanel panCurseur = new JPanel();
 		panCurseur.setLayout(new BoxLayout(panCurseur, BoxLayout.LINE_AXIS));
@@ -107,12 +122,10 @@ public class BarreOutils extends JMenuBar {
 		boutonForme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				if (curseur.getForme() == 0){
-					boutonForme.setText("Rond");
 					curseur.setForme(1);
 					zoneDessin.repaint();
 				}
 				else{
-					boutonForme.setText("Carré");
 					curseur.setForme(0);
 					zoneDessin.repaint();
 				}
@@ -123,11 +136,11 @@ public class BarreOutils extends JMenuBar {
         
     }
     
-	public JSlider slider(){
+	public JSlider sliderEpaisseur(){
 		JSlider slider = new JSlider();
 		   
 	    slider.setMaximum(100);
-	    slider.setMinimum(0);
+	    slider.setMinimum(1);
 	    slider.setValue(curseur.getEpaisseur());
 	    slider.setPaintTicks(true);
 	    slider.setPaintLabels(true);
@@ -207,12 +220,16 @@ public class BarreOutils extends JMenuBar {
 	 /**
 	  * Fonction renvoyant le Bouton Lever/Poser le Crayon
 	  */
-	public JButton boutonPoserCrayon(){
-		JButton bouton = new JButton();
-		//Texte contenu dans le bouton
-		if (curseur.isDown()) bouton.setText("Lever le crayon");
-		else bouton.setText("Poser le Crayon");
+	public JToggleButton boutonPoserCrayon(){
+		ImageIcon icon = new ImageIcon("img/crayon_pose.png");
+		JToggleButton bouton = new JToggleButton(icon);
+		bouton.setToolTipText("Poser l'outil");
+		bouton.setPreferredSize(new Dimension(30,30));
+		bouton.setMaximumSize(new Dimension(30,30));
+		bouton.setMinimumSize(new Dimension(30,30));
 		
+		if (curseur.isDown()) bouton.setSelected(true);
+		else bouton.setSelected(false);
 		//Return du bouton
 		return bouton;
 	}
@@ -220,11 +237,15 @@ public class BarreOutils extends JMenuBar {
 	 /**
 	  * Fonction renvoyant le Bouton Crayon/Gomme
 	  */
-	public JButton boutonGomme(){
-		JButton bouton = new JButton();
-		//Texte contenu dans le bouton
-		if (curseur.getType() == 1) bouton.setText("Crayon");
-		else bouton.setText("Gomme");
+	public JToggleButton boutonGomme(){
+		ImageIcon icon = new ImageIcon("img/gomme.png");
+		JToggleButton bouton = new JToggleButton(icon);
+		bouton.setToolTipText("Utiliser la gomme");
+		bouton.setPreferredSize(new Dimension(30,30));
+		bouton.setMaximumSize(new Dimension(30,30));
+		bouton.setMinimumSize(new Dimension(30,30));
+		
+		if (curseur.getType() == 1) bouton.setSelected(true);
 		
 		//Return du bouton
 		return bouton;
@@ -233,11 +254,15 @@ public class BarreOutils extends JMenuBar {
 	 /**
 	  * Fonction renvoyant le Bouton Forme Rond/Carre
 	  */
-	public JButton boutonForme(){
-		JButton bouton = new JButton();
-		//Texte contenu dans le bouton
-		if (curseur.getForme() == 0) bouton.setText("Carré");
-		else bouton.setText("Rond");
+	public JToggleButton boutonForme(){
+		ImageIcon icon = new ImageIcon("img/forme_carre.png");
+		JToggleButton bouton = new JToggleButton(icon);
+		bouton.setToolTipText("Utiliser une forme carré");
+		bouton.setPreferredSize(new Dimension(30,30));
+		bouton.setMaximumSize(new Dimension(30,30));
+		bouton.setMinimumSize(new Dimension(30,30));
+		
+		if (curseur.getForme() == 1) bouton.isSelected();
 		
 		//Return du bouton
 		return bouton;
@@ -249,33 +274,33 @@ public class BarreOutils extends JMenuBar {
 	 */
 	public void interactionBoutonOutil(){
 		if (curseur.getType() == 0){
-			boutonGomme.setText("Crayon");
             controleur.commande("eraser", true);
 			zoneDessin.repaint();
 		}
 		else{
-			boutonGomme.setText("Gomme");
             controleur.commande("pencil", true);
 			zoneDessin.repaint();
 		}
+		if (curseur.getType() == 1) boutonGomme.setSelected(true);
+ 		else boutonGomme.setSelected(false);
 	}
 	
 	public void interactionBoutonPoserOutil(){
 		if (curseur.isDown()){
-			boutonPoserCrayon.setText("Poser l'outil");
 			controleur.commande("penup", true);
 			zoneDessin.repaint();
 		}
 		else{
-			boutonPoserCrayon.setText("Lever l'outil");
 			controleur.commande("pendown", true);
             zoneDessin.repaint();
 		}
+		if (curseur.isDown()) boutonPoserCrayon.setSelected(true);
+ 		else boutonPoserCrayon.setSelected(false);
 	}
 	
 	public void interactionSliderEpaisseur(int v){
-		slider.setValue(slider.getValue() + v); /*A ENLEVER PAR LA SUITE*/
-		controleur.commande("cursorwidth " + slider.getValue(), true);
+		sliderEpaisseur.setValue(sliderEpaisseur.getValue() + v);
+		controleur.commande("cursorwidth " + sliderEpaisseur.getValue(), true);
 		zoneDessin.repaint();
 	}
 	

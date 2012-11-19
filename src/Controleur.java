@@ -25,6 +25,7 @@ public class Controleur{
     private ZoneDessin zd = null;
     private BarreOutils zb = null;
     private Curseur curseur = null;
+    private BarreMenu barreMenu;
 
     /**
      *  Constructeur vide
@@ -49,6 +50,9 @@ public class Controleur{
         zb = f.getZoneBouton();
         zb.setControleur(this);
 
+        barreMenu = f.getBarreMenu();
+        barreMenu.setControleur(this);
+        
         curseur = c;
         c.setControleur(this);
 
@@ -1013,6 +1017,10 @@ public class Controleur{
     public int width(int valeur)
     {
         zd.setLargeur(valeur);
+        zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
+        if(curseur.getPosX()>zd.getLargeurDessin()){
+        	curseur.setPosX(zd.getLargeurDessin());
+        }
         this.zd.repaint();
         return SUCCESS;
     }
@@ -1024,6 +1032,10 @@ public class Controleur{
     public int height(int valeur)
     {
         zd.setHauteur(valeur);
+        zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
+        if(curseur.getPosY()>zd.getHauteurDessin()){
+        	curseur.setPosY(zd.getHauteurDessin());
+        }
         this.zd.repaint();
         return SUCCESS;
     }
