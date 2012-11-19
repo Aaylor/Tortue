@@ -1071,6 +1071,7 @@ public class Controleur{
     	if(imageWidth>zd.getLargeurDessin()){
     		zd.setLargeur(imageWidth);
     	}
+    	Traceur t = new Traceur(4,path);
         return SUCCESS;
 
     }
