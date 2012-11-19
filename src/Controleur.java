@@ -605,11 +605,18 @@ public class Controleur{
             case 19:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
+                
+                if ( commande_parser.length == 2 )
+                    return open(commande_parser[1]);
+
                 return open("");
             
             case 20:
-                if ( commande_parser.length > 1 )
+                if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
+
+                if ( commande_parser.length == 2 )
+                    return saveas(commande_parser[1]);
 
                 return save();
             
@@ -995,7 +1002,7 @@ public class Controleur{
      */
     public int setBackgroundColor(int red, int green, int blue)
     {
-        System.out.println("R: " + red + "\nG: " + green + "\nB: " + blue);
+        zd.setBackground(new Color(red,green,blue));
         return SUCCESS;
     }
 
@@ -1055,7 +1062,8 @@ public class Controleur{
      */
     public int open(String path)
     {
-    	ImageIcon img=new ImageIcon(path);
+    	
+        ImageIcon img=new ImageIcon(path);
     	int imageHeight=img.getIconHeight();
     	int imageWidth=img.getIconWidth();
     	if(imageHeight>zd.getHauteurDessin()){
@@ -1179,7 +1187,6 @@ public class Controleur{
         }
 
         File dessin = new File(path_to_drawing);
-        System.out.println(path_to_drawing);
 
         if ( !path_to_drawing.equals("") )
         {
@@ -1246,7 +1253,7 @@ public class Controleur{
         {
             String regex = "(.*)[\\.][tT][xX][tT]$";
             
-            if ( pathname.matches("^\\~") )
+            if ( pathname.startsWith("~") )
             {
                 pathname = pathname.replaceAll("^\\~", "/home/" + System.getProperty("user.name"));
             }
@@ -1257,8 +1264,8 @@ public class Controleur{
             } 
             else
             {
-                history = new File(pathname + File.separator
-                        + "history" + getCurDate() + ".txt");
+                pathname += File.separator + "history" + getCurDate() + ".txt";
+                history = new File(pathname);
             }
                 
             File tmp = new File(new File(pathname).getParent());
@@ -1282,7 +1289,7 @@ public class Controleur{
                 System.out.println("peut pas accéder");
             }
         }
-        
+
         try
         {
             history.createNewFile();
