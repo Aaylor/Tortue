@@ -4,6 +4,8 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.*;
@@ -1051,9 +1053,17 @@ public class Controleur{
      *  Fonction qui permet d'ouvrir une image
      *  @return si la fonction s'est bien déroulée.
      */
-    public int open()
+    public int open(String path)
     {
-
+    	ImageIcon img=new ImageIcon(path);
+    	int imageHeight=img.getIconHeight();
+    	int imageWidth=img.getIconWidth();
+    	if(imageHeight>zd.getHauteurDessin()){
+    		zd.setHauteur(imageHeight);
+    	}
+    	if(imageWidth>zd.getLargeurDessin()){
+    		zd.setLargeur(imageWidth);
+    	}
         return SUCCESS;
 
     }
