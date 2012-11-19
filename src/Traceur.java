@@ -31,6 +31,16 @@ public class Traceur extends JPanel{
 		this.forme=forme;
 			
 	}
+	public Traceur(int type, Color couleur, int hauteur, int largeur, int x_origine, int y_origine, boolean estRempli){
+		this.couleur=couleur;
+		this.x_origine=x_origine;
+		this.y_origine=y_origine;
+		this.type=type;
+		this.hauteur=hauteur;
+		this.largeur=largeur;
+		this.estRempli=estRempli;
+	}
+	
 	
 	/*accesseurs*/
 	public int getEpaisseur(){ return this.epaisseur; }

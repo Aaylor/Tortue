@@ -1003,10 +1003,17 @@ public class Controleur{
      *  Fonction qui permet de tracer des figures particulières
      *  @return si la fonction s'est bien déroulée.
      */
-    public int doFigure(int x, int y, int width, int height)
+    public int doFigure(int type, int x, int y, int width, int height, boolean estRempli)
     {
         System.out.println("x : " + x + "\ny : " + y + "\nwidth : " + width
                 + "\nheight : " + height);
+        
+        if(type==2){
+        	Traceur t = new Traceur(2, curseur.getCouleur(), height, width, x, y, estRempli);
+        	StockageDonnee.liste_dessin.add(t);
+        }
+        
+        
         return SUCCESS;
     }
 
