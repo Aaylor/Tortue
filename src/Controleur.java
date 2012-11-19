@@ -88,7 +88,7 @@ public class Controleur{
 
         term.replaceCompteur();
         return true;
-
+ 
     }
 
     /**
@@ -140,11 +140,9 @@ public class Controleur{
      */
     public int init(String[] commande_parser, boolean write)
     {
-        int valeur = 0;
         int retour = 0;
-        int r, g, b;
-        double valeur_x = 0;
-        double valeur_y = 0;
+        int valeur, r, g, b;
+        int valeur_x, valeur_y, width, height;
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0].toLowerCase() ) )
         {
             case 0:
@@ -291,11 +289,11 @@ public class Controleur{
                 }
                 else;
 
-                if ( isDouble(commande_parser[1])
-                        && isDouble(commande_parser[2]) )
+                if ( isInt(commande_parser[1])
+                        && isInt(commande_parser[2]) )
                 {
-                    valeur_x = Double.parseDouble(commande_parser[1]);
-                    valeur_y = Double.parseDouble(commande_parser[2]);
+                    valeur_x = Integer.parseInt(commande_parser[1]);
+                    valeur_y = Integer.parseInt(commande_parser[2]);
                 }
                 else
                     return PARAM_INCORRECTE;
@@ -435,10 +433,135 @@ public class Controleur{
                 return retour;
             
             case 15:
-                /* TODO */
-                doFigure();
+                if ( commande_parser.length > 6 )
+                {
+                    return NOMBRE_PARAM_SUP;
+                }
 
-                break;
+                if ( commande_parser[1].equalsIgnoreCase("triangle") )
+                {
+                    valeur_x = 0;
+                    valeur_y = 0;
+                    width = 0;
+                    height = 0;
+                    System.out.println("triangle");
+                }
+                else if ( commande_parser[1].equalsIgnoreCase("carre") )
+                {
+                    if ( isInt(commande_parser[2]) )
+                    {
+                        valeur_x = Integer.parseInt(commande_parser[2]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[2]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[3]) )
+                    {
+                        valeur_y = Integer.parseInt(commande_parser[3]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[3]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[4]) )
+                    {
+                        width = Integer.parseInt(commande_parser[4]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[4]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    height = width;
+                }
+                else if ( commande_parser[1].equalsIgnoreCase("rectangle") )
+                {
+                    if ( isInt(commande_parser[2]) )
+                    {
+                        valeur_x = Integer.parseInt(commande_parser[2]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[2]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[3]) )
+                    {
+                        valeur_y = Integer.parseInt(commande_parser[3]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[3]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[4]) )
+                    {
+                        width = Integer.parseInt(commande_parser[4]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[4]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[5]) )
+                    {
+                        height = Integer.parseInt(commande_parser[5]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[5]);
+                        return PARAM_INCORRECTE;
+                    }
+                }
+                else if ( commande_parser[1].equalsIgnoreCase("cercle") )
+                {
+                    if ( isInt(commande_parser[2]) )
+                    {
+                        valeur_x = Integer.parseInt(commande_parser[2]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[2]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[3]) )
+                    {
+                        valeur_y = Integer.parseInt(commande_parser[3]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[3]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( isInt(commande_parser[4]) )
+                    {
+                        width = Integer.parseInt(commande_parser[4]);
+                    }
+                    else
+                    {
+                        StockageDonnee.setParamErreur(commande_parser[4]);
+                        return PARAM_INCORRECTE;
+                    }
+
+                    height = width;
+                }
+                else
+                {
+                    return COMMANDE_ERRONEE;
+                }
+                
+                return doFigure(valeur_x, valeur_y, width, height);
             
             case 16:
                 if ( commande_parser.length > 2 )
@@ -777,7 +900,7 @@ public class Controleur{
      *  Fonction qui permet de déplacer le pointeur
      *  @return si la fonction s'est bien déroulée.
      */
-    public int goTo(double value, double value_2)
+    public int goTo(int value, int value_2)
     {
         System.out.println("value 1 :: " + value + "\nvalue 2 :: " + value_2);
         
@@ -786,9 +909,9 @@ public class Controleur{
     	
         //conditions pour que le curseur ne dépasse pas la zone de dessin
         
-        if( value >= 0 && value <= zd.getLargeurDessin()) curseur.setPosX((int)value); //ok
+        if( value >= 0 && value <= zd.getLargeurDessin()) curseur.setPosX(value); //ok
     		
-    	if(value_2 >= 0 && value_2 <= zd.getHauteurDessin()) curseur.setPosY((int)value_2); //ok
+    	if(value_2 >= 0 && value_2 <= zd.getHauteurDessin()) curseur.setPosY(value_2); //ok
 
     	if(value > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //valeur X > largeur de la zone
     	
@@ -876,8 +999,10 @@ public class Controleur{
      *  Fonction qui permet de tracer des figures particulières
      *  @return si la fonction s'est bien déroulée.
      */
-    public int doFigure()
+    public int doFigure(int x, int y, int width, int height)
     {
+        System.out.println("x : " + x + "\ny : " + y + "\nwidth : " + width
+                + "\nheight : " + height);
         return SUCCESS;
     }
 
