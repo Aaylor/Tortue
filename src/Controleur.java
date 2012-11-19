@@ -605,7 +605,7 @@ public class Controleur{
             case 19:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
-                return open();
+                return open("");
             
             case 20:
                 if ( commande_parser.length > 1 )
@@ -1286,7 +1286,7 @@ public class Controleur{
         try
         {
             history.createNewFile();
-            FileWriter fw = new FileWriter(history, true);
+            FileWriter fw = new FileWriter(history);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter fSortie = new PrintWriter(bw);
 
