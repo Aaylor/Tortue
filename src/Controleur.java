@@ -906,8 +906,6 @@ public class Controleur{
      */
     public int goTo(int value, int value_2)
     {
-        System.out.println("value 1 :: " + value + "\nvalue 2 :: " + value_2);
-        
         int posX1=curseur.getPosX();
     	int posY1=curseur.getPosY();
     	

@@ -59,7 +59,16 @@ public class ZoneDessin extends JPanel{
 		switch(clicSouris){
 			case 1 :
 				//if((posX > ecartHorizontal - 30) && (posX < ecartHorizontal + largeurDessin + 30) && (posY > ecartVertical - 30) && (posY < ecartVertical + hauteurDessin + 30)){
-				c.goTo(posX - ecartHorizontal, posY - ecartVertical);
+                
+                int posX_final = (posX - ecartHorizontal < 0) ? 0 
+                    : (posX - ecartHorizontal > this.getLargeurDessin()) ? this.getLargeurDessin()
+                    : (posX - ecartHorizontal);
+                    
+                int posY_final = (posY - ecartVertical < 0) ? 0 
+                    : (posY - ecartVertical > this.getHauteurDessin()) ? this.getHauteurDessin()
+                    : (posY - ecartVertical);
+
+                c.commande("goto " + posX_final + " " + posY_final, true );
 				repaint();
 				//}
 				break;

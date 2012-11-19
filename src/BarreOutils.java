@@ -221,7 +221,7 @@ public class BarreOutils extends JMenuBar {
 	  * Fonction renvoyant le Bouton Lever/Poser le Crayon
 	  */
 	public JToggleButton boutonPoserCrayon(){
-		ImageIcon icon = new ImageIcon("img/crayon_pose.png");
+		ImageIcon icon = new ImageIcon("../img/crayon_pose.png");
 		JToggleButton bouton = new JToggleButton(icon);
 		bouton.setToolTipText("Poser l'outil");
 		bouton.setPreferredSize(new Dimension(30,30));
@@ -238,7 +238,7 @@ public class BarreOutils extends JMenuBar {
 	  * Fonction renvoyant le Bouton Crayon/Gomme
 	  */
 	public JToggleButton boutonGomme(){
-		ImageIcon icon = new ImageIcon("img/gomme.png");
+		ImageIcon icon = new ImageIcon("../img/gomme.png");
 		JToggleButton bouton = new JToggleButton(icon);
 		bouton.setToolTipText("Utiliser la gomme");
 		bouton.setPreferredSize(new Dimension(30,30));
@@ -255,7 +255,7 @@ public class BarreOutils extends JMenuBar {
 	  * Fonction renvoyant le Bouton Forme Rond/Carre
 	  */
 	public JToggleButton boutonForme(){
-		ImageIcon icon = new ImageIcon("img/forme_carre.png");
+		ImageIcon icon = new ImageIcon("../img/forme_carre.png");
 		JToggleButton bouton = new JToggleButton(icon);
 		bouton.setToolTipText("Utiliser une forme carré");
 		bouton.setPreferredSize(new Dimension(30,30));
