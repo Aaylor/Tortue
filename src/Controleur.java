@@ -439,13 +439,14 @@ public class Controleur{
                 return retour;
             
             case 15:
-                if ( commande_parser.length > 6 )
+                if ( commande_parser.length > 8 )
                 {
                     return NOMBRE_PARAM_SUP;
                 }
 
                 if ( commande_parser[1].equalsIgnoreCase("triangle") )
                 {
+                    /* do triangle x1 y1 x2 y2 x3 y3 */
                     valeur_x = 0;
                     valeur_y = 0;
                     width = 0;
