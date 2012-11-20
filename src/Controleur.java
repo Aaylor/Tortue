@@ -567,8 +567,9 @@ public class Controleur{
                 {
                     return COMMANDE_ERRONEE;
                 }
-                
-                return doFigure(valeur_x, valeur_y, width, height);
+               
+                /* VALEUR A MODIFIER */
+                return doFigure(2, valeur_x, valeur_y, width, height, true);
             
             case 16:
                 if ( commande_parser.length > 2 )
