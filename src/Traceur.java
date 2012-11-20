@@ -4,7 +4,7 @@ import java.awt.*;
 public class Traceur extends JPanel{
 	
 	private int epaisseur;
-	private int type; //0: point, 1: ligne, 2:rectangle , 3:cercle
+	private int type; //0: point, 1: ligne, 2:rectangle , 3:cercle, 4:image
 	private Color couleur;
 	private boolean isDown; 
 	private int x_origine;
@@ -17,7 +17,7 @@ public class Traceur extends JPanel{
 	private int largeur;
 	private boolean estRempli; //true : le rectanlge ou cercle sera remplie
 	private int forme; //0: rond il s'agit du curseur
-	
+	private String path;//chemin du fichier image, pour le type 4 : image
 	
 	/* constructeur */
 	public Traceur(int type, int epaisseur, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee, int forme){
@@ -31,6 +31,20 @@ public class Traceur extends JPanel{
 		this.forme=forme;
 			
 	}
+	public Traceur(int type, Color couleur, int hauteur, int largeur, int x_origine, int y_origine, boolean estRempli){
+		this.couleur=couleur;
+		this.x_origine=x_origine;
+		this.y_origine=y_origine;
+		this.type=type;
+		this.hauteur=hauteur;
+		this.largeur=largeur;
+		this.estRempli=estRempli;
+	}
+	public Traceur(int type, String path){
+		this.type=type;
+		this.path=path;
+	}
+	
 	
 	/*accesseurs*/
 	public int getEpaisseur(){ return this.epaisseur; }
