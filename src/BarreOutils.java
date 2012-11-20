@@ -217,12 +217,14 @@ public class BarreOutils extends JMenuBar {
 	    return slider;
 	}
 	
-	 /**
-	  * Fonction renvoyant le Bouton Lever/Poser le Crayon
-	  */
+	 /**Fonction renvoyant le Bouton Lever/Poser le Crayon*/
 	public JToggleButton boutonPoserCrayon(){
-		ImageIcon icon = new ImageIcon("../img/crayon_pose.png");
-		JToggleButton bouton = new JToggleButton(icon);
+	    ImageIcon iconBoutonPoserCrayon;
+		if(curseur.isDown())
+			iconBoutonPoserCrayon = new ImageIcon("../img/crayon_pose.png");
+		else
+			iconBoutonPoserCrayon = new ImageIcon("../img/crayon_leve.png");
+		JToggleButton bouton = new JToggleButton(iconBoutonPoserCrayon);
 		bouton.setToolTipText("Poser l'outil");
 		bouton.setPreferredSize(new Dimension(30,30));
 		bouton.setMaximumSize(new Dimension(30,30));
@@ -234,9 +236,7 @@ public class BarreOutils extends JMenuBar {
 		return bouton;
 	}
 	
-	 /**
-	  * Fonction renvoyant le Bouton Crayon/Gomme
-	  */
+	 /** Fonction renvoyant le Bouton Crayon/Gomme */
 	public JToggleButton boutonGomme(){
 		ImageIcon icon = new ImageIcon("../img/gomme.png");
 		JToggleButton bouton = new JToggleButton(icon);
@@ -251,9 +251,7 @@ public class BarreOutils extends JMenuBar {
 		return bouton;
 	}
 	
-	 /**
-	  * Fonction renvoyant le Bouton Forme Rond/Carre
-	  */
+	 /**Fonction renvoyant le Bouton Forme Rond/Carre*/
 	public JToggleButton boutonForme(){
 		ImageIcon icon = new ImageIcon("../img/forme_carre.png");
 		JToggleButton bouton = new JToggleButton(icon);
@@ -268,10 +266,8 @@ public class BarreOutils extends JMenuBar {
 		return bouton;
 	}
 	
-	/**
-	 *  Fonction gérant l'interaction avec le bouton d'outil 
-	 *  Appelée lors d'un clic gauche sur le bouton d'outil ou lors d'un clic droit sur la zone de dessin
-	 */
+	/**Fonction gérant l'interaction avec le bouton d'outil 
+	 *  Appelée lors d'un clic gauche sur le bouton d'outil ou lors d'un clic droit sur la zone de dessin*/
 	public void interactionBoutonOutil(){
 		if (curseur.getType() == 0){
             controleur.commande("eraser", true);
@@ -288,10 +284,12 @@ public class BarreOutils extends JMenuBar {
 	public void interactionBoutonPoserOutil(){
 		if (curseur.isDown()){
 			controleur.commande("penup", true);
+			affichageBoutonPoserOutil();
 			zoneDessin.repaint();
 		}
 		else{
 			controleur.commande("pendown", true);
+			affichageBoutonPoserOutil();
             zoneDessin.repaint();
 		}
 		if (curseur.isDown()) boutonPoserCrayon.setSelected(true);
@@ -313,5 +311,32 @@ public class BarreOutils extends JMenuBar {
         this.controleur = c;
     }   
     
-
+	public void affichageBoutonPoserOutil(){
+		if(curseur.isDown()){
+			boutonPoserCrayon.setSelected(true);
+			boutonPoserCrayon.setIcon(new ImageIcon("../img/crayon_pose.png"));
+		}
+		else{
+			boutonPoserCrayon.setSelected(false);
+			boutonPoserCrayon.setIcon(new ImageIcon("../img/crayon_leve.png"));
+			
+		}
+	}
+	
+	public void affichageBoutonOutil(){
+		if(curseur.getType() == 1){
+			boutonGomme.setSelected(false);
+		}
+		else
+			boutonGomme.setSelected(true);
+	}
+	
+	public void affichageBoutonForme(){
+		if(curseur.getForme() == 0){
+			boutonForme.setSelected(false);
+		}
+		else{
+			boutonForme.setSelected(false);
+		}
+	}
 }
