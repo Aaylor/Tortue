@@ -6,15 +6,15 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
+import javax.swing.JToolBar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 @SuppressWarnings("serial")
-public class BarreOutils extends JMenuBar {
+public class BarreOutils extends JToolBar {
 	private Curseur curseur;
 	private ZoneDessin zoneDessin;
 	
