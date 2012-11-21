@@ -4,12 +4,15 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import java.io.File;
+
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
 
 @SuppressWarnings("serial")
 public class Fenetre extends JFrame{
@@ -33,7 +36,8 @@ public class Fenetre extends JFrame{
 		this.setMinimumSize(new Dimension(1024, 600));
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setIconImage(new ImageIcon("../img/icone.png" ).getImage());
+		this.setIconImage(new ImageIcon( new File(System.getProperty("user.dir")).getParent()
+                    + File.separator + "img" + File.separator + "icone.png" ).getImage());
 		
 		//Ajout de la barre de menu
 		this.setJMenuBar(barreMenu);

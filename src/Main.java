@@ -70,11 +70,13 @@ public class Main{
     	boolean recreerFichierConfig = false;
     	
     	//Si le dossier .config n'existe pas, on le créé
-    	File dossier = new File("../config");
+    	File dossier = new File( new File(System.getProperty("user.dir")).getParent()
+                + File.separator + "config");
     	if(!dossier.exists()) dossier.mkdir();
     	
     	
-    	File f = new File("../config/.config.txt");   
+    	File f = new File( new File(System.getProperty("user.dir")).getParent() + File.separator 
+                + "config" + File.separator + ".config.txt");   
     	//Verifions que le fichier de configuration existe
     	if(f.exists()){
     		//Le fichier existe, chargeons les données par défauts
@@ -83,8 +85,7 @@ public class Main{
     		try{
 	    		dis = new DataInputStream(
 			              				new BufferedInputStream(
-			              					new FileInputStream(
-			              						new File("../config/.config.txt"))));
+			              					new FileInputStream(f)));
 			            
 	    		MenuOption.setConfigProgrammeEstFenetre(dis.readBoolean());
 	    		MenuOption.setConfigCurseurEstCentre(dis.readBoolean());
@@ -147,8 +148,7 @@ public class Main{
     		
     		dos = new DataOutputStream(
 		              new BufferedOutputStream(
-		                new FileOutputStream(
-		                  new File("../config/.config.txt"))));
+		                new FileOutputStream(f)));
 
 		      //On écrit dans le fichier
 		      //Données 1 : si true, la fenetre est en mode fenetré
