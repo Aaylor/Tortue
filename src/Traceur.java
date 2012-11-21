@@ -61,6 +61,7 @@ public class Traceur extends JPanel{
 	public int getLargeur(){ return this.largeur; }
 	public boolean estRempli(){ return this.estRempli;}
 	public int getForme(){ return this.forme; }
+	public String getPath(){ return this.path;}
 	
 	
 	/*modifieurs*/
