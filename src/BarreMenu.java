@@ -1,7 +1,12 @@
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 @SuppressWarnings("serial")
 public class BarreMenu extends JMenuBar{
@@ -18,7 +23,7 @@ public class BarreMenu extends JMenuBar{
     
     //JMenu "Outils"
 	JMenu menuOutils = new JMenu("Outils");
-	JMenuItem options = new JMenuItem("Options");
+	JMenuItem options = new JMenuItem("Paramètres");
 	JMenuItem aPropos = new JMenuItem("A propos");
 	
     /**
@@ -30,10 +35,10 @@ public class BarreMenu extends JMenuBar{
 		//Menu "Fichier"
 		this.add(menuFichier);
 		menuFichier.add(nouveau);
-		menuFichier.add(ouvrirImage);
 		menuFichier.add(ouvrirHistorique);
-        menuFichier.add(enregistrerImage);
+		menuFichier.add(ouvrirImage);
         menuFichier.add(enregistrerHistorique);
+        menuFichier.add(enregistrerImage);
 		menuFichier.add(quitter);
 		
 		//Menu "Outils"
@@ -41,6 +46,17 @@ public class BarreMenu extends JMenuBar{
 		menuOutils.add(options);
 		menuOutils.add(aPropos);
 		
+		//Ajout des raccourcis
+		//menuFichier.setMnemonic('F');
+		menuOutils.setMnemonic('O');
+		nouveau.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_MASK));
+		ouvrirHistorique.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_MASK));
+		ouvrirImage.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_DOWN_MASK + KeyEvent.SHIFT_DOWN_MASK));
+		enregistrerHistorique.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_MASK));
+		enregistrerImage.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, KeyEvent.CTRL_DOWN_MASK + KeyEvent.SHIFT_DOWN_MASK));
+		quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_MASK));
+		options.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_MASK));
+		aPropos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_COMMA, KeyEvent.CTRL_MASK));
 		
 		//Ajout des Action Listener
 		nouveau.addActionListener(new ActionListener(){
