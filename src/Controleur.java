@@ -980,7 +980,10 @@ public class Controleur{
      */
     public int setColor(int red, int green, int blue)
     {
-        curseur.setCouleur(new Color(red,green,blue));
+    	if(red >= 0 && red <= 255 && green >= 0 && green <= 255 && blue >= 0 && blue <= 255){
+    		curseur.setCouleur(new Color(red,green,blue));
+    	}
+        
         return SUCCESS;
     }
 
@@ -1071,19 +1074,25 @@ public class Controleur{
      */
     public int open(String path)
     {
-    	
-        ImageIcon img=new ImageIcon(path);
-    	int imageHeight=img.getIconHeight();
-    	int imageWidth=img.getIconWidth();
-    	if(imageHeight>zd.getHauteurDessin()){
-    		zd.setHauteur(imageHeight);
+    	/*verifier que le fichiet existe*/
+    	String[] path_tab=path.split(".");
+    	if(path_tab[1]=="png"){
+	        ImageIcon img=new ImageIcon(path);
+	    	int imageHeight=img.getIconHeight();
+	    	int imageWidth=img.getIconWidth();
+	    	if(imageHeight>zd.getHauteurDessin()){
+	    		zd.setHauteur(imageHeight);
+	    	}
+	    	if(imageWidth>zd.getLargeurDessin()){
+	    		zd.setLargeur(imageWidth);
+	    	}
+	    	Traceur t = new Traceur(4,path);
+        
     	}
-    	if(imageWidth>zd.getLargeurDessin()){
-    		zd.setLargeur(imageWidth);
+    	else{
+    		//message erreur
     	}
-    	Traceur t = new Traceur(4,path);
-        return SUCCESS;
-
+    	return SUCCESS;
     }
 
     /**
