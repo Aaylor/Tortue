@@ -4,7 +4,7 @@ import java.awt.*;
 public class Traceur extends JPanel{
 	
 	private int epaisseur;
-	private int type; //0: point, 1: ligne, 2:rectangle , 3:cercle, 4:image
+	private int type; //0: point, 1: ligne, 2:rectangle , 3:triangle, 4:cercle, 5:image
 	private Color couleur;
 	private boolean isDown; 
 	private int x_origine;
@@ -107,5 +107,8 @@ public class Traceur extends JPanel{
 	}
 	public void setForme(int forme){
 		this.forme=forme;
+	}
+	public void setPath(String path){
+		this.path=path;
 	}
 }

@@ -921,6 +921,9 @@ public class Controleur{
         	Color c = StockageDonnee.liste_couleur.get(couleur);
         	curseur.setCouleur(c);
         }
+        else{
+        	//message erreur
+        }
         return SUCCESS;
 
     }
@@ -1070,20 +1073,30 @@ public class Controleur{
      */
     public int open(String path)
     {
-    	/*verifier que le fichiet existe*/
     	String[] path_tab=path.split(".");
-    	if(path_tab[1]=="png"){
-	        ImageIcon img=new ImageIcon(path);
-	    	int imageHeight=img.getIconHeight();
-	    	int imageWidth=img.getIconWidth();
-	    	if(imageHeight>zd.getHauteurDessin()){
-	    		zd.setHauteur(imageHeight);
-	    	}
-	    	if(imageWidth>zd.getLargeurDessin()){
-	    		zd.setLargeur(imageWidth);
-	    	}
-	    	Traceur t = new Traceur(5,path);
-        
+    	File file=new File(path);
+    	
+    	if(path_tab[path_tab.length-1]=="png"	//on test d'abord que l'extension est bien en png  
+    	|| path_tab[path_tab.length-1]=="jpg"	//ou jpg
+    	|| path_tab[path_tab.length-1]=="gif"	//ou gif
+    	|| path_tab[path_tab.length-1]=="jpeg"	//ou jpeg
+    	){
+    		if(file.exists()){ //si l'extension est bonne on vérifie l'extence du fichier
+		        ImageIcon img=new ImageIcon(path);
+		    	int imageHeight=img.getIconHeight();
+		    	int imageWidth=img.getIconWidth();
+		    	
+		    	if(imageHeight>zd.getHauteurDessin()){//on resize la zone en si le dessin est plus grand
+		    		zd.setHauteur(imageHeight);
+		    	}
+		    	if(imageWidth>zd.getLargeurDessin()){//on resize la zone en si le dessin est plus grand
+		    		zd.setLargeur(imageWidth);
+		    	}
+		    	Traceur t = new Traceur(5,path);
+    		}
+    		else{
+    			//message erreur
+    		}
     	}
     	else{
     		//message erreur
