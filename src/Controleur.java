@@ -150,6 +150,7 @@ public class Controleur{
         int retour = 0;
         int valeur, r, g, b;
         int valeur_x, valeur_y, width, height;
+        int coordonne[];
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0].toLowerCase() ) )
         {
             case 0:
@@ -238,8 +239,8 @@ public class Controleur{
                     return NOMBRE_PARAM_LESS;
                 else;
 
-                if ( isDouble(commande_parser[1]) )
-                    valeur = (int)Double.parseDouble(commande_parser[1]);
+                if ( isInt(commande_parser[1]) )
+                    valeur = (int)Integer.parseInt(commande_parser[1]);
                 else
                     return PARAM_INCORRECTE;
 
@@ -440,137 +441,82 @@ public class Controleur{
                 return retour;
             
             case 15:
-                if ( commande_parser.length > 8 )
+                if ( commande_parser.length > 9 )
                 {
                     return NOMBRE_PARAM_SUP;
                 }
 
+                valeur_x = 0;
+                valeur_y = 0;
+                width = 0;
+                height = 0;
+
                 if ( commande_parser[1].equalsIgnoreCase("triangle") )
                 {
                     /* do triangle x1 y1 x2 y2 x3 y3 */
-                    valeur_x = 0;
-                    valeur_y = 0;
-                    width = 0;
-                    height = 0;
-                    System.out.println("triangle");
+                    if ( isInt( new String[] { commande_parser[2], commande_parser[3], commande_parser[4],
+                        commande_parser[5], commande_parser[6], commande_parser[7] } ) )
+                    {
+                    /*   return doFigure(-1, new int[] { commande_parser[2], commande_parser[3], commande_parser[4],
+                           commande_parser[5], commande_parser[6], commande_parser[7] }, true)*/
+                        return SUCCESS;
+                    }
+                    else
+                    {
+                        return PARAM_INCORRECTE;
+                    }
+                
+
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("carre") )
                 {
-                    if ( isInt(commande_parser[2]) )
+                    if ( isInt ( new String[] { commande_parser[2], commande_parser[3],
+                        commande_parser[4] } ) )
                     {
-                        valeur_x = Integer.parseInt(commande_parser[2]);
+                        return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
+                                                        Integer.parseInt(commande_parser[3]), 
+                                                        Integer.parseInt(commande_parser[4]), 
+                                                        Integer.parseInt(commande_parser[4])},
+                                                        true);
                     }
                     else
                     {
-                        StockageDonnee.setParamErreur(commande_parser[2]);
                         return PARAM_INCORRECTE;
                     }
-
-                    if ( isInt(commande_parser[3]) )
-                    {
-                        valeur_y = Integer.parseInt(commande_parser[3]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[3]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    if ( isInt(commande_parser[4]) )
-                    {
-                        width = Integer.parseInt(commande_parser[4]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[4]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    height = width;
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("rectangle") )
                 {
-                    if ( isInt(commande_parser[2]) )
+                    if ( isInt ( new String[] { commande_parser[2], commande_parser[3],
+                        commande_parser[4], commande_parser[5] } ) )
                     {
-                        valeur_x = Integer.parseInt(commande_parser[2]);
+                        return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
+                                                        Integer.parseInt(commande_parser[3]), 
+                                                        Integer.parseInt(commande_parser[4]), 
+                                                        Integer.parseInt(commande_parser[5])},
+                                                        true);
                     }
                     else
                     {
-                        StockageDonnee.setParamErreur(commande_parser[2]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    if ( isInt(commande_parser[3]) )
-                    {
-                        valeur_y = Integer.parseInt(commande_parser[3]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[3]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    if ( isInt(commande_parser[4]) )
-                    {
-                        width = Integer.parseInt(commande_parser[4]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[4]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    if ( isInt(commande_parser[5]) )
-                    {
-                        height = Integer.parseInt(commande_parser[5]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[5]);
                         return PARAM_INCORRECTE;
                     }
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("cercle") )
                 {
-                    if ( isInt(commande_parser[2]) )
+                    if ( isInt ( new String[] { commande_parser[2], commande_parser[3],
+                        commande_parser[4] } ) )
                     {
-                        valeur_x = Integer.parseInt(commande_parser[2]);
+                        /* return */
+                        return SUCCESS;
                     }
                     else
                     {
-                        StockageDonnee.setParamErreur(commande_parser[2]);
                         return PARAM_INCORRECTE;
                     }
-
-                    if ( isInt(commande_parser[3]) )
-                    {
-                        valeur_y = Integer.parseInt(commande_parser[3]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[3]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    if ( isInt(commande_parser[4]) )
-                    {
-                        width = Integer.parseInt(commande_parser[4]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[4]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    height = width;
                 }
                 else
                 {
                     return COMMANDE_ERRONEE;
                 }
-               
-                /* VALEUR A MODIFIER */
-                return doFigure(2, valeur_x, valeur_y, width, height, true);
             
             case 16:
                 if ( commande_parser.length > 2 )
@@ -1020,17 +966,24 @@ public class Controleur{
      *  Fonction qui permet de tracer des figures particulières
      *  @return si la fonction s'est bien déroulée.
      */
-    public int doFigure(int type, int x, int y, int width, int height, boolean estRempli)
+    public int doFigure(int type, int[] value, boolean estRempli)
     {
-        System.out.println("x : " + x + "\ny : " + y + "\nwidth : " + width
-                + "\nheight : " + height);
-        
+       
+        /*
+         *  Si le type est un triangle ( type = VALEUR A DEFINIR )
+         *  x1 = value[0], y1 = value[1], ..., x3 = value[4], y3 = value[5]
+         *
+         *  Si le type est un rectangle ( ou carre ), ou cercle ( type = 2 ou type = 3 )
+         *  x = value[0], y = value[1], width = value[2], height = value[3]
+         */
+
         if(type==2){
-        	Traceur t = new Traceur(2, curseur.getCouleur(), height, width, x, y, estRempli);
+        	Traceur t = new Traceur(2, curseur.getCouleur(), value[3], value[2], value[0], value[1], estRempli);
         	StockageDonnee.liste_dessin.add(t);
         }
         
-        
+       
+        zd.repaint();
         return SUCCESS;
     }
 
@@ -1679,8 +1632,8 @@ public class Controleur{
     
     /*cette fonction teste si une chaine de caractere est un int ou pas*/
     public boolean isInt(String s){
-    	try{
-    		Integer.parseInt(s);
+        try{
+            Integer.parseInt(s);        
     	}
     	catch(NumberFormatException e){
             StockageDonnee.setParamErreur(s);
@@ -1688,18 +1641,21 @@ public class Controleur{
     	}
         return true;
     }
-
-    public boolean isDouble(String s)
-    {
-        try
-        {
-            Double.parseDouble(s);
-        }
-        catch(NumberFormatException e)
-        {
-            StockageDonnee.setParamErreur(s);
-            return false;
-        }
+    
+    /*cette fonction teste si une chaine de caractere est un int ou pas*/
+    public boolean isInt(String[] s){
+        int i = 0;
+        try{
+            for ( String string_to_parseint : s )
+            {
+                Integer.parseInt(string_to_parseint);
+                i++;
+            }
+    	}
+    	catch(NumberFormatException e){
+            StockageDonnee.setParamErreur(s[i]);
+    		return false;
+    	}
         return true;
     }
 
