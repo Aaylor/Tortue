@@ -1115,7 +1115,7 @@ public class Controleur{
     {
     	/*verifier que le fichiet existe*/
     	String[] path_tab=path.split(".");
-    	if(path_tab[1]=="png"){
+    	if(path_tab[path_tab.length-1]=="png"){
 	        ImageIcon img=new ImageIcon(path);
 	    	int imageHeight=img.getIconHeight();
 	    	int imageWidth=img.getIconWidth();

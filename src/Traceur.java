@@ -108,4 +108,7 @@ public class Traceur extends JPanel{
 	public void setForme(int forme){
 		this.forme=forme;
 	}
+	public void setPath(String path){
+		this.path=path;
+	}
 }
