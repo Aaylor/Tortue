@@ -161,7 +161,7 @@ public class ZoneDessin extends JPanel{
 				//On va faire une boucle qui dessin des triangle successifs selon l'epaisseur du curseur
 				if(t.estRempli()){
 					g.fillRect(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getLargeur(), t.getHauteur());
-				}
+                }
 				else{
 					g.drawRect(posXAbsolue(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()), posYAbsolue(t.getYOrigine()) - t.getEpaisseur(), t.getLargeur() + t.getEpaisseur(), t.getHauteur() + t.getEpaisseur());
 				}
