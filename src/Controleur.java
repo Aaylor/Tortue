@@ -1697,13 +1697,11 @@ public class Controleur{
     {
             JOptionPane option_pane = new JOptionPane();
             
-            int answer = option_pane.showConfirmDialog(null,
+            return  option_pane.showConfirmDialog(null,
                     msg_dialog,
                     title,
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
-
-            return answer;
     }
 
 }

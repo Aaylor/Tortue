@@ -5,8 +5,8 @@ import javax.swing.filechooser.FileFilter;
 public class ExtensionFileFilter extends FileFilter
 {
 
-    String description = "";
-    String regex[];
+    private String description = "";
+    private final String regex[];
 
     public ExtensionFileFilter(String description, String regex)
     {
