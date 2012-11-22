@@ -1203,7 +1203,8 @@ public class Controleur{
             if ( returnVal == JFileChooser.APPROVE_OPTION )
             {
                 path_to_drawing = chooser.getSelectedFile().getAbsolutePath();
-                if ( !path_to_drawing.endsWith(".png") )
+                String regex = "(.*)[\\.]([pP][nN][gG]||[jJ][pP][gG]||[gG][iI][fF])";
+                if ( !path_to_drawing.matches(regex) )
                 {
                     path_to_drawing += ".png";
                 }
