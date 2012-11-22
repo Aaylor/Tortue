@@ -15,7 +15,7 @@ public class StockageDonnee
     
     
     public static String pathname_save = new String("");
-    public static boolean image_save = false;
+    public static boolean image_save = true;
 
     /**
      *  Fonction qui initialise toutes les collections
@@ -319,8 +319,11 @@ public class StockageDonnee
         {
             liste_commande_entree_correcte.add(s);
         }
-           
-        changeImageSave();
+        
+        if ( getImageSave() )
+        {
+            changeImageSave();
+        }
         return true;
     }
 
@@ -358,6 +361,15 @@ public class StockageDonnee
     public static void videListeDessin()
     {
         liste_dessin.clear();
+    }
+
+    /**
+     *  Fonction permettant de tout vider
+     */
+    public static void videTout()
+    {
+        videLCEC();
+        videListeDessin();
     }
     
     /**

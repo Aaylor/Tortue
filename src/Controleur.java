@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.*;
@@ -1065,6 +1066,44 @@ public class Controleur{
      */
     public int newFile()
     {
+        int save_return = -1;
+
+        if ( !StockageDonnee.getImageSave() )
+        {
+
+            JOptionPane save_option = new JOptionPane();
+            int answer = save_option.showConfirmDialog(null,
+                    "Sauvegarder avant de quitter ?",
+                    "Nouveau fichier",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            if ( answer == JOptionPane.YES_OPTION )
+            {
+                save_return = save();
+            }
+            else if ( answer == JOptionPane.CANCEL_OPTION 
+                        || answer == JOptionPane.CLOSED_OPTION )
+            {
+                return SUCCESS;
+            }
+            else
+            {
+                save_return = SUCCESS;
+            }
+
+        }
+
+        if ( save_return == SUCCESS )
+        {
+            StockageDonnee.videTout();
+            zd.repaint();
+        }
+        else
+        {
+            return newFile();
+        }
+
         return SUCCESS;
     }
 
@@ -1166,6 +1205,10 @@ public class Controleur{
                 {
                     path_to_drawing += ".png";
                 }
+            }
+            else
+            {
+                return 1;
             }
 
         }
