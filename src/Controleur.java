@@ -1195,14 +1195,9 @@ public class Controleur{
       
         if ( pathname.equals("") )
         {
-            JFileChooser chooser = new JFileChooser();
-        
-            /*
-            FileFilter filter = new ExampleFileFilter();
-            filter.addExtension("png");
-            filter.addDescription("Images png");
-            chooser.setFileFilter(filter);
-            */
+            String debut_regex = "(.*)[\\.]";
+            JFileChooser chooser = getChooser("Fichier image (png, gif, jpg)", new String[] { debut_regex + "[pP][nN][gG]$",
+                    debut_regex + "[jJ][pP][gG]", debut_regex + "[gG][iI][fF]" } );
         
             int returnVal = chooser.showSaveDialog(zd);
             if ( returnVal == JFileChooser.APPROVE_OPTION )
@@ -1410,24 +1405,22 @@ public class Controleur{
 
         if ( pathname.equals("") )
         {
-            JFileChooser chooser = new JFileChooser();
-        
-            /*
-            FileFilter filter = new ExampleFileFilter();
-            filter.addExtension("png");
-            filter.addDescription("Images png");
-            chooser.setFileFilter(filter);
-            */
-        
+            String regex = "(.*)[\\.][tT][xX][tT]$";
+            JFileChooser chooser = getChooser("Fichier texte", new String[] { regex });
+
             int returnVal = chooser.showOpenDialog(null);
             if ( returnVal == JFileChooser.APPROVE_OPTION )
             {
                 pathname = chooser.getSelectedFile().getAbsolutePath();
-                System.out.println(pathname);
+                if ( !pathname.matches(regex) )
+                {
+                    return 1; /* ERREUR A ECRIRE */
+                }
+
             }
             else
             {
-                return 1;
+                return SUCCESS;
             }
             
         }
@@ -1708,6 +1701,17 @@ public class Controleur{
 
         return formater.format(date);
     }
- 
+
+    public JFileChooser getChooser(String description, String[] regex)
+    {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory( new File( System.getProperty("user.dir") ).getParentFile() );
+
+            ExtensionFileFilter filter = new ExtensionFileFilter(description, regex);
+            chooser.setFileFilter(filter);
+            chooser.addChoosableFileFilter(filter);
+       
+            return chooser;
+    }
 
 }

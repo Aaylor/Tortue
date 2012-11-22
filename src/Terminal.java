@@ -91,9 +91,7 @@ public class Terminal extends JPanel implements KeyListener{
             else if ( proposition_completion.size() > 1 )
             {
                 String display_proposition = " > " + this.champ_de_commande.getText() + "\n";
-               /* for ( int i = 0; i < proposition_completion.size(); i++)
-                    display_proposition += "  " + proposition_completion.get(i);
-                */
+                
                 for ( String proposition : proposition_completion )
                 {
                     display_proposition += "  " + proposition;
