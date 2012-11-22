@@ -644,7 +644,11 @@ public class Controleur{
             case 23:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
-                return exec(commande_parser[1]);
+
+                if ( commande_parser.length == 2 )
+                    return exec(commande_parser[1]);
+
+                return exec("");
             
             case 24:
                 if ( commande_parser.length > 3 )
@@ -1066,7 +1070,7 @@ public class Controleur{
      */
     public int newFile()
     {
-        int save_return = -1;
+        boolean save_return = StockageDonnee.getImageSave();
 
         if ( !StockageDonnee.getImageSave() )
         {
@@ -1080,7 +1084,10 @@ public class Controleur{
 
             if ( answer == JOptionPane.YES_OPTION )
             {
-                save_return = save();
+                if ( save() == SUCCESS )
+                {
+                    save_return = true;
+                }
             }
             else if ( answer == JOptionPane.CANCEL_OPTION 
                         || answer == JOptionPane.CLOSED_OPTION )
@@ -1089,12 +1096,12 @@ public class Controleur{
             }
             else
             {
-                save_return = SUCCESS;
+                save_return = true;
             }
 
         }
 
-        if ( save_return == SUCCESS )
+        if ( save_return )
         {
             StockageDonnee.videTout();
             zd.repaint();
@@ -1208,7 +1215,7 @@ public class Controleur{
             }
             else
             {
-                return 1;
+                return SUCCESS;
             }
 
         }
@@ -1400,6 +1407,30 @@ public class Controleur{
      */
     public int exec(String pathname)
     {
+
+        if ( pathname.equals("") )
+        {
+            JFileChooser chooser = new JFileChooser();
+        
+            /*
+            FileFilter filter = new ExampleFileFilter();
+            filter.addExtension("png");
+            filter.addDescription("Images png");
+            chooser.setFileFilter(filter);
+            */
+        
+            int returnVal = chooser.showOpenDialog(null);
+            if ( returnVal == JFileChooser.APPROVE_OPTION )
+            {
+                pathname = chooser.getSelectedFile().getAbsolutePath();
+                System.out.println(pathname);
+            }
+            else
+            {
+                return 1;
+            }
+            
+        }
 
         File file_to_exec = new File(pathname);
 
