@@ -452,6 +452,15 @@ public class StockageDonnee
     }
 
     /**
+     *  Fonction qui change la valeur du boolean
+     *  @param boolean boolean save
+     */
+    public static void setImageSave(boolean b)
+    {
+        image_save = b;
+    }
+
+    /**
      *  Fonction renvoyant la dernière commande entrée
      *  @return la dernière commande
      */

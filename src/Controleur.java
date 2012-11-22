@@ -1075,12 +1075,7 @@ public class Controleur{
         if ( !StockageDonnee.getImageSave() )
         {
 
-            JOptionPane save_option = new JOptionPane();
-            int answer = save_option.showConfirmDialog(null,
-                    "Sauvegarder avant de quitter ?",
-                    "Nouveau fichier",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE);
+            int answer = getOptionPane("Sauvegarder avant de quitter ?", "Nouveau fichier");
 
             if ( answer == JOptionPane.YES_OPTION )
             {
@@ -1103,6 +1098,8 @@ public class Controleur{
 
         if ( save_return )
         {
+            term.clear();
+            StockageDonnee.setImageSave(true);
             StockageDonnee.videTout();
             zd.repaint();
         }
@@ -1166,7 +1163,8 @@ public class Controleur{
 
             try
             {
-                ImageIO.write(final_image, "PNG", dessin);
+                ImageIO.write(final_image, path_to_drawing.substring(path_to_drawing.lastIndexOf(".")+1).toUpperCase()
+                        ,dessin);
                 StockageDonnee.changeImageSave();
             }
             catch (Exception e)
@@ -1207,6 +1205,17 @@ public class Controleur{
                 if ( !path_to_drawing.matches(regex) )
                 {
                     path_to_drawing += ".png";
+                }
+
+                if ( new File(path_to_drawing).exists() )
+                {
+                    int answer = getOptionPane("Ecraser le fichier existant ?", "Sauvegarder le fichier");
+                    
+                    if ( answer == JOptionPane.NO_OPTION || answer == JOptionPane.CANCEL_OPTION
+                            || answer == JOptionPane.CLOSED_OPTION)
+                    {
+                        return saveas("");
+                    }
                 }
             }
             else
@@ -1713,6 +1722,19 @@ public class Controleur{
             chooser.addChoosableFileFilter(filter);
        
             return chooser;
+    }
+
+    public int getOptionPane(String msg_dialog, String title)
+    {
+            JOptionPane option_pane = new JOptionPane();
+            
+            int answer = option_pane.showConfirmDialog(null,
+                    msg_dialog,
+                    title,
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            return answer;
     }
 
 }
