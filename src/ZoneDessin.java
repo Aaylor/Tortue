@@ -17,41 +17,42 @@ import javax.swing.event.MouseInputAdapter;
 
 @SuppressWarnings("serial")
 public class ZoneDessin extends JPanel{
-	int largeurDessin; //La largeur de la zone de dessin
-	int hauteurDessin; //La longueur de la zone de dessin
+	int largeurDessin; //La largeur du dessin
+	int hauteurDessin; //La longueur du dessin
 	Color background;
 	Curseur curseur;
-	//Les bords de la zones de dessin
-	int ecartHorizontal;
-	int ecartVertical;
+	int ecartHorizontal; //Ecart horizontal entre le bord de la zone de dessin et du dessin
+	int ecartVertical; //Ecart vertical entre le bord de la zone de dessin et du dessin
 	Controleur c;
 	BarreOutils barreOutils;
-	private int clicSouris;//1 : Clic gauche, 3 : Clic Droit
+	private int clicSouris;//1 : Clic gauche, 2 : Clic du milieu, 3 : Clic Droit
 	
 	
     private Controleur controleur;
 
-    /**
-     *  Constructeur de la zone de dessin
-     */
+    /**Constructeur de la zone de dessin*/
 	ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur){
 		this.largeurDessin = largeurDessin;
 		this.hauteurDessin = hauteurDessin;
 		this.background = background;
 		this.curseur = curseur;
 
+		//Appels de fonction lors des clics de souris sur la zone de dessin
+		//Simple clic (gauche, milieu ou droit)
 		this.addMouseListener(new MouseAdapter() {			
 			public void mousePressed(MouseEvent e) {
 				clicSouris = e.getButton();
 				clicSouris(e.getX(), e.getY());
 	        }
 	    });
+		//Clic continue (avec mouvement) de la souris (ne concerne que le clic gauche)
 		this.addMouseMotionListener(new MouseInputAdapter(){
 			public void mouseDragged(MouseEvent e) {
 				if(clicSouris == 1)
 					clicSouris(e.getX(), e.getY());
 			}
 		});
+		//Defilement de la molette
 		this.addMouseWheelListener(new  MouseWheelListener(){
 			public void mouseWheelMoved(MouseWheelEvent e) {
 				barreOutils.interactionSliderEpaisseur(-e.getWheelRotation()*4);
@@ -59,11 +60,11 @@ public class ZoneDessin extends JPanel{
 		});
     }
 	
+	/**Fonction appelée lors d'un clic de souris sur la zone de dessin*/ 
 	public void clicSouris(int posX, int posY){
 		switch(clicSouris){
+			//Clic gauche
 			case 1 :
-				//if((posX > ecartHorizontal - 30) && (posX < ecartHorizontal + largeurDessin + 30) && (posY > ecartVertical - 30) && (posY < ecartVertical + hauteurDessin + 30)){
-                
                 int posX_final = (posX - ecartHorizontal < 0) ? 0 
                     : (posX - ecartHorizontal > this.getLargeurDessin()) ? this.getLargeurDessin()
                     : (posX - ecartHorizontal);
@@ -74,11 +75,12 @@ public class ZoneDessin extends JPanel{
 
                 c.commande("goto " + posX_final + " " + posY_final, true );
 				repaint();
-				//}
 				break;
+			//Clic molette
 			case 2 :
 				barreOutils.interactionBoutonOutil();
 				break;
+			//Clic droit
 			case 3 :
 				barreOutils.interactionBoutonPoserOutil();
 				break;
@@ -86,24 +88,23 @@ public class ZoneDessin extends JPanel{
 				
 	}
 	
-	/**
-	 * Methode dessinant la zone de dessin puis le curseur
-	 */
+	/**Methode dessinant la zone de dessin puis le curseur*/
 	public void paintComponent(Graphics gd){
-		
         Graphics2D g = (Graphics2D)gd;
-		//Calcul de l'ecart de la zone de dessin pour centrer le dessin
+        
+		//Calcul des ecarts entre la zone de dessin et le dessin pour le centrer
 		ecartHorizontal = (this.getWidth() - largeurDessin)/2;
 		ecartVertical = (this.getHeight() - hauteurDessin)/2;
 		
-		//ETAPE 1 : Afficher la zone de dessin
-			g.setColor(background);//Couleur de fond du dessin
-			g.fillRect(ecartHorizontal, ecartVertical, this.largeurDessin, this.hauteurDessin);
+		//ETAPE 1 : Afficher le fond du dessin
+		g.setColor(background); //Couleur de fond du dessin
+		g.fillRect(ecartHorizontal, ecartVertical, this.largeurDessin, this.hauteurDessin);
 							
 		//ETAPE 2 : Afficher les traceurs
 		Traceur t;
 		for (int i = 0; i < StockageDonnee.liste_dessin.size(); i ++){
 			t = StockageDonnee.liste_dessin.get(i);
+			
 			//Initialisons les propriétés de l'objet graphics
 			g.setColor(t.getColor());
 			int cap; int join;
@@ -116,25 +117,18 @@ public class ZoneDessin extends JPanel{
 				join = BasicStroke.CAP_ROUND;
 			}
 			g.setStroke(new BasicStroke(t.getEpaisseur(), cap, join));
-			
-			/*System.out.println("Position X Début : " + posXAbsolue(t.getXOrigine()));
-			System.out.println("Position Y Début : " + posYAbsolue(t.getYOrigine()));
-			System.out.println("Position X Fin : " + posXAbsolue(t.getXArrivee()));
-			System.out.println("Position Y Fin : " + posYAbsolue(t.getYArrivee()));
-			System.out.println("Couleur Curseur : " + t.getColor());
-			System.out.println("Epaisseur : " + t.getEpaisseur());
-			*/
-			
-			//Si le t est une droite/point
+
+			//Si le t est un trait ou un point
 			if (t.getType() == 1 || t.getType() == 0){
-				if(t.getForme() == 0)
+				//Le dessin est différent en fonction de la forme du curseur
+				if(t.getForme() == 0)//Le curseur est carré
 					g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
-				//Dans le cas d'une forme carré, on va dessiner des carré aux points de départ/arrivée pour un effet pls propre
+				//Dans le cas d'une forme carré, on va dessiner des carré aux points de départ/arrivée pour un effet plus propre
 				else{
-					g.setStroke(new BasicStroke());
+					g.setStroke(new BasicStroke());//On désinne nous meme le tracé, pas besoin de Stroke
 					g.fillRect(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2, posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
 					g.fillRect(posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
-					//Et on trace deux version du trait entre les points (en fait si on ne laisse qu'une seule des deux version, certains angles seront mal déssiné
+					//Et on trace deux version du trait entre les points (en fait si on ne laisse qu'une seule des deux version, certains angles seront mal dessinés
 					int[] x = {posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2,
 							posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, 
 							posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2,
@@ -152,7 +146,6 @@ public class ZoneDessin extends JPanel{
 							posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2
 							};
 					g.fillPolygon(x2, y, 4);
-							
 				}
 			}
 
@@ -194,7 +187,7 @@ public class ZoneDessin extends JPanel{
 				}
 			}
 			
-			//Si le t est une image
+			//Si le t est une Image
 			else if(t.getType() == 5){
 				try {
 				      Image img = ImageIO.read(new File(t.getPath()));
@@ -207,11 +200,12 @@ public class ZoneDessin extends JPanel{
 			}			
 		}
 		
-		//DESSINONS LE FOND
+		//ETAPE 3 : Dessinon le fond
 		g.setStroke(new BasicStroke());
+		
 		//Fond de la zone de dessin
 		g.setColor(new Color(180,180,180));//Couleur de fond
-		g.fillRect(0, 0, ecartHorizontal, this.getHeight());//On défini une couleur derriere le dessin pour eviter les glitch graphiques
+		g.fillRect(0, 0, ecartHorizontal, this.getHeight());//On définit une couleur derriere le dessin pour eviter les glitchs graphiques
 		g.fillRect(ecartHorizontal + largeurDessin, 0, this.getWidth(), this.getHeight());
 		g.fillRect(ecartHorizontal - 1, 0, largeurDessin + 1, ecartVertical);
 		g.fillRect(ecartHorizontal - 1, hauteurDessin + ecartVertical, largeurDessin + 1, ecartVertical+1);
@@ -221,7 +215,7 @@ public class ZoneDessin extends JPanel{
 		g.fillRect(ecartHorizontal + largeurDessin, ecartVertical + 5, 5, hauteurDessin);
 		g.fillRect(ecartHorizontal + 5, ecartVertical + hauteurDessin, largeurDessin, 5);
 		
-		//ETAPE 3 : Afficher le curseur
+		//ETAPE 4 : Afficher le curseur
 		//Deux curseurs à afficher : le curseur négatif (pour plus de lisibilité) et le curseur normal
 		
 		//Forme du curseur en fonction de l'outil
@@ -283,46 +277,51 @@ public class ZoneDessin extends JPanel{
 		g.drawLine(this.getPosX() - 1, this.getPosY() - 1, (int)posX2 - 1, (int)posY2 - 1);
 		
 		
-		//DETERMINONS LA TAILLE DU JPANEL
+		//DERNIERE ETAPE : Redefinir la taille du JPanel dans le cas d'un redimensionnement
 		this.setPreferredSize(new Dimension(largeurDessin, hauteurDessin));
 		this.setMinimumSize(new Dimension(largeurDessin, hauteurDessin));
 		this.setMaximumSize(new Dimension(largeurDessin, hauteurDessin));
 	}
 
 	
-	/*///
-	 * ACCESSEURS
-	 //*/
+	/**Méthode renvoyant la coordonée X absolue dans la zone de dessin par rapport à une coordonée X relative au dessin*/
 	public int posXAbsolue(int x){
 		return x + ecartHorizontal;
 	}
+	/**Méthode renvoyant la coordonée Y absolue dans la zone de dessin par rapport à une coordonée Y relative au dessin*/
 	public int posYAbsolue(int y){
 		return y + ecartVertical;
 	}
-	
-	/*///
-	 * ACCESSEURS
-	 //*/
-	
+	/**Méthode renvoyant la coordonée X absolue du curseur du curseur dans la zone de dessin par rapport à une coordonée X relative au dessin*/
 	public int getPosX(){
 		return curseur.getPosX() + ecartHorizontal;
 	}
+	/**Méthode renvoyant la coordonée Y absolue du curseur dans la zone de dessin par rapport à une coordonée Y relative au dessin*/
 	public int getPosY(){
 		return curseur.getPosY() + ecartVertical;
 	}
 	
+	/*///
+	 * ACCESSEURS
+	 //*/
+	
+	/**Accesseur renvoyant l'écart horizontal entre le bord de la zone de dessin et du dessin*/
 	public int getEcartHorizontal(){
 		return ecartHorizontal;
 	}
+	/**Accesseur renvoyant l'écart vertical entre le bord de la zone de dessin et du dessin*/
 	public int getEcartVertical(){
 		return ecartVertical;
 	}
+	/**Accesseur renvoyant la largeur du dessin (et non de la zonne de dessin) en pixel*/
     public int getLargeurDessin(){
     	return largeurDessin;
     }
+    /**Accesseur renvoyant la hauteur du dessin (et non de la zonne de dessin) en pixel*/
     public int getHauteurDessin(){
     	return hauteurDessin;
     }
+    /**Accesseur renvoyant la couleur d'arriere plan du dessin*/
     public Color getBackground(){
     	return background;
     }
@@ -331,24 +330,26 @@ public class ZoneDessin extends JPanel{
 	 * MODIFIEURS
 	 //*/
     
-    /**
-     *  Modifie le controleur
+    /** Modifie le controleur
      *  @param c nouveau controleur
      */
     public void setControleur(Controleur c)
     {
         this.c = c;
     }
-    
+    /**Modifie la couleur d'arriere plan de la zone de dessin */
     public void setBackground(Color c){
     	background = c;
     }
+    /**Modifie la largeur du dessin */
     public void setLargeur(int l){
     	largeurDessin = l;
     }
+    /**Modifie la hauteur du dessin */
     public void setHauteur(int h){
     	hauteurDessin = h;
     }
+    /**Modifie la barre d'outils associée à la zone de dessin*/
     public void setBarreOutils(BarreOutils b){ barreOutils = b;}
     
 }
