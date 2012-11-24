@@ -66,7 +66,7 @@ public class Fenetre extends JFrame{
 		scrollPaneZoneDessin.setMinimumSize(new Dimension(this.getWidth()*2/3, 0));
 		scrollPaneZoneDessin.setPreferredSize(new Dimension(this.getWidth()*2/3, 0));
 		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
-		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, 10000));
+		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
 		
 		
 		//Definissons l'action lors du clic sur la croix rouge
