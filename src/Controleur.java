@@ -1269,23 +1269,23 @@ public class Controleur{
         if ( pathname.equals("") )
         {
             
-            try
+            String regex = "(.*)[\\.][tT][xX][tT]$";
+            JFileChooser chooser = getChooser("Fichier texte", new String[] { regex });
+
+            int returnVal = chooser.showOpenDialog(null);
+            if ( returnVal == JFileChooser.APPROVE_OPTION )
             {
-                File folder = new File(current.getParent() + File.separator + "history");
-                if ( !folder.exists() )
+                pathname = chooser.getSelectedFile().getAbsolutePath();
+                if ( !pathname.matches(regex) )
                 {
-                    if ( !folder.mkdir() )
-                        term.addMessage("   /!\\ LE DOSSIER N'A PAS PU ETRE CREE");
+                    pathname += ".txt";
                 }
-                
-                history = new File(current.getParent()
-                        + File.separator + "history" 
-                        + File.separator + "history" + getCurDate() + ".txt");
-                
+
+                history = new File(pathname);
             }
-            catch (Exception e)
+            else
             {
-                return COMMANDE_ERRONEE;
+                return SUCCESS;
             }
 
         }
