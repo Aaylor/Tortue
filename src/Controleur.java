@@ -1280,8 +1280,20 @@ public class Controleur{
                 {
                     pathname += ".txt";
                 }
-
+                
                 history = new File(pathname);
+                
+                if ( history.exists() )
+                {
+                    int answer = getOptionPane("Ecraser le fichier existant ?", "Sauvegarder le fichier");
+                    
+                    if ( answer == JOptionPane.NO_OPTION || answer == JOptionPane.CANCEL_OPTION
+                            || answer == JOptionPane.CLOSED_OPTION)
+                    {
+                        return savehistory("");
+                    }
+                }
+
             }
             else
             {
