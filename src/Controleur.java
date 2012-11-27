@@ -1116,9 +1116,9 @@ public class Controleur{
         if ( !path_to_drawing.equals("") )
         { 
             File dessin = new File(path_to_drawing);
-
-            BufferedImage tmpSave = new BufferedImage(  1000,
-                                                        1000,
+            zd.setAffichageCurseur(false);
+            BufferedImage tmpSave = new BufferedImage(  2000,
+                                                        2000,
                                                         BufferedImage.TYPE_3BYTE_BGR);
      
             Graphics2D g = (Graphics2D)tmpSave.getGraphics();
@@ -1135,9 +1135,13 @@ public class Controleur{
             }
             catch (Exception e)
             {
+                
                 System.out.println("zhjrkjzehrjze");
             }
-        
+            finally
+            {
+                zd.setAffichageCurseur(true);
+            }
         }
         else
         {
@@ -1156,7 +1160,7 @@ public class Controleur{
     {
 
         String path_to_drawing = pathname;
-      
+
         if ( pathname.equals("") )
         {
             String debut_regex = "(.*)[\\.]";
@@ -1230,6 +1234,7 @@ public class Controleur{
 
         if ( !path_to_drawing.equals("") )
         {
+            zd.setAffichageCurseur(false);
             BufferedImage tmpSave = new BufferedImage(  2000,
                                                         2000,
                                                         BufferedImage.TYPE_3BYTE_BGR);
@@ -1248,6 +1253,10 @@ public class Controleur{
             catch (Exception e)
             {
                 System.out.println("zhjrkjzehrjze");
+            }
+            finally
+            {
+                zd.setAffichageCurseur(true);
             }
         }
            
