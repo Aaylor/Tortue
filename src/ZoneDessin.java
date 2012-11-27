@@ -26,6 +26,8 @@ public class ZoneDessin extends JPanel{
 	Controleur c;
 	BarreOutils barreOutils;
 	private int clicSouris;//1 : Clic gauche, 2 : Clic du milieu, 3 : Clic Droit
+	private boolean affichageCurseur = true;
+	private boolean affichageProgressif = false;
 	
 	
     private Controleur controleur;
@@ -216,65 +218,67 @@ public class ZoneDessin extends JPanel{
 		g.fillRect(ecartHorizontal + 5, ecartVertical + hauteurDessin, largeurDessin, 5);
 		
 		//ETAPE 4 : Afficher le curseur
-		//Deux curseurs à afficher : le curseur négatif (pour plus de lisibilité) et le curseur normal
-		
-		//Forme du curseur en fonction de l'outil
-		BasicStroke forme;
-		if(curseur.getType() == 0){
-			forme = new BasicStroke(0);
+		if(affichageCurseur){
+			//Deux curseurs à afficher : le curseur négatif (pour plus de lisibilité) et le curseur normal
+			
+			//Forme du curseur en fonction de l'outil
+			BasicStroke forme;
+			if(curseur.getType() == 0){
+				forme = new BasicStroke(0);
+			}
+			else{
+				float[] dashArray = {2, 2};
+				forme = new BasicStroke(0, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 0, dashArray, 0);
+			}
+			g.setStroke(forme);
+			
+			//AFFICHAGE DE LA BASE DU CURSEUR
+			//Calcul du rayon de la base
+			int rayonBase;
+			if (curseur.getEpaisseur() > 10)
+				rayonBase = curseur.getEpaisseur() / 2;
+			else rayonBase = 5;
+			
+			
+			//Dessin de la base
+			//Sous curseur negatif
+			g.setColor(Color.white);
+			
+			g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY()  + 1, this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY()  + 1);
+			g.drawLine(this.getPosX() + 1, this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX() +1, this.getPosY()+ (curseur.getEpaisseur() / 2));
+			if (curseur.isDown()){		
+				if(curseur.getForme() == 0)
+					g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase + 1, rayonBase * 2, rayonBase * 2);
+				else
+					g.drawRect(this.getPosX() - curseur.getEpaisseur()/2 + 1, this.getPosY() - curseur.getEpaisseur()/2 + 1, curseur.getEpaisseur(), curseur.getEpaisseur());
+			}
+			
+			
+			//Curseur de la bonne couleur
+			g.setColor(Color.black);
+			g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY(), this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY());
+			g.drawLine(this.getPosX(), this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX(), this.getPosY() + (curseur.getEpaisseur() / 2));
+			if (curseur.isDown()){	
+				if(curseur.getForme() == 0)
+					g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase , rayonBase * 2, rayonBase * 2);
+				else
+					g.drawRect(this.getPosX() - curseur.getEpaisseur()/2, this.getPosY() - curseur.getEpaisseur()/2, curseur.getEpaisseur(), curseur.getEpaisseur());
+			}
+			
+			//Affichage de la fleche d'orientation
+			//Determinons le point d'arrivée du trait symbolisant l'orientation
+			int tailleTrait;
+			if (curseur.getEpaisseur() > 40)
+				tailleTrait = curseur.getEpaisseur();
+			else tailleTrait = 40;
+			double posX2 = this.getPosX() + tailleTrait * Math.sin(curseur.getOrientation() * Math.PI / 180);
+			double posY2 = this.getPosY() + tailleTrait * Math.cos(curseur.getOrientation() * Math.PI / 180);
+			//Dessinons le trait
+			g.setStroke(new BasicStroke(0));
+			g.drawLine(this.getPosX(), this.getPosY(), (int)posX2, (int)posY2);
+			g.setColor(Color.white);
+			g.drawLine(this.getPosX() - 1, this.getPosY() - 1, (int)posX2 - 1, (int)posY2 - 1);
 		}
-		else{
-			float[] dashArray = {2, 2};
-			forme = new BasicStroke(0, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND, 0, dashArray, 0);
-		}
-		g.setStroke(forme);
-		
-		//AFFICHAGE DE LA BASE DU CURSEUR
-		//Calcul du rayon de la base
-		int rayonBase;
-		if (curseur.getEpaisseur() > 10)
-			rayonBase = curseur.getEpaisseur() / 2;
-		else rayonBase = 5;
-		
-		
-		//Dessin de la base
-		//Sous curseur negatif
-		g.setColor(Color.white);
-		
-		g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY()  + 1, this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY()  + 1);
-		g.drawLine(this.getPosX() + 1, this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX() +1, this.getPosY()+ (curseur.getEpaisseur() / 2));
-		if (curseur.isDown()){		
-			if(curseur.getForme() == 0)
-				g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase + 1, rayonBase * 2, rayonBase * 2);
-			else
-				g.drawRect(this.getPosX() - curseur.getEpaisseur()/2 + 1, this.getPosY() - curseur.getEpaisseur()/2 + 1, curseur.getEpaisseur(), curseur.getEpaisseur());
-		}
-		
-		
-		//Curseur de la bonne couleur
-		g.setColor(Color.black);
-		g.drawLine(this.getPosX() - (curseur.getEpaisseur() / 2), this.getPosY(), this.getPosX() + (curseur.getEpaisseur() / 2), this.getPosY());
-		g.drawLine(this.getPosX(), this.getPosY() - (curseur.getEpaisseur() / 2), this.getPosX(), this.getPosY() + (curseur.getEpaisseur() / 2));
-		if (curseur.isDown()){	
-			if(curseur.getForme() == 0)
-				g.drawOval(this.getPosX() - rayonBase, this.getPosY()  - rayonBase , rayonBase * 2, rayonBase * 2);
-			else
-				g.drawRect(this.getPosX() - curseur.getEpaisseur()/2, this.getPosY() - curseur.getEpaisseur()/2, curseur.getEpaisseur(), curseur.getEpaisseur());
-		}
-		
-		//Affichage de la fleche d'orientation
-		//Determinons le point d'arrivée du trait symbolisant l'orientation
-		int tailleTrait;
-		if (curseur.getEpaisseur() > 40)
-			tailleTrait = curseur.getEpaisseur();
-		else tailleTrait = 40;
-		double posX2 = this.getPosX() + tailleTrait * Math.sin(curseur.getOrientation() * Math.PI / 180);
-		double posY2 = this.getPosY() + tailleTrait * Math.cos(curseur.getOrientation() * Math.PI / 180);
-		//Dessinons le trait
-		g.setStroke(new BasicStroke(0));
-		g.drawLine(this.getPosX(), this.getPosY(), (int)posX2, (int)posY2);
-		g.setColor(Color.white);
-		g.drawLine(this.getPosX() - 1, this.getPosY() - 1, (int)posX2 - 1, (int)posY2 - 1);
 		
 		
 		//DERNIERE ETAPE : Redefinir la taille du JPanel dans le cas d'un redimensionnement
@@ -351,5 +355,6 @@ public class ZoneDessin extends JPanel{
     }
     /**Modifie la barre d'outils associée à la zone de dessin*/
     public void setBarreOutils(BarreOutils b){ barreOutils = b;}
-    
+    /**Modifie l'activation de l'affichage du curseur*/
+    public void setAffichageCurseur(boolean b){ affichageCurseur = b;}
 }
