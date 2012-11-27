@@ -123,31 +123,98 @@ public class ZoneDessin extends JPanel{
 			//Si le t est un trait ou un point
 			if (t.getType() == 1 || t.getType() == 0){
 				//Le dessin est différent en fonction de la forme du curseur
-				if(t.getForme() == 0)//Le curseur est carré
-					g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
+				if(t.getForme() == 0)//Le curseur est rond
+					if(affichageProgressif){
+						int xArriveeTemp = t.getXOrigine();
+						int yArriveeTemp = t.getYOrigine();
+						while(xArriveeTemp != t.getXArrivee() && yArriveeTemp != t.getYArrivee()){
+							//On rapproche le point d'arrivée temporaire au point d'arret définitif
+							//On rapproche les X
+							if(xArriveeTemp > t.getXArrivee()) xArriveeTemp--;
+							else if(xArriveeTemp < t.getXArrivee()) xArriveeTemp++;
+							//On rapproche les Y
+							if(yArriveeTemp > t.getYArrivee()) yArriveeTemp--;
+							else if(yArriveeTemp < t.getYArrivee()) yArriveeTemp++;
+							
+							//On affiche le trait transitoire
+							g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(xArriveeTemp), posYAbsolue(yArriveeTemp));
+							
+							//On attend genre 10ms
+							try{
+								  Thread.sleep(1000); //Ici, une pause d'une seconde
+							}catch(InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+					else g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
 				//Dans le cas d'une forme carré, on va dessiner des carré aux points de départ/arrivée pour un effet plus propre
 				else{
 					g.setStroke(new BasicStroke());//On désinne nous meme le tracé, pas besoin de Stroke
-					g.fillRect(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2, posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
-					g.fillRect(posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
-					//Et on trace deux version du trait entre les points (en fait si on ne laisse qu'une seule des deux version, certains angles seront mal dessinés
-					int[] x = {posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2,
-							posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, 
-							posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2,
-							posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2
-							};
-					int[] y = {posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2,
-							posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2,
-							posYAbsolue(t.getYArrivee()) + t.getEpaisseur()/2,
-							posYAbsolue(t.getYOrigine()) + t.getEpaisseur()/2
-							};
-					g.fillPolygon(x, y, 4);
-					int[] x2 = {posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2,
-							posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2, 
-							posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2,
-							posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2
-							};
-					g.fillPolygon(x2, y, 4);
+					if(affichageProgressif){
+						int xArriveeTemp = t.getXOrigine();
+						int yArriveeTemp = t.getYOrigine();
+						while(xArriveeTemp != t.getXArrivee() && yArriveeTemp != t.getYArrivee()){
+							//On rapproche le point d'arrivée temporaire au point d'arret définitif
+							//On rapproche les X
+							if(xArriveeTemp > t.getXArrivee()) xArriveeTemp--;
+							else if(xArriveeTemp < t.getXArrivee()) xArriveeTemp++;
+							//On rapproche les Y
+							if(yArriveeTemp > t.getYArrivee()) yArriveeTemp--;
+							else if(yArriveeTemp < t.getYArrivee()) yArriveeTemp++;
+							
+							//On affiche le trait transitoire
+							g.fillRect(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2, posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+							g.fillRect(posXAbsolue(xArriveeTemp) - t.getEpaisseur()/2, posYAbsolue(yArriveeTemp) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+							//Et on trace deux version du trait entre les points (en fait si on ne laisse qu'une seule des deux version, certains angles seront mal dessinés
+							int[] x = {posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2,
+									posXAbsolue(xArriveeTemp) - t.getEpaisseur()/2, 
+									posXAbsolue(xArriveeTemp) + t.getEpaisseur()/2,
+									posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2
+									};
+							int[] y = {posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2,
+									posYAbsolue(yArriveeTemp) - t.getEpaisseur()/2,
+									posYAbsolue(yArriveeTemp) + t.getEpaisseur()/2,
+									posYAbsolue(t.getYOrigine()) + t.getEpaisseur()/2
+									};
+							g.fillPolygon(x, y, 4);
+							int[] x2 = {posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2,
+									posXAbsolue(xArriveeTemp) + t.getEpaisseur()/2, 
+									posXAbsolue(xArriveeTemp) - t.getEpaisseur()/2,
+									posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2
+									};
+							g.fillPolygon(x2, y, 4);
+							
+							//On attend genre 10ms
+							try{
+								  Thread.sleep(1000); //Ici, une pause d'une seconde
+							}catch(InterruptedException e) {
+								e.printStackTrace();
+							}
+						}
+					}
+					else{
+						g.fillRect(posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2, posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+						g.fillRect(posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2, t.getEpaisseur(), t.getEpaisseur());
+						//Et on trace deux version du trait entre les points (en fait si on ne laisse qu'une seule des deux version, certains angles seront mal dessinés
+						int[] x = {posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2,
+								posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2, 
+								posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2,
+								posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2
+								};
+						int[] y = {posYAbsolue(t.getYOrigine()) - t.getEpaisseur()/2,
+								posYAbsolue(t.getYArrivee()) - t.getEpaisseur()/2,
+								posYAbsolue(t.getYArrivee()) + t.getEpaisseur()/2,
+								posYAbsolue(t.getYOrigine()) + t.getEpaisseur()/2
+								};
+						g.fillPolygon(x, y, 4);
+						int[] x2 = {posXAbsolue(t.getXOrigine()) + t.getEpaisseur()/2,
+								posXAbsolue(t.getXArrivee()) + t.getEpaisseur()/2, 
+								posXAbsolue(t.getXArrivee()) - t.getEpaisseur()/2,
+								posXAbsolue(t.getXOrigine()) - t.getEpaisseur()/2
+								};
+						g.fillPolygon(x2, y, 4);
+					}
 				}
 			}
 
@@ -357,4 +424,6 @@ public class ZoneDessin extends JPanel{
     public void setBarreOutils(BarreOutils b){ barreOutils = b;}
     /**Modifie l'activation de l'affichage du curseur*/
     public void setAffichageCurseur(boolean b){ affichageCurseur = b;}
+    /**Modifie l'activation de l'affichage progressif des traits*/
+    public void setAffichageProgressif(boolean b){ affichageProgressif = b;}
 }
