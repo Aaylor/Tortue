@@ -1073,39 +1073,63 @@ public class Controleur{
      */
     public int open(String path)
     {
-    	String[] path_tab=path.split(".");
-    	String extension=path_tab[path_tab.length-1].toLowerCase();
-    	File file=new File(path);
+    	String regex = "(.*)[\\.]([pP][nN][gG]||[jJ][pP][gG]||[gG][iI][fF])";
     	
-    	if(extension=="png"	//on test d'abord que l'extension est bien en png  
-    	|| extension=="jpg"	//ou jpg
-    	|| extension=="gif"	//ou gif
-    	/*|| extension=="jpeg"	//ou jpeg*/
-    	){
-    		if(file.exists()){ //si l'extension est bonne on vérifie l'extence du fichier
-		        ImageIcon img=new ImageIcon(path);
-		    	int imageHeight=img.getIconHeight();
-		    	int imageWidth=img.getIconWidth();
-		    	
-		    	if(imageHeight>zd.getHauteurDessin()){//on resize la zone en si le dessin est plus grand
-		    		zd.setHauteur(imageHeight);
-		    	}
-		    	if(imageWidth>zd.getLargeurDessin()){//on resize la zone en si le dessin est plus grand
-		    		zd.setLargeur(imageWidth);
-		    	}
-		    	newFile();
-		    	Traceur t = new Traceur(5,path);
-		    	
-		    	
-    		}
-    		else{
-    			//message erreur
-    		}
-    	}
+    	if ( path.equals("") )
+        {
+            JFileChooser chooser = getChooser("Fichier image", new String[] { regex });
+
+            int returnVal = chooser.showOpenDialog(null);
+            if ( returnVal == JFileChooser.APPROVE_OPTION )
+            {
+                path = chooser.getSelectedFile().getAbsolutePath();
+                if ( !path.matches(regex) )
+                {
+                    return 1; /* ERREUR A ECRIRE */
+                }
+
+            }
+            else
+            {
+                return SUCCESS;
+            }
+        }
     	else{
-    		//message erreur
-    	}
-    	return SUCCESS;
+	    	String[] path_tab=path.split(".");
+	    	String extension=path_tab[path_tab.length-1].toLowerCase();
+	    	
+	    	
+	    	if(extension!="png"	//on test d'abord que l'extension est bien en png  
+	    	|| extension!="jpg"	//ou jpg
+	    	|| extension!="gif"	//ou gif
+	    	/*|| extension=="jpeg"	//ou jpeg*/
+	    	){
+	    		//message erreur
+	    		return 1;
+	    	}
+	    }
+    	
+    	File file=new File(path);
+    	if(file.exists()){ //si l'extension est bonne on vérifie l'extence du fichier
+	        ImageIcon img=new ImageIcon(path);
+	    	int imageHeight=img.getIconHeight();
+	    	int imageWidth=img.getIconWidth();
+	    	
+	    	if(imageHeight>zd.getHauteurDessin()){//on resize la zone en si le dessin est plus grand
+	    		zd.setHauteur(imageHeight);
+	    	}
+	    	if(imageWidth>zd.getLargeurDessin()){//on resize la zone en si le dessin est plus grand
+	    		zd.setLargeur(imageWidth);
+	    	}
+	    	newFile();
+	    	StockageDonnee.ajoutListeDessin(new Traceur(5,path));
+	    	
+	    	
+		}
+		else{
+			//message erreur
+		}
+		return SUCCESS;
     }
 
     /**
