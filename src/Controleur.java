@@ -1093,7 +1093,10 @@ public class Controleur{
 		    	if(imageWidth>zd.getLargeurDessin()){//on resize la zone en si le dessin est plus grand
 		    		zd.setLargeur(imageWidth);
 		    	}
+		    	newFile();
 		    	Traceur t = new Traceur(5,path);
+		    	
+		    	
     		}
     		else{
     			//message erreur
