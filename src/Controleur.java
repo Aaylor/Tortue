@@ -105,7 +105,68 @@ public class Controleur{
      */
     public String[] parse(String s)
     {
-	    return s.split(" ");
+        String[] split = s.split(" ");
+
+        int i = 0;
+        int index_begin = -1;
+        int index_end = -1;
+
+        while ( (i < split.length) && (index_begin < 0) )
+        {
+            if ( split[i].startsWith("\"") )
+            {
+                index_begin = i;
+            }
+            i++;
+        }
+
+        if ( index_begin >= 0 )
+        {
+            i = index_begin;
+            while ( (i < split.length) && (index_end < 0) )
+            {
+                if ( split[i].endsWith("\"") )
+                {
+                    index_end = i;
+                }
+                i++;
+            }
+    
+            if ( index_end >= 0 )
+            {
+                String full_cmd = "";
+                i = index_begin;
+                while ( i <= index_end )
+                {
+                    full_cmd += split[i] + (i == index_end ? "" : " ");
+                    i++;
+                }
+                full_cmd = full_cmd.replaceAll("^[\"]", "").replaceAll("[\"]$", "").trim();
+
+                String[] final_split = new String[split.length-index_end+index_begin];
+                i = 0;
+                while ( i < final_split.length )
+                {
+                    if ( i < index_begin )
+                    {
+                        final_split[i] = split[i];
+                    }
+                    else if ( i > index_begin )
+                    {
+                        final_split[i] = split[i+(index_end-index_begin)];
+                    }
+                    else
+                    {
+                        final_split[i] = full_cmd;
+                    }
+                    i++;
+                }
+
+                return final_split;
+            }
+        }
+
+        return split;
     }
 
     /**
@@ -1358,22 +1419,17 @@ public class Controleur{
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter fSortie = new PrintWriter(bw);
 
-            fSortie.println("##################################################");
-            fSortie.flush();
-            fSortie.println("##################################################");
-            fSortie.flush();
-            fSortie.println("##\t\tHISTORIQUE GENERE LE\t\t##");
-            fSortie.flush();
-            fSortie.println("##\t\t" + getCurDate() + "\t\t##");
-            fSortie.flush();
-            fSortie.println("##################################################");
-            fSortie.flush();
-            fSortie.println("##################################################\n");
-            fSortie.flush();
+            fSortie.println("##################################################\n"
+                           +"##################################################\n"
+                           +"##\t\tHISTORIQUE GENERE LE\t\t##\n"
+                           +"##\t\t" + getCurDate() + "\t\t##\n"
+                           +"##################################################\n"
+                           +"##################################################\n");
 
             fSortie.println("new");
             fSortie.println("width " + zd.getLargeurDessin());
             fSortie.println("height " + zd.getHauteurDessin());
+            fSortie.println("penup");            
 
             for (int i = 0; i < StockageDonnee.getSize_LCEC(); i++)
             {
