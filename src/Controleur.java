@@ -1074,12 +1074,13 @@ public class Controleur{
     public int open(String path)
     {
     	String[] path_tab=path.split(".");
+    	String extension=path_tab[path_tab.length-1].toLowerCase();
     	File file=new File(path);
     	
-    	if(path_tab[path_tab.length-1]=="png"	//on test d'abord que l'extension est bien en png  
-    	|| path_tab[path_tab.length-1]=="jpg"	//ou jpg
-    	|| path_tab[path_tab.length-1]=="gif"	//ou gif
-    	|| path_tab[path_tab.length-1]=="jpeg"	//ou jpeg
+    	if(extension=="png"	//on test d'abord que l'extension est bien en png  
+    	|| extension=="jpg"	//ou jpg
+    	|| extension=="gif"	//ou gif
+    	/*|| extension=="jpeg"	//ou jpeg*/
     	){
     		if(file.exists()){ //si l'extension est bonne on vérifie l'extence du fichier
 		        ImageIcon img=new ImageIcon(path);
