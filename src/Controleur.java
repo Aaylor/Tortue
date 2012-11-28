@@ -19,6 +19,8 @@ public class Controleur{
     private static final int NOMBRE_PARAM_LESS = 200; 
     private static final int NOMBRE_PARAM_SUP = 201;
     private static final int PARAM_INCORRECTE = 202;
+    private static final int IMAGE_INEXISTANTE = 203;
+    private static final int COULEUR_INEXSISTANTE = 204;
     /* 
      * TODO
      * mettre en constante les autres erreurs
@@ -922,7 +924,7 @@ public class Controleur{
         	curseur.setCouleur(c);
         }
         else{
-        	//message erreur
+        	return COULEUR_INEXSISTANTE;
         }
         return SUCCESS;
 
@@ -1104,8 +1106,7 @@ public class Controleur{
 	    	|| extension!="gif"	//ou gif
 	    	/*|| extension=="jpeg"	//ou jpeg*/
 	    	){
-	    		//message erreur
-	    		return 1;
+	    		return PARAM_INCORRECTE;
 	    	}
 	    }
     	
@@ -1127,7 +1128,7 @@ public class Controleur{
 	    	
 		}
 		else{
-			//message erreur
+			return IMAGE_INEXISTANTE;
 		}
 		return SUCCESS;
     }
