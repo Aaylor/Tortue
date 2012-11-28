@@ -402,7 +402,6 @@ public class Controleur{
                 else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
                     return NOMBRE_PARAM_LESS;
                 else;
-        
 
                 if ( commande_parser.length == 2 )
                 {
@@ -410,38 +409,18 @@ public class Controleur{
                 }
                 else if ( commande_parser.length == 4 )
                 {
-                    if ( isInt(commande_parser[1]) )
+                    if ( isInt( new String[] {  commande_parser[1], commande_parser[2],
+                                                commande_parser[3] } ) )
                     {
-                        r = Integer.parseInt(commande_parser[1]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[1]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    if ( isInt(commande_parser[2]) )
-                    {
-                        g = Integer.parseInt(commande_parser[2]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[2]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    if ( isInt(commande_parser[3]) )
-                    {
-                        b = Integer.parseInt(commande_parser[3]);
+                        retour = setColor(  Integer.parseInt(commande_parser[1]),
+                                            Integer.parseInt(commande_parser[2]),
+                                            Integer.parseInt(commande_parser[3]));
                     }
                     else
                     {
                         StockageDonnee.setParamErreur(commande_parser[3]);
                         return PARAM_INCORRECTE;
                     }
-
-                    retour = setColor(r,g,b);
-
                 }
                 else;
 
@@ -463,38 +442,17 @@ public class Controleur{
                 }
                 else if ( commande_parser.length == 4 )
                 {
-                    if ( isInt(commande_parser[1]) )
+                    if ( isInt( new String[] {  commande_parser[1], commande_parser[2],
+                                                commande_parser[3] } ) )
                     {
-                        r = Integer.parseInt(commande_parser[1]);
+                        retour = setBackgroundColor(Integer.parseInt(commande_parser[1]),
+                                                    Integer.parseInt(commande_parser[2]),
+                                                    Integer.parseInt(commande_parser[3]));
                     }
                     else
                     {
-                        StockageDonnee.setParamErreur(commande_parser[1]);
                         return PARAM_INCORRECTE;
                     }
-
-                    if ( isInt(commande_parser[2]) )
-                    {
-                        g = Integer.parseInt(commande_parser[2]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[2]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    if ( isInt(commande_parser[3]) )
-                    {
-                        b = Integer.parseInt(commande_parser[3]);
-                    }
-                    else
-                    {
-                        StockageDonnee.setParamErreur(commande_parser[3]);
-                        return PARAM_INCORRECTE;
-                    }
-
-                    retour = setBackgroundColor(r,g,b);
-
                 }
                 else;
 
