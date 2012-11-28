@@ -19,6 +19,8 @@ public class Controleur{
     private static final int NOMBRE_PARAM_LESS = 200; 
     private static final int NOMBRE_PARAM_SUP = 201;
     private static final int PARAM_INCORRECTE = 202;
+    private static final int IMAGE_INEXISTANTE = 203;
+    private static final int COULEUR_INEXSISTANTE = 204;
     /* 
      * TODO
      * mettre en constante les autres erreurs
@@ -983,7 +985,7 @@ public class Controleur{
         	curseur.setCouleur(c);
         }
         else{
-        	//message erreur
+        	return COULEUR_INEXSISTANTE;
         }
         return SUCCESS;
 
@@ -1134,35 +1136,62 @@ public class Controleur{
      */
     public int open(String path)
     {
-    	String[] path_tab=path.split(".");
-    	File file=new File(path);
+    	String regex = "(.*)[\\.]([pP][nN][gG]||[jJ][pP][gG]||[gG][iI][fF])";
     	
-    	if(path_tab[path_tab.length-1]=="png"	//on test d'abord que l'extension est bien en png  
-    	|| path_tab[path_tab.length-1]=="jpg"	//ou jpg
-    	|| path_tab[path_tab.length-1]=="gif"	//ou gif
-    	|| path_tab[path_tab.length-1]=="jpeg"	//ou jpeg
-    	){
-    		if(file.exists()){ //si l'extension est bonne on vérifie l'extence du fichier
-		        ImageIcon img=new ImageIcon(path);
-		    	int imageHeight=img.getIconHeight();
-		    	int imageWidth=img.getIconWidth();
-		    	
-		    	if(imageHeight>zd.getHauteurDessin()){//on resize la zone en si le dessin est plus grand
-		    		zd.setHauteur(imageHeight);
-		    	}
-		    	if(imageWidth>zd.getLargeurDessin()){//on resize la zone en si le dessin est plus grand
-		    		zd.setLargeur(imageWidth);
-		    	}
-		    	Traceur t = new Traceur(5,path);
-    		}
-    		else{
-    			//message erreur
-    		}
-    	}
+    	if ( path.equals("") )
+        {
+            JFileChooser chooser = getChooser("Fichier image", new String[] { regex });
+
+            int returnVal = chooser.showOpenDialog(null);
+            if ( returnVal == JFileChooser.APPROVE_OPTION )
+            {
+                path = chooser.getSelectedFile().getAbsolutePath();
+                if ( !path.matches(regex) )
+                {
+                    return 1; /* ERREUR A ECRIRE */
+                }
+
+            }
+            else
+            {
+                return SUCCESS;
+            }
+        }
     	else{
-    		//message erreur
-    	}
-    	return SUCCESS;
+	    	String[] path_tab=path.split(".");
+	    	String extension=path_tab[path_tab.length-1].toLowerCase();
+	    	
+	    	
+	    	if(extension!="png"	//on test d'abord que l'extension est bien en png  
+	    	|| extension!="jpg"	//ou jpg
+	    	|| extension!="gif"	//ou gif
+	    	/*|| extension=="jpeg"	//ou jpeg*/
+	    	){
+	    		return PARAM_INCORRECTE;
+	    	}
+	    }
+    	
+    	File file=new File(path);
+    	if(file.exists()){ //si l'extension est bonne on vérifie l'extence du fichier
+	        ImageIcon img=new ImageIcon(path);
+	    	int imageHeight=img.getIconHeight();
+	    	int imageWidth=img.getIconWidth();
+	    	
+	    	if(imageHeight>zd.getHauteurDessin()){//on resize la zone en si le dessin est plus grand
+	    		zd.setHauteur(imageHeight);
+	    	}
+	    	if(imageWidth>zd.getLargeurDessin()){//on resize la zone en si le dessin est plus grand
+	    		zd.setLargeur(imageWidth);
+	    	}
+	    	newFile();
+	    	StockageDonnee.ajoutListeDessin(new Traceur(5,path));
+	    	
+	    	
+		}
+		else{
+			return IMAGE_INEXISTANTE;
+		}
+		return SUCCESS;
     }
 
     /**
