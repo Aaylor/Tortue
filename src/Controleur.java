@@ -488,11 +488,10 @@ public class Controleur{
 
                 if ( commande_parser[1].equalsIgnoreCase("triangle") )
                 {
-                    /* do triangle x1 y1 x2 y2 x3 y3 */
                     if ( isInt( new String[] { commande_parser[2], commande_parser[3], commande_parser[4],
                         commande_parser[5], commande_parser[6], commande_parser[7] } ) )
                     {
-                        return doFigure(-1, new int[] { Integer.parseInt(commande_parser[2]),
+                        return doFigure(3, new int[] {  Integer.parseInt(commande_parser[2]),
                                                         Integer.parseInt(commande_parser[3]), 
                                                         Integer.parseInt(commande_parser[4]),
                                                         Integer.parseInt(commande_parser[5]), 
@@ -543,8 +542,10 @@ public class Controleur{
                     if ( isInt ( new String[] { commande_parser[2], commande_parser[3],
                         commande_parser[4] } ) )
                     {
-                        /* return */
-                        return SUCCESS;
+                        return doFigure(4, new int[] {  Integer.parseInt(commande_parser[2]),
+                                                        Integer.parseInt(commande_parser[3]),
+                                                        Integer.parseInt(commande_parser[4])},
+                                                        true);
                     }
                     else
                     {
@@ -1039,6 +1040,13 @@ public class Controleur{
         if(type==2){
         	Traceur t = new Traceur(2, curseur.getCouleur(), value[3], value[2], value[0], value[1], estRempli);
         	StockageDonnee.liste_dessin.add(t);
+        }
+        else if (type==3){
+            StockageDonnee.liste_dessin.add( new Traceur(3, curseur.getCouleur(), value[0], value[1], value[2], value[3],
+                        value[4], value[5], true ) );
+        }
+        else if (type==4){
+            StockageDonnee.liste_dessin.add( new Traceur(4, curseur.getCouleur(), value[2], value[0], value[1], true));
         }
        
         zd.repaint();

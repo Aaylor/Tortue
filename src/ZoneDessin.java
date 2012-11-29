@@ -93,7 +93,7 @@ public class ZoneDessin extends JPanel{
 	/**Methode dessinant la zone de dessin puis le curseur*/
 	public void paintComponent(Graphics gd){
         Graphics2D g = (Graphics2D)gd;
-        
+    
 		//Calcul des ecarts entre la zone de dessin et le dessin pour le centrer
 		ecartHorizontal = (this.getWidth() - largeurDessin)/2;
 		ecartVertical = (this.getHeight() - hauteurDessin)/2;
