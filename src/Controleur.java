@@ -20,7 +20,7 @@ public class Controleur{
     private static final int NOMBRE_PARAM_SUP = 201;
     private static final int PARAM_INCORRECTE = 202;
     private static final int IMAGE_INEXISTANTE = 203;
-    private static final int COULEUR_INEXSISTANTE = 204;
+    private static final int COULEUR_INEXISTANTE = 204;
     /* 
      * TODO
      * mettre en constante les autres erreurs
@@ -30,7 +30,8 @@ public class Controleur{
     private ZoneDessin zd = null;
     private BarreOutils zb = null;
     private Curseur curseur = null;
-    private BarreMenu barreMenu;
+    private BarreMenu barreMenu = null;
+    private BarreOutils barreOutils = null;
 
     /**
      *  Constructeur vide
@@ -57,6 +58,9 @@ public class Controleur{
 
         barreMenu = f.getBarreMenu();
         barreMenu.setControleur(this);
+        
+        barreOutils = f.getZoneBouton();
+        barreOutils.setControleur(this);
         
         curseur = c;
         c.setControleur(this);
@@ -259,17 +263,17 @@ public class Controleur{
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
 
-                retour = up();
+                retour = change_forme();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
-            
+
             case 5:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
-                
-                retour = down();
+
+                retour = up();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
@@ -279,7 +283,7 @@ public class Controleur{
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
                 
-                retour = left();
+                retour = down();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
@@ -289,13 +293,23 @@ public class Controleur{
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
                 
-                retour = right();
+                retour = left();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
             
             case 8:
+                if ( commande_parser.length > 1 )
+                    return NOMBRE_PARAM_SUP;
+                
+                retour = right();
+                if ( retour == 0 && write )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
+            
+            case 9:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
@@ -313,7 +327,7 @@ public class Controleur{
 
                 return retour;
             
-            case 9:
+            case 10:
                 if ( commande_parser.length < 2 )
                     return NOMBRE_PARAM_LESS;
                 else if ( commande_parser.length > 2 )
@@ -331,7 +345,7 @@ public class Controleur{
 
                 return retour;
             
-            case 10:
+            case 11:
                 if ( commande_parser.length < 2 )
                     return NOMBRE_PARAM_LESS;
                 else if ( commande_parser.length > 2 )
@@ -349,7 +363,7 @@ public class Controleur{
 
                 return retour;
             
-            case 11:
+            case 12:
                 if ( commande_parser.length > 3 )
                 {
                     return NOMBRE_PARAM_SUP;
@@ -380,7 +394,7 @@ public class Controleur{
 
                 return retour;
             
-            case 12:
+            case 13:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
@@ -396,7 +410,7 @@ public class Controleur{
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
-            case 13:
+            case 14:
                 if ( commande_parser.length > 4 )
                     return NOMBRE_PARAM_SUP;
                 else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
@@ -429,7 +443,7 @@ public class Controleur{
            
                 return retour;
 
-            case 14:
+            case 15:
                 if ( commande_parser.length > 4 )
                     return NOMBRE_PARAM_SUP;
                 else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
@@ -461,7 +475,7 @@ public class Controleur{
            
                 return retour;
             
-            case 15:
+            case 16:
                 if ( commande_parser.length > 9 )
                 {
                     return NOMBRE_PARAM_SUP;
@@ -478,9 +492,12 @@ public class Controleur{
                     if ( isInt( new String[] { commande_parser[2], commande_parser[3], commande_parser[4],
                         commande_parser[5], commande_parser[6], commande_parser[7] } ) )
                     {
-                    /*   return doFigure(-1, new int[] { commande_parser[2], commande_parser[3], commande_parser[4],
-                           commande_parser[5], commande_parser[6], commande_parser[7] }, true)*/
-                        return SUCCESS;
+                        return doFigure(-1, new int[] { Integer.parseInt(commande_parser[2]),
+                                                        Integer.parseInt(commande_parser[3]), 
+                                                        Integer.parseInt(commande_parser[4]),
+                                                        Integer.parseInt(commande_parser[5]), 
+                                                        Integer.parseInt(commande_parser[6]),
+                                                        Integer.parseInt(commande_parser[7])}, true);
                     }
                     else
                     {
@@ -539,7 +556,7 @@ public class Controleur{
                     return COMMANDE_ERRONEE;
                 }
             
-            case 16:
+            case 17:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
@@ -553,7 +570,7 @@ public class Controleur{
 
                 return width(valeur);
             
-            case 17:
+            case 18:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
@@ -567,12 +584,12 @@ public class Controleur{
 
                 return height(valeur);
             
-            case 18:
+            case 19:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 return newFile();
             
-            case 19:
+            case 20:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 
@@ -581,7 +598,7 @@ public class Controleur{
 
                 return open("");
             
-            case 20:
+            case 21:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
 
@@ -590,7 +607,7 @@ public class Controleur{
 
                 return save();
             
-            case 21:
+            case 22:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 
@@ -599,7 +616,7 @@ public class Controleur{
 
                 return saveas("");
             
-            case 22:
+            case 23:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
     
@@ -608,7 +625,7 @@ public class Controleur{
                 else
                     return savehistory("");
             
-            case 23:
+            case 24:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
 
@@ -617,7 +634,7 @@ public class Controleur{
 
                 return exec("");
             
-            case 24:
+            case 25:
                 if ( commande_parser.length > 3 )
                     return NOMBRE_PARAM_SUP;
 
@@ -648,17 +665,17 @@ public class Controleur{
 
                 return retour;
                 
-            case 25:
+            case 26:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
                 return clear();
             
-            case 26:
+            case 27:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
                 return help();
             
-            case 27:
+            case 28:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 
@@ -667,7 +684,7 @@ public class Controleur{
                 else
                     return man(true, commande_parser[1]);
             
-            case 28:
+            case 29:
                 if ( commande_parser.length == 2 )
                 {
                     if ( commande_parser[1].equals("lcec") )
@@ -699,6 +716,7 @@ public class Controleur{
     public int pendown()
     {
     	this.curseur.setIsDown(true);
+        this.barreOutils.affichageBoutonPoserOutil();
         this.zd.repaint();
         return SUCCESS;
 
@@ -711,6 +729,7 @@ public class Controleur{
     public int penup()
     {
     	this.curseur.setIsDown(false);
+        this.barreOutils.affichageBoutonPoserOutil();
         this.zd.repaint();
         return SUCCESS;
 
@@ -723,6 +742,8 @@ public class Controleur{
     public int pencil()
     { 
     	this.curseur.setType(0);
+        this.barreOutils.affichageBoutonOutil();
+        zd.repaint();
         return SUCCESS;
     }
 
@@ -733,6 +754,20 @@ public class Controleur{
     public int eraser()
     {
     	this.curseur.setType(1);
+        this.barreOutils.affichageBoutonOutil();
+        zd.repaint();
+        return SUCCESS;
+    }
+
+    /**
+     *  Fonction qui permet de changer la forme du curseur
+     *  @return sur la fonction s'est bien déroulée.
+     */
+    public int change_forme()
+    {
+        this.curseur.setForme( this.curseur.getForme() == 1 ? 0 : 1 );
+        this.barreOutils.affichageBoutonForme();
+        zd.repaint();
         return SUCCESS;
     }
 
@@ -928,7 +963,7 @@ public class Controleur{
     public int cursorWidth(int valeur)
     {
         curseur.setTaille(valeur);
-        
+        zd.repaint();
         return SUCCESS;
     }
 
@@ -943,7 +978,7 @@ public class Controleur{
         	curseur.setCouleur(c);
         }
         else{
-        	return COULEUR_INEXSISTANTE;
+        	return COULEUR_INEXISTANTE;
         }
         return SUCCESS;
 
@@ -1005,7 +1040,6 @@ public class Controleur{
         	Traceur t = new Traceur(2, curseur.getCouleur(), value[3], value[2], value[0], value[1], estRempli);
         	StockageDonnee.liste_dessin.add(t);
         }
-        
        
         zd.repaint();
         return SUCCESS;

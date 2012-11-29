@@ -121,14 +121,7 @@ public class BarreOutils extends JToolBar {
 		});
 		boutonForme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				if (curseur.getForme() == 0){
-					curseur.setForme(1);
-					zoneDessin.repaint();
-				}
-				else{
-					curseur.setForme(0);
-					zoneDessin.repaint();
-				}
+                controleur.commande("forme", true);
 			}
 		});
         
@@ -277,29 +270,20 @@ public class BarreOutils extends JToolBar {
             controleur.commande("pencil", true);
 			zoneDessin.repaint();
 		}
-		if (curseur.getType() == 1) boutonGomme.setSelected(true);
- 		else boutonGomme.setSelected(false);
 	}
 	
 	public void interactionBoutonPoserOutil(){
 		if (curseur.isDown()){
 			controleur.commande("penup", true);
-			affichageBoutonPoserOutil();
-			zoneDessin.repaint();
 		}
 		else{
 			controleur.commande("pendown", true);
-			affichageBoutonPoserOutil();
-            zoneDessin.repaint();
 		}
-		if (curseur.isDown()) boutonPoserCrayon.setSelected(true);
- 		else boutonPoserCrayon.setSelected(false);
 	}
 	
 	public void interactionSliderEpaisseur(int v){
 		sliderEpaisseur.setValue(sliderEpaisseur.getValue() + v);
 		controleur.commande("cursorwidth " + sliderEpaisseur.getValue(), true);
-		zoneDessin.repaint();
 	}
 	
     /**
@@ -324,7 +308,7 @@ public class BarreOutils extends JToolBar {
 	}
 	
 	public void affichageBoutonOutil(){
-		if(curseur.getType() == 1){
+		if(curseur.getType() == 0){
 			boutonGomme.setSelected(false);
 		}
 		else
