@@ -20,6 +20,7 @@ public class Traceur extends JPanel{
 	private String path;//chemin du fichier image, pour le type 4 : image
 	
 	/* constructeur */
+	//ligne
 	public Traceur(int type, int epaisseur, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee, int forme){
 		this.epaisseur=epaisseur;
 		this.couleur=couleur;
@@ -31,6 +32,7 @@ public class Traceur extends JPanel{
 		this.forme=forme;
 			
 	}
+	//rectangle
 	public Traceur(int type, Color couleur, int hauteur, int largeur, int x_origine, int y_origine, boolean estRempli){
 		this.couleur=couleur;
 		this.x_origine=x_origine;
@@ -40,11 +42,33 @@ public class Traceur extends JPanel{
 		this.largeur=largeur;
 		this.estRempli=estRempli;
 	}
+	//img
 	public Traceur(int type, String path){
 		this.type=type;
 		this.path=path;
 	}
-	
+	//triangle
+	public Traceur(int type, Color couleur, int x_origine, int y_origine, int x_arrivee, int y_arrivee, int x3, int y3, boolean estRempli){
+		this.couleur=couleur;
+		this.x_origine=x_origine;
+		this.y_origine=y_origine;
+		this.x_arrivee=x_arrivee;
+		this.y_arrivee=y_arrivee;
+		this.x3=x3;
+		this.y3=y3;
+		this.type=type;
+		this.estRempli=estRempli;
+	}
+	//cercle
+	public Traceur(int type, Color couleur, int largeur, int x_origine, int y_origine, boolean estRempli){
+		this.couleur=couleur;
+		this.largeur=largeur;//rayon
+		this.x_origine=x_origine;//centre
+		this.y_origine=y_origine;//centre
+		this.type=type;
+		this.estRempli=estRempli;
+	}
+		
 	
 	/*accesseurs*/
 	public int getEpaisseur(){ return this.epaisseur; }
