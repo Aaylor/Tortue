@@ -6,8 +6,10 @@ public class StockageDonnee
 {
 
     public static ArrayList<String> liste_commande_entree_correcte;
+    public static ArrayList<String> liste_commande_undo;
     public static ArrayList<String> liste_commande_entree_generale;
     public static ArrayList<Traceur> liste_dessin;
+    public static ArrayList<Traceur> liste_dessin_undo;
     public static Hashtable<String, Integer> liste_des_commandes;
     public static Hashtable<Integer, String> liste_erreurs;
     public static Hashtable<String, String> manuel;
@@ -24,8 +26,10 @@ public class StockageDonnee
     public static boolean init()
     {
 
-        return init_lcec()  && init_lceg()
+        return init_lcec()  && init_lcu()
+                            && init_lceg()
                             && init_ldessin()
+                            && init_ldessin_undo()
                             && init_ldc()
                             && init_le()
                             && init_manuel()
@@ -60,6 +64,16 @@ public class StockageDonnee
     }
 
     /**
+     *  Fonction initialisant la collection des listes de commandes "undo" par l'utilisateur
+     *  @return boolean vérifiant l'initialisation de la collection
+     */
+    public static boolean init_lcu()
+    {
+        liste_commande_undo = new ArrayList<String>();
+        return true;
+    }
+
+    /**
      *  Fonction initialisant la collection des listes d'objet utilisé pour le dessin
      *  @return boolean pour l'initialisation
      */
@@ -69,6 +83,16 @@ public class StockageDonnee
         liste_dessin = new ArrayList<Traceur>();
         return true;
 
+    }
+
+    /**
+     *  Fonction initialisant la collection des listes d'objet utilisé pour le dessin
+     *  @return boolean
+     */
+    public static boolean init_ldessin_undo()
+    {
+        liste_dessi_undo = new ArrayList<Traceur>();
+        return true;
     }
 
     /**
@@ -90,26 +114,28 @@ public class StockageDonnee
         liste_des_commandes.put("left", 7);
         liste_des_commandes.put("right", 8);
         liste_des_commandes.put("rotate", 9);
-        liste_des_commandes.put("forward", 10);
-        liste_des_commandes.put("backward", 11);
-        liste_des_commandes.put("goto", 12);
-        liste_des_commandes.put("cursorwidth", 13);
-        liste_des_commandes.put("setcolor", 14);
-        liste_des_commandes.put("setbackgroundcolor", 15);
-        liste_des_commandes.put("do", 16);
-        liste_des_commandes.put("width", 17);
-        liste_des_commandes.put("height", 18);
-        liste_des_commandes.put("new", 19);
-        liste_des_commandes.put("open", 20);
-        liste_des_commandes.put("save", 21);
-        liste_des_commandes.put("saveas", 22);
-        liste_des_commandes.put("savehistory", 23);
-        liste_des_commandes.put("exec", 24);
-        liste_des_commandes.put("repeat", 25);
-        liste_des_commandes.put("clear", 26);
-        liste_des_commandes.put("help", 27);
-        liste_des_commandes.put("man", 28);
-        liste_des_commandes.put("function_debug_test", 29);
+        liste_des_commandes.put("undo", 10);
+        liste_des_commandes.put("redo", 11);
+        liste_des_commandes.put("forward", 12);
+        liste_des_commandes.put("backward", 13);
+        liste_des_commandes.put("goto", 14);
+        liste_des_commandes.put("cursorwidth", 15);
+        liste_des_commandes.put("setcolor", 16);
+        liste_des_commandes.put("setbackgroundcolor", 17);
+        liste_des_commandes.put("do", 18);
+        liste_des_commandes.put("width", 19);
+        liste_des_commandes.put("height", 20);
+        liste_des_commandes.put("new", 21);
+        liste_des_commandes.put("open", 22);
+        liste_des_commandes.put("save", 23);
+        liste_des_commandes.put("saveas", 24);
+        liste_des_commandes.put("savehistory", 25);
+        liste_des_commandes.put("exec", 26);
+        liste_des_commandes.put("repeat", 27);
+        liste_des_commandes.put("clear", 28);
+        liste_des_commandes.put("help", 29);
+        liste_des_commandes.put("man", 30);
+        liste_des_commandes.put("function_debug_test", 31);
         
         return true;
 
@@ -397,9 +423,54 @@ public class StockageDonnee
      *  Fonction renvoyant la taille de la collection
      *  @return taille
      */
+    public static int getSize_LCU()
+    {
+        return liste_commande_undo.size();
+    }
+
+    /**
+     *  Fonction renvoyant la taille de la collection
+     *  @return taille
+     */
     public static int getSize_ListeDessin()
     {
         return liste_dessin.size();
+    }
+
+    /**
+     *  Fonction supprimant l'élément à la collection, et le renvoyant
+     *  @return Element supprimé
+     */
+    public static String remove_LCEC(int index)
+    {
+        return liste_commande_entree_correcte.remove(index);
+    }
+
+    /**
+     *  Fonction supprimant l'élément à la collection, et le renvoyant
+     *  @return Element supprimé
+     */
+    public static Traceur remove_liste_dessin(int index)
+    {
+        return liste_dessin.remove(index);
+    }
+
+    /**
+     *  Fonction supprimant l'élément à la collection et le renvoyant
+     *  @return Element supprimé
+     */
+    public static String liste_commande_undo(int index)
+    {
+        return liste_commande_undo.remove(int index);
+    }
+
+    /**
+     *  Fonction supprimant l'élément à la collection et le renvoyant
+     *  @return Element supprimé
+     */
+    public static Traceur liste_dessin_undo(int index)
+    {
+        return liste_dessin_undo.remove(int index);
     }
 
     /**

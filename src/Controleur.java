@@ -326,8 +326,44 @@ public class Controleur{
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
-            
+           
             case 10:
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_PARAM_SUP;
+                
+                if ( commande_parser.length == 2 )
+                {
+                    if ( isInt( commande_parser[1] ) )
+                    {
+                        return undo( Integer.parseInt( commande_parser[1] ) );
+                    }
+                    else
+                    {
+                        return PARAM_INCORRECTE;
+                    }
+                }
+
+                return undo(1);
+
+            case 11:
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_PARAM_SUP;
+
+                if ( commande_parser.length == 2 )
+                {
+                    if ( isInt( commande_parser[1] ) )
+                    {
+                        return redo( Integer.parseInt( commande_parser[1] ) );
+                    }
+                    else
+                    {
+                        return PARAM_INCORRECTE;
+                    }
+                }
+
+                return redo(1);
+
+            case 12:
                 if ( commande_parser.length < 2 )
                     return NOMBRE_PARAM_LESS;
                 else if ( commande_parser.length > 2 )
@@ -345,7 +381,7 @@ public class Controleur{
 
                 return retour;
             
-            case 11:
+            case 13:
                 if ( commande_parser.length < 2 )
                     return NOMBRE_PARAM_LESS;
                 else if ( commande_parser.length > 2 )
@@ -363,7 +399,7 @@ public class Controleur{
 
                 return retour;
             
-            case 12:
+            case 14:
                 if ( commande_parser.length > 3 )
                 {
                     return NOMBRE_PARAM_SUP;
@@ -394,7 +430,7 @@ public class Controleur{
 
                 return retour;
             
-            case 13:
+            case 15:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
@@ -410,7 +446,7 @@ public class Controleur{
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
-            case 14:
+            case 16:
                 if ( commande_parser.length > 4 )
                     return NOMBRE_PARAM_SUP;
                 else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
@@ -443,7 +479,7 @@ public class Controleur{
            
                 return retour;
 
-            case 15:
+            case 17:
                 if ( commande_parser.length > 4 )
                     return NOMBRE_PARAM_SUP;
                 else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
@@ -475,7 +511,7 @@ public class Controleur{
            
                 return retour;
             
-            case 16:
+            case 18:
                 if ( commande_parser.length > 9 )
                 {
                     return NOMBRE_PARAM_SUP;
@@ -557,7 +593,7 @@ public class Controleur{
                     return COMMANDE_ERRONEE;
                 }
             
-            case 17:
+            case 19:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
@@ -571,7 +607,7 @@ public class Controleur{
 
                 return width(valeur);
             
-            case 18:
+            case 20:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
@@ -585,12 +621,12 @@ public class Controleur{
 
                 return height(valeur);
             
-            case 19:
+            case 21:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 return newFile();
             
-            case 20:
+            case 22:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 
@@ -599,7 +635,7 @@ public class Controleur{
 
                 return open("");
             
-            case 21:
+            case 23:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
 
@@ -608,7 +644,7 @@ public class Controleur{
 
                 return save();
             
-            case 22:
+            case 24:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 
@@ -617,7 +653,7 @@ public class Controleur{
 
                 return saveas("");
             
-            case 23:
+            case 25:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
     
@@ -626,7 +662,7 @@ public class Controleur{
                 else
                     return savehistory("");
             
-            case 24:
+            case 26:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
 
@@ -635,7 +671,7 @@ public class Controleur{
 
                 return exec("");
             
-            case 25:
+            case 27:
                 int nombre_de_repetition = -1;
 
                 if ( isInt( commande_parser[1] ) )
@@ -662,17 +698,17 @@ public class Controleur{
 
                 return retour;
                 
-            case 26:
+            case 28:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
                 return clear();
             
-            case 27:
+            case 29:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
                 return help();
             
-            case 28:
+            case 30:
                 if ( commande_parser.length > 2 )
                     return NOMBRE_PARAM_SUP;
                 
@@ -681,7 +717,7 @@ public class Controleur{
                 else
                     return man(true, commande_parser[1]);
             
-            case 29:
+            case 31:
                 if ( commande_parser.length == 2 )
                 {
                     if ( commande_parser[1].equals("lcec") )
@@ -824,6 +860,37 @@ public class Controleur{
     {
     	this.curseur.setOrientation(valeur+90);
         this.zd.repaint();
+        return SUCCESS;
+    }
+
+    /**
+     *  Fonction qui annule les n dernières actions
+     *  @return si la fonction s'est bien déroulée.
+     */
+    public int undo(int valeur)
+    {
+        if ( StockageDonnee.getSize_LCEC() - valeur >= 0 )
+        {
+            int i = 0;
+            int max_stockage_donnee = StockageDonnee.getSize_LCEC()-1;
+            while ( i < valeur )
+            {
+                StockageDonnee.liste_commande_entree_correcte.remove( max - i );
+                i++;
+            }
+            return SUCCESS;
+        }
+       
+        zd.repaint();
+        return SUCCESS;
+    }
+
+    /**
+     *  Fonctio qui refait les n dernières actions annulées
+     *  @return si la fonction s'est bien déroulée.
+     */
+    public int redo(int valeur)
+    {
         return SUCCESS;
     }
 
