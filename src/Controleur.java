@@ -636,30 +636,26 @@ public class Controleur{
                 return exec("");
             
             case 25:
-                if ( commande_parser.length > 3 )
-                    return NOMBRE_PARAM_SUP;
+                int nombre_de_repetition = -1;
 
-                int debut = StockageDonnee.getSize_LCEC();
-
-                if ( commande_parser.length == 1 )
-                    retour = repeat(1,1,debut);
-                else if ( commande_parser.length == 2 )
+                if ( isInt( commande_parser[1] ) )
                 {
-                    if ( isInt(commande_parser[1]) )
-                        retour = repeat(Integer.parseInt(commande_parser[1]),1,debut);
-                    else
-                        return PARAM_INCORRECTE;
+                    nombre_de_repetition = Integer.parseInt(commande_parser[1]);
                 }
                 else
                 {
-                    if ( isInt(commande_parser[1]) && isInt(commande_parser[1]) )
-                    {
-                        retour = repeat(Integer.parseInt(commande_parser[1]),
-                                        Integer.parseInt(commande_parser[2]),debut);
-                    }
-                    else
-                        return PARAM_INCORRECTE;
+                    return PARAM_INCORRECTE;
                 }
+
+                String args = "";
+                int i = 2;
+                while ( i < commande_parser.length )
+                {
+                    args += commande_parser[i] + (i == commande_parser.length ? "" : " ");
+                    i++;
+                }
+
+                retour = repeat(nombre_de_repetition, args.trim());
                 
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false);
@@ -1550,140 +1546,50 @@ public class Controleur{
 
     /**
      *  Fonction qui répète les dernières commandes lancés par l'utilisateur
-     *  @param nombre_de_commandes Nombres de commandes
      *  @param nombre_de_repetition Nombres de répétitions
-     *  @param debut Permet de déterminer où se trouve le début des fonctions à répéter
+     *  @param args Argument à répéter n fois.
      *  @return si la fonction s'est bien déroulée.
      */
-    public int repeat(int nombre_de_commandes, int nombre_de_repetition, int debut)
+    public int repeat(int nombre_de_repetitions, String args)
     {
-        String[] commands = new String[nombre_de_commandes];
+        int first_index = args.indexOf("[");
+        int last_index = args.lastIndexOf("]");
 
-        if ( debut <= 0 )
+        if ( first_index >= 0 && last_index >= first_index )
         {
-            return COMMANDE_ERRONEE;
-        }
-
-        if ( nombre_de_commandes > StockageDonnee.getSize_LCEC() )
-        {
-            nombre_de_commandes = StockageDonnee.getSize_LCEC();
-        }
-
-        int i = 0;
-        int position_liste = debut-nombre_de_commandes;
-        int in = position_liste;
-        while ( i < nombre_de_commandes )
-        {
-            commands[i] = StockageDonnee.getLCEC(position_liste);
-            position_liste++;
-            i++;
-        }
-
-        int j = 1;
-        while ( j <= nombre_de_repetition )
-        {
-            i=0;
-            while ( i < commands.length )
-            {
-                if ( commands[i].startsWith("repeat") )
-                {
-                    String[] s = commands[i].split(" ");
-                    int parse1 = 1;
-                    int parse2 = 1;
-
-                    if ( s.length == 2 )
-                    {
-                        parse1 = Integer.parseInt(s[1]);
-                    }
-                    else if ( s.length == 3 )
-                    {
-                        parse1 = Integer.parseInt(s[1]);
-                        parse2 = Integer.parseInt(s[2]);
-                    }
-                    else;
-                   
-                    repeat(parse1, parse2, in-i, position_liste-i);
-                }
-                else
-                {
-                    commande(commands[i], false);
-                }
-                i++;
-            }
-            j++;
-        }
-
-        return SUCCESS;
-
-    }
-
-    /**
-     *  Fonction qui aide à la répétition
-     *  @param nombre_de_commandes Nombres de commandes
-     *  @param nombre_de_repetition Nombres de répétitions
-     *  @param debut Permet de déterminer où se trouves les premières fonctions à répéter
-     *  @param pos Position de la fonction repeat dans le tableau
-     *  @return l'entier correspondant à l'erreur
-     */
-    public int repeat(int nombre_de_commandes, int nombre_de_repetition, int debut, int pos)
-    {
-        String[] commands = new String[nombre_de_commandes];
-
-        if ( debut <= 0 )
-        {
-            debut = 0;
-        }
-
-        if ( nombre_de_commandes > StockageDonnee.getSize_LCEC() )
-        {
-            nombre_de_commandes = StockageDonnee.getSize_LCEC();
-        }
-
-        int i = 0;
-        int position_liste = pos-nombre_de_commandes;
-        int in = position_liste;
-        while ( i < nombre_de_commandes )
-        {
-            commands[i] = StockageDonnee.getLCEC(position_liste);
-            position_liste++;
-            i++;
-        }
-
-        int j = 1;
-        while ( j <= nombre_de_repetition )
-        {
-
-            i=1;
-            while ( i <= commands.length )
-            {
-                if ( commands[i-1].startsWith("repeat") )
-                {
-                    String[] s = commands[i-1].split(" ");
-                    int parse1 = 1;
-                    int parse2 = 1;
-
-                    if ( s.length == 2 )
-                    {
-                        parse1 = Integer.parseInt(s[1]);
-                    }
-                    else if ( s.length == 3 )
-                    {
-                        parse1 = Integer.parseInt(s[1]);
-                        parse2 = Integer.parseInt(s[2]);
-                    }
-                    else;
-                   
-                    repeat(parse1, parse2, in-i, position_liste-i);
-                }
-                else
-                {
-                    commande(commands[i-1], false);
-                }
-                i++;
-            }
-            j++;
+            args = args.substring(first_index+1, last_index);
         }
         
+        first_index = args.indexOf("[");
+        last_index = args.lastIndexOf("]");
+        String tmp = "";
+
+        if ( first_index >= 0 && last_index >= first_index )
+        {
+            tmp = args.substring(first_index, last_index+1).replaceAll(";", "x00AB");
+            args = args.substring(0, first_index) + tmp;
+        }
+
+        String[] args_split = args.split(";");
+        int i = 0;
+        while ( i < args_split.length )
+        {
+            if ( args_split[i].indexOf("x00AB") >= 0 )
+            {
+                args_split[i] = args_split[i].replaceAll("x00AB", ";");
+            }
+            i++;
+        }
+      
+        while ( nombre_de_repetitions > 0 )
+        {
+            for ( String cmd : args_split )
+            {
+                commande(cmd,false);
+            }
+            nombre_de_repetitions--;
+        }
+
         return SUCCESS;
     }
 
