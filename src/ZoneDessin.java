@@ -125,6 +125,7 @@ public class ZoneDessin extends JPanel{
 				//Le dessin est différent en fonction de la forme du curseur
 				if(t.getForme() == 0)//Le curseur est rond
 					if(affichageProgressif){
+						System.out.println("caca");
 						int xArriveeTemp = t.getXOrigine();
 						int yArriveeTemp = t.getYOrigine();
 						while(xArriveeTemp != t.getXArrivee() && yArriveeTemp != t.getYArrivee()){
