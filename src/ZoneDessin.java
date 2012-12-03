@@ -122,7 +122,8 @@ public class ZoneDessin extends JPanel{
 			//Si le t est un trait ou un point
 			if (t.getType() == 1 || t.getType() == 0){
 				//Le dessin est différent en fonction de la forme du curseur
-				if(t.getForme() == 0)//Le curseur est rondg.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
+				if(t.getForme() == 0)//Le curseur est rond
+					g.drawLine(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), posXAbsolue(t.getXArrivee()), posYAbsolue(t.getYArrivee()));
 				//Dans le cas d'une forme carré, on va dessiner des carré aux points de départ/arrivée pour un effet plus propre
 				else{
 					g.setStroke(new BasicStroke());//On désinne nous meme le tracé, pas besoin de Stroke
