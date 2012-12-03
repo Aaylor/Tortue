@@ -1586,7 +1586,8 @@ public class Controleur{
                 BufferedReader br = new BufferedReader(isr);
                 String ligne;
                 int i = 1;
-
+            
+                zd.setAffichageProgressif(true);
                 while ( (ligne=br.readLine()) != null )
                 {
                     ligne = ligne.trim();
@@ -1598,6 +1599,7 @@ public class Controleur{
                         zd.repaint();
                         return COMMANDE_ERRONEE;
                     }
+                    zd.repaint();
                     i++;                
                 }
             }
