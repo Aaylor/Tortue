@@ -121,20 +121,7 @@ public class BarreMenu extends JMenuBar{
 	}
 	
 	public void quitter(){
-
-        /* TODO : N'afficher la boîte de dialogue que si le dessin a été modifié après sauvegarde
-         * ou n'a pas été sauvegardé
-         */
-		JOptionPane quitter = new JOptionPane();
-		int option = quitter.showConfirmDialog(null, "Voulez vous sauvegarder votre travail avant de fermer le programme ?", "Sauvegarder", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-		if (option == JOptionPane.OK_OPTION){
-			enregistrerHistorique();
-			System.exit(0);
-		}
-		if (option == JOptionPane.NO_OPTION){
-			System.exit(0);
-		}
-		
+		controleur.commande("exit", true);
 	}
 	
 	public void aPropos(){
