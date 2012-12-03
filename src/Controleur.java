@@ -718,6 +718,12 @@ public class Controleur{
                     return man(true, commande_parser[1]);
             
             case 31:
+                if ( commande_parser.length > 2 )
+                    return NOMBRE_PARAM_SUP;
+
+                return exit();
+
+            case 32:
                 if ( commande_parser.length == 2 )
                 {
                     if ( commande_parser[1].equals("lcec") )
@@ -875,7 +881,7 @@ public class Controleur{
             int max_stockage_donnee = StockageDonnee.getSize_LCEC()-1;
             while ( i < valeur )
             {
-                StockageDonnee.liste_commande_entree_correcte.remove( max - i );
+                StockageDonnee.liste_commande_entree_correcte.remove( max_stockage_donnee - i );
                 i++;
             }
             return SUCCESS;
@@ -1701,6 +1707,22 @@ public class Controleur{
             System.out.println("Quel page voulez vous ? (Syntaxe : man <commande>)");
         return SUCCESS;
 
+    }
+
+    /**
+     *  Fonction qui affiche le manuel de la commande
+     *  @return si la fonction s'est bien déroulée.
+     */
+    public int exit()
+    {
+       if ( !StockageDonnee.getImageSave() )
+       {
+            saveas("");
+    
+       }
+    
+       System.exit(0);
+       return SUCCESS;
     }
 
     private void function_debug_test(boolean b)

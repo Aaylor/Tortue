@@ -91,7 +91,7 @@ public class StockageDonnee
      */
     public static boolean init_ldessin_undo()
     {
-        liste_dessi_undo = new ArrayList<Traceur>();
+        liste_dessin_undo = new ArrayList<Traceur>();
         return true;
     }
 
@@ -135,7 +135,8 @@ public class StockageDonnee
         liste_des_commandes.put("clear", 28);
         liste_des_commandes.put("help", 29);
         liste_des_commandes.put("man", 30);
-        liste_des_commandes.put("function_debug_test", 31);
+        liste_des_commandes.put("exit", 31);
+        liste_des_commandes.put("function_debug_test", 32);
         
         return true;
 
@@ -461,7 +462,7 @@ public class StockageDonnee
      */
     public static String liste_commande_undo(int index)
     {
-        return liste_commande_undo.remove(int index);
+        return liste_commande_undo.remove(index);
     }
 
     /**
@@ -470,7 +471,7 @@ public class StockageDonnee
      */
     public static Traceur liste_dessin_undo(int index)
     {
-        return liste_dessin_undo.remove(int index);
+        return liste_dessin_undo.remove(index);
     }
 
     /**
