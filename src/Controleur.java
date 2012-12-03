@@ -1349,9 +1349,8 @@ public class Controleur{
             }
             else
             {
-                return SUCCESS;
+                return -1;
             }
-
         }
         else
         {
@@ -1715,14 +1714,28 @@ public class Controleur{
      */
     public int exit()
     {
-       if ( !StockageDonnee.getImageSave() )
-       {
-            saveas("");
-    
-       }
-    
-       System.exit(0);
-       return SUCCESS;
+        if ( !StockageDonnee.getImageSave() )
+        {
+            int exit = getOptionPane(   "Sauvegarder avant de quitter ?",
+                                        "Quitter");
+                    
+            if ( exit == JOptionPane.YES_OPTION )
+            {
+                if ( saveas("") == -1 )
+                {
+                    return exit();
+                }
+            }
+            else if ( exit == JOptionPane.CANCEL_OPTION
+                        || exit == JOptionPane.CLOSED_OPTION )
+            {
+                return SUCCESS;
+            }
+                    
+        }
+
+        System.exit(0);
+        return SUCCESS;
     }
 
     private void function_debug_test(boolean b)
