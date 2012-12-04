@@ -378,6 +378,26 @@ public class StockageDonnee
     }
 
     /**
+     *  Fonction ajoutant la commande à la collection correspondante
+     *  @param String Commande
+     */
+    public static boolean ajoutLCEC_undo(String commande)
+    {
+        liste_commande_undo.add(commande);
+        return true;
+    }
+
+    /**
+     *  Fonction ajoutant le dessin à la collection correspondante
+     *  @param Traceur Traceur à ajouter
+     */
+    public static boolean ajoutListeDessin_undo(Traceur t)
+    {
+        liste_dessin_undo.add(t);
+        return true;
+    }
+
+    /**
      *  Fonction vidant la collection correspondante
      */
     public static void videLCEC()
@@ -460,7 +480,7 @@ public class StockageDonnee
      *  Fonction supprimant l'élément à la collection et le renvoyant
      *  @return Element supprimé
      */
-    public static String liste_commande_undo(int index)
+    public static String remove_liste_commande_undo(int index)
     {
         return liste_commande_undo.remove(index);
     }
@@ -469,7 +489,7 @@ public class StockageDonnee
      *  Fonction supprimant l'élément à la collection et le renvoyant
      *  @return Element supprimé
      */
-    public static Traceur liste_dessin_undo(int index)
+    public static Traceur remove_liste_dessin_undo(int index)
     {
         return liste_dessin_undo.remove(index);
     }

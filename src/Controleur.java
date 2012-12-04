@@ -875,17 +875,16 @@ public class Controleur{
      */
     public int undo(int valeur)
     {
-        if ( StockageDonnee.getSize_LCEC() - valeur >= 0 )
+        int i = 0;
+        int max_stockage_donnee = StockageDonnee.getSize_LCEC()-1;
+        int max_stockage_dessin = StockageDonnee.getSize_ListeDessin()-1;
+        while ( i < valeur )
         {
-            int i = 0;
-            int max_stockage_donnee = StockageDonnee.getSize_LCEC()-1;
-            while ( i < valeur )
-            {
-                StockageDonnee.liste_commande_entree_correcte.remove( max_stockage_donnee - i );
-                i++;
-            }
-            return SUCCESS;
+            StockageDonnee.ajoutLCEC_undo( StockageDonnee.remove_LCEC( max_stockage_donnee - i ) ); 
+            StockageDonnee.ajoutListeDessin_undo( StockageDonnee.remove_liste_dessin( max_stockage_dessin - i ) ); 
+            i++;
         }
+    }
        
         zd.repaint();
         return SUCCESS;
