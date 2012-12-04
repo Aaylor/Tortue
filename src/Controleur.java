@@ -1032,6 +1032,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de regler la largeur du curseur
+     *  @param valeur Epaisseur du curseur
      *  @return si la fonction s'est bien deroulee.
      */
     public int cursorWidth(int valeur)
@@ -1043,6 +1044,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la couleur
+     *  couleur Couleur du curseur
      *  @return si la fonction s'est bien deroulee.
      */
     public int setColor(String couleur)
@@ -1060,6 +1062,9 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la couleur (int RGB)
+     *  @param red Rouge curseur
+     *  @param green Vert curseur
+     *  @param blue Bleu curseur
      *  @return si la fonction s'est bien deroulee.
      */
     public int setColor(int red, int green, int blue)
@@ -1073,6 +1078,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la couleur du fond d'ecran
+     *  @param bgColor Couleur de fond
      *  @return si la fonction s'est bien deroulee.
      */
     public int setBackgroundColor(String bgColor)
@@ -1087,6 +1093,9 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la couleur du fond d'ecran (int RGB)
+     *  @param red Rouge fond
+     *  @param green Vert fond
+     *  @param blue Bleu fond
      *  @return si la fonction s'est bien deroulee.
      */
     public int setBackgroundColor(int red, int green, int blue)
@@ -1097,6 +1106,9 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de tracer des figures particulières
+     *  @param type Type de figure
+     *  @param value Tableau de valeur, coordonnees, hauteur, largeur ..
+     *  @param estRempli Si la figure est pleine
      *  @return si la fonction s'est bien deroulee.
      */
     public int doFigure(int type, int[] value, boolean estRempli)
@@ -1128,6 +1140,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la largeur de l'ecran
+     *  @param valeur Largeur de la zone de dessin
      *  @return si la fonction s'est bien deroulee.
      */
     public int width(int valeur)
@@ -1143,6 +1156,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la hauteur de l'ecran
+     *  @param valeur Hauteur de la zone de dessin
      *  @return si la fonction s'est bien deroulee.
      */
     public int height(int valeur)
@@ -1205,6 +1219,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet d'ouvrir une image
+     *  @param path Chemin du fichier image
      *  @return si la fonction s'est bien deroulee.
      */
     public int open(String path)
@@ -1317,6 +1332,7 @@ public class Controleur{
 
     /**
      *  Fonction qui sauvegarde dans un dossier donner par l'utilisateur
+     *  @pathname Chemin du fichier
      *  @return si la fonction s'est bien deroulee
      */
     public int saveas(String pathname)
@@ -1429,6 +1445,7 @@ public class Controleur{
 
     /**
      *  Fonction qui sauvegarde l'historique dans un format .txt
+     *  @param pathname Chemin du fichier
      *  @return si la fonction s'est bien deroulee
      */
     public int savehistory(String pathname)
@@ -1697,6 +1714,8 @@ public class Controleur{
 
     /**
      *  Fonction qui affiche le manuel de la commande
+     *  @param isNotEmpty Si un parametre est specifie
+     *  @param commande Nom de la commande
      *  @return si la fonction s'est bien deroulee.
      */
     public int man(boolean isNotEmpty, String commande)
