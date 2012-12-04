@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.*;
 import javax.imageio.ImageIO;
+import javax.swing.SwingWorker;
 
 public class Controleur{
 
@@ -316,7 +317,7 @@ public class Controleur{
                     return NOMBRE_PARAM_LESS;
                 else;
 
-                if ( isInt(commande_parser[1]) )
+                if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = (int)Integer.parseInt(commande_parser[1]);
                 else
                     return PARAM_INCORRECTE;
@@ -333,7 +334,7 @@ public class Controleur{
                 
                 if ( commande_parser.length == 2 )
                 {
-                    if ( isInt( commande_parser[1] ) )
+                    if ( Utilitaire.isInt( commande_parser[1] ) )
                     {
                         return undo( Integer.parseInt( commande_parser[1] ) );
                     }
@@ -351,7 +352,7 @@ public class Controleur{
 
                 if ( commande_parser.length == 2 )
                 {
-                    if ( isInt( commande_parser[1] ) )
+                    if ( Utilitaire.isInt( commande_parser[1] ) )
                     {
                         return redo( Integer.parseInt( commande_parser[1] ) );
                     }
@@ -370,7 +371,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
                 else;
 
-                if ( isInt(commande_parser[1])  )
+                if ( Utilitaire.isInt(commande_parser[1])  )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
                     return PARAM_INCORRECTE;
@@ -388,7 +389,7 @@ public class Controleur{
                     return NOMBRE_PARAM_SUP;
                 else;
 
-                if ( isInt(commande_parser[1]) )
+                if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
                     return PARAM_INCORRECTE;
@@ -410,8 +411,8 @@ public class Controleur{
                 }
                 else;
 
-                if ( isInt(commande_parser[1])
-                        && isInt(commande_parser[2]) )
+                if ( Utilitaire.isInt(commande_parser[1])
+                        && Utilitaire.isInt(commande_parser[2]) )
                 {
                     valeur_x = Integer.parseInt(commande_parser[1]);
                     valeur_y = Integer.parseInt(commande_parser[2]);
@@ -437,7 +438,7 @@ public class Controleur{
                     return NOMBRE_PARAM_LESS;
                 else;
 
-                if ( isInt(commande_parser[1]) )
+                if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
                     return PARAM_INCORRECTE;
@@ -445,6 +446,8 @@ public class Controleur{
                 retour = cursorWidth(valeur);
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
 
             case 16:
                 if ( commande_parser.length > 4 )
@@ -459,7 +462,7 @@ public class Controleur{
                 }
                 else if ( commande_parser.length == 4 )
                 {
-                    if ( isInt( new String[] {  commande_parser[1], commande_parser[2],
+                    if ( Utilitaire.isInt( new String[] {  commande_parser[1], commande_parser[2],
                                                 commande_parser[3] } ) )
                     {
                         retour = setColor(  Integer.parseInt(commande_parser[1]),
@@ -492,7 +495,7 @@ public class Controleur{
                 }
                 else if ( commande_parser.length == 4 )
                 {
-                    if ( isInt( new String[] {  commande_parser[1], commande_parser[2],
+                    if ( Utilitaire.isInt( new String[] {  commande_parser[1], commande_parser[2],
                                                 commande_parser[3] } ) )
                     {
                         retour = setBackgroundColor(Integer.parseInt(commande_parser[1]),
@@ -524,7 +527,7 @@ public class Controleur{
 
                 if ( commande_parser[1].equalsIgnoreCase("triangle") )
                 {
-                    if ( isInt( new String[] { commande_parser[2], commande_parser[3], commande_parser[4],
+                    if ( Utilitaire.isInt( new String[] { commande_parser[2], commande_parser[3], commande_parser[4],
                         commande_parser[5], commande_parser[6], commande_parser[7] } ) )
                     {
                         return doFigure(3, new int[] {  Integer.parseInt(commande_parser[2]),
@@ -543,7 +546,7 @@ public class Controleur{
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("carre") )
                 {
-                    if ( isInt ( new String[] { commande_parser[2], commande_parser[3],
+                    if ( Utilitaire.isInt ( new String[] { commande_parser[2], commande_parser[3],
                         commande_parser[4] } ) )
                     {
                         return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
@@ -559,7 +562,7 @@ public class Controleur{
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("rectangle") )
                 {
-                    if ( isInt ( new String[] { commande_parser[2], commande_parser[3],
+                    if ( Utilitaire.isInt ( new String[] { commande_parser[2], commande_parser[3],
                         commande_parser[4], commande_parser[5] } ) )
                     {
                         return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
@@ -575,7 +578,7 @@ public class Controleur{
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("cercle") )
                 {
-                    if ( isInt ( new String[] { commande_parser[2], commande_parser[3],
+                    if ( Utilitaire.isInt ( new String[] { commande_parser[2], commande_parser[3],
                         commande_parser[4] } ) )
                     {
                         return doFigure(4, new int[] {  Integer.parseInt(commande_parser[2]),
@@ -600,7 +603,7 @@ public class Controleur{
                     return NOMBRE_PARAM_LESS;
                 else;
 
-                if ( isInt(commande_parser[1]) )
+                if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
                     return PARAM_INCORRECTE;
@@ -614,7 +617,7 @@ public class Controleur{
                     return NOMBRE_PARAM_LESS;
                 else;
 
-                if ( isInt(commande_parser[1]) )
+                if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
                     return PARAM_INCORRECTE;
@@ -674,7 +677,7 @@ public class Controleur{
             case 27:
                 int nombre_de_repetition = -1;
 
-                if ( isInt( commande_parser[1] ) )
+                if ( Utilitaire.isInt( commande_parser[1] ) )
                 {
                     nombre_de_repetition = Integer.parseInt(commande_parser[1]);
                 }
@@ -1161,7 +1164,7 @@ public class Controleur{
         if ( !StockageDonnee.getImageSave() )
         {
 
-            int answer = getOptionPane("Sauvegarder avant de quitter ?", "Nouveau fichier");
+            int answer = Utilitaire.getOptionPane("Sauvegarder avant de quitter ?", "Nouveau fichier");
 
             if ( answer == JOptionPane.YES_OPTION )
             {
@@ -1207,7 +1210,7 @@ public class Controleur{
     	
     	if ( path.equals("") )
         {
-            JFileChooser chooser = getChooser("Fichier image", new String[] { regex });
+            JFileChooser chooser = Utilitaire.getChooser("Fichier image", new String[] { regex });
 
             int returnVal = chooser.showOpenDialog(null);
             if ( returnVal == JFileChooser.APPROVE_OPTION )
@@ -1321,7 +1324,7 @@ public class Controleur{
         if ( pathname.equals("") )
         {
             String debut_regex = "(.*)[\\.]";
-            JFileChooser chooser = getChooser("Fichier image (png, gif, jpg)", new String[] { debut_regex + "[pP][nN][gG]$",
+            JFileChooser chooser = Utilitaire.getChooser("Fichier image (png, gif, jpg)", new String[] { debut_regex + "[pP][nN][gG]$",
                     debut_regex + "[jJ][pP][gG]", debut_regex + "[gG][iI][fF]" } );
         
             int returnVal = chooser.showSaveDialog(zd);
@@ -1336,7 +1339,7 @@ public class Controleur{
 
                 if ( new File(path_to_drawing).exists() )
                 {
-                    int answer = getOptionPane("Ecraser le fichier existant ?", "Sauvegarder le fichier");
+                    int answer = Utilitaire.getOptionPane("Ecraser le fichier existant ?", "Sauvegarder le fichier");
                     
                     if ( answer == JOptionPane.NO_OPTION || answer == JOptionPane.CANCEL_OPTION
                             || answer == JOptionPane.CLOSED_OPTION)
@@ -1347,7 +1350,7 @@ public class Controleur{
             }
             else
             {
-                return -1;
+                return SUCCESS;
             }
         }
         else
@@ -1361,7 +1364,7 @@ public class Controleur{
 
             if ( !path_to_drawing.matches(regex) )
             {
-                path_to_drawing += File.separator + "save" + getCurDate() + ".png";    
+                path_to_drawing += File.separator + "save" + Utilitaire.getCurDate() + ".png";    
             }
 
             File tmp = new File(path_to_drawing).getParentFile();
@@ -1435,7 +1438,7 @@ public class Controleur{
         {
             
             String regex = "(.*)[\\.][tT][xX][tT]$";
-            JFileChooser chooser = getChooser("Fichier texte", new String[] { regex });
+            JFileChooser chooser = Utilitaire.getChooser("Fichier texte", new String[] { regex });
 
             int returnVal = chooser.showOpenDialog(null);
             if ( returnVal == JFileChooser.APPROVE_OPTION )
@@ -1450,7 +1453,7 @@ public class Controleur{
                 
                 if ( history.exists() )
                 {
-                    int answer = getOptionPane("Ecraser le fichier existant ?", "Sauvegarder le fichier");
+                    int answer = Utilitaire.getOptionPane("Ecraser le fichier existant ?", "Sauvegarder le fichier");
                     
                     if ( answer == JOptionPane.NO_OPTION || answer == JOptionPane.CANCEL_OPTION
                             || answer == JOptionPane.CLOSED_OPTION)
@@ -1481,7 +1484,7 @@ public class Controleur{
             } 
             else
             {
-                pathname += File.separator + "history" + getCurDate() + ".txt";
+                pathname += File.separator + "history" + Utilitaire.getCurDate() + ".txt";
                 history = new File(pathname);
             }
                 
@@ -1517,7 +1520,7 @@ public class Controleur{
             fSortie.println("##################################################\n"
                            +"##################################################\n"
                            +"##\t\tHISTORIQUE GENERE LE\t\t##\n"
-                           +"##\t\t" + getCurDate() + "\t\t##\n"
+                           +"##\t\t" + Utilitaire.getCurDate() + "\t\t##\n"
                            +"##################################################\n"
                            +"##################################################\n");
 
@@ -1554,7 +1557,7 @@ public class Controleur{
         if ( pathname.equals("") )
         {
             String regex = "(.*)[\\.][tT][xX][tT]$";
-            JFileChooser chooser = getChooser("Fichier texte", new String[] { regex });
+            JFileChooser chooser = Utilitaire.getChooser("Fichier texte", new String[] { regex });
 
             int returnVal = chooser.showOpenDialog(null);
             if ( returnVal == JFileChooser.APPROVE_OPTION )
@@ -1584,7 +1587,8 @@ public class Controleur{
                 BufferedReader br = new BufferedReader(isr);
                 String ligne;
                 int i = 1;
-            
+         
+                int aa = 0;
                 while ( (ligne=br.readLine()) != null )
                 {
                     ligne = ligne.trim();
@@ -1596,8 +1600,9 @@ public class Controleur{
                         zd.repaint();
                         return COMMANDE_ERRONEE;
                     }
+                    
                     zd.repaint();
-                    i++;                
+                    i++;
                 }
             }
             catch (Exception e)
@@ -1715,7 +1720,7 @@ public class Controleur{
     {
         if ( !StockageDonnee.getImageSave() )
         {
-            int exit = getOptionPane(   "Sauvegarder avant de quitter ?",
+            int exit = Utilitaire.getOptionPane(   "Sauvegarder avant de quitter ?",
                                         "Quitter");
                     
             if ( exit == JOptionPane.YES_OPTION )
@@ -1754,67 +1759,6 @@ public class Controleur{
                 System.out.println(StockageDonnee.getLCEC(i));
             }
         }
-    }
-    
-    /*cette fonction teste si une chaine de caractere est un int ou pas*/
-    public boolean isInt(String s){
-        try{
-            Integer.parseInt(s);        
-    	}
-    	catch(NumberFormatException e){
-            StockageDonnee.setParamErreur(s);
-    		return false;
-    	}
-        return true;
-    }
-    
-    /*cette fonction teste si une chaine de caractere est un int ou pas*/
-    public boolean isInt(String[] s){
-        int i = 0;
-        try{
-            for ( String string_to_parseint : s )
-            {
-                Integer.parseInt(string_to_parseint);
-                i++;
-            }
-    	}
-    	catch(NumberFormatException e){
-            StockageDonnee.setParamErreur(s[i]);
-    		return false;
-    	}
-        return true;
-    }
-
-    public String getCurDate()
-    {
-        String format = "yy-MM-yy_H-mm-ss";
-        SimpleDateFormat formater = new SimpleDateFormat(format);
-        Date date = new java.util.Date();
-
-        return formater.format(date);
-    }
-
-    public JFileChooser getChooser(String description, String[] regex)
-    {
-            JFileChooser chooser = new JFileChooser();
-            chooser.setCurrentDirectory( new File( System.getProperty("user.dir") ).getParentFile() );
-
-            ExtensionFileFilter filter = new ExtensionFileFilter(description, regex);
-            chooser.setFileFilter(filter);
-            chooser.addChoosableFileFilter(filter);
-       
-            return chooser;
-    }
-
-    public int getOptionPane(String msg_dialog, String title)
-    {
-            JOptionPane option_pane = new JOptionPane();
-            
-            return  option_pane.showConfirmDialog(null,
-                    msg_dialog,
-                    title,
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE);
     }
 
 }
