@@ -31,7 +31,12 @@ public class ZoneDessin extends JPanel{
 	
     private Controleur controleur;
 
-    /**Constructeur de la zone de dessin*/
+    /**Constructeur de la zone de dessin
+     * @param largeurDessin La largeur en pixel du dessin
+     * @param hauteurDessin La hauteur en pixel du dessin
+     * @param Color La couleur d'arrière plan de la zone de Dessin
+     * @param curseur Le curseur utilisé par le programme
+     * */
 	ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur){
 		this.largeurDessin = largeurDessin;
 		this.hauteurDessin = hauteurDessin;
@@ -61,7 +66,9 @@ public class ZoneDessin extends JPanel{
 		});
     }
 	
-	/**Fonction appelée lors d'un clic de souris sur la zone de dessin*/ 
+	/**Fonction appelée lors d'un clic de souris sur la zone de dessin
+	 * @param posX La position X de la souris
+	 * @param posY La position Y de la souris*/ 
 	public void clicSouris(int posX, int posY){
 		switch(clicSouris){
 			//Clic gauche
@@ -308,23 +315,33 @@ public class ZoneDessin extends JPanel{
 	 * ACCESSEURS
 	 //*/
 	
-	/**Accesseur renvoyant l'écart horizontal entre le bord de la zone de dessin et du dessin*/
+	/**Accesseur renvoyant l'écart horizontal entre le bord de la zone de dessin et du dessin
+	 * @return L'écart horizontal entre le bord de la zone de dessin et du dessin
+	 * */
 	public int getEcartHorizontal(){
 		return ecartHorizontal;
 	}
-	/**Accesseur renvoyant l'écart vertical entre le bord de la zone de dessin et du dessin*/
+	/**Accesseur renvoyant l'écart vertical entre le bord de la zone de dessin et du dessin
+	 * @return L'écart vertical entre le bord de la zone de dessin et du dessin
+	 * */
 	public int getEcartVertical(){
 		return ecartVertical;
 	}
-	/**Accesseur renvoyant la largeur du dessin (et non de la zonne de dessin) en pixel*/
+	/**Accesseur renvoyant la largeur du dessin (et non de la zonne de dessin) en pixel
+	 * @return La largeur du dessin (et non de la zonne de dessin) en pixel
+	 * */
     public int getLargeurDessin(){
     	return largeurDessin;
     }
-    /**Accesseur renvoyant la hauteur du dessin (et non de la zonne de dessin) en pixel*/
+    /**Accesseur renvoyant la hauteur du dessin (et non de la zonne de dessin) en pixel
+	 * @return La hauteur du dessin (et non de la zonne de dessin) en pixel
+	 * */
     public int getHauteurDessin(){
     	return hauteurDessin;
     }
-    /**Accesseur renvoyant la couleur d'arriere plan du dessin*/
+    /**Accesseur renvoyant la couleur d'arriere plan du dessin
+	 * @return Renvoyant la couleur d'arriere plan du dessin
+	 * */
     public Color getBackground(){
     	return background;
     }
@@ -334,26 +351,36 @@ public class ZoneDessin extends JPanel{
 	 //*/
     
     /** Modifie le controleur
-     *  @param c nouveau controleur
+     *  @param c Nouveau controleur
      */
     public void setControleur(Controleur c)
     {
         this.c = c;
     }
-    /**Modifie la couleur d'arriere plan de la zone de dessin */
+    /**Modifie la couleur d'arriere plan de la zone de dessin
+     *  @param c La couleur d'arriere plan à définir */
     public void setBackground(Color c){
     	background = c;
     }
-    /**Modifie la largeur du dessin */
+    /**Modifie la largeur du dessin
+     *  @param l La largeur du dessin a definir
+     *  */
     public void setLargeur(int l){
     	largeurDessin = l;
     }
-    /**Modifie la hauteur du dessin */
+    /**Modifie la hauteur du dessin
+     *  @param h La hauteur du dessin a definir
+     *  */
     public void setHauteur(int h){
     	hauteurDessin = h;
     }
-    /**Modifie la barre d'outils associée à la zone de dessin*/
+    /**Modifie la barre d'outils associée à la zone de dessin
+     *  @param b La barre d'outils à associer à la zone de Dessin
+     *  */
     public void setBarreOutils(BarreOutils b){ barreOutils = b;}
-    /**Modifie l'activation de l'affichage du curseur*/
+    
+    /**Modifie l'activation de l'affichage du curseur
+     *  @param b Booleen définissant l'affichage du curseur
+     *  */
     public void setAffichageCurseur(boolean b){ affichageCurseur = b;}
 }
