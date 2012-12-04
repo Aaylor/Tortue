@@ -1,15 +1,14 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import java.io.File;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -21,6 +20,7 @@ public class Fenetre extends JFrame{
 	ZoneDessin zoneDessin; //L'objet est associé dans Fenetre pendant l'initialisation
 	BarreOutils barreOutils;
 	JPanel conteneurVertical = new JPanel();
+	JScrollPane scrollPaneZoneDessin;
 	
     /**
      *  Constructeur de la fenetre
@@ -44,7 +44,7 @@ public class Fenetre extends JFrame{
 		
 		//Ajoute de la zone de dessin
 		this.zoneDessin = zoneDessin;
-		JScrollPane scrollPaneZoneDessin = new JScrollPane(zoneDessin);
+		scrollPaneZoneDessin = new JScrollPane(zoneDessin);
 		
 		//Positionnement des sous fenetres
 		conteneurVertical.setLayout(new BorderLayout());
@@ -116,5 +116,16 @@ public class Fenetre extends JFrame{
 
     public BarreMenu getBarreMenu(){
     	return this.barreMenu;
+    }
+    
+   /**Fonction qui recalcule la taille des box de la JFrame quand revient sur Windows, pour limiter les probleme d'affichage*/
+    public void processWindowEvent(WindowEvent e) {
+    	//Resize temporaire des JPanel, a etudier comment obtenir des dimension absolue
+		scrollPaneZoneDessin.setMinimumSize(new Dimension(this.getWidth()*2/3, 0));
+		scrollPaneZoneDessin.setPreferredSize(new Dimension(this.getWidth()*2/3, 0));
+		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
+		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
+		terminal.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
+		barreOutils.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
     }
 }
