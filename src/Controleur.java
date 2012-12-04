@@ -884,7 +884,6 @@ public class Controleur{
             StockageDonnee.ajoutListeDessin_undo( StockageDonnee.remove_liste_dessin( max_stockage_dessin - i ) ); 
             i++;
         }
-    }
        
         zd.repaint();
         return SUCCESS;
@@ -1586,7 +1585,6 @@ public class Controleur{
                 String ligne;
                 int i = 1;
             
-                zd.setAffichageProgressif(true);
                 while ( (ligne=br.readLine()) != null )
                 {
                     ligne = ligne.trim();
