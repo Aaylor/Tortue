@@ -19,7 +19,7 @@ public class Main{
     {
 
         if ( !StockageDonnee.init() )
-            System.exit(1);
+            System.exit(-1);
 
         if ( !verifFichierConfig() );
         else;
@@ -57,8 +57,7 @@ public class Main{
     	zoneDessin.setBarreOutils(barreOutils);
     	Fenetre fenetre = new Fenetre(zoneDessin, barreOutils);
         
-    	Controleur c = new Controleur();
-        c.___hydrate___(fenetre, curseur);
+    	Controleur c = new Controleur(fenetre, curseur);
         
     }
 

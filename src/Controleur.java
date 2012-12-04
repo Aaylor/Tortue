@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Date;
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -35,17 +34,21 @@ public class Controleur{
     private BarreOutils barreOutils = null;
 
     /**
-     *  Constructeur vide
+     *  Créer le contrôleur et lui donne la gestion de la fenêtre et du curseur
+     *  @param f Correspond à la fenêtre du programme.
+     *  @param c Correspond au curseur de la zone de dessin.
      */
-    public Controleur(){}
-
+    public Controleur(Fenetre f, Curseur c)
+    {
+        ___hydrate___(f,c);
+    }
 
     /**
      *  Fonction qui permet d'initialiser les liens entre objets
      *  @param f Fenetre principale
      *  @param c Curseur
      */
-    public void ___hydrate___(Fenetre f, Curseur c)
+    private void ___hydrate___(Fenetre f, Curseur c)
     {
 
         term = f.getTerminal();
@@ -471,7 +474,6 @@ public class Controleur{
                     }
                     else
                     {
-                        StockageDonnee.setParamErreur(commande_parser[3]);
                         return PARAM_INCORRECTE;
                     }
                 }
@@ -932,11 +934,11 @@ public class Controleur{
         
         if(curseur.isDown() && curseur.getType() == 0){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
-        	StockageDonnee.liste_dessin.add(t);
+        	StockageDonnee.ajoutListeDessin(t);
         }
         if(curseur.isDown() && curseur.getType() == 1){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
-        	StockageDonnee.liste_dessin.add(t);
+        	StockageDonnee.ajoutListeDessin(t);
         	
         }
         
@@ -976,12 +978,12 @@ public class Controleur{
        
 		if(curseur.isDown() && curseur.getType() == 0){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
-        	StockageDonnee.liste_dessin.add(t);
+        	StockageDonnee.ajoutListeDessin(t);
         	
         }
         if(curseur.isDown() && curseur.getType() == 1){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
-        	StockageDonnee.liste_dessin.add(t);
+        	StockageDonnee.ajoutListeDessin(t);
         	
         }
 		
@@ -1014,12 +1016,12 @@ public class Controleur{
     	
     	if(curseur.isDown() && curseur.getType() == 0){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
-        	StockageDonnee.liste_dessin.add(t);
+        	StockageDonnee.ajoutListeDessin(t);
         	
         }
         if(curseur.isDown() && curseur.getType() == 1){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), zd.getBackground(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
-        	StockageDonnee.liste_dessin.add(t);
+        	StockageDonnee.ajoutListeDessin(t);
         	
         }
 
@@ -1044,8 +1046,8 @@ public class Controleur{
      */
     public int setColor(String couleur)
     {
-        if(StockageDonnee.liste_couleur.containsKey(couleur)){
-        	Color c = StockageDonnee.liste_couleur.get(couleur);
+        if(StockageDonnee.isAColor(couleur)){
+        	Color c = StockageDonnee.getColor(couleur);
         	curseur.setCouleur(c);
         }
         else{
@@ -1074,8 +1076,8 @@ public class Controleur{
      */
     public int setBackgroundColor(String bgColor)
     {
-        if(StockageDonnee.liste_couleur.containsKey(bgColor)){
-        	Color c = StockageDonnee.liste_couleur.get(bgColor);
+        if(StockageDonnee.isAColor(bgColor)){
+        	Color c = StockageDonnee.getColor(bgColor);
         	zd.setBackground(c);
         }
 
@@ -1109,14 +1111,14 @@ public class Controleur{
 
         if(type==2){
         	Traceur t = new Traceur(2, curseur.getCouleur(), value[3], value[2], value[0], value[1], estRempli);
-        	StockageDonnee.liste_dessin.add(t);
+        	StockageDonnee.ajoutListeDessin(t);
         }
         else if (type==3){
-            StockageDonnee.liste_dessin.add( new Traceur(3, curseur.getCouleur(), value[0], value[1], value[2], value[3],
+            StockageDonnee.ajoutListeDessin( new Traceur(3, curseur.getCouleur(), value[0], value[1], value[2], value[3],
                         value[4], value[5], true ) );
         }
         else if (type==4){
-            StockageDonnee.liste_dessin.add( new Traceur(4, curseur.getCouleur(), value[2], value[0], value[1], true));
+            StockageDonnee.ajoutListeDessin( new Traceur(4, curseur.getCouleur(), value[2], value[0], value[1], true));
         }
        
         zd.repaint();
@@ -1588,10 +1590,32 @@ public class Controleur{
                 String ligne;
                 int i = 1;
          
-                int aa = 0;
                 while ( (ligne=br.readLine()) != null )
                 {
+
                     ligne = ligne.trim();
+                    String[] tt = ligne.split(" ", 2);
+                    System.out.println("Ligne : " + i + " : " + ligne);
+
+                    if ( !ligne.startsWith("#") && !ligne.equals("") && !Utilitaire.isACommand(tt[0]) )
+                    {
+                        StockageDonnee.setParamErreur("Ligne " + i + " : " + tt[0], true);
+                        StockageDonnee.videTmp();
+                        return COMMANDE_ERRONEE;
+                    }
+                    else if ( tt.length > 1 && !Utilitaire.correctArguments(tt[0], tt[1]) )
+                    {
+                        //TODO
+                        StockageDonnee.videTmp();
+                        return PARAM_INCORRECTE;
+                    }
+                    else
+                    {
+                        StockageDonnee.ajoutTmp(ligne);
+                    }
+
+                    i++;
+                        /*
                     if ( !ligne.startsWith("#") && !ligne.equals("") && !this.commande(ligne, true) )
                     {
                         StockageDonnee.videLCEC();
@@ -1601,9 +1625,9 @@ public class Controleur{
                         return COMMANDE_ERRONEE;
                     }
                     
-                    zd.repaint();
-                    i++;
+                    zd.repaint();*/
                 }
+
             }
             catch (Exception e)
             {
@@ -1701,7 +1725,7 @@ public class Controleur{
 
         if ( isNotEmpty )
         {
-            if ( StockageDonnee.manuel.containsKey(commande) )
+            if ( Utilitaire.isACommand(commande) )
                 System.out.println(StockageDonnee.getManuel(commande));
             else
                 System.out.println("La commande n'existe pas");

@@ -1,23 +1,25 @@
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Enumeration;
 
 public class StockageDonnee
 {
 
-    public static ArrayList<String> liste_commande_entree_correcte;
-    public static ArrayList<String> liste_commande_undo;
-    public static ArrayList<String> liste_commande_entree_generale;
-    public static ArrayList<Traceur> liste_dessin;
-    public static ArrayList<Traceur> liste_dessin_undo;
-    public static Hashtable<String, Integer> liste_des_commandes;
-    public static Hashtable<Integer, String> liste_erreurs;
-    public static Hashtable<String, String> manuel;
-    public static Hashtable<String, Color> liste_couleur;
+    private static ArrayList<String> liste_commande_entree_correcte;
+    private static ArrayList<String> liste_commande_undo;
+    private static ArrayList<String> liste_commande_entree_generale;
+    private static ArrayList<Traceur> liste_dessin;
+    private static ArrayList<Traceur> liste_dessin_undo;
+    public static ArrayList<String> tmp_command;
+    private static Hashtable<String, Integer> liste_des_commandes;
+    private static Hashtable<Integer, String> liste_erreurs;
+    private static Hashtable<String, String> manuel;
+    private static Hashtable<String, Color> liste_couleur;
     
     
-    public static String pathname_save = new String("");
-    public static boolean image_save = true;
+    private static String pathname_save = new String("");
+    private static boolean image_save = true;
 
     /**
      *  Fonction qui initialise toutes les collections
@@ -30,6 +32,7 @@ public class StockageDonnee
                             && init_lceg()
                             && init_ldessin()
                             && init_ldessin_undo()
+                            && init_tmp_cmd()
                             && init_ldc()
                             && init_le()
                             && init_manuel()
@@ -92,6 +95,16 @@ public class StockageDonnee
     public static boolean init_ldessin_undo()
     {
         liste_dessin_undo = new ArrayList<Traceur>();
+        return true;
+    }
+
+    /**
+     *  Fonction initialisant la collection des listes d'objet utilisé pour la mémoire tampon
+     *  @return boolean
+     */
+    public static boolean init_tmp_cmd()
+    {
+        tmp_command = new ArrayList<String>();
         return true;
     }
 
@@ -275,10 +288,18 @@ public class StockageDonnee
     /**
      *  Fonction enregistrant un paramètre pour le message d'erreur
      *  @param param correspondant au paramètre
+     *  @param append Détermine si on ajout à la suite ou non
      */
-    public static void setParamErreur(String param)
+    public static void setParamErreur(String param, boolean append)
     {
-        liste_erreurs.put(-1, param);
+        if ( append )
+        {
+            liste_erreurs.put(-1, liste_erreurs.get(-1) + " : " + param); 
+        }
+        else
+        {
+            liste_erreurs.put(-1, param);
+        }
     }
 
     /**
@@ -315,6 +336,35 @@ public class StockageDonnee
     public static Traceur getListeDessin(int i)
     {
         return liste_dessin.get( i );
+    }
+
+    /**
+     *  Fonction renvoyant une énumération des listes de commandes
+     *  @return Une énumération des listes de commandes
+     */
+    public static Enumeration<String> getEnumerationListeCommandes()
+    {
+        return liste_des_commandes.keys(); 
+    }
+
+    /**
+     *  Fonction renvoyant si la couleur existe
+     *  @param couleur Couleur demandée par l'utilisateur
+     *  @return L'existence de la couleur
+     */
+    public static boolean isAColor(String couleur)
+    {
+        return liste_couleur.containsKey(couleur);
+    }
+
+    /**
+     *  Fonction renvoyant la couleur selon l'entrée de l'utilisateur
+     *  @param couleur Couleur demandée par l'utilisateur
+     *  @return La couleur
+     */
+    public static Color getColor(String couleur)
+    {
+        return liste_couleur.get(couleur);
     }
 
     /**
@@ -502,6 +552,33 @@ public class StockageDonnee
     {
         return manuel.get( commande );
     }
+
+    /**
+     *  Fonction permettant l'ajout de fonctions dans une liste tampon
+     *  @param commande Commande à ajouter;
+     */
+    public static void ajoutTmp(String command)
+    {
+        tmp_command.add( command );
+    }
+
+    /**
+     *  Fonction permettant de lire et supprimé de la liste tampon
+     *  @param index Index de la commande
+     */
+    public static String getTmp(int index)
+    {
+        return tmp_command.remove(index);
+    }
+
+    /**
+     *  Fonction permettant de vider la liste tampon
+     */
+    public static void videTmp()
+    {
+        tmp_command.clear();
+    }
+
     
     /**
      *  Fonction qui ajoute le pathname lors de la sauvegarde

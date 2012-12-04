@@ -110,8 +110,8 @@ public class ZoneDessin extends JPanel{
 							
 		//ETAPE 2 : Afficher les traceurs
 		Traceur t;
-		for (int i = 0; i < StockageDonnee.liste_dessin.size(); i ++){
-			t = StockageDonnee.liste_dessin.get(i);
+		for (int i = 0; i < StockageDonnee.getSize_ListeDessin(); i ++){
+			t = StockageDonnee.getListeDessin(i);
 			
 			//Initialisons les propriétés de l'objet graphics
 			g.setColor(t.getColor());

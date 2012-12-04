@@ -158,7 +158,7 @@ public class Terminal extends JPanel implements KeyListener{
     {
 
         ArrayList<String> proposition = new ArrayList<String>();
-        Enumeration<String> commandes = StockageDonnee.liste_des_commandes.keys();
+        Enumeration<String> commandes = StockageDonnee.getEnumerationListeCommandes();
 
         while ( commandes.hasMoreElements() )
         {
