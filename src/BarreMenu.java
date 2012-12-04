@@ -13,21 +13,21 @@ public class BarreMenu extends JMenuBar{
 	
 	private Controleur controleur;
 	//JMenu "Fichier"
-	JMenu menuFichier = new JMenu("Fichier");
-	JMenuItem nouveau = new JMenuItem("Nouveau");
-	JMenuItem ouvrirImage = new JMenuItem("Ouvrir une image");
-	JMenuItem ouvrirHistorique = new JMenuItem("Ouvrir un historique");
-	JMenuItem enregistrerImage = new JMenuItem("Enregistrer l'image");
-    JMenuItem enregistrerHistorique = new JMenuItem("Enregistrer l'historique");
-    JMenuItem quitter = new JMenuItem("Quitter");
+	private JMenu menuFichier = new JMenu("Fichier");
+	private JMenuItem nouveau = new JMenuItem("Nouveau");
+	private JMenuItem ouvrirImage = new JMenuItem("Ouvrir une image");
+	private JMenuItem ouvrirHistorique = new JMenuItem("Ouvrir un historique");
+	private JMenuItem enregistrerImage = new JMenuItem("Enregistrer l'image");
+	private JMenuItem enregistrerHistorique = new JMenuItem("Enregistrer l'historique");
+	private JMenuItem quitter = new JMenuItem("Quitter");
     
     //JMenu "Outils"
-	JMenu menuOutils = new JMenu("Outils");
-	JMenuItem options = new JMenuItem("Paramètres");
-	JMenuItem aPropos = new JMenuItem("A propos");
+	private JMenu menuOutils = new JMenu("Outils");
+	private JMenuItem options = new JMenuItem("Paramètres");
+	private JMenuItem aPropos = new JMenuItem("A propos");
 	
     /**
-     *  Constructeur
+     *  Constructeur de la Barre d'Outils
      */
 	BarreMenu(){
 		super();
@@ -103,20 +103,20 @@ public class BarreMenu extends JMenuBar{
 		
 	}
 	
-	public void nouveau(){
+	private void nouveau(){
 		controleur.commande("new", true);
 	}
-	public void ouvrirImage(){
+	private void ouvrirImage(){
 		controleur.commande("open", true);
 	}
-	public void ouvrirHistorique(){
+	private void ouvrirHistorique(){
 		controleur.commande("exec", true);
 	}	
-	public void enregistrerImage(){
+	private void enregistrerImage(){
 		controleur.commande("save", true);
 	}
 	
-	public void enregistrerHistorique(){
+	private void enregistrerHistorique(){
 		controleur.commande("savehistory", true);
 	}
 	
@@ -124,7 +124,7 @@ public class BarreMenu extends JMenuBar{
         controleur.commande("exit", false);
 	}
 	
-	public void aPropos(){
+	private void aPropos(){
 		JOptionPane aPropos = new JOptionPane();
 		aPropos.showMessageDialog(null,
 								"Carapuce est un projet Universitaire développé par 4 étudiants :\n\n" +
