@@ -17,14 +17,14 @@ import javax.swing.event.MouseInputAdapter;
 
 @SuppressWarnings("serial")
 public class ZoneDessin extends JPanel{
-	int largeurDessin; //La largeur du dessin
-	int hauteurDessin; //La longueur du dessin
-	Color background;
-	Curseur curseur;
-	int ecartHorizontal; //Ecart horizontal entre le bord de la zone de dessin et du dessin
-	int ecartVertical; //Ecart vertical entre le bord de la zone de dessin et du dessin
-	Controleur c;
-	BarreOutils barreOutils;
+	private int largeurDessin; //La largeur du dessin
+	private int hauteurDessin; //La longueur du dessin
+	private Color background;
+	private Curseur curseur;
+	private int ecartHorizontal; //Ecart horizontal entre le bord de la zone de dessin et du dessin
+	private int ecartVertical; //Ecart vertical entre le bord de la zone de dessin et du dessin
+	private Controleur c;
+	private BarreOutils barreOutils;
 	private int clicSouris;//1 : Clic gauche, 2 : Clic du milieu, 3 : Clic Droit
 	private boolean affichageCurseur = true;
 	
