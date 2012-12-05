@@ -681,6 +681,11 @@ public class Controleur{
                 return exec("");
             
             case 27:
+                if ( commande_parser.length < 4 )
+                {
+                    return NOMBRE_PARAM_LESS;
+                }
+
                 int nombre_de_repetition = -1;
 
                 if ( Utilitaire.isInt( commande_parser[1] ) )

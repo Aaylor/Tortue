@@ -258,8 +258,13 @@ public class Utilitaire
 
                 return SUCCESS;
 
-            /*  Cas spécial pour la fonction REPEAT */
+            /*  Cas particulier pour la fonction REPEAT */
             case 27:
+                if ( splited_args.length < 3 )
+                {
+                    return NOMBRE_PARAM_LESS;
+                }
+
                 String[] command_list = parseRepeat(args);
 
                 for ( String cmd : command_list )
@@ -275,6 +280,11 @@ public class Utilitaire
                 }
 
                 return SUCCESS;
+    
+            /*  Cas particulier pour la fonction DOFIGURE   */
+            case 18:
+
+
 
             default:
                 return COMMANDE_ERRONEE;
