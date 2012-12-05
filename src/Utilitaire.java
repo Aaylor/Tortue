@@ -110,6 +110,7 @@ public class Utilitaire
 
         switch( StockageDonnee.getNumeroFonction(command) )
         {
+            /*  Commande ne demandant aucun argument    */
             case 0:
             case 1:
             case 2:
@@ -119,16 +120,27 @@ public class Utilitaire
             case 6:
             case 7:
             case 8:
+            case 21:
             case 28:
             case 29:
+            case 31:
+                System.out.println(command + "\t" + args);
                 return ( splited_args[0] == "" ? SUCCESS : NOMBRE_PARAM_SUP );
        
+            /*  Commande requierant un seul paramètre devant être un entier */
             case 9:
             case 12:
             case 13:
+            case 15:
+            case 19:
+            case 20:
                 if ( splited_args.length > 1 )
                 {
                     return NOMBRE_PARAM_SUP;
+                }
+                if ( splited_args[0].equals("") )
+                {
+                    return NOMBRE_PARAM_LESS;
                 }
 
                 if ( !isInt( splited_args[0] ) )
@@ -138,11 +150,79 @@ public class Utilitaire
 
                 return SUCCESS;
 
-            default:
-                System.out.println("a");
-        }
+            /*  Commande requierant un seul paramètre entier, ou fonctionnant sans [valeur par défaut : 1]  */
+            case 10:
+            case 11:
+                if ( splited_args.length > 1 )
+                {
+                    return NOMBRE_PARAM_SUP;
+                }
+                if ( !isInt( splited_args[0] ) && !splited_args[0].equals("") )
+                {
+                    return PARAM_INCORRECTE;
+                }
 
-        return 0;
+                return SUCCESS;
+
+            /*  Commande requierant un paramètre en chaîne de caractère ou sans. [Peut utiliser les guillemets] */
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 30:
+                if ( splited_args.length > 1 )
+                {
+                    return NOMBRE_PARAM_SUP;
+                }
+
+                return SUCCESS;
+
+            /*  Commande requierant deux paramètres entier  */
+            case 14:
+                if ( splited_args.length > 2 )
+                {
+                    return NOMBRE_PARAM_SUP;
+                }
+                else if ( splited_args.length < 2 )
+                {
+                    return NOMBRE_PARAM_LESS;
+                }
+
+                if ( !isInt( new String[]{ splited_args[0], splited_args[1] } ) )
+                {
+                    return PARAM_INCORRECTE;
+                }
+
+                return SUCCESS;
+    
+            /*  Commande requierant 3 paramètres entier ou 1 chaîne de caractère */
+            case 16:
+            case 17:
+                if ( (splited_args.length > 3) )
+                {
+                    return NOMBRE_PARAM_SUP;
+                }
+                
+                if ( splited_args.length == 3 )
+                {
+                    if ( !isInt( new String[]{ splited_args[0], splited_args[1], splited_args[2] } ) )
+                    {
+                        return PARAM_INCORRECTE;
+                    }
+                }
+                else if ( splited_args.length == 1 );
+                else
+                {
+                    return PARAM_INCORRECTE; // A CHANGER
+                }
+
+                return SUCCESS;
+                
+
+            default:
+                return PARAM_INCORRECTE;
+        }
 
     }
 }

@@ -22,7 +22,6 @@ public class Fenetre extends JFrame{
 	Controleur controleur;
     JPanel conteneurVertical = new JPanel();
 	JScrollPane scrollPaneZoneDessin;
-	Controleur controleur;
 	
     /**
      *  Constructeur de la fenetre
@@ -135,9 +134,6 @@ public class Fenetre extends JFrame{
 
     public BarreMenu getBarreMenu(){
     	return this.barreMenu;
-    }
-    public void setControleur(Controleur c){
-    	this.controleur = c;
     }
 
 }

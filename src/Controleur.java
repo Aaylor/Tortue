@@ -1618,27 +1618,33 @@ public class Controleur{
                 {
 
                     ligne = ligne.trim();
-                    String[] splited_line = ligne.split(" ", 2);
+                    
+                    if ( !ligne.startsWith("#") && !ligne.equals("") )
+                    {
+                        String[] splited_line = ligne.split(" ", 2);
+                        StockageDonnee.setParamErreur("Ligne " + i + " : " + splited_line[0], false);
 
-                    if ( splited_line.length < 2 )
-                    {
-                        splited_line = new String[] { splited_line[0], "" };
-                    }
+                        if ( splited_line.length < 2 )
+                        {
+                            splited_line = new String[] { splited_line[0], "" };
+                        }
 
-                    if ( !ligne.startsWith("#") && !ligne.equals("") && !Utilitaire.isACommand(splited_line[0]) )
-                    {
-                        StockageDonnee.setParamErreur("Ligne " + i + " : " + splited_line[0], true);
-                        StockageDonnee.videTmp();
-                        return COMMANDE_ERRONEE;
-                    }
-                    else if ( Utilitaire.correctArguments(splited_line[0], splited_line[1]) != SUCCESS )
-                    {
-                        StockageDonnee.videTmp();
-                        return PARAM_INCORRECTE;
-                    }
-                    else if ( !ligne.startsWith("#") && !ligne.equals("") )
-                    {
-                        StockageDonnee.ajoutTmp(ligne);
+                        if ( !ligne.startsWith("#") && !ligne.equals("") && !Utilitaire.isACommand(splited_line[0]) )
+                        {
+                            StockageDonnee.videTmp();
+                            return COMMANDE_ERRONEE;
+                        }
+                        else
+                        {
+                            int retour = Utilitaire.correctArguments(splited_line[0], splited_line[1]);
+                            if ( retour != SUCCESS )
+                            {
+                                StockageDonnee.videTmp();
+                                return retour;
+                            }
+
+                            StockageDonnee.ajoutTmp(ligne);
+                        }
                     }
 
                     i++;

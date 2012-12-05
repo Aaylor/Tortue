@@ -1,15 +1,14 @@
 pendown
 forward 100
 backward 90
-backward a
+backward 1
 penup
-goto 0 0
+goto 0 a
 goto 200 0
-goto 180 a
+goto 180 
 goto 150 0
 goto 160 0
 goto 160 50
-jambon pistache fromage
 down
 pendown
 forward 20
