@@ -22,6 +22,7 @@ public class Fenetre extends JFrame{
 	Controleur controleur;
     JPanel conteneurVertical = new JPanel();
 	JScrollPane scrollPaneZoneDessin;
+	Controleur controleur;
 	
     /**
      *  Constructeur de la fenetre
@@ -63,24 +64,32 @@ public class Fenetre extends JFrame{
 		//Affichage de la fenetre (ne pas placer avant)
 		this.setVisible(true);
 		
-		//Resize temporaire des JPanel, a etudier comment obtenir des dimension absolue
+		
+		
+		
+		//Definissons l'action lors du clic sur la croix rouge
+		WindowListener exitListener = new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+            	controleur.commande("exit", false);
+            }
+        };
+        this.addWindowListener(exitListener);
+	}
+	
+	/**Fonction qui redimensionne tous les composant de la Fenetre pour garder de bonne proportions**/
+	public void resizeEverything(){
 		scrollPaneZoneDessin.setMinimumSize(new Dimension(this.getWidth()*2/3, 0));
 		scrollPaneZoneDessin.setPreferredSize(new Dimension(this.getWidth()*2/3, 0));
 		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
 		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
 		terminal.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
 		barreOutils.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
-		
-		
-		//Definissons l'action lors du clic sur la croix rouge
-		WindowListener exitListener = new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                barreMenu.quitter();
-            }
-        };
-        this.addWindowListener(exitListener);
 	}
-	
+	   /**Fonction qui recalcule la taille des box de la JFrame quand revient sur Windows, pour limiter les probleme d'affichage*/
+    public void processWindowEvent(WindowEvent e) {
+    	resizeEverything();
+    }
+    
     /**
      *  Retourne le terminal associee a la fenetre
      *  @return retourne le terminal
@@ -127,15 +136,8 @@ public class Fenetre extends JFrame{
     public BarreMenu getBarreMenu(){
     	return this.barreMenu;
     }
-    
-   /**Fonction qui recalcule la taille des box de la JFrame quand revient sur Windows, pour limiter les probleme d'affichage*/
-    public void processWindowEvent(WindowEvent e) {
-    	//Resize temporaire des JPanel, a etudier comment obtenir des dimension absolue
-		scrollPaneZoneDessin.setMinimumSize(new Dimension(this.getWidth()*2/3, 0));
-		scrollPaneZoneDessin.setPreferredSize(new Dimension(this.getWidth()*2/3, 0));
-		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
-		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
-		terminal.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
-		barreOutils.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
+    public void setControleur(Controleur c){
+    	this.controleur = c;
     }
+
 }
