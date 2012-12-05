@@ -124,7 +124,6 @@ public class Utilitaire
             case 28:
             case 29:
             case 31:
-                System.out.println(command + "\t" + args);
                 return ( splited_args[0] == "" ? SUCCESS : NOMBRE_PARAM_SUP );
        
             /*  Commande requierant un seul paramètre devant être un entier */

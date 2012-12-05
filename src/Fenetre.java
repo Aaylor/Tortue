@@ -29,7 +29,7 @@ public class Fenetre extends JFrame{
 	Fenetre(ZoneDessin zoneDessin, BarreOutils barreOutils){
 		//Initialisation de la JFrame
 		this.setTitle("Carapuce");
-		
+		//Taille et caractéristiques de la JFrame
 		if(MenuOption.getConfigProgrammeEstFenetre())
 			this.setSize(1024, 600);
 		else
@@ -37,6 +37,7 @@ public class Fenetre extends JFrame{
 		this.setMinimumSize(new Dimension(1024, 600));
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		//Icone
 		this.setIconImage(new ImageIcon( new File(System.getProperty("user.dir")).getParent()
                     + File.separator + "img" + File.separator + "icone.png" ).getImage());
 		
@@ -54,43 +55,45 @@ public class Fenetre extends JFrame{
 		conteneurVertical.add(terminal);
 		
 		Box conteneurPrincipal = Box.createHorizontalBox();
-		//conteneurPrincipal.add(zoneDessin);
 		conteneurPrincipal.add(scrollPaneZoneDessin);
 		conteneurPrincipal.add(conteneurVertical);
+		
 		//Liaison au ContentPane
 		this.getContentPane().add(conteneurPrincipal);
-
-		//Affichage de la fenetre (ne pas placer avant)
-		this.setVisible(true);
 		
-		
-		
-		
-		//Definissons l'action lors du clic sur la croix rouge
+  		//Definissons l'action lors du clic sur la croix rouge
 		WindowListener exitListener = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-            	controleur.commande("exit", false);
+                barreMenu.quitter();
             }
         };
         this.addWindowListener(exitListener);
+		
+		//Affichage de la fenetre (ne pas placer avant)
+        resizeEverything();
+  		this.setVisible(true);
 	}
+	
+	  /////////////////////////////////////////////////
+	 //                 METHODES                    //
+	/////////////////////////////////////////////////	
 	
 	/**Fonction qui redimensionne tous les composant de la Fenetre pour garder de bonne proportions**/
 	public void resizeEverything(){
 		scrollPaneZoneDessin.setMinimumSize(new Dimension(this.getWidth()*2/3, 0));
-		scrollPaneZoneDessin.setPreferredSize(new Dimension(this.getWidth()*2/3, 0));
-		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
-		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
+		
 		terminal.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
 		barreOutils.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
+		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
+		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
 	}
-	   /**Fonction qui recalcule la taille des box de la JFrame quand revient sur Windows, pour limiter les probleme d'affichage*/
-    public void processWindowEvent(WindowEvent e) {
-    	resizeEverything();
-    }
+	
+	  /////////////////////////////////////////////////
+	 //               ACCESSEURS                    //
+	/////////////////////////////////////////////////
     
     /**
-     *  Retourne le terminal associee a la fenetre
+     *  Retourne le terminal associe a la fenetre
      *  @return retourne le terminal
      */
     public Terminal getTerminal()
@@ -105,13 +108,6 @@ public class Fenetre extends JFrame{
     public ZoneDessin getZoneDessin()
     {
         return this.zoneDessin;
-    }
-    /**
-     *  Assigne une zoneDessin à la fenetre
-     */
-    public void setZoneDessin(ZoneDessin d)
-    {
-        this.zoneDessin = d;
     }
 
     /**
@@ -131,9 +127,32 @@ public class Fenetre extends JFrame{
     {
         return this.barreOutils;
     }
-
+    /**
+     *  Retourne la barre de menu associee a la fenetre
+     *  @return retourne la barre de menu associee a la fenetre
+     */
     public BarreMenu getBarreMenu(){
     	return this.barreMenu;
+    }
+    
+	  /////////////////////////////////////////////////
+	 //               MODIFIEURS                    //
+	/////////////////////////////////////////////////
+    
+    /**
+     *  Assigne une zoneDessin à la fenetre
+     *  @param d : La zone de dessin à définir
+     */
+    public void setZoneDessin(ZoneDessin d)
+    {
+        this.zoneDessin = d;
+    }
+    /**
+     * Assigne un controleur a la fenetre
+     * @param c : Le controleur a definir
+     */
+    public void setControleur(Controleur c){
+    	this.controleur = c;
     }
 
 }
