@@ -52,7 +52,47 @@ public class Utilitaire
     	}
         return true;
     }
-    
+
+    /**
+     *  Parseur spécial pour la fonction REPEAT
+     *  @param args Correspond aux arguments donnés par la fonction
+     *  @return Un tableau d'argument
+     */
+    public static String[] parseRepeat(String args)
+    {
+        int first_index = args.indexOf("[");
+        int last_index = args.lastIndexOf("]");
+
+        if ( first_index >= 0 && last_index >= first_index )
+        {
+            args = args.substring(first_index+1, last_index);
+        }
+        
+        first_index = args.indexOf("[");
+        last_index = args.lastIndexOf("]");
+        String tmp = "";
+
+        if ( first_index >= 0 && last_index >= first_index )
+        {
+            tmp = args.substring(first_index, last_index+1).replaceAll(";", "x00AB");
+            args = args.substring(0, first_index) + tmp;
+        }
+
+        String[] args_split = args.split(";");
+        int i = 0;
+        while ( i < args_split.length )
+        {
+            if ( args_split[i].indexOf("x00AB") >= 0 )
+            {
+                args_split[i] = args_split[i].replaceAll("x00AB", ";");
+            }
+            i++;
+        }
+
+        return args_split;
+
+    }
+
     /**
      *  Renvoie la date courante selon le format : yy-MM-yy_H-mm-ss
      *  @return La date courante
@@ -217,10 +257,27 @@ public class Utilitaire
                 }
 
                 return SUCCESS;
-                
+
+            /*  Cas spécial pour la fonction REPEAT */
+            case 27:
+                String[] command_list = parseRepeat(args);
+
+                for ( String cmd : command_list )
+                {
+                    String[] tmp = cmd.trim().split(" ", 2);
+
+                    int retour = correctArguments(tmp[0], (tmp.length > 1 ? tmp[1] : ""));
+
+                    if ( retour != SUCCESS )
+                    {
+                        return retour;
+                    }
+                }
+
+                return SUCCESS;
 
             default:
-                return PARAM_INCORRECTE;
+                return COMMANDE_ERRONEE;
         }
 
     }

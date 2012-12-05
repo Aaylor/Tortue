@@ -111,15 +111,6 @@ public class Fenetre extends JFrame{
     }
 
     /**
-     *  Assigne le controleur à la Fenetre
-     *  @param c Controleur
-     */
-    public void setControleur(Controleur c)
-    {
-        this.controleur = c;
-    }
-
-    /**
      *  Retourne la zone de bouton associee a la fenetre
      *  @return retourne la zone de bouton
      */

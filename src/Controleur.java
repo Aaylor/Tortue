@@ -1681,44 +1681,15 @@ public class Controleur{
      */
     public int repeat(int nombre_de_repetitions, String args)
     {
-        int first_index = args.indexOf("[");
-        int last_index = args.lastIndexOf("]");
-
-        if ( first_index >= 0 && last_index >= first_index )
-        {
-            args = args.substring(first_index+1, last_index);
-        }
-        
-        first_index = args.indexOf("[");
-        last_index = args.lastIndexOf("]");
-        String tmp = "";
-
-        if ( first_index >= 0 && last_index >= first_index )
-        {
-            tmp = args.substring(first_index, last_index+1).replaceAll(";", "x00AB");
-            args = args.substring(0, first_index) + tmp;
-        }
-
-        String[] args_split = args.split(";");
-        int i = 0;
-        while ( i < args_split.length )
-        {
-            if ( args_split[i].indexOf("x00AB") >= 0 )
-            {
-                args_split[i] = args_split[i].replaceAll("x00AB", ";");
-            }
-            i++;
-        }
-      
+        String[] command_list = Utilitaire.parseRepeat(args);
         while ( nombre_de_repetitions > 0 )
         {
-            for ( String cmd : args_split )
+            for ( String cmd : command_list )
             {
                 commande(cmd,false);
             }
             nombre_de_repetitions--;
         }
-
         return SUCCESS;
     }
 
