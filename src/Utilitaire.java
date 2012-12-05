@@ -7,6 +7,15 @@ import java.util.Date;
 public class Utilitaire
 {
    
+    private static final int SUCCESS = 0;
+    private static final int COMMANDE_ERRONEE = 100;
+    private static final int NOMBRE_PARAM_LESS = 200; 
+    private static final int NOMBRE_PARAM_SUP = 201;
+    private static final int PARAM_INCORRECTE = 202;
+    private static final int IMAGE_INEXISTANTE = 203;
+    private static final int COULEUR_INEXISTANTE = 204;
+    
+    
     /**
      *  Test si la chaîne de caractère est un entier
      *  @param s Chaîne de caractère
@@ -17,7 +26,7 @@ public class Utilitaire
             Integer.parseInt(s);        
     	}
     	catch(NumberFormatException e){
-            StockageDonnee.setParamErreur(s, false);
+            StockageDonnee.setParamErreur(s, true);
     		return false;
     	}
         return true;
@@ -38,7 +47,7 @@ public class Utilitaire
             }
     	}
     	catch(NumberFormatException e){
-            StockageDonnee.setParamErreur(s[i], false);
+            StockageDonnee.setParamErreur(s[i], true);
     		return false;
     	}
         return true;
@@ -95,8 +104,45 @@ public class Utilitaire
         return StockageDonnee.getNumeroFonction(command) != -1; 
     }
 
-    public static boolean correctArguments(String command, String args)
+    public static int correctArguments(String command, String args)
     {
-        return true;
+        String[] splited_args = args.split(" ");
+
+        switch( StockageDonnee.getNumeroFonction(command) )
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 28:
+            case 29:
+                return ( splited_args[0] == "" ? SUCCESS : NOMBRE_PARAM_SUP );
+       
+            case 9:
+            case 12:
+            case 13:
+                if ( splited_args.length > 1 )
+                {
+                    return NOMBRE_PARAM_SUP;
+                }
+
+                if ( !isInt( splited_args[0] ) )
+                {
+                    return PARAM_INCORRECTE;
+                }
+
+                return SUCCESS;
+
+            default:
+                System.out.println("a");
+        }
+
+        return 0;
+
     }
 }

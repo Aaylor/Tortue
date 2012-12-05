@@ -1,11 +1,11 @@
 pendown
 forward 100
 backward 90
-backward 10
+backward a
 penup
 goto 0 0
 goto 200 0
-goto 180 0
+goto 180 a
 goto 150 0
 goto 160 0
 goto 160 50

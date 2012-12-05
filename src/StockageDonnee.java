@@ -579,6 +579,15 @@ public class StockageDonnee
         tmp_command.clear();
     }
 
+    /**
+     *  Fonction permettant d'obtenir la taille du tampon
+     *  @return taille du tampon
+     */
+    public static int getSize_Tmp()
+    {
+        return tmp_command.size();
+    }
+
     
     /**
      *  Fonction qui ajoute le pathname lors de la sauvegarde

@@ -245,6 +245,8 @@ public class Controleur{
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
+                return retour;
+
             case 2:
                 if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
@@ -1616,38 +1618,37 @@ public class Controleur{
                 {
 
                     ligne = ligne.trim();
-                    String[] tt = ligne.split(" ", 2);
-                    System.out.println("Ligne : " + i + " : " + ligne);
+                    String[] splited_line = ligne.split(" ", 2);
 
-                    if ( !ligne.startsWith("#") && !ligne.equals("") && !Utilitaire.isACommand(tt[0]) )
+                    if ( splited_line.length < 2 )
                     {
-                        StockageDonnee.setParamErreur("Ligne " + i + " : " + tt[0], true);
+                        splited_line = new String[] { splited_line[0], "" };
+                    }
+
+                    if ( !ligne.startsWith("#") && !ligne.equals("") && !Utilitaire.isACommand(splited_line[0]) )
+                    {
+                        StockageDonnee.setParamErreur("Ligne " + i + " : " + splited_line[0], true);
                         StockageDonnee.videTmp();
                         return COMMANDE_ERRONEE;
                     }
-                    else if ( tt.length > 1 && !Utilitaire.correctArguments(tt[0], tt[1]) )
+                    else if ( Utilitaire.correctArguments(splited_line[0], splited_line[1]) != SUCCESS )
                     {
-                        //TODO
                         StockageDonnee.videTmp();
                         return PARAM_INCORRECTE;
                     }
-                    else
+                    else if ( !ligne.startsWith("#") && !ligne.equals("") )
                     {
                         StockageDonnee.ajoutTmp(ligne);
                     }
 
                     i++;
-                        /*
-                    if ( !ligne.startsWith("#") && !ligne.equals("") && !this.commande(ligne, true) )
-                    {
-                        StockageDonnee.videLCEC();
-                        StockageDonnee.videListeDessin();
-                        StockageDonnee.setParamErreur("ligne " + i);
-                        zd.repaint();
-                        return COMMANDE_ERRONEE;
-                    }
                     
-                    zd.repaint();*/
+                }
+
+                while ( StockageDonnee.getSize_Tmp() > 0 )
+                {
+                    commande( StockageDonnee.getTmp(0), true );
+                    zd.repaint();
                 }
 
             }
