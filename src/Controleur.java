@@ -72,9 +72,9 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui permet de contrôler le commande entrée par l'utilisateur
-     *  @param s Commande entrée par l'utilisateur
-     *  @return Si la fonction s'est correctement déroulée
+     *  Fonction qui permet de contrôler le commande entree par l'utilisateur
+     *  @param s Commande entree par l'utilisateur
+     *  @return Si la fonction s'est correctement deroulee
      */
     public boolean commande(String s, boolean write)
     {
@@ -110,7 +110,7 @@ public class Controleur{
 
     /**
      *  Fonction qui parse la chaîne de commande
-     *  @param s Commande entrée par l'utilisateur
+     *  @param s Commande entree par l'utilisateur
      *  @return Tableau comportant la commande et ses arguments ( si besoins )
      */
     public String[] parse(String s)
@@ -180,9 +180,9 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui renvoie la commande tapée par l'utilisateur en enlevant tout espace superflu
-     *  @param s Commande entrée par l'utilisateur
-     *  @return Commande retravaillée
+     *  Fonction qui renvoie la commande tapee par l'utilisateur en enlevant tout espace superflu
+     *  @param s Commande entree par l'utilisateur
+     *  @return Commande retravaillee
      */
     public String rework_command(String s)
     {
@@ -214,7 +214,7 @@ public class Controleur{
     /**
      *  Fonction qui traite le string
      *  @param commande_parser Tableau contenant le nom de la commande ainsi que ses arguments
-     *  @return 0 si la fonction s'est bien déroulée.
+     *  @return 0 si la fonction s'est bien deroulee.
      */
     public int init(String[] commande_parser, boolean write)
     {
@@ -754,8 +754,8 @@ public class Controleur{
 
 
     /**
-     * Fonction qui permet l'écriture lorsque l'utilisateur se déplace
-     * @return si la fonction s'est bien déroulée.
+     * Fonction qui permet l'ecriture lorsque l'utilisateur se deplace
+     * @return si la fonction s'est bien deroulee.
      */
     public int pendown()
     {
@@ -767,8 +767,8 @@ public class Controleur{
     }
 
     /**
-     * Fonction qui permet d'arrêter l'écriture lorsque l'utilisateur se déplace
-     * @return si la fonction s'est bien déroulée.
+     * Fonction qui permet d'arrêter l'ecriture lorsque l'utilisateur se deplace
+     * @return si la fonction s'est bien deroulee.
      */
     public int penup()
     {
@@ -781,7 +781,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de passer en mode crayon
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int pencil()
     { 
@@ -793,7 +793,7 @@ public class Controleur{
 
     /**
      * Fonction qui permet de passer en mode gomme
-     * @return si la fonction s'est bien déroulée.
+     * @return si la fonction s'est bien deroulee.
      */
     public int eraser()
     {
@@ -805,7 +805,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la forme du curseur
-     *  @return sur la fonction s'est bien déroulée.
+     *  @return sur la fonction s'est bien deroulee.
      */
     public int change_forme()
     {
@@ -817,7 +817,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de placer le pointeur vers le haut
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int up()
     {
@@ -829,7 +829,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de placer le pointeur vers le bas
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int down()
     {
@@ -841,7 +841,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de placer le pointeur vers la gauche
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int left()
     {
@@ -853,7 +853,7 @@ public class Controleur{
 
     /**
      * Fonction qui permet de placer le pointeur vers la droite
-     * @return si la fonction s'est bien déroulée.
+     * @return si la fonction s'est bien deroulee.
      */
     public int right()
     {
@@ -865,7 +865,8 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de faire une rotation sur le pointeur
-     *  @return si la fonction s'est bien déroulée.
+     *  @param valeur Valeur de l'angle
+     *  @return si la fonction s'est bien deroulee.
      */
     public int rotate(int valeur)
     {
@@ -876,7 +877,7 @@ public class Controleur{
 
     /**
      *  Fonction qui annule les n dernières actions
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int undo(int valeur)
     {
@@ -895,8 +896,8 @@ public class Controleur{
     }
 
     /**
-     *  Fonctio qui refait les n dernières actions annulées
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonctio qui refait les n dernières actions annulees
+     *  @return si la fonction s'est bien deroulee.
      */
     public int redo(int valeur)
     {
@@ -905,8 +906,8 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de faire avancer le pointeur
-     *  @param valeur Valeur d'avancée
-     *  @return si la fonction s'est bien déroulée.
+     *  @param valeur Valeur d'avancee
+     *  @return si la fonction s'est bien deroulee.
      */
     public int forward(int valeur)
     {
@@ -918,15 +919,15 @@ public class Controleur{
     	double posX = curseur.getPosX() + valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
 		double posY = curseur.getPosY() + valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
 		
-		//conditions pour que le curseur ne dépasse pas la zone de dessin
+		//conditions pour que le curseur ne depasse pas la zone de dessin
 		
 		if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
         
         if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
         
-        if(posX <0) curseur.setPosX(0); //valeur négative : on replace à 0
+        if(posX <0) curseur.setPosX(0); //valeur negative : on replace à 0
         
-        if(posY <0) curseur.setPosY(0); //valeur négative : on replace à 0
+        if(posY <0) curseur.setPosY(0); //valeur negative : on replace à 0
         
         if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
         
@@ -950,7 +951,7 @@ public class Controleur{
     /**
      *  Fonction qui permet de faire reculer le pointeur
      *  @param valeur Valeur de recul
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int backward(int valeur)
     {
@@ -962,15 +963,15 @@ public class Controleur{
     	double posX = curseur.getPosX() - valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
 		double posY = curseur.getPosY() - valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
 		
-		//conditions pour que le curseur ne dépasse pas la zone de dessin
+		//conditions pour que le curseur ne depasse pas la zone de dessin
 		
 		if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
 		       
 		if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
 		        
-		if(posX <0) curseur.setPosX(0); //valeur négative : on replace à 0
+		if(posX <0) curseur.setPosX(0); //valeur negative : on replace à 0
 		       
-		if(posY <0) curseur.setPosY(0); //valeur négative : on replace à 0
+		if(posY <0) curseur.setPosY(0); //valeur negative : on replace à 0
 		        
 		if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
 		        
@@ -992,15 +993,17 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui permet de déplacer le pointeur
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui permet de deplacer le pointeur
+     *  @param value Abscisse d'arrivee
+     *  @param value Ordonnee d'arrivee
+     *  @return si la fonction s'est bien deroulee.
      */
     public int goTo(int value, int value_2)
     {
         int posX1=curseur.getPosX();
     	int posY1=curseur.getPosY();
     	
-        //conditions pour que le curseur ne dépasse pas la zone de dessin
+        //conditions pour que le curseur ne depasse pas la zone de dessin
         
         if( value >= 0 && value <= zd.getLargeurDessin()) curseur.setPosX(value); //ok
     		
@@ -1010,9 +1013,9 @@ public class Controleur{
     	
     	if(value_2 > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //valeur Y > hauteur de la zone
     	
-    	if(value < 0) curseur.setPosX(0); //valeur négative => on replace à la valeur minimu : 0
+    	if(value < 0) curseur.setPosX(0); //valeur negative => on replace à la valeur minimu : 0
     	
-    	if(value_2 < 0) curseur.setPosY(0); //valeur négative => on replace à la valeur minimu : 0
+    	if(value_2 < 0) curseur.setPosY(0); //valeur negative => on replace à la valeur minimu : 0
     	
     	if(curseur.isDown() && curseur.getType() == 0){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
@@ -1030,8 +1033,9 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui permet de régler la largeur du curseur
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui permet de regler la largeur du curseur
+     *  @param valeur Epaisseur du curseur
+     *  @return si la fonction s'est bien deroulee.
      */
     public int cursorWidth(int valeur)
     {
@@ -1042,7 +1046,8 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la couleur
-     *  @return si la fonction s'est bien déroulée.
+     *  couleur Couleur du curseur
+     *  @return si la fonction s'est bien deroulee.
      */
     public int setColor(String couleur)
     {
@@ -1059,7 +1064,10 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la couleur (int RGB)
-     *  @return si la fonction s'est bien déroulée.
+     *  @param red Rouge curseur
+     *  @param green Vert curseur
+     *  @param blue Bleu curseur
+     *  @return si la fonction s'est bien deroulee.
      */
     public int setColor(int red, int green, int blue)
     {
@@ -1071,8 +1079,9 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui permet de changer la couleur du fond d'écran
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui permet de changer la couleur du fond d'ecran
+     *  @param bgColor Couleur de fond
+     *  @return si la fonction s'est bien deroulee.
      */
     public int setBackgroundColor(String bgColor)
     {
@@ -1085,8 +1094,11 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui permet de changer la couleur du fond d'écran (int RGB)
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui permet de changer la couleur du fond d'ecran (int RGB)
+     *  @param red Rouge fond
+     *  @param green Vert fond
+     *  @param blue Bleu fond
+     *  @return si la fonction s'est bien deroulee.
      */
     public int setBackgroundColor(int red, int green, int blue)
     {
@@ -1096,7 +1108,10 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de tracer des figures particulières
-     *  @return si la fonction s'est bien déroulée.
+     *  @param type Type de figure
+     *  @param value Tableau de valeur, coordonnees, hauteur, largeur ..
+     *  @param estRempli Si la figure est pleine
+     *  @return si la fonction s'est bien deroulee.
      */
     public int doFigure(int type, int[] value, boolean estRempli)
     {
@@ -1126,8 +1141,9 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui permet de changer la largeur de l'écran
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui permet de changer la largeur de l'ecran
+     *  @param valeur Largeur de la zone de dessin
+     *  @return si la fonction s'est bien deroulee.
      */
     public int width(int valeur)
     {
@@ -1141,8 +1157,9 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui permet de changer la hauteur de l'écran
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui permet de changer la hauteur de l'ecran
+     *  @param valeur Hauteur de la zone de dessin
+     *  @return si la fonction s'est bien deroulee.
      */
     public int height(int valeur)
     {
@@ -1156,8 +1173,8 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui permet de créer un nouveau document
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui permet de creer un nouveau document
+     *  @return si la fonction s'est bien deroulee.
      */
     public int newFile()
     {
@@ -1204,7 +1221,8 @@ public class Controleur{
 
     /**
      *  Fonction qui permet d'ouvrir une image
-     *  @return si la fonction s'est bien déroulée.
+     *  @param path Chemin du fichier image
+     *  @return si la fonction s'est bien deroulee.
      */
     public int open(String path)
     {
@@ -1244,7 +1262,7 @@ public class Controleur{
 	    }
     	
     	File file=new File(path);
-    	if(file.exists()){ //si l'extension est bonne on vérifie l'extence du fichier
+    	if(file.exists()){ //si l'extension est bonne on verifie l'extence du fichier
 	        ImageIcon img=new ImageIcon(path);
 	    	int imageHeight=img.getIconHeight();
 	    	int imageWidth=img.getIconWidth();
@@ -1268,7 +1286,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de sauvegarder un document en une image
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int save()
     {
@@ -1316,7 +1334,8 @@ public class Controleur{
 
     /**
      *  Fonction qui sauvegarde dans un dossier donner par l'utilisateur
-     *  @return si la fonction s'est bien déroulée
+     *  @pathname Chemin du fichier
+     *  @return si la fonction s'est bien deroulee
      */
     public int saveas(String pathname)
     {
@@ -1387,7 +1406,7 @@ public class Controleur{
             }
             catch(Exception e)
             {
-                System.out.println("peut pas accéder");
+                System.out.println("peut pas acceder");
             }
         }
 
@@ -1428,7 +1447,8 @@ public class Controleur{
 
     /**
      *  Fonction qui sauvegarde l'historique dans un format .txt
-     *  @return si la fonction s'est bien déroulée
+     *  @param pathname Chemin du fichier
+     *  @return si la fonction s'est bien deroulee
      */
     public int savehistory(String pathname)
     {
@@ -1508,7 +1528,7 @@ public class Controleur{
             }
             catch(Exception e)
             {
-                System.out.println("peut pas accéder");
+                System.out.println("peut pas acceder");
             }
         }
 
@@ -1551,7 +1571,7 @@ public class Controleur{
     /**
      *  Fonction qui lit un fichier et execute les lignes de commandes si celles-ci sont correctes
      *  @param pathname Chemin du fichier
-     *  @return si la fonction s'est bien déroulée
+     *  @return si la fonction s'est bien deroulee
      */
     public int exec(String pathname)
     {
@@ -1645,10 +1665,10 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui répète les dernières commandes lancés par l'utilisateur
-     *  @param nombre_de_repetition Nombres de répétitions
-     *  @param args Argument à répéter n fois.
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui repète les dernières commandes lances par l'utilisateur
+     *  @param nombre_de_repetition Nombres de repetitions
+     *  @param args Argument à repeter n fois.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int repeat(int nombre_de_repetitions, String args)
     {
@@ -1694,8 +1714,8 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui efface l'écran de dessin
-     *  @return si la fonction s'est bien déroulée.
+     *  Fonction qui efface l'ecran de dessin
+     *  @return si la fonction s'est bien deroulee.
      */
     public int clear()
     {
@@ -1707,7 +1727,7 @@ public class Controleur{
 
     /**
      *  Fonction qui affiche une fenêtre avec la liste des commandes
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int help()
     {
@@ -1718,7 +1738,9 @@ public class Controleur{
 
     /**
      *  Fonction qui affiche le manuel de la commande
-     *  @return si la fonction s'est bien déroulée.
+     *  @param isNotEmpty Si un parametre est specifie
+     *  @param commande Nom de la commande
+     *  @return si la fonction s'est bien deroulee.
      */
     public int man(boolean isNotEmpty, String commande)
     {
@@ -1738,7 +1760,7 @@ public class Controleur{
 
     /**
      *  Fonction qui affiche le manuel de la commande
-     *  @return si la fonction s'est bien déroulée.
+     *  @return si la fonction s'est bien deroulee.
      */
     public int exit()
     {
