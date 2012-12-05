@@ -51,6 +51,8 @@ public class Controleur{
     private void ___hydrate___(Fenetre f, Curseur c)
     {
 
+        f.setControleur(this);
+
         term = f.getTerminal();
         term.setControleur(this);
 

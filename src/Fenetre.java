@@ -19,7 +19,8 @@ public class Fenetre extends JFrame{
 	Terminal terminal = new Terminal();
 	ZoneDessin zoneDessin; //L'objet est associé dans Fenetre pendant l'initialisation
 	BarreOutils barreOutils;
-	JPanel conteneurVertical = new JPanel();
+	Controleur controleur;
+    JPanel conteneurVertical = new JPanel();
 	JScrollPane scrollPaneZoneDessin;
 	
     /**
@@ -103,6 +104,15 @@ public class Fenetre extends JFrame{
     public void setZoneDessin(ZoneDessin d)
     {
         this.zoneDessin = d;
+    }
+
+    /**
+     *  Assigne le controleur à la Fenetre
+     *  @param c Controleur
+     */
+    public void setControleur(Controleur c)
+    {
+        this.controleur = c;
     }
 
     /**
