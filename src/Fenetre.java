@@ -59,20 +59,20 @@ public class Fenetre extends JFrame{
 		conteneurPrincipal.add(conteneurVertical);
 		//Liaison au ContentPane
 		this.getContentPane().add(conteneurPrincipal);
-
 		//Affichage de la fenetre (ne pas placer avant)
-		this.setVisible(true);
+        resizeEverything();
+  		this.setVisible(true);
 		
-		
-		
-		
-		//Definissons l'action lors du clic sur la croix rouge
+  		//Definissons l'action lors du clic sur la croix rouge
 		WindowListener exitListener = new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
             	controleur.commande("exit", false);
             }
         };
         this.addWindowListener(exitListener);
+        
+        
+        
 	}
 	
 	/**Fonction qui redimensionne tous les composant de la Fenetre pour garder de bonne proportions**/
@@ -84,10 +84,14 @@ public class Fenetre extends JFrame{
 		terminal.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
 		barreOutils.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
 	}
-	   /**Fonction qui recalcule la taille des box de la JFrame quand revient sur Windows, pour limiter les probleme d'affichage*/
+	
+	/**Recalcule la taille des box de la JFrame quand revient sur Windows, pour limiter les probleme d'affichage*/
     public void processWindowEvent(WindowEvent e) {
     	resizeEverything();
     }
+
+	
+	//ACCESSEUR
     
     /**
      *  Retourne le terminal associee a la fenetre
