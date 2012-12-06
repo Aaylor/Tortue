@@ -1618,7 +1618,6 @@ public class Controleur{
                 {
 
                     ligne = ligne.trim();
-                    
                     if ( !ligne.startsWith("#") && !ligne.equals("") )
                     {
                         String[] splited_line = ligne.split(" ", 2);

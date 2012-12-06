@@ -63,7 +63,8 @@ public class Traceur extends JPanel{
 	public Traceur(int type, Color couleur, int largeur, int x_origine, int y_origine, boolean estRempli){
 		this.couleur=couleur;
 		this.largeur=largeur;//rayon
-		this.x_origine=x_origine;//centre
+		this.hauteur=largeur;
+        this.x_origine=x_origine;//centre
 		this.y_origine=y_origine;//centre
 		this.type=type;
 		this.estRempli=estRempli;

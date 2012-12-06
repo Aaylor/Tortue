@@ -283,30 +283,40 @@ public class Utilitaire
     
             /*  Cas particulier pour la fonction DOFIGURE   */
             case 18:
-                if ( splited_args.length > 9 )
+                if ( splited_args[0].equalsIgnoreCase("triangle") )
                 {
-                    return NOMBRE_PARAM_SUP;
-                }
-                else if ( splited_args.length < 5 )
-                {
-                    return NOMBRE_PARAM_LESS;
-                }
-/*
-                ( splited_args[0].equalsIgnoreCase("triangle") ?
-                        ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], splited_args[5],
-                            splited_args[6], splited_args[7] } ) ? return SUCCESS : return PARAM_INCORRECT ) :
-                (( splited_args[0].equalsIgnoreCase("carre") ?
-                        ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } )
-                            ? return SUCCESS : return PARAM_INCORRECT )) :
-                (( splited_args[0].equalsIgnoreCase("rectangle") ?
-                        ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], splited_args[5] } )
-                            ? return SUCCESS : return PARAM_INCORRECT )) :
-                (( splited_args[0].equalsIgnoreCase("cercle") ?
-                        ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } )
-                            ? return SUCCESS : return PARAM_INCORRECT ))))) : return PARAM_INCORRECT );
-*/
-                return SUCCESS;
+                    return  ( splited_args.length < 8 ? NOMBRE_PARAM_LESS :
+                                ( splited_args.length > 8 ? NOMBRE_PARAM_SUP :
+                                    ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], splited_args[5],
+                                        splited_args[6], splited_args[7] } ) ? SUCCESS : PARAM_INCORRECTE)));
 
+                }
+                else if ( splited_args[0].equalsIgnoreCase("carre") )
+                {
+                    return  ( splited_args.length < 5 ? NOMBRE_PARAM_LESS :
+                                ( splited_args.length > 5 ? NOMBRE_PARAM_SUP :
+                                    ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } ) 
+                                        ? SUCCESS : PARAM_INCORRECTE)));
+                }
+                else if ( splited_args[0].equalsIgnoreCase("rectangle") )
+                {
+                    return  ( splited_args.length < 6 ? NOMBRE_PARAM_LESS :
+                                ( splited_args.length > 6 ? NOMBRE_PARAM_SUP :
+                                    ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], 
+                                        splited_args[5] } ) ? SUCCESS : PARAM_INCORRECTE)));
+                }
+                else if ( splited_args[0].equalsIgnoreCase("cercle") )
+                {
+                    return  ( splited_args.length < 5 ? NOMBRE_PARAM_LESS :
+                                ( splited_args.length > 5 ? NOMBRE_PARAM_SUP :
+                                    ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } ) 
+                                      ? SUCCESS : PARAM_INCORRECTE)));
+                }
+                else
+                {
+                    StockageDonnee.setParamErreur( splited_args[0], true );
+                    return PARAM_INCORRECTE;
+                }
 
             default:
                 return COMMANDE_ERRONEE;
