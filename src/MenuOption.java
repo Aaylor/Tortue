@@ -66,7 +66,7 @@ public class MenuOption extends JDialog{
 	
 	public MenuOption(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		this.setSize(300, 590);
+		this.setSize(300, 605);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		initComponent();
