@@ -8,17 +8,17 @@ public class Curseur extends JPanel {
 	private int posX;
 	private int posY;
 	private int orientation;
-	private int type; //0 : Crayon, 1 : Gomme
+	private short type; //0 : Crayon, 1 : Gomme
 	private Color couleur;
 	private Controleur controleur;
 	private boolean isDown=false;//par defaut false: donc penup
 	private int epaisseur;
-	private int forme;//0 : Rond, 1 : Carre
+	private short forme;//0 : Rond, 1 : Carre
 
     /**
 	 * Constructeur du curseur
 	 */
-	Curseur (int posX, int posY, int orientation, int taille, Color couleur, int type, int epaisseur, int forme) {
+	Curseur (int posX, int posY, int orientation, int taille, Color couleur, short type, int epaisseur, short forme) {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;
@@ -61,26 +61,47 @@ public class Curseur extends JPanel {
 	public Color getCouleur () {return this.couleur;}
 	
 	/**
-	 * Accesseur de la variable isDown
-	 * @return
+	 * Accesseur de le boolean isDown représentant le fait fait que l'outil soit posé
+	 * @return Le boolean isDown représentant le fait fait que l'outil soit posé
 	 */
 	public boolean isDown(){return this.isDown;}
 	
+	/**
+     *  Accesseur de la variable epaisseur du curseur
+     *  @return L'epaisseur du curseur
+     */
 	public int getEpaisseur(){return this.epaisseur;}
 	
+	/**
+     *  Accesseur de la Forme du curseur (0:Carré, 1:Carre)
+     *  @return Forme du curseur (0:Carré, 1:Carre)
+     */	 
 	public int getForme(){return this.forme;}
 
 	  /////////////////////////////////////////////////
 	 //               MODIFIEURS                    //
 	/////////////////////////////////////////////////
-
+	
+	/**
+     *  Modifieur de la position du curseur
+     *  @param x : Position x du curseur
+     *  @param y : Position y du curseur
+     */
 	public void setPosition(int x, int y){
 		this.posX = x;
 		this.posY = y;
 	}
+	/**
+     *  Modifieur de la position x du curseur
+     *  @param x : Position x du curseur
+     */
 	public void setPosX (int posX) {
 		this.posX = posX;
 	}
+	/**
+     *  Modifieur de la position y du curseur
+     *  @param y : Position y du curseur
+     */
 	public void setPosY (int posY) {
 		this.posY = posY;
 	}
@@ -94,13 +115,16 @@ public class Curseur extends JPanel {
 	
     /**
      *  Modifieur de la variable type
-     *  @param type nouvelle valeur du type
+     *  @param type : nouvelle valeur du type
      */
-	public void setType (int type) {
+	public void setType (short type) {
 		this.type = type;
 	}
-	
-	public void setForme(int forme){
+	/**
+     *  Modifieur de la forme du curseur (0: Cercle, 1: Carre)
+     *  @param forme : Forme du curseur à définir
+     */
+	public void setForme(short forme){
 		this.forme=forme;
 	}
 	
@@ -128,17 +152,31 @@ public class Curseur extends JPanel {
 	public void setIsDown(boolean isDown){
 		this.isDown=isDown;
 	}
-     
+	/**
+     *  Modifieur de l'epaisseur du curseur
+     *  @param epaisseur : Epaisseur du curseur a definir
+     */
     public void setEpaisseur(int epaisseur){
     	this.epaisseur=epaisseur;
     }
-     
+	/**
+     *  Modifieur de la composante rouge du curseur
+     *  @param i : composante rouge du curseur
+     */     
     public void setCouleurRouge(int i){
     	couleur = new Color(i, couleur.getGreen(), couleur.getBlue());
     }
+	/**
+     *  Modifieur de la composante vert du curseur
+     *  @param i : composante vert du curseur
+     */  
     public void setCouleurVert(int i){
     	couleur = new Color(couleur.getRed(), i, couleur.getBlue());
     }
+	/**
+     *  Modifieur de la composante bleu du curseur
+     *  @param i : composante bleu du curseur
+     */  
     public void setCouleurBleu(int i){
     	couleur = new Color(couleur.getRed(), couleur.getGreen(), i);
     }
