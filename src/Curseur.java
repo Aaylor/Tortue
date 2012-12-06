@@ -5,13 +5,9 @@ import java.lang.Math;
 
 @SuppressWarnings("serial")
 public class Curseur extends JPanel {
-	/////////////////
-	//  VARIABLES  //
-	/////////////////
 	private int posX;
 	private int posY;
 	private int orientation;
-	private int taille;
 	private int type; //0 : Crayon, 1 : Gomme
 	private Color couleur;
 	private Controleur controleur;
@@ -19,84 +15,64 @@ public class Curseur extends JPanel {
 	private int epaisseur;
 	private int forme;//0 : Rond, 1 : Carre
 
-	
-	/////////////////////
-	//  CONSTRUCTEURS  //
-	/////////////////////
     /**
-	 * Constructeur test
+	 * Constructeur du curseur
 	 */
 	Curseur (int posX, int posY, int orientation, int taille, Color couleur, int type, int epaisseur, int forme) {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;
-		this.taille = taille;
 		this.couleur = couleur;
 		this.type = type;
 		this.epaisseur = epaisseur;
 		this.forme=forme;
     }	
 	
-	//////////////////
-	//  ACCESSEURS  //
-	//////////////////
-   
-	public int getPosX () {
-		return this.posX;
-	}
-	public int getPosY () {
-		return this.posY;
-	}
-    /**
-     *  Accesseur de la variable orientation
-     *  @return orientation
-     */
-	public double getOrientation () {
-		return this.orientation;
-	}
-	
+	  /////////////////////////////////////////////////
+	 //               ACCESSEURS                    //
+	/////////////////////////////////////////////////
 	/**
-	 * Accesseur de la variable taille
-	 * @return taille
-	 */
-	public int getTaille () {
-		return this.taille;
-	}
+     *  Accesseur de la position X du curseur par rapport au dessin
+     *  @return La position X du curseur par rapport au dessin
+     */
+	public int getPosX () {return this.posX;}
+	/**
+     *  Accesseur de la position Y du curseur par rapport au dessin
+     *  @return La position Y du curseur par rapport au dessin
+     */
+	public int getPosY () {return this.posY;}
+	
+    /**
+     *  Accesseur de la variable orientation du curseur
+     *  @return L'orientation du curseur
+     */
+	public double getOrientation () {return this.orientation;}
+	
+    /**
+     *  Accesseur de la variable type du curseur (0 : Crayon, 0 : Gomme)
+     *  @return Le type du curseur (0 : Crayon, 0 : Gomme)
+     */
+	public int getType () {return this.type;}
 
     /**
-     *  Accesseur de la variable type
-     *  @return type
+     *  Accesseur de la variable couleur du curseur
+     *  @return La couleur du curseur
      */
-	public int getType () {
-		return this.type;
-	}
-
-    /**
-     *  Accesseur de la variable couleur
-     *  @return couleur
-     */
-	public Color getCouleur () {
-		return this.couleur;
-	}
+	public Color getCouleur () {return this.couleur;}
 	
 	/**
 	 * Accesseur de la variable isDown
 	 * @return
 	 */
-	public boolean isDown(){
-		return this.isDown;
-	}
+	public boolean isDown(){return this.isDown;}
 	
-	public int getEpaisseur(){
-		return this.epaisseur;
-	}
+	public int getEpaisseur(){return this.epaisseur;}
 	
-	public int getForme(){
-		return this.forme;
-	}
-	/////////////////
-	//  MODIFIEURS //
-	/////////////////
+	public int getForme(){return this.forme;}
+
+	  /////////////////////////////////////////////////
+	 //               MODIFIEURS                    //
+	/////////////////////////////////////////////////
 
 	public void setPosition(int x, int y){
 		this.posX = x;
@@ -114,14 +90,6 @@ public class Curseur extends JPanel {
      */
 	public void setOrientation (int orientation) {
 		this.orientation = orientation;
-	}
-	
-	/**
-	 * Modifieur de la variable taille
-	 * @param taille nouvelle valeur de la taille
-	 */
-	public void setTaille (int taille) {
-		this.taille = taille;
 	}
 	
     /**

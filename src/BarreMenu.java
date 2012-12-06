@@ -120,6 +120,7 @@ public class BarreMenu extends JMenuBar{
 		controleur.commande("savehistory", true);
 	}
 	
+	/**Entre la commande "exit" dans le terminal, pour fermer le programme*/
 	public void quitter(){
         controleur.commande("exit", false);
 	}
@@ -135,9 +136,6 @@ public class BarreMenu extends JMenuBar{
 								"A propos",
 								JOptionPane.INFORMATION_MESSAGE);
 	}
-
-	public void options(){}
-	
 	
     /**
      *  Modifieur du controleur
