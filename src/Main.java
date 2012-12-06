@@ -114,8 +114,7 @@ public class Main{
     			info = "Le fichier de configuration est introuvable, un nouveau contenant des valeurs par défauts a été créé";
     		else
     			info = "Une erreur est survenue lors du chargement du fichier du configuration, , un nouveau contenant des valeurs par défauts a été créé";
-    		JOptionPane infoConfig = new JOptionPane();
-    		infoConfig.showMessageDialog(null, info, "Chargement du fichier config", JOptionPane.INFORMATION_MESSAGE);
+    		JOptionPane.showMessageDialog(null, info, "Chargement du fichier config", JOptionPane.INFORMATION_MESSAGE);
     		
     		
 	      //Chargement des données par défaut
