@@ -342,4 +342,14 @@ public class Utilitaire
         }
 
     }
+
+    public static boolean canUndo()
+    {
+        return StockageDonnee.getSize_LCEC() > 0;
+    }
+
+    public static boolean canRedo()
+    {
+        return StockageDonnee.getSize_LCU() > 0;
+    }
 }

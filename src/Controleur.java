@@ -336,40 +336,16 @@ public class Controleur{
                 return retour;
            
             case 10:
-                if ( commande_parser.length > 2 )
+                if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
                 
-                if ( commande_parser.length == 2 )
-                {
-                    if ( Utilitaire.isInt( commande_parser[1] ) )
-                    {
-                        return undo( Integer.parseInt( commande_parser[1] ) );
-                    }
-                    else
-                    {
-                        return PARAM_INCORRECTE;
-                    }
-                }
-
-                return undo(1);
+                return undo();
 
             case 11:
-                if ( commande_parser.length > 2 )
+                if ( commande_parser.length > 1 )
                     return NOMBRE_PARAM_SUP;
 
-                if ( commande_parser.length == 2 )
-                {
-                    if ( Utilitaire.isInt( commande_parser[1] ) )
-                    {
-                        return redo( Integer.parseInt( commande_parser[1] ) );
-                    }
-                    else
-                    {
-                        return PARAM_INCORRECTE;
-                    }
-                }
-
-                return redo(1);
+                return redo();
 
             case 12:
                 if ( commande_parser.length < 2 )
@@ -883,28 +859,53 @@ public class Controleur{
      *  Fonction qui annule les n dernières actions
      *  @return si la fonction s'est bien deroulee.
      */
-    public int undo(int valeur)
+    public int undo()
     {
-        int i = 0;
-        int max_stockage_donnee = StockageDonnee.getSize_LCEC()-1;
-        int max_stockage_dessin = StockageDonnee.getSize_ListeDessin()-1;
-        while ( i < valeur )
+        System.out.println( Utilitaire.canUndo() );
+
+        if ( Utilitaire.canUndo() )
         {
-            StockageDonnee.ajoutLCEC_undo( StockageDonnee.remove_LCEC( max_stockage_donnee - i ) ); 
-            StockageDonnee.ajoutListeDessin_undo( StockageDonnee.remove_liste_dessin( max_stockage_dessin - i ) ); 
-            i++;
+           StockageDonnee.ajoutLCEC_undo( StockageDonnee.remove_LCEC( 
+                       StockageDonnee.getSize_LCEC()-1) );
+           StockageDonnee.videListeDessin();
+
+           int i = 0;
+           while ( i < StockageDonnee.getSize_LCEC() )
+           {
+                commande( StockageDonnee.getLCEC(i), false );
+                i++;
+           }
         }
-       
+
         zd.repaint();
         return SUCCESS;
     }
 
     /**
-     *  Fonctio qui refait les n dernières actions annulees
+     *  Fonction qui refait les n dernières actions annulees
      *  @return si la fonction s'est bien deroulee.
      */
-    public int redo(int valeur)
+    public int redo()
     {
+        System.out.println( Utilitaire.canRedo() );
+
+        if ( Utilitaire.canRedo() )
+        {
+            StockageDonnee.ajoutLCEC( new String[]{ StockageDonnee.remove_liste_commande_undo(
+                        StockageDonnee.getSize_LCU()-1) } , false );
+            StockageDonnee.videListeDessin();
+
+            int i = 0;
+            while ( i < StockageDonnee.getSize_LCEC() )
+            {
+                commande( StockageDonnee.getLCEC(i), false );
+                i++;
+            }
+
+            zd.repaint();
+            return SUCCESS;
+        }
+
         return SUCCESS;
     }
 
