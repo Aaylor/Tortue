@@ -813,7 +813,7 @@ public class Controleur{
      */
     public int change_forme()
     {
-        this.curseur.setForme( this.curseur.getForme() == 1 ? 0 : 1 );
+        this.curseur.setForme( this.curseur.getForme() == 1 ? (short)0 : (short)1 );
         this.barreOutils.affichageBoutonForme();
         zd.repaint();
         return SUCCESS;
