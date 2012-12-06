@@ -185,6 +185,10 @@ public class Curseur extends JPanel {
     	couleur = new Color(couleur.getRed(), couleur.getGreen(), i);
     }
 
+    /**
+     *  Permet de copier le curseur selon l'argument
+     *  @param c Curseur qui sera copié
+     */
     public void mergeCurseur(Curseur c)
     {
 		this.posX = c.getPosX();
@@ -197,10 +201,4 @@ public class Curseur extends JPanel {
         this.isDown = c.isDown();
     }
 
-    public String toString()
-    {
-        return  "x : " + this.posX + "\ny : " + this.posY + "\norientation : " + this.orientation
-                + "\ncouleur : " + this.couleur + "\ntype : " + this.type + "\nepaisseur : " + this.epaisseur
-                + "\nforme : " + this.forme + "\ndown : " + this.isDown;
-    }
 }
