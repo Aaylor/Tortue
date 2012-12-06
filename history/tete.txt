@@ -1,0 +1,38 @@
+##################################################
+##################################################
+##		HISTORIQUE GENERE LE		##
+##		12-12-12_9-22-12		##
+##################################################
+##################################################
+
+new
+width 300
+height 300
+penup
+goto 20 20 
+cursorwidth 5 
+rotate -70 
+pencil 
+pendown 
+forward 50 
+penup 
+backward 50 
+rotate -40 
+pendown 
+forward 60 
+rotate 5 
+forward 80 
+rotate -5 
+forward 80 
+rotate 40 
+forward 60 
+rotate -105 
+forward 50 
+rotate -90 
+forward 100 
+rotate -160 
+forward 115 
+rotate 160 
+forward 115 
+rotate 90 
+forward 100
