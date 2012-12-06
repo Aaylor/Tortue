@@ -789,7 +789,7 @@ public class Controleur{
      */
     public int pencil()
     { 
-    	this.curseur.setType(0);
+    	this.curseur.setType((short)0);
         this.barreOutils.affichageBoutonOutil();
         zd.repaint();
         return SUCCESS;
@@ -801,7 +801,7 @@ public class Controleur{
      */
     public int eraser()
     {
-    	this.curseur.setType(1);
+    	this.curseur.setType((short)1);
         this.barreOutils.affichageBoutonOutil();
         zd.repaint();
         return SUCCESS;
