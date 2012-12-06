@@ -8,7 +8,7 @@ public class Curseur extends JPanel {
 	private int posX;
 	private int posY;
 	private int orientation;
-	private int type; //0 : Crayon, 1 : Gomme
+	private short type; //0 : Crayon, 1 : Gomme
 	private Color couleur;
 	private Controleur controleur;
 	private boolean isDown=false;//par defaut false: donc penup
@@ -18,7 +18,7 @@ public class Curseur extends JPanel {
     /**
 	 * Constructeur du curseur
 	 */
-	Curseur (int posX, int posY, int orientation, int taille, Color couleur, int type, int epaisseur, int forme) {
+	Curseur (int posX, int posY, int orientation, int taille, Color couleur, short type, int epaisseur, int forme) {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;
@@ -61,13 +61,21 @@ public class Curseur extends JPanel {
 	public Color getCouleur () {return this.couleur;}
 	
 	/**
-	 * Accesseur de la variable isDown
-	 * @return
+	 * Accesseur de le boolean isDown représentant le fait fait que l'outil soit posé
+	 * @return Le boolean isDown représentant le fait fait que l'outil soit posé
 	 */
 	public boolean isDown(){return this.isDown;}
 	
+	/**
+     *  Accesseur de la variable epaisseur du curseur
+     *  @return L'epaisseur du curseur
+     */
 	public int getEpaisseur(){return this.epaisseur;}
 	
+	/**
+     *  Accesseur de la variable epaisseur du curseur
+     *  @return L'epaisseur du curseur
+     */
 	public int getForme(){return this.forme;}
 
 	  /////////////////////////////////////////////////
@@ -96,7 +104,7 @@ public class Curseur extends JPanel {
      *  Modifieur de la variable type
      *  @param type nouvelle valeur du type
      */
-	public void setType (int type) {
+	public void setType (short type) {
 		this.type = type;
 	}
 	
