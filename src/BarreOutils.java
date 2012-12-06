@@ -304,7 +304,8 @@ public class BarreOutils extends JToolBar {
 		bouton.setPreferredSize(new Dimension(30,30));
 		bouton.setMaximumSize(new Dimension(30,30));
 		bouton.setMinimumSize(new Dimension(30,30));
-	
+        bouton.setEnabled(false);
+
 		//Return du bouton
 		return bouton;
 	}
@@ -317,7 +318,8 @@ public class BarreOutils extends JToolBar {
 		bouton.setPreferredSize(new Dimension(30,30));
 		bouton.setMaximumSize(new Dimension(30,30));
 		bouton.setMinimumSize(new Dimension(30,30));
-	
+	    bouton.setEnabled(false);
+
 		//Return du bouton
 		return bouton;
 	}
@@ -350,11 +352,31 @@ public class BarreOutils extends JToolBar {
 	public void interactionBoutonUndo(){
 		controleur.commande("undo", true);
 	}
-	
+
+    /**Fonction desactivant le bouton si la fonction ne peut plus être lancé */
+    public void disableBoutonUndo(){
+        boutonUndo.setEnabled(false);
+    }
+    
+    /**Fonction réactivant le bouton si la fonction peut être lancé */
+    public void enableBoutonUndo(){
+        boutonUndo.setEnabled(true);
+    }
+
 	/**Fonction gérant l'interaction avec le bouton "revenir en arriere"*/
 	public void interactionBoutonRedo(){
 		controleur.commande("redo", true);
 	}
+
+    /**Fonction desactivant le bouton si la fonction ne peut plus être lancé */
+    public void disableBoutonRedo(){
+        boutonRedo.setEnabled(false);
+    }
+    
+    /**Fonction réactivant le bouton si la fonction peut être lancé */
+    public void enableBoutonRedo(){
+        boutonRedo.setEnabled(true);
+    }
 	
 	/**Fonction gérant l'interaction avec le slider lié à l'épaisseur du curseur
 	 *  Appelée lors d'une modification de la valeur du curseur */

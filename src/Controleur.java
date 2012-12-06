@@ -109,6 +109,24 @@ public class Controleur{
             this.setMessageErreur(numero_renvoie);
         }
 
+        if ( Utilitaire.canUndo() )
+        {
+            zb.enableBoutonUndo();
+        }
+        else
+        {
+            zb.disableBoutonUndo();
+        }
+
+        if ( Utilitaire.canRedo() ) 
+        {
+            zb.enableBoutonRedo();
+        }
+        else
+        {
+            zb.disableBoutonRedo();
+        }
+
         term.replaceCompteur();
         return true;
  
@@ -879,6 +897,11 @@ public class Controleur{
                 i++;
             }
         }
+        else
+        {
+            zb.disableBoutonUndo();
+            return -1;
+        }
 
         zd.repaint();
         return SUCCESS;
@@ -905,6 +928,11 @@ public class Controleur{
                 i++;
             }
 
+        }
+        else
+        {
+            zb.disableBoutonRedo();
+            return -1;
         }
             
         zd.repaint();
