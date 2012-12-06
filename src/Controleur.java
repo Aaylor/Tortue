@@ -70,7 +70,8 @@ public class Controleur{
         barreOutils.setControleur(this);
         
         curseur = c;
-        first_curseur = c;
+        first_curseur = new Curseur();
+        first_curseur.mergeCurseur(curseur);
         c.setControleur(this);
 
     }
@@ -869,12 +870,13 @@ public class Controleur{
         if ( Utilitaire.canUndo() )
         {
             String remove = StockageDonnee.remove_LCEC( StockageDonnee.getSize_LCEC()-1 );
-            etatUndo(remove);
-            
             StockageDonnee.ajoutLCEC_undo( remove );
             StockageDonnee.videListeDessin();
 
+    //        System.out.println("curseur to string : \n\t" + curseur.toString());
+    //        System.out.println("\nfirst_curseur to string : \n\t" + first_curseur.toString());
             curseur.mergeCurseur(first_curseur);
+    //        System.out.println("\ncurseur to string : \n\t" + curseur.toString());
 
             int i = 0;
             while ( i < StockageDonnee.getSize_LCEC() )
@@ -885,13 +887,6 @@ public class Controleur{
         }
 
         zd.repaint();
-        return SUCCESS;
-    }
-
-    public int etatUndo( String command )
-    {
-        System.out.println(command);
-
         return SUCCESS;
     }
 

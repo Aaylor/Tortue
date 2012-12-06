@@ -51,7 +51,7 @@ public class Main{
     	
     	//Initialisation des composants
     	
-    	Curseur curseur = new Curseur(posXCurseur, posYCurseur, 90, 1, couleurCurseur, (short)0, 30, (short)0);
+    	Curseur curseur = new Curseur(posXCurseur, posYCurseur, 90, couleurCurseur, (short)0, 30, (short)0);
     	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, couleurBackgroundDessin, curseur);
     	BarreOutils barreOutils = new BarreOutils(curseur, zoneDessin);
     	zoneDessin.setBarreOutils(barreOutils);

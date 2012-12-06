@@ -30,14 +30,14 @@ public class MenuOption extends JDialog{
     private JRadioButton posCurseurHautGaucheButton = new JRadioButton("En haut à gauche");
 	
     private JRadioButton couleurCurseurPredefinie = new JRadioButton("Couleur prédéfinie");
-    private JComboBox<String> couleurPredefinieComboBox;
+    private JComboBox couleurPredefinieComboBox;
     private JRadioButton couleurCurseurSpecifique = new JRadioButton("Définir la couleur");
     private JFormattedTextField couleurCurseurRougeTextField;
     private JFormattedTextField couleurCurseurVertTextField;
     private JFormattedTextField couleurCurseurBleuTextField;
 	
     private JRadioButton couleurDessinPredefinie = new JRadioButton("Couleur prédéfinie");
-    private JComboBox<String> couleurPredefinieDessinComboBox;
+    private JComboBox couleurPredefinieDessinComboBox;
     private JRadioButton couleurDessinSpecifique = new JRadioButton("Définir la couleur");
     private JFormattedTextField couleurDessinRougeTextField;
     private JFormattedTextField couleurDessinVertTextField;
@@ -152,7 +152,7 @@ public class MenuOption extends JDialog{
 		couleurCurseurSpecifique.setSelected(true);
 		
 		JPanel panCouleurCurseurPredefinie = new JPanel();
-		couleurPredefinieComboBox = new JComboBox<String>();
+		couleurPredefinieComboBox = new JComboBox();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieComboBox.addItem(couleursPredefinie[i]);
 		panCouleurCurseurPredefinie.add(couleurCurseurPredefinie);
@@ -219,7 +219,7 @@ public class MenuOption extends JDialog{
 		couleurDessinSpecifique.setSelected(true);
 		
 		JPanel panCouleurDessinPredefinie = new JPanel();
-		couleurPredefinieDessinComboBox = new JComboBox<String>();
+		couleurPredefinieDessinComboBox = new JComboBox();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieDessinComboBox.addItem(couleursPredefinie[i]);
 		couleurPredefinieDessinComboBox.setSelectedIndex(10);

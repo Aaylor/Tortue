@@ -15,9 +15,14 @@ public class Curseur extends JPanel {
 	private short forme;//0 : Rond, 1 : Carre
 
     /**
+     *  Constructeur vide
+     */
+    Curseur(){}
+
+    /**
 	 * Constructeur du curseur
 	 */
-	Curseur (int posX, int posY, int orientation, int taille, Color couleur, short type, int epaisseur, short forme) {
+	Curseur (int posX, int posY, int orientation, Color couleur, short type, int epaisseur, short forme) {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;
@@ -189,5 +194,12 @@ public class Curseur extends JPanel {
 		this.type = (short)c.getType();
 		this.epaisseur = c.getEpaisseur();
 		this.forme = (short)c.getForme();
+    }
+
+    public String toString()
+    {
+        return  "x : " + this.posX + "\ny : " + this.posY + "\norientation : " + this.orientation
+                + "\ncouleur : " + this.couleur + "\ntype : " + this.type + "\nepaisseur : " + this.epaisseur
+                + "\nforme : " + this.forme;
     }
 }
