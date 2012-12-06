@@ -28,7 +28,9 @@ public class BarreOutils extends JToolBar {
     private JSlider sliderBlue;
     private BarreOutilsVignette vignetteCouleur;
     /**
-     *  Constructeur de la zone de bouton
+     *  Constructeur de barre d'outils
+     *  @param curseur : Le curseur du programme
+     *  @param zoneDessin : La zone de dessin du programme
      */
     
 	BarreOutils(final Curseur curseur, final ZoneDessin zoneDessin){
@@ -129,6 +131,9 @@ public class BarreOutils extends JToolBar {
         
     }
     
+	/**Renvoit le Slider lié à l'épaisseur du curseur
+	 * @return Le JSlider lié à l'épaisseur du curseur
+	 */
 	public JSlider sliderEpaisseur(){
 		JSlider slider = new JSlider();
 		   
@@ -150,6 +155,9 @@ public class BarreOutils extends JToolBar {
 	    return slider;
 	}
 	
+	/**Renvoit le Slider lié à la composante Rouge de la couleur du curseur
+	 * @return Le JSlider lié à la composante Rouge de la couleur du curseur
+	 */
 	public JSlider sliderRed(){
 		JSlider slider = new JSlider();
 		   
@@ -170,6 +178,9 @@ public class BarreOutils extends JToolBar {
 	    return slider;
 	}
 	
+	/**Renvoit le Slider lié à la composante vert de la couleur du curseur
+	 * @return Le JSlider lié à la composante vert de la couleur du curseur
+	 */
 	public JSlider sliderGreen(){
 		JSlider slider = new JSlider();
 		   
@@ -189,7 +200,10 @@ public class BarreOutils extends JToolBar {
 	    });	    
 	    return slider;
 	}
-	
+
+	/**Renvoit le Slider lié à la composante bleue de la couleur du curseur
+	 * @return Le JSlider lié à la composante bleue de la couleur du curseur
+	 */
 	public JSlider sliderBlue(){
 		JSlider slider = new JSlider();
 		   
@@ -210,7 +224,8 @@ public class BarreOutils extends JToolBar {
 	    return slider;
 	}
 	
-	 /**Fonction renvoyant le Bouton Lever/Poser le Crayon*/
+	/**Fonction renvoyant le Bouton Lever/Poser l'outil
+	 * @return le bouton lever/popser l'outil*/
 	public JToggleButton boutonPoserCrayon(){
 	    ImageIcon iconBoutonPoserCrayon;
 		if(curseur.isDown())
@@ -229,7 +244,8 @@ public class BarreOutils extends JToolBar {
 		return bouton;
 	}
 	
-	 /** Fonction renvoyant le Bouton Crayon/Gomme */
+	/** Fonction renvoyant le bouton gomme
+	 * @return le bouton gomme*/
 	public JToggleButton boutonGomme(){
 		ImageIcon icon = new ImageIcon("../img/gomme.png");
 		JToggleButton bouton = new JToggleButton(icon);
@@ -244,7 +260,8 @@ public class BarreOutils extends JToolBar {
 		return bouton;
 	}
 	
-	 /**Fonction renvoyant le Bouton Forme Rond/Carre*/
+	/**Fonction renvoyant le Bouton Forme Rond/Carre
+	 * @return le bouton forme Rond/Carre*/
 	public JToggleButton boutonForme(){
 		ImageIcon icon = new ImageIcon("../img/forme_carre.png");
 		JToggleButton bouton = new JToggleButton(icon);
@@ -272,6 +289,8 @@ public class BarreOutils extends JToolBar {
 		}
 	}
 	
+	/**Fonction gérant l'interaction avec le bouton "poser l'outil"
+	 *  Appelée lors d'un clic gauche sur le bouton "poser l'outil" ou lors d'un clic du milieu sur la zone de dessin*/
 	public void interactionBoutonPoserOutil(){
 		if (curseur.isDown()){
 			controleur.commande("penup", true);
@@ -281,6 +300,8 @@ public class BarreOutils extends JToolBar {
 		}
 	}
 	
+	/**Fonction gérant l'interaction avec le slider lié à l'épaisseur du curseur
+	 *  Appelée lors d'une modification de la valeur du curseur */
 	public void interactionSliderEpaisseur(int v){
 		sliderEpaisseur.setValue(sliderEpaisseur.getValue() + v);
 		controleur.commande("cursorwidth " + sliderEpaisseur.getValue(), true);
@@ -295,6 +316,7 @@ public class BarreOutils extends JToolBar {
         this.controleur = c;
     }   
     
+    /**Fonction gérant l'affichage du bouton "poser l'outil"*/
 	public void affichageBoutonPoserOutil(){
 		if(curseur.isDown()){
 			boutonPoserCrayon.setSelected(true);
@@ -307,6 +329,7 @@ public class BarreOutils extends JToolBar {
 		}
 	}
 	
+	/**Fonction gérant l'affichage du bouton "gomme"*/
 	public void affichageBoutonOutil(){
 		if(curseur.getType() == 0){
 			boutonGomme.setSelected(false);
@@ -315,6 +338,7 @@ public class BarreOutils extends JToolBar {
 			boutonGomme.setSelected(true);
 	}
 	
+	/**Fonction gérant l'affichage du bouton "forme du curseur"*/
 	public void affichageBoutonForme(){
 		if(curseur.getForme() == 0){
 			boutonForme.setSelected(false);
