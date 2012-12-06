@@ -126,8 +126,7 @@ public class BarreMenu extends JMenuBar{
 	}
 	
 	private void aPropos(){
-		JOptionPane aPropos = new JOptionPane();
-		aPropos.showMessageDialog(null,
+		JOptionPane.showMessageDialog(null,
 								"Carapuce est un projet Universitaire développé par 4 étudiants :\n\n" +
 								"Mehdi Khelifi\n" +
 								"Loïc Runarvot\n" +

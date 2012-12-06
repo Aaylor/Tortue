@@ -1,7 +1,6 @@
-import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.lang.Math;
+
+import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class Curseur extends JPanel {

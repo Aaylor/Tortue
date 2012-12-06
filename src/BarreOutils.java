@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -22,6 +23,8 @@ public class BarreOutils extends JToolBar {
     private JToggleButton boutonPoserCrayon;
     private JToggleButton boutonGomme;
     private JToggleButton boutonForme;
+    private JButton boutonUndo;
+    private JButton boutonRedo;
     private JSlider sliderEpaisseur;
     private JSlider sliderRed;
     private JSlider sliderGreen;
@@ -39,6 +42,8 @@ public class BarreOutils extends JToolBar {
 		boutonPoserCrayon = boutonPoserCrayon();
 		boutonGomme = boutonGomme();
 		boutonForme = boutonForme();
+		boutonUndo = boutonUndo();
+		boutonRedo = boutonRedo();
 		sliderEpaisseur = sliderEpaisseur();
 		sliderRed = sliderRed();
 		sliderBlue = sliderBlue();
@@ -63,6 +68,10 @@ public class BarreOutils extends JToolBar {
 		panOutils.add(boutonGomme);
 		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
 		panOutils.add(boutonForme);
+		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
+		panOutils.add(boutonUndo);
+		panOutils.add(Box.createRigidArea(new Dimension(5,0)));
+		panOutils.add(boutonRedo);
 		
 		JPanel panSliderEpaisseur = new JPanel();
 		panSliderEpaisseur.setLayout(new BoxLayout(panSliderEpaisseur, BoxLayout.PAGE_AXIS));
@@ -124,6 +133,16 @@ public class BarreOutils extends JToolBar {
 		boutonForme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
                 controleur.commande("forme", true);
+			}
+		});
+		boutonRedo.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				interactionBoutonRedo();
+			}
+		});
+		boutonUndo.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				interactionBoutonUndo();
 			}
 		});
         
@@ -270,8 +289,35 @@ public class BarreOutils extends JToolBar {
 		bouton.setMaximumSize(new Dimension(30,30));
 		bouton.setMinimumSize(new Dimension(30,30));
 		
-		if (curseur.getForme() == 1) bouton.isSelected();
+		//if (curseur.getForme() == 1) bouton.isSelected();
 		
+		//Return du bouton
+		return bouton;
+	}
+	
+	/**Fonction renvoyant le Bouton "Revenir en arriere"
+	 * @return le bouton forme "Revenir en arriere"*/
+	public JButton boutonUndo(){
+		ImageIcon icon = new ImageIcon("../img/undo.png");
+		JButton bouton = new JButton(icon);
+		bouton.setToolTipText("Revenir en arrière");
+		bouton.setPreferredSize(new Dimension(30,30));
+		bouton.setMaximumSize(new Dimension(30,30));
+		bouton.setMinimumSize(new Dimension(30,30));
+	
+		//Return du bouton
+		return bouton;
+	}
+	/**Fonction renvoyant le Bouton "Suivant"
+	 * @return le bouton forme "Suivant"*/
+	public JButton boutonRedo(){
+		ImageIcon icon = new ImageIcon("../img/redo.png");
+		JButton bouton = new JButton(icon);
+		bouton.setToolTipText("Action suivante");
+		bouton.setPreferredSize(new Dimension(30,30));
+		bouton.setMaximumSize(new Dimension(30,30));
+		bouton.setMinimumSize(new Dimension(30,30));
+	
 		//Return du bouton
 		return bouton;
 	}
@@ -298,6 +344,16 @@ public class BarreOutils extends JToolBar {
 		else{
 			controleur.commande("pendown", true);
 		}
+	}
+	
+	/**Fonction gérant l'interaction avec le bouton "revenir en arriere"*/
+	public void interactionBoutonUndo(){
+		controleur.commande("undo", true);
+	}
+	
+	/**Fonction gérant l'interaction avec le bouton "revenir en arriere"*/
+	public void interactionBoutonRedo(){
+		controleur.commande("redo", true);
 	}
 	
 	/**Fonction gérant l'interaction avec le slider lié à l'épaisseur du curseur
@@ -328,6 +384,7 @@ public class BarreOutils extends JToolBar {
 			
 		}
 	}
+	
 	
 	/**Fonction gérant l'affichage du bouton "gomme"*/
 	public void affichageBoutonOutil(){

@@ -1,15 +1,13 @@
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.NumberFormat;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -26,29 +24,29 @@ import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
 public class MenuOption extends JDialog{
-    JRadioButton affichageFenetre = new JRadioButton("Fenêtré");
-	JRadioButton affichagePleinEcran = new JRadioButton("Plein écran");
-	JRadioButton posCurseurCentreButton = new JRadioButton("Centré");
-	JRadioButton posCurseurHautGaucheButton = new JRadioButton("En haut à gauche");
+    private JRadioButton affichageFenetre = new JRadioButton("Fenêtré");
+    private JRadioButton affichagePleinEcran = new JRadioButton("Plein écran");
+    private JRadioButton posCurseurCentreButton = new JRadioButton("Centré");
+    private JRadioButton posCurseurHautGaucheButton = new JRadioButton("En haut à gauche");
 	
-	JRadioButton couleurCurseurPredefinie = new JRadioButton("Couleur prédéfinie");
-	JComboBox couleurPredefinieComboBox;
-	JRadioButton couleurCurseurSpecifique = new JRadioButton("Définir la couleur");
-	JFormattedTextField couleurCurseurRougeTextField;
-	JFormattedTextField couleurCurseurVertTextField;
-	JFormattedTextField couleurCurseurBleuTextField;
+    private JRadioButton couleurCurseurPredefinie = new JRadioButton("Couleur prédéfinie");
+    private JComboBox<String> couleurPredefinieComboBox;
+    private JRadioButton couleurCurseurSpecifique = new JRadioButton("Définir la couleur");
+    private JFormattedTextField couleurCurseurRougeTextField;
+    private JFormattedTextField couleurCurseurVertTextField;
+    private JFormattedTextField couleurCurseurBleuTextField;
 	
-	JRadioButton couleurDessinPredefinie = new JRadioButton("Couleur prédéfinie");
-	JComboBox couleurPredefinieDessinComboBox;
-	JRadioButton couleurDessinSpecifique = new JRadioButton("Définir la couleur");
-	JFormattedTextField couleurDessinRougeTextField;
-	JFormattedTextField couleurDessinVertTextField;
-	JFormattedTextField couleurDessinBleuTextField;
+    private JRadioButton couleurDessinPredefinie = new JRadioButton("Couleur prédéfinie");
+    private JComboBox<String> couleurPredefinieDessinComboBox;
+    private JRadioButton couleurDessinSpecifique = new JRadioButton("Définir la couleur");
+    private JFormattedTextField couleurDessinRougeTextField;
+    private JFormattedTextField couleurDessinVertTextField;
+    private JFormattedTextField couleurDessinBleuTextField;
 	
-	JFormattedTextField largeurDessinTextField;
-	JFormattedTextField hauteurDessinTextField;
+    private JFormattedTextField largeurDessinTextField;
+    private JFormattedTextField hauteurDessinTextField;
 	
-	String[] couleursPredefinie = {"Noir", "Bleu", "Cyan", "Gris", "Vert", "Magenta", "Orange", "Rose", "Rouge", "Jaune", "Blanc"};
+    private String[] couleursPredefinie = {"Noir", "Bleu", "Cyan", "Gris", "Vert", "Magenta", "Orange", "Rose", "Rouge", "Jaune", "Blanc"};
 	
     //Données de configuration du programme
     private static boolean configProgrammeEstFenetre;//True : Le programme se lance en mode fenetre, False : le programme se lance en plein ecran
@@ -154,7 +152,7 @@ public class MenuOption extends JDialog{
 		couleurCurseurSpecifique.setSelected(true);
 		
 		JPanel panCouleurCurseurPredefinie = new JPanel();
-		couleurPredefinieComboBox = new JComboBox();
+		couleurPredefinieComboBox = new JComboBox<String>();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieComboBox.addItem(couleursPredefinie[i]);
 		panCouleurCurseurPredefinie.add(couleurCurseurPredefinie);
@@ -221,7 +219,7 @@ public class MenuOption extends JDialog{
 		couleurDessinSpecifique.setSelected(true);
 		
 		JPanel panCouleurDessinPredefinie = new JPanel();
-		couleurPredefinieDessinComboBox = new JComboBox();
+		couleurPredefinieDessinComboBox = new JComboBox<String>();
 		for(int i = 0; i<couleursPredefinie.length; i++)
 			couleurPredefinieDessinComboBox.addItem(couleursPredefinie[i]);
 		couleurPredefinieDessinComboBox.setSelectedIndex(10);
@@ -519,8 +517,7 @@ public class MenuOption extends JDialog{
 			if (erreurTailleDessin)
 				stringErreur += "La taille du dessin ne peut pas être inférieure à 20*20, les valeurs ont été ajustées";
 			//Affichage du message d'erreur
-			JOptionPane boiteErreur = new JOptionPane();
-			boiteErreur.showMessageDialog(null, stringErreur, "Erreur", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, stringErreur, "Erreur", JOptionPane.ERROR_MESSAGE);
 		}
 		
 		  /////////////////////////////////////////////////
