@@ -14,6 +14,7 @@ public class Utilitaire
     private static final int PARAM_INCORRECTE = 202;
     private static final int IMAGE_INEXISTANTE = 203;
     private static final int COULEUR_INEXISTANTE = 204;
+    private static final int REPEAT_PARAM_NON_VALIDE = 205;
     
     
     /**
@@ -270,6 +271,24 @@ public class Utilitaire
                 for ( String cmd : command_list )
                 {
                     String[] tmp = cmd.trim().split(" ", 2);
+
+                    if ( tmp[0].equalsIgnoreCase("undo")    ||  tmp[0].equalsIgnoreCase("redo")
+                                                            ||  tmp[0].equalsIgnoreCase("width")
+                                                            ||  tmp[0].equalsIgnoreCase("height")
+                                                            ||  tmp[0].equalsIgnoreCase("new")
+                                                            ||  tmp[0].equalsIgnoreCase("open")
+                                                            ||  tmp[0].equalsIgnoreCase("save")
+                                                            ||  tmp[0].equalsIgnoreCase("saveas")
+                                                            ||  tmp[0].equalsIgnoreCase("savehistory")
+                                                            ||  tmp[0].equalsIgnoreCase("exec")
+                                                            ||  tmp[0].equalsIgnoreCase("clear")
+                                                            ||  tmp[0].equalsIgnoreCase("help")
+                                                            ||  tmp[0].equalsIgnoreCase("man")
+                                                            ||  tmp[0].equalsIgnoreCase("exit") )
+                    {
+                        StockageDonnee.setParamErreur( tmp[0], true );
+                        return REPEAT_PARAM_NON_VALIDE;
+                    }
 
                     int retour = correctArguments(tmp[0], (tmp.length > 1 ? tmp[1] : ""));
 

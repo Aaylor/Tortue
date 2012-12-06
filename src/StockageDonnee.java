@@ -170,10 +170,10 @@ public class StockageDonnee
         liste_erreurs.put(200, "nombre(s) d'argument(s) trop faible.");
         liste_erreurs.put(201, "nombre(s) d'argument(s) trop élevé.");
         liste_erreurs.put(202, "paramètre incorrect.");
-        liste_erreurs.put(900, "l'historique à déjà été sauvegardé.");
         liste_erreurs.put(203, "image inexsitante.");
         liste_erreurs.put(204, "couleur inexsitante.");
-        
+        liste_erreurs.put(205, "le paramètre ne peut être utilisé dans la fonction repeat."); 
+
         return true;
 
     }
