@@ -180,4 +180,15 @@ public class Curseur extends JPanel {
     public void setCouleurBleu(int i){
     	couleur = new Color(couleur.getRed(), couleur.getGreen(), i);
     }
+
+    public void mergeCurseur(Curseur c)
+    {
+		this.posX = c.getPosX();
+		this.posY = c.getPosY();
+		this.orientation = (int)c.getOrientation();
+		this.couleur = c.getCouleur();
+		this.type = (short)c.getType();
+		this.epaisseur = c.getEpaisseur();
+		this.forme = (short)c.getForme();
+    }
 }

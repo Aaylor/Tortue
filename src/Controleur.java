@@ -30,6 +30,7 @@ public class Controleur{
     private ZoneDessin zd = null;
     private BarreOutils zb = null;
     private Curseur curseur = null;
+    private Curseur first_curseur = null;
     private BarreMenu barreMenu = null;
     private BarreOutils barreOutils = null;
 
@@ -69,6 +70,7 @@ public class Controleur{
         barreOutils.setControleur(this);
         
         curseur = c;
+        first_curseur = c;
         c.setControleur(this);
 
     }
@@ -97,6 +99,7 @@ public class Controleur{
                 term.addMessage(" > " + s);
             }
             StockageDonnee.ajoutLCEG(s);
+            //last_curseur = curseur;
         }
 
         int numero_renvoie = init(commande_parser,write);
@@ -865,19 +868,30 @@ public class Controleur{
 
         if ( Utilitaire.canUndo() )
         {
-           StockageDonnee.ajoutLCEC_undo( StockageDonnee.remove_LCEC( 
-                       StockageDonnee.getSize_LCEC()-1) );
-           StockageDonnee.videListeDessin();
+            String remove = StockageDonnee.remove_LCEC( StockageDonnee.getSize_LCEC()-1 );
+            etatUndo(remove);
+            
+            StockageDonnee.ajoutLCEC_undo( remove );
+            StockageDonnee.videListeDessin();
 
-           int i = 0;
-           while ( i < StockageDonnee.getSize_LCEC() )
-           {
+            curseur.mergeCurseur(first_curseur);
+
+            int i = 0;
+            while ( i < StockageDonnee.getSize_LCEC() )
+            {
                 commande( StockageDonnee.getLCEC(i), false );
                 i++;
-           }
+            }
         }
 
         zd.repaint();
+        return SUCCESS;
+    }
+
+    public int etatUndo( String command )
+    {
+        System.out.println(command);
+
         return SUCCESS;
     }
 

@@ -352,4 +352,5 @@ public class Utilitaire
     {
         return StockageDonnee.getSize_LCU() > 0;
     }
+
 }
