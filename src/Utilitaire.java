@@ -304,8 +304,7 @@ public class Utilitaire
                 (( splited_args[0].equalsIgnoreCase("cercle") ?
                         ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } )
                             ? return SUCCESS : return PARAM_INCORRECT ))))) : return PARAM_INCORRECT );
-                            */
-
+*/
                 return SUCCESS;
 
 
