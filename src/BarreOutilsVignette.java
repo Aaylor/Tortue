@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 public class BarreOutilsVignette extends JPanel {
 	Curseur c;
 	
+	/**Constructeur de la Vignette representant la couleur du curseur*/
 	BarreOutilsVignette(Curseur c){
 		super();
 		this.setSize(15, 15);
