@@ -283,7 +283,7 @@ public class Utilitaire
     
             /*  Cas particulier pour la fonction DOFIGURE   */
             case 18:
-
+                return SUCCESS;
 
 
             default:
