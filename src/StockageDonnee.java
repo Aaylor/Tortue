@@ -10,7 +10,6 @@ public class StockageDonnee
     private static ArrayList<String> liste_commande_undo;
     private static ArrayList<String> liste_commande_entree_generale;
     private static ArrayList<Traceur> liste_dessin;
-    private static ArrayList<Traceur> liste_dessin_undo;
     public static ArrayList<String> tmp_command;
     private static Hashtable<String, Integer> liste_des_commandes;
     private static Hashtable<Integer, String> liste_erreurs;
@@ -31,7 +30,6 @@ public class StockageDonnee
         return init_lcec()  && init_lcu()
                             && init_lceg()
                             && init_ldessin()
-                            && init_ldessin_undo()
                             && init_tmp_cmd()
                             && init_ldc()
                             && init_le()
@@ -86,16 +84,6 @@ public class StockageDonnee
         liste_dessin = new ArrayList<Traceur>();
         return true;
 
-    }
-
-    /**
-     *  Fonction initialisant la collection des listes d'objet utilisé pour le dessin
-     *  @return boolean
-     */
-    public static boolean init_ldessin_undo()
-    {
-        liste_dessin_undo = new ArrayList<Traceur>();
-        return true;
     }
 
     /**
@@ -329,6 +317,11 @@ public class StockageDonnee
         return liste_commande_entree_generale.get( numero );
     }
 
+    public static String getLCU(int numero)
+    {
+        return liste_commande_undo.get( numero );
+    }
+
     /**
      *  Fonction renvoyant le traceur selon son numéro
      *  @return le traceur
@@ -438,16 +431,6 @@ public class StockageDonnee
     }
 
     /**
-     *  Fonction ajoutant le dessin à la collection correspondante
-     *  @param Traceur Traceur à ajouter
-     */
-    public static boolean ajoutListeDessin_undo(Traceur t)
-    {
-        liste_dessin_undo.add(t);
-        return true;
-    }
-
-    /**
      *  Fonction vidant la collection correspondante
      */
     public static void videLCEC()
@@ -463,6 +446,11 @@ public class StockageDonnee
         liste_dessin.clear();
     }
 
+    public static void videLCU()
+    {
+        liste_commande_undo.clear();
+    }
+
     /**
      *  Fonction permettant de tout vider
      */
@@ -470,6 +458,7 @@ public class StockageDonnee
     {
         videLCEC();
         videListeDessin();
+        videLCU();
     }
     
     /**
@@ -533,15 +522,6 @@ public class StockageDonnee
     public static String remove_liste_commande_undo(int index)
     {
         return liste_commande_undo.remove(index);
-    }
-
-    /**
-     *  Fonction supprimant l'élément à la collection et le renvoyant
-     *  @return Element supprimé
-     */
-    public static Traceur remove_liste_dessin_undo(int index)
-    {
-        return liste_dessin_undo.remove(index);
     }
 
     /**

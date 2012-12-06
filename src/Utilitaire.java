@@ -343,11 +343,19 @@ public class Utilitaire
 
     }
 
+    /**
+     *  Renvoie si il y a possibilité d'utiliser la fonction "undo"
+     *  @return true si la fonction undo peut être utilisé
+     */
     public static boolean canUndo()
     {
         return StockageDonnee.getSize_LCEC() > 0;
     }
 
+    /**
+     *  Renvoie si il y a possibilité d'utiliser la fonction "redo"
+     *  @return true si la fonction redo peut être utilisée
+     */
     public static boolean canRedo()
     {
         return StockageDonnee.getSize_LCU() > 0;

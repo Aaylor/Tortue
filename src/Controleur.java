@@ -865,18 +865,12 @@ public class Controleur{
      */
     public int undo()
     {
-        System.out.println( Utilitaire.canUndo() );
-
         if ( Utilitaire.canUndo() )
         {
-            String remove = StockageDonnee.remove_LCEC( StockageDonnee.getSize_LCEC()-1 );
-            StockageDonnee.ajoutLCEC_undo( remove );
+            StockageDonnee.ajoutLCEC_undo( StockageDonnee.remove_LCEC( StockageDonnee.getSize_LCEC()-1 ) );
             StockageDonnee.videListeDessin();
 
-    //        System.out.println("curseur to string : \n\t" + curseur.toString());
-    //        System.out.println("\nfirst_curseur to string : \n\t" + first_curseur.toString());
             curseur.mergeCurseur(first_curseur);
-    //        System.out.println("\ncurseur to string : \n\t" + curseur.toString());
 
             int i = 0;
             while ( i < StockageDonnee.getSize_LCEC() )
@@ -896,13 +890,13 @@ public class Controleur{
      */
     public int redo()
     {
-        System.out.println( Utilitaire.canRedo() );
-
         if ( Utilitaire.canRedo() )
         {
             StockageDonnee.ajoutLCEC( new String[]{ StockageDonnee.remove_liste_commande_undo(
                         StockageDonnee.getSize_LCU()-1) } , false );
             StockageDonnee.videListeDessin();
+            
+            curseur.mergeCurseur(first_curseur);
 
             int i = 0;
             while ( i < StockageDonnee.getSize_LCEC() )
@@ -911,10 +905,9 @@ public class Controleur{
                 i++;
             }
 
-            zd.repaint();
-            return SUCCESS;
         }
-
+            
+        zd.repaint();
         return SUCCESS;
     }
 

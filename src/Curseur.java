@@ -194,12 +194,13 @@ public class Curseur extends JPanel {
 		this.type = (short)c.getType();
 		this.epaisseur = c.getEpaisseur();
 		this.forme = (short)c.getForme();
+        this.isDown = c.isDown();
     }
 
     public String toString()
     {
         return  "x : " + this.posX + "\ny : " + this.posY + "\norientation : " + this.orientation
                 + "\ncouleur : " + this.couleur + "\ntype : " + this.type + "\nepaisseur : " + this.epaisseur
-                + "\nforme : " + this.forme;
+                + "\nforme : " + this.forme + "\ndown : " + this.isDown;
     }
 }
