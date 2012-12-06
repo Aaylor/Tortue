@@ -283,6 +283,29 @@ public class Utilitaire
     
             /*  Cas particulier pour la fonction DOFIGURE   */
             case 18:
+                if ( splited_args.length > 9 )
+                {
+                    return NOMBRE_PARAM_SUP;
+                }
+                else if ( splited_args.length < 5 )
+                {
+                    return NOMBRE_PARAM_LESS;
+                }
+/*
+                ( splited_args[0].equalsIgnoreCase("triangle") ?
+                        ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], splited_args[5],
+                            splited_args[6], splited_args[7] } ) ? return SUCCESS : return PARAM_INCORRECT ) :
+                (( splited_args[0].equalsIgnoreCase("carre") ?
+                        ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } )
+                            ? return SUCCESS : return PARAM_INCORRECT )) :
+                (( splited_args[0].equalsIgnoreCase("rectangle") ?
+                        ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], splited_args[5] } )
+                            ? return SUCCESS : return PARAM_INCORRECT )) :
+                (( splited_args[0].equalsIgnoreCase("cercle") ?
+                        ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } )
+                            ? return SUCCESS : return PARAM_INCORRECT ))))) : return PARAM_INCORRECT );
+                            */
+
                 return SUCCESS;
 
 

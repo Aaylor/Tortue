@@ -1043,7 +1043,7 @@ public class Controleur{
      */
     public int cursorWidth(int valeur)
     {
-        curseur.setTaille(valeur);
+        curseur.setEpaisseur(valeur);
         zd.repaint();
         return SUCCESS;
     }
