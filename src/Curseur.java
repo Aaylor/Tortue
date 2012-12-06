@@ -8,7 +8,6 @@ public class Curseur extends JPanel {
 	private int posX;
 	private int posY;
 	private int orientation;
-	private int taille;
 	private int type; //0 : Crayon, 1 : Gomme
 	private Color couleur;
 	private Controleur controleur;
@@ -23,7 +22,6 @@ public class Curseur extends JPanel {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;
-		this.taille = taille;
 		this.couleur = couleur;
 		this.type = type;
 		this.epaisseur = epaisseur;
@@ -50,21 +48,15 @@ public class Curseur extends JPanel {
      */
 	public double getOrientation () {return this.orientation;}
 	
-	/**
-	 * Accesseur de la variable taille du dessin
-	 * @return Laille
-	 */
-	public int getTaille () {return this.taille;}
-
     /**
-     *  Accesseur de la variable type
-     *  @return type
+     *  Accesseur de la variable type du curseur (0 : Crayon, 0 : Gomme)
+     *  @return Le type du curseur (0 : Crayon, 0 : Gomme)
      */
 	public int getType () {return this.type;}
 
     /**
-     *  Accesseur de la variable couleur
-     *  @return couleur
+     *  Accesseur de la variable couleur du curseur
+     *  @return La couleur du curseur
      */
 	public Color getCouleur () {return this.couleur;}
 	
@@ -98,14 +90,6 @@ public class Curseur extends JPanel {
      */
 	public void setOrientation (int orientation) {
 		this.orientation = orientation;
-	}
-	
-	/**
-	 * Modifieur de la variable taille
-	 * @param taille nouvelle valeur de la taille
-	 */
-	public void setTaille (int taille) {
-		this.taille = taille;
 	}
 	
     /**
