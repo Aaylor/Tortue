@@ -870,7 +870,7 @@ public class Controleur{
         else
         {
             zb.disableBoutonUndo();
-            return -1;
+            return CANT_UNDO;
         }
 
         zd.repaint();
@@ -902,7 +902,7 @@ public class Controleur{
         else
         {
             zb.disableBoutonRedo();
-            return -1;
+            return REDO;
         }
             
         zd.repaint();
@@ -1433,13 +1433,13 @@ public class Controleur{
                     }
                     catch(Exception e)
                     {
-                        System.out.println("peut pas creer");
+                        return GestionErreur.CANT_CREATE;
                     }
                 }
             }
             catch(Exception e)
             {
-                System.out.println("peut pas acceder");
+                return GestionErreur.CANT_MATCH;
             }
         }
 
@@ -1555,13 +1555,13 @@ public class Controleur{
                     }
                     catch(Exception e)
                     {
-                        System.out.println("peut pas creer");
+                        return GestionErreur.CANT_CREATE;
                     }
                 }
             }
             catch(Exception e)
             {
-                System.out.println("peut pas acceder");
+                return GestionErreur.CANT_MATCH;
             }
         }
 
@@ -1594,7 +1594,7 @@ public class Controleur{
         }
         catch (Exception e)
         {
-            return GestionErreur.COMMANDE_ERRONEE;
+            return GestionErreur.CANT_CREATE;
         }
         
         return GestionErreur.SUCCESS;
@@ -1688,7 +1688,7 @@ public class Controleur{
             }
             catch (Exception e)
             {
-                term.addMessage("   /!\\ LE FICHIER ENTRE EN ARGUMENT NE PEUT ETRE LU");
+                return GestionErreur.CANT_READ;
             }
 
             return GestionErreur.SUCCESS;

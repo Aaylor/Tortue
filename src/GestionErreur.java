@@ -10,11 +10,17 @@ public class GestionErreur
     public static final int NOMBRE_PARAM_LESS = 200; 
     public static final int NOMBRE_PARAM_SUP = 201;
     public static final int PARAM_INCORRECTE = 202;
-    public static final int COULEUR_INEXISTANTE = 204;
-    public static final int REPEAT_PARAM_NON_VALIDE = 205;
-    
+    public static final int COULEUR_INEXISTANTE = 203;
+    public static final int REPEAT_PARAM_NON_VALIDE = 204;
+   
+    /*  Erreur Undo/Redo    */
+    public static final int CANT_UNDO = 300;
+    public static final int CANT_REDO = 301;
+
     /*  Erreur au niveau des pathnames  */
     public static final int DONT_MATCH = 400;
+    public static final int CANT_CREATE = 401;
+    public static final int CANT_READ = 403;
     public static final int NOT_FOUND = 404;
     
 

@@ -158,9 +158,14 @@ public class StockageDonnee
         liste_erreurs.put(200, "nombre(s) d'argument(s) trop faible.");
         liste_erreurs.put(201, "nombre(s) d'argument(s) trop élevé.");
         liste_erreurs.put(202, "paramètre incorrect.");
-        liste_erreurs.put(203, "image inexsitante.");
-        liste_erreurs.put(204, "couleur inexsitante.");
-        liste_erreurs.put(205, "le paramètre ne peut être utilisé dans la fonction repeat."); 
+        liste_erreurs.put(203, "couleur inexsitante.");
+        liste_erreurs.put(204, "le paramètre ne peut être utilisé dans la fonction repeat."); 
+        liste_erreurs.put(300, "aucun retour en arrière possible.");
+        liste_erreurs.put(301, "aucune commandes à refaire");
+        liste_erreurs.put(400, "le fichier ne possède pas une extension correcte.");
+        liste_erreurs.put(401, "impossible de créer le fichier.");
+        liste_erreurs.put(403, "le fichier ne peut être lu.");
+        liste_erreurs.put(404, "impossible de trouver le fichier.");
 
         return true;
 
