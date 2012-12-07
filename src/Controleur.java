@@ -1064,6 +1064,7 @@ public class Controleur{
             StockageDonnee.setParamErreur(couleur, false);
         	return GestionErreur.COULEUR_INEXISTANTE;
         }
+
         return GestionErreur.SUCCESS;
 
     }
@@ -1094,7 +1095,6 @@ public class Controleur{
         }
 
     	curseur.setCouleur(new Color(red,green,blue));
-        
         return GestionErreur.SUCCESS;
     }
 
@@ -1113,7 +1113,7 @@ public class Controleur{
             StockageDonnee.setParamErreur(bgColor, false);
             return GestionErreur.COULEUR_INEXISTANTE;
         }
-
+        
         zd.repaint();
 
         return GestionErreur.SUCCESS;
@@ -1145,7 +1145,6 @@ public class Controleur{
         }
         
         zd.setBackground(new Color(red,green,blue));
-        
         return GestionErreur.SUCCESS;
     }
 
