@@ -870,7 +870,7 @@ public class Controleur{
         else
         {
             zb.disableBoutonUndo();
-            return CANT_UNDO;
+            return GestionErreur.CANT_UNDO;
         }
 
         zd.repaint();
@@ -902,7 +902,7 @@ public class Controleur{
         else
         {
             zb.disableBoutonRedo();
-            return REDO;
+            return GestionErreur.CANT_REDO;
         }
             
         zd.repaint();
@@ -1439,7 +1439,7 @@ public class Controleur{
             }
             catch(Exception e)
             {
-                return GestionErreur.CANT_MATCH;
+                return GestionErreur.DONT_MATCH;
             }
         }
 
@@ -1561,7 +1561,7 @@ public class Controleur{
             }
             catch(Exception e)
             {
-                return GestionErreur.CANT_MATCH;
+                return GestionErreur.DONT_MATCH;
             }
         }
 
@@ -1608,10 +1608,9 @@ public class Controleur{
      */
     public int exec(String pathname)
     {
-
+        String regex = "(.*)[\\.][tT][xX][tT]$";
         if ( pathname.equals("") )
         {
-            String regex = "(.*)[\\.][tT][xX][tT]$";
             JFileChooser chooser = Utilitaire.getChooser("Fichier texte", new String[] { regex });
 
             int returnVal = chooser.showOpenDialog(null);
