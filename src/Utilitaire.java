@@ -268,7 +268,26 @@ public class Utilitaire
                         return GestionErreur.REPEAT_PARAM_NON_VALIDE;
                     }
 
-                    int retour = testArgs(tmp[0], (tmp.length > 1 ? tmp[1] : ""));
+                    int retour = 0;
+                    if ( tmp.length > 1 )
+                    {
+                        if ( (tmp[1].indexOf("+") == 0) || (tmp[1].indexOf("-") == 0) )
+                        {
+                            char calculation = tmp[1].charAt(0);
+                            int inc_arg = Integer.parseInt( tmp[1].substring( tmp[1].indexOf( (calculation == '+' ? '+' : '-') )+1 ) );
+
+                            retour = testArgs(tmp[0], String.valueOf(inc_arg));
+                        }
+                        else
+                        {
+                            retour = testArgs(tmp[0], tmp[1]);
+                        }
+                    }
+                    else
+                    {
+                        retour = testArgs(tmp[0], "");
+                    }
+
 
                     if ( retour != GestionErreur.SUCCESS )
                     {
