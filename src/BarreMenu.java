@@ -130,8 +130,7 @@ public class BarreMenu extends JMenuBar{
 								"Carapuce est un projet Universitaire développé par 4 étudiants :\n\n" +
 								"Mehdi Khelifi\n" +
 								"Loïc Runarvot\n" +
-								"Gauthier Lo\n" +
-								"Frederic Mamath\n",
+								"Gauthier Lo\n",
 								"A propos",
 								JOptionPane.INFORMATION_MESSAGE);
 	}
