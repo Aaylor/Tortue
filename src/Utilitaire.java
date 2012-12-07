@@ -151,6 +151,8 @@ public class Utilitaire
             case 6:
             case 7:
             case 8:
+            case 10:
+            case 11:
             case 21:
             case 28:
             case 29:
@@ -174,20 +176,6 @@ public class Utilitaire
                 }
 
                 if ( !isInt( splited_args[0] ) )
-                {
-                    return GestionErreur.PARAM_INCORRECTE;
-                }
-
-                return GestionErreur.SUCCESS;
-
-            /*  Commande requierant un seul paramètre entier, ou fonctionnant sans [valeur par défaut : 1]  */
-            case 10:
-            case 11:
-                if ( splited_args.length > 1 )
-                {
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                }
-                if ( !isInt( splited_args[0] ) && !splited_args[0].equals("") )
                 {
                     return GestionErreur.PARAM_INCORRECTE;
                 }

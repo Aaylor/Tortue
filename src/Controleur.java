@@ -213,26 +213,38 @@ public class Controleur{
     public int init(String[] commande_parser, boolean write)
     {
         int retour = 0;
-        int valeur, r, g, b;
+        int valeur = 0;
+        int r, g, b;
         int valeur_x, valeur_y, width, height;
-        int coordonne[];
+       
+        String cmd = "";
+        int increment = 1;
+        while ( increment < commande_parser.length )
+        {
+            cmd += commande_parser[increment] + (increment == commande_parser.length-1 ? "" : " ");
+            increment++;
+        }
+        String[] tmp = new String[]{ commande_parser[0], cmd };
+
+        retour = Utilitaire.testArgs( tmp[0], tmp[1] );
+        if ( retour != 0 )
+        {
+            return retour;
+        }
+
         switch ( StockageDonnee.getNumeroFonction( commande_parser[0].toLowerCase() ) )
         {
             case 0:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 retour = pendown();
                 if ( retour == 0 && write )
+                {
                     StockageDonnee.ajoutLCEC(commande_parser, true);
+                }
 
                 return retour;
 
             
             case 1:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-
                 retour = penup();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -240,9 +252,6 @@ public class Controleur{
                 return retour;
 
             case 2:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 retour = pencil();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -250,9 +259,6 @@ public class Controleur{
                 return retour;
 
             case 3:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-
                 retour = eraser();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -260,9 +266,6 @@ public class Controleur{
                 return retour;
 
             case 4:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-
                 retour = change_forme();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -270,9 +273,6 @@ public class Controleur{
                 return retour;
 
             case 5:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-
                 retour = up();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -280,9 +280,6 @@ public class Controleur{
                 return retour;
             
             case 6:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 retour = down();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -290,9 +287,6 @@ public class Controleur{
                 return retour;
             
             case 7:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 retour = left();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -300,9 +294,6 @@ public class Controleur{
                 return retour;
             
             case 8:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 retour = right();
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -310,93 +301,35 @@ public class Controleur{
                 return retour;
             
             case 9:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                else if ( commande_parser.length < 2 )
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                else;
-
-                if ( Utilitaire.isInt(commande_parser[1]) )
-                    valeur = (int)Integer.parseInt(commande_parser[1]);
-                else
-                    return GestionErreur.PARAM_INCORRECTE;
-
-                retour = rotate(valeur);
+                retour = rotate( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
            
             case 10:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 return undo();
 
             case 11:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-
                 return redo();
 
             case 12:
-                if ( commande_parser.length < 2 )
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                else if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                else;
-
-                if ( Utilitaire.isInt(commande_parser[1])  )
-                    valeur = Integer.parseInt(commande_parser[1]);
-                else
-                    return GestionErreur.PARAM_INCORRECTE;
-
-                retour = forward(valeur);
+                retour = forward( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false);
 
                 return retour;
             
             case 13:
-                if ( commande_parser.length < 2 )
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                else if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                else;
-
-                if ( Utilitaire.isInt(commande_parser[1]) )
-                    valeur = Integer.parseInt(commande_parser[1]);
-                else
-                    return GestionErreur.PARAM_INCORRECTE;
-
-                retour = backward(valeur);
+                retour = backward( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false);
 
                 return retour;
             
             case 14:
-                if ( commande_parser.length > 3 )
-                {
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                }
-                else if ( commande_parser.length < 3 )
-                {
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                }
-                else;
-
-                if ( Utilitaire.isInt(commande_parser[1])
-                        && Utilitaire.isInt(commande_parser[2]) )
-                {
-                    valeur_x = Integer.parseInt(commande_parser[1]);
-                    valeur_y = Integer.parseInt(commande_parser[2]);
-                }
-                else
-                    return GestionErreur.PARAM_INCORRECTE;
-
-                retour = goTo(valeur_x, valeur_y);
-                
+                retour = goTo(  Integer.parseInt( commande_parser[1] ),
+                                Integer.parseInt( commande_parser[2] ) );
                 boolean verif = false;
                 if ( !curseur.isDown() )
                     verif = true;
@@ -407,49 +340,23 @@ public class Controleur{
                 return retour;
             
             case 15:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                else if ( commande_parser.length < 2 )
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                else;
-
-                if ( Utilitaire.isInt(commande_parser[1]) )
-                    valeur = Integer.parseInt(commande_parser[1]);
-                else
-                    return GestionErreur.PARAM_INCORRECTE;
-
-                retour = cursorWidth(valeur);
+                retour = cursorWidth( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
 
             case 16:
-                if ( commande_parser.length > 4 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                else;
-
                 if ( commande_parser.length == 2 )
                 {
                     retour = setColor(commande_parser[1]);
                 }
-                else if ( commande_parser.length == 4 )
+                else
                 {
-                    if ( Utilitaire.isInt( new String[] {  commande_parser[1], commande_parser[2],
-                                                commande_parser[3] } ) )
-                    {
-                        retour = setColor(  Integer.parseInt(commande_parser[1]),
-                                            Integer.parseInt(commande_parser[2]),
-                                            Integer.parseInt(commande_parser[3]));
-                    }
-                    else
-                    {
-                        return GestionErreur.PARAM_INCORRECTE;
-                    }
+                    retour = setColor(  Integer.parseInt(commande_parser[1]),
+                                        Integer.parseInt(commande_parser[2]),
+                                        Integer.parseInt(commande_parser[3]));
                 }
-                else;
 
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -457,31 +364,16 @@ public class Controleur{
                 return retour;
 
             case 17:
-                if ( commande_parser.length > 4 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                else;
-
                 if ( commande_parser.length == 2 )
                 {
                     retour = setBackgroundColor(commande_parser[1]);
                 }
-                else if ( commande_parser.length == 4 )
+                else
                 {
-                    if ( Utilitaire.isInt( new String[] {  commande_parser[1], commande_parser[2],
-                                                commande_parser[3] } ) )
-                    {
-                        retour = setBackgroundColor(Integer.parseInt(commande_parser[1]),
-                                                    Integer.parseInt(commande_parser[2]),
-                                                    Integer.parseInt(commande_parser[3]));
-                    }
-                    else
-                    {
-                        return GestionErreur.PARAM_INCORRECTE;
-                    }
+                    retour = setBackgroundColor(Integer.parseInt(commande_parser[1]),
+                                                Integer.parseInt(commande_parser[2]),
+                                                Integer.parseInt(commande_parser[3]));
                 }
-                else;
 
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
@@ -489,81 +381,37 @@ public class Controleur{
                 return retour;
             
             case 18:
-                if ( commande_parser.length > 9 )
-                {
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                }
-
-                valeur_x = 0;
-                valeur_y = 0;
-                width = 0;
-                height = 0;
-
                 if ( commande_parser[1].equalsIgnoreCase("triangle") )
                 {
-                    if ( Utilitaire.isInt( new String[] { commande_parser[2], commande_parser[3], commande_parser[4],
-                        commande_parser[5], commande_parser[6], commande_parser[7] } ) )
-                    {
-                        return doFigure(3, new int[] {  Integer.parseInt(commande_parser[2]),
-                                                        Integer.parseInt(commande_parser[3]), 
-                                                        Integer.parseInt(commande_parser[4]),
-                                                        Integer.parseInt(commande_parser[5]), 
-                                                        Integer.parseInt(commande_parser[6]),
-                                                        Integer.parseInt(commande_parser[7])}, true);
-                    }
-                    else
-                    {
-                        return GestionErreur.PARAM_INCORRECTE;
-                    }
-                
-
+                    return doFigure(3, new int[] {  Integer.parseInt(commande_parser[2]),
+                                                    Integer.parseInt(commande_parser[3]), 
+                                                    Integer.parseInt(commande_parser[4]),
+                                                    Integer.parseInt(commande_parser[5]), 
+                                                    Integer.parseInt(commande_parser[6]),
+                                                    Integer.parseInt(commande_parser[7])}, true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("carre") )
                 {
-                    if ( Utilitaire.isInt ( new String[] { commande_parser[2], commande_parser[3],
-                        commande_parser[4] } ) )
-                    {
-                        return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
-                                                        Integer.parseInt(commande_parser[3]), 
-                                                        Integer.parseInt(commande_parser[4]), 
-                                                        Integer.parseInt(commande_parser[4])},
-                                                        true);
-                    }
-                    else
-                    {
-                        return GestionErreur.PARAM_INCORRECTE;
-                    }
+                    return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
+                                                    Integer.parseInt(commande_parser[3]), 
+                                                    Integer.parseInt(commande_parser[4]), 
+                                                    Integer.parseInt(commande_parser[4])},
+                                                    true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("rectangle") )
                 {
-                    if ( Utilitaire.isInt ( new String[] { commande_parser[2], commande_parser[3],
-                        commande_parser[4], commande_parser[5] } ) )
-                    {
-                        return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
-                                                        Integer.parseInt(commande_parser[3]), 
-                                                        Integer.parseInt(commande_parser[4]), 
-                                                        Integer.parseInt(commande_parser[5])},
-                                                        true);
-                    }
-                    else
-                    {
-                        return GestionErreur.PARAM_INCORRECTE;
-                    }
+                    return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
+                                                    Integer.parseInt(commande_parser[3]), 
+                                                    Integer.parseInt(commande_parser[4]), 
+                                                    Integer.parseInt(commande_parser[5])},
+                                                    true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("cercle") )
                 {
-                    if ( Utilitaire.isInt ( new String[] { commande_parser[2], commande_parser[3],
-                        commande_parser[4] } ) )
-                    {
-                        return doFigure(4, new int[] {  Integer.parseInt(commande_parser[2]),
-                                                        Integer.parseInt(commande_parser[3]),
-                                                        Integer.parseInt(commande_parser[4])},
-                                                        true);
-                    }
-                    else
-                    {
-                        return GestionErreur.PARAM_INCORRECTE;
-                    }
+                    return doFigure(4, new int[] {  Integer.parseInt(commande_parser[2]),
+                                                    Integer.parseInt(commande_parser[3]),
+                                                    Integer.parseInt(commande_parser[4])},
+                                                    true);
                 }
                 else
                 {
@@ -571,94 +419,46 @@ public class Controleur{
                 }
             
             case 19:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                else if ( commande_parser.length < 2 )
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                else;
-
-                if ( Utilitaire.isInt(commande_parser[1]) )
-                    valeur = Integer.parseInt(commande_parser[1]);
-                else
-                    return GestionErreur.PARAM_INCORRECTE;
-
-                return width(valeur);
+                return width( Integer.parseInt( commande_parser[1] ) );
             
             case 20:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                else if ( commande_parser.length < 2 )
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                else;
-
-                if ( Utilitaire.isInt(commande_parser[1]) )
-                    valeur = Integer.parseInt(commande_parser[1]);
-                else
-                    return GestionErreur.PARAM_INCORRECTE;
-
-                return height(valeur);
+                return height( Integer.parseInt( commande_parser[1] ) );
             
             case 21:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
                 return newFile();
             
             case 22:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 if ( commande_parser.length == 2 )
                     return open(commande_parser[1]);
 
                 return open("");
             
             case 23:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return save();
             
             case 24:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return saveas("");
             
             case 25:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-    
                 if ( commande_parser.length == 2 )
                     return savehistory(commande_parser[1]);
                 else
                     return savehistory("");
             
             case 26:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-
                 if ( commande_parser.length == 2 )
                     return exec(commande_parser[1]);
 
                 return exec("");
             
             case 27:
-                int nombre_de_repetition = -1;
-
-                if ( Utilitaire.isInt( commande_parser[1] ) )
-                {
-                    nombre_de_repetition = Integer.parseInt(commande_parser[1]);
-                }
-                else
-                {
-                    return GestionErreur.PARAM_INCORRECTE;
-                }
+                int nombre_de_repetition = Integer.parseInt(commande_parser[1]);
 
                 String args = "";
                 int i = 2;
@@ -676,49 +476,23 @@ public class Controleur{
                 return retour;
                 
             case 28:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
                 return clear();
             
             case 29:
-                if ( commande_parser.length > 1 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
                 return help();
             
             case 30:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-                
                 if ( commande_parser.length < 2 )
                     return man(false, "");
                 else
                     return man(true, commande_parser[1]);
             
             case 31:
-                if ( commande_parser.length > 2 )
-                    return GestionErreur.NOMBRE_PARAM_SUP;
-
                 return exit();
 
-            case 32:
-                if ( commande_parser.length == 2 )
-                {
-                    if ( commande_parser[1].equals("lcec") )
-                        function_debug_test( true );
-                    else if ( commande_parser[1].equals("lceg") )
-                        function_debug_test( false );
-                    else
-                        return GestionErreur.PARAM_INCORRECTE;
-                }
-                else
-                    function_debug_test( false );
-                break;
-            
             default:
                 return GestionErreur.COMMANDE_ERRONEE;
         }
-
-        return GestionErreur.SUCCESS;
 
     }
 
@@ -1794,25 +1568,6 @@ public class Controleur{
         System.gc();
         System.exit(0);
         return GestionErreur.SUCCESS;
-    }
-
-    private void function_debug_test(boolean b)
-    {
-        if ( !b )
-        {
-            for (int i = 0; i < StockageDonnee.getSize_LCEG(); i++)
-            {
-                System.out.println(StockageDonnee.getLCEG(i));
-            }
-        }
-
-        else
-        {
-            for (int i = 0; i < StockageDonnee.getSize_LCEC(); i++)
-            {
-                System.out.println(StockageDonnee.getLCEC(i));
-            }
-        }
     }
 
 }
