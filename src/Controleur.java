@@ -14,18 +14,6 @@ import javax.swing.SwingWorker;
 
 public class Controleur{
 
-    private static final int SUCCESS = 0;
-    private static final int COMMANDE_ERRONEE = 100;
-    private static final int NOMBRE_PARAM_LESS = 200; 
-    private static final int NOMBRE_PARAM_SUP = 201;
-    private static final int PARAM_INCORRECTE = 202;
-    private static final int IMAGE_INEXISTANTE = 203;
-    private static final int COULEUR_INEXISTANTE = 204;
-    /* 
-     * TODO
-     * mettre en constante les autres erreurs
-     */
-    
     private Terminal term = null;
     private ZoneDessin zd = null;
     private BarreOutils zb = null;
@@ -83,7 +71,6 @@ public class Controleur{
      */
     public boolean commande(String s, boolean write)
     {
-
 	    String[] commande_parser;
         s = rework_command(s);
 
@@ -100,13 +87,12 @@ public class Controleur{
                 term.addMessage(" > " + s);
             }
             StockageDonnee.ajoutLCEG(s);
-            //last_curseur = curseur;
         }
 
         int numero_renvoie = init(commande_parser,write);
         if ( numero_renvoie != 0 )
         {
-            this.setMessageErreur(numero_renvoie);
+            term.addMessage( GestionErreur.setMessageErreur(numero_renvoie) );
         }
 
         if ( Utilitaire.canUndo() )
@@ -129,7 +115,6 @@ public class Controleur{
 
         term.replaceCompteur();
         return true;
- 
     }
 
     /**
@@ -218,21 +203,6 @@ public class Controleur{
         return s;
     }
 
-    /**
-     *  Fonction qui envoie le message d'erreur au terminal
-     *  @param numero_erreur numero de l'erreur
-     *  @return boolean
-     */
-    public boolean setMessageErreur(int numero_erreur)
-    {
-        String message = "   /!\\ Erreur : ";
-        String param = StockageDonnee.getParamErreur();
-        if ( !param.equals("") ) 
-            message += param + " : ";
-        message += StockageDonnee.getMessageErreur(numero_erreur);
-        term.addMessage(message);
-        return false;
-    }
     
 
     /**
@@ -250,7 +220,7 @@ public class Controleur{
         {
             case 0:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 retour = pendown();
                 if ( retour == 0 && write )
@@ -261,7 +231,7 @@ public class Controleur{
             
             case 1:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
 
                 retour = penup();
                 if ( retour == 0 && write )
@@ -271,7 +241,7 @@ public class Controleur{
 
             case 2:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 retour = pencil();
                 if ( retour == 0 && write )
@@ -281,7 +251,7 @@ public class Controleur{
 
             case 3:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
 
                 retour = eraser();
                 if ( retour == 0 && write )
@@ -291,7 +261,7 @@ public class Controleur{
 
             case 4:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
 
                 retour = change_forme();
                 if ( retour == 0 && write )
@@ -301,7 +271,7 @@ public class Controleur{
 
             case 5:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
 
                 retour = up();
                 if ( retour == 0 && write )
@@ -311,7 +281,7 @@ public class Controleur{
             
             case 6:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 retour = down();
                 if ( retour == 0 && write )
@@ -321,7 +291,7 @@ public class Controleur{
             
             case 7:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 retour = left();
                 if ( retour == 0 && write )
@@ -331,7 +301,7 @@ public class Controleur{
             
             case 8:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 retour = right();
                 if ( retour == 0 && write )
@@ -341,15 +311,15 @@ public class Controleur{
             
             case 9:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 else;
 
                 if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = (int)Integer.parseInt(commande_parser[1]);
                 else
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
 
                 retour = rotate(valeur);
                 if ( retour == 0 && write )
@@ -359,27 +329,27 @@ public class Controleur{
            
             case 10:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 return undo();
 
             case 11:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
 
                 return redo();
 
             case 12:
                 if ( commande_parser.length < 2 )
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 else if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 else;
 
                 if ( Utilitaire.isInt(commande_parser[1])  )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
 
                 retour = forward(valeur);
                 if ( retour == 0 && write )
@@ -389,15 +359,15 @@ public class Controleur{
             
             case 13:
                 if ( commande_parser.length < 2 )
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 else if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 else;
 
                 if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
 
                 retour = backward(valeur);
                 if ( retour == 0 && write )
@@ -408,11 +378,11 @@ public class Controleur{
             case 14:
                 if ( commande_parser.length > 3 )
                 {
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 }
                 else if ( commande_parser.length < 3 )
                 {
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 }
                 else;
 
@@ -423,7 +393,7 @@ public class Controleur{
                     valeur_y = Integer.parseInt(commande_parser[2]);
                 }
                 else
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
 
                 retour = goTo(valeur_x, valeur_y);
                 
@@ -438,15 +408,15 @@ public class Controleur{
             
             case 15:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 else;
 
                 if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
 
                 retour = cursorWidth(valeur);
                 if ( retour == 0 && write )
@@ -456,9 +426,9 @@ public class Controleur{
 
             case 16:
                 if ( commande_parser.length > 4 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 else;
 
                 if ( commande_parser.length == 2 )
@@ -476,7 +446,7 @@ public class Controleur{
                     }
                     else
                     {
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                     }
                 }
                 else;
@@ -488,9 +458,9 @@ public class Controleur{
 
             case 17:
                 if ( commande_parser.length > 4 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 else if ( (commande_parser.length < 2) || (commande_parser.length == 3) )
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 else;
 
                 if ( commande_parser.length == 2 )
@@ -508,7 +478,7 @@ public class Controleur{
                     }
                     else
                     {
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                     }
                 }
                 else;
@@ -521,7 +491,7 @@ public class Controleur{
             case 18:
                 if ( commande_parser.length > 9 )
                 {
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 }
 
                 valeur_x = 0;
@@ -543,7 +513,7 @@ public class Controleur{
                     }
                     else
                     {
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                     }
                 
 
@@ -561,7 +531,7 @@ public class Controleur{
                     }
                     else
                     {
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                     }
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("rectangle") )
@@ -577,7 +547,7 @@ public class Controleur{
                     }
                     else
                     {
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                     }
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("cercle") )
@@ -592,50 +562,50 @@ public class Controleur{
                     }
                     else
                     {
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                     }
                 }
                 else
                 {
-                    return COMMANDE_ERRONEE;
+                    return GestionErreur.COMMANDE_ERRONEE;
                 }
             
             case 19:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 else;
 
                 if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
 
                 return width(valeur);
             
             case 20:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 else if ( commande_parser.length < 2 )
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 else;
 
                 if ( Utilitaire.isInt(commande_parser[1]) )
                     valeur = Integer.parseInt(commande_parser[1]);
                 else
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
 
                 return height(valeur);
             
             case 21:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 return newFile();
             
             case 22:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 if ( commande_parser.length == 2 )
                     return open(commande_parser[1]);
@@ -644,7 +614,7 @@ public class Controleur{
             
             case 23:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
 
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
@@ -653,7 +623,7 @@ public class Controleur{
             
             case 24:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
@@ -662,7 +632,7 @@ public class Controleur{
             
             case 25:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
     
                 if ( commande_parser.length == 2 )
                     return savehistory(commande_parser[1]);
@@ -671,7 +641,7 @@ public class Controleur{
             
             case 26:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
 
                 if ( commande_parser.length == 2 )
                     return exec(commande_parser[1]);
@@ -687,7 +657,7 @@ public class Controleur{
                 }
                 else
                 {
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
                 }
 
                 String args = "";
@@ -707,17 +677,17 @@ public class Controleur{
                 
             case 28:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 return clear();
             
             case 29:
                 if ( commande_parser.length > 1 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 return help();
             
             case 30:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 
                 if ( commande_parser.length < 2 )
                     return man(false, "");
@@ -726,7 +696,7 @@ public class Controleur{
             
             case 31:
                 if ( commande_parser.length > 2 )
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
 
                 return exit();
 
@@ -738,17 +708,17 @@ public class Controleur{
                     else if ( commande_parser[1].equals("lceg") )
                         function_debug_test( false );
                     else
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                 }
                 else
                     function_debug_test( false );
                 break;
             
             default:
-                return COMMANDE_ERRONEE;
+                return GestionErreur.COMMANDE_ERRONEE;
         }
 
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -764,7 +734,7 @@ public class Controleur{
     	this.curseur.setIsDown(true);
         this.barreOutils.affichageBoutonPoserOutil();
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -777,7 +747,7 @@ public class Controleur{
     	this.curseur.setIsDown(false);
         this.barreOutils.affichageBoutonPoserOutil();
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -790,7 +760,7 @@ public class Controleur{
     	this.curseur.setType((short)0);
         this.barreOutils.affichageBoutonOutil();
         zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -802,7 +772,7 @@ public class Controleur{
     	this.curseur.setType((short)1);
         this.barreOutils.affichageBoutonOutil();
         zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -814,7 +784,7 @@ public class Controleur{
         this.curseur.setForme( this.curseur.getForme() == 1 ? (short)0 : (short)1 );
         this.barreOutils.affichageBoutonForme();
         zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -825,7 +795,7 @@ public class Controleur{
     {
     	this.curseur.setOrientation(180);
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -837,7 +807,7 @@ public class Controleur{
     {
     	this.curseur.setOrientation(0);
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -849,7 +819,7 @@ public class Controleur{
     {
     	this.curseur.setOrientation(270);
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -861,7 +831,7 @@ public class Controleur{
     {
     	this.curseur.setOrientation(90);
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -874,7 +844,7 @@ public class Controleur{
     {
     	this.curseur.setOrientation(valeur+90);
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -904,7 +874,7 @@ public class Controleur{
         }
 
         zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -936,7 +906,7 @@ public class Controleur{
         }
             
         zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -980,7 +950,7 @@ public class Controleur{
         
         
         this.zd.repaint(); 
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1024,7 +994,7 @@ public class Controleur{
         }
 		
 		this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1064,7 +1034,7 @@ public class Controleur{
         }
 
     	this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1076,7 +1046,7 @@ public class Controleur{
     {
         curseur.setEpaisseur(valeur);
         zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1091,9 +1061,10 @@ public class Controleur{
         	curseur.setCouleur(c);
         }
         else{
-        	return COULEUR_INEXISTANTE;
+            StockageDonnee.setParamErreur(couleur, false);
+        	return GestionErreur.COULEUR_INEXISTANTE;
         }
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -1106,11 +1077,25 @@ public class Controleur{
      */
     public int setColor(int red, int green, int blue)
     {
-    	if(red >= 0 && red <= 255 && green >= 0 && green <= 255 && blue >= 0 && blue <= 255){
-    		curseur.setCouleur(new Color(red,green,blue));
-    	}
+        if ( red < 0 || red > 255 )
+        {
+            StockageDonnee.setParamErreur( String.valueOf(red), false );
+            return GestionErreur.PARAM_INCORRECTE;
+        }
+        else if ( green < 0 || green > 255 )
+        {
+            StockageDonnee.setParamErreur( String.valueOf(green), false );
+            return GestionErreur.PARAM_INCORRECTE;
+        }
+        else if ( blue < 0 || blue > 255 )
+        {
+            StockageDonnee.setParamErreur( String.valueOf(blue), false );
+            return GestionErreur.PARAM_INCORRECTE;
+        }
+
+    	curseur.setCouleur(new Color(red,green,blue));
         
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1124,8 +1109,14 @@ public class Controleur{
         	Color c = StockageDonnee.getColor(bgColor);
         	zd.setBackground(c);
         }
+        else{
+            StockageDonnee.setParamErreur(bgColor, false);
+            return GestionErreur.COULEUR_INEXISTANTE;
+        }
 
-        return SUCCESS;
+        zd.repaint();
+
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1137,8 +1128,25 @@ public class Controleur{
      */
     public int setBackgroundColor(int red, int green, int blue)
     {
+        if ( red < 0 || red > 255 )
+        {
+            StockageDonnee.setParamErreur( String.valueOf(red), false );
+            return GestionErreur.PARAM_INCORRECTE;
+        }
+        else if ( green < 0 || green > 255 )
+        {
+            StockageDonnee.setParamErreur( String.valueOf(green), false );
+            return GestionErreur.PARAM_INCORRECTE;
+        }
+        else if ( blue < 0 || blue > 255 )
+        {
+            StockageDonnee.setParamErreur( String.valueOf(blue), false );
+            return GestionErreur.PARAM_INCORRECTE;
+        }
+        
         zd.setBackground(new Color(red,green,blue));
-        return SUCCESS;
+        
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1150,15 +1158,6 @@ public class Controleur{
      */
     public int doFigure(int type, int[] value, boolean estRempli)
     {
-       
-        /*
-         *  Si le type est un triangle ( type = VALEUR A DEFINIR )
-         *  x1 = value[0], y1 = value[1], ..., x3 = value[4], y3 = value[5]
-         *
-         *  Si le type est un rectangle ( ou carre ), ou cercle ( type = 2 ou type = 3 )
-         *  x = value[0], y = value[1], width = value[2], height = value[3]
-         */
-
         if(type==2){
         	Traceur t = new Traceur(2, curseur.getCouleur(), value[3], value[2], value[0], value[1], estRempli);
         	StockageDonnee.ajoutListeDessin(t);
@@ -1172,7 +1171,7 @@ public class Controleur{
         }
        
         zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1188,7 +1187,7 @@ public class Controleur{
         	curseur.setPosX(zd.getLargeurDessin());
         }
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1204,7 +1203,7 @@ public class Controleur{
         	curseur.setPosY(zd.getHauteurDessin());
         }
         this.zd.repaint();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1222,7 +1221,7 @@ public class Controleur{
 
             if ( answer == JOptionPane.YES_OPTION )
             {
-                if ( save() == SUCCESS )
+                if ( save() == GestionErreur.SUCCESS )
                 {
                     save_return = true;
                 }
@@ -1230,7 +1229,7 @@ public class Controleur{
             else if ( answer == JOptionPane.CANCEL_OPTION 
                         || answer == JOptionPane.CLOSED_OPTION )
             {
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
             }
             else
             {
@@ -1244,6 +1243,7 @@ public class Controleur{
             term.clear();
             StockageDonnee.setImageSave(true);
             StockageDonnee.videTout();
+            curseur.mergeCurseur(first_curseur);
             zd.repaint();
         }
         else
@@ -1251,7 +1251,7 @@ public class Controleur{
             return newFile();
         }
 
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1279,7 +1279,7 @@ public class Controleur{
             }
             else
             {
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
             }
         }
     	else{
@@ -1292,7 +1292,7 @@ public class Controleur{
 	    	|| extension!="gif"	//ou gif
 	    	/*|| extension=="jpeg"	//ou jpeg*/
 	    	){
-	    		return PARAM_INCORRECTE;
+	    		return GestionErreur.PARAM_INCORRECTE;
 	    	}
 	    }
     	
@@ -1314,9 +1314,9 @@ public class Controleur{
 	    	
 		}
 		else{
-			return IMAGE_INEXISTANTE;
+			return GestionErreur.IMAGE_INEXISTANTE;
 		}
-		return SUCCESS;
+		return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1363,7 +1363,7 @@ public class Controleur{
             return saveas("");
         }
         
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -1406,7 +1406,7 @@ public class Controleur{
             }
             else
             {
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
             }
         }
         else
@@ -1476,7 +1476,7 @@ public class Controleur{
         }
            
         StockageDonnee.changeImageSave();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -1522,7 +1522,7 @@ public class Controleur{
             }
             else
             {
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
             }
 
         }
@@ -1596,10 +1596,10 @@ public class Controleur{
         }
         catch (Exception e)
         {
-            return COMMANDE_ERRONEE;
+            return GestionErreur.COMMANDE_ERRONEE;
         }
         
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -1628,7 +1628,7 @@ public class Controleur{
             }
             else
             {
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
             }
             
         }
@@ -1662,12 +1662,12 @@ public class Controleur{
                         if ( !ligne.startsWith("#") && !ligne.equals("") && !Utilitaire.isACommand(splited_line[0]) )
                         {
                             StockageDonnee.videTmp();
-                            return COMMANDE_ERRONEE;
+                            return GestionErreur.COMMANDE_ERRONEE;
                         }
                         else
                         {
                             int retour = Utilitaire.correctArguments(splited_line[0], splited_line[1]);
-                            if ( retour != SUCCESS )
+                            if ( retour != GestionErreur.SUCCESS )
                             {
                                 StockageDonnee.videTmp();
                                 return retour;
@@ -1693,12 +1693,12 @@ public class Controleur{
                 term.addMessage("   /!\\ LE FICHIER ENTRE EN ARGUMENT NE PEUT ETRE LU");
             }
 
-            return SUCCESS;
+            return GestionErreur.SUCCESS;
 
         }
         else
         {
-            return COMMANDE_ERRONEE;
+            return GestionErreur.COMMANDE_ERRONEE;
         }
 
     }
@@ -1720,7 +1720,7 @@ public class Controleur{
             }
             nombre_de_repetitions--;
         }
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     /**
@@ -1731,7 +1731,7 @@ public class Controleur{
     {
 
         term.clear();
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -1742,7 +1742,7 @@ public class Controleur{
     public int help()
     {
 
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -1764,7 +1764,7 @@ public class Controleur{
         }
         else
             System.out.println("Quel page voulez vous ? (Syntaxe : man <commande>)");
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
 
     }
 
@@ -1789,14 +1789,14 @@ public class Controleur{
             else if ( exit == JOptionPane.CANCEL_OPTION
                         || exit == JOptionPane.CLOSED_OPTION )
             {
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
             }
                     
         }
 
         System.gc();
         System.exit(0);
-        return SUCCESS;
+        return GestionErreur.SUCCESS;
     }
 
     private void function_debug_test(boolean b)

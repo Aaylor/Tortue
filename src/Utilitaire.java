@@ -6,16 +6,6 @@ import java.util.Date;
 
 public class Utilitaire
 {
-   
-    private static final int SUCCESS = 0;
-    private static final int COMMANDE_ERRONEE = 100;
-    private static final int NOMBRE_PARAM_LESS = 200; 
-    private static final int NOMBRE_PARAM_SUP = 201;
-    private static final int PARAM_INCORRECTE = 202;
-    private static final int IMAGE_INEXISTANTE = 203;
-    private static final int COULEUR_INEXISTANTE = 204;
-    private static final int REPEAT_PARAM_NON_VALIDE = 205;
-    
     
     /**
      *  Test si la chaîne de caractère est un entier
@@ -165,7 +155,7 @@ public class Utilitaire
             case 28:
             case 29:
             case 31:
-                return ( splited_args[0] == "" ? SUCCESS : NOMBRE_PARAM_SUP );
+                return ( splited_args[0] == "" ? GestionErreur.SUCCESS : GestionErreur.NOMBRE_PARAM_SUP );
        
             /*  Commande requierant un seul paramètre devant être un entier */
             case 9:
@@ -176,33 +166,33 @@ public class Utilitaire
             case 20:
                 if ( splited_args.length > 1 )
                 {
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 }
                 if ( splited_args[0].equals("") )
                 {
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 }
 
                 if ( !isInt( splited_args[0] ) )
                 {
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
                 }
 
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
 
             /*  Commande requierant un seul paramètre entier, ou fonctionnant sans [valeur par défaut : 1]  */
             case 10:
             case 11:
                 if ( splited_args.length > 1 )
                 {
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 }
                 if ( !isInt( splited_args[0] ) && !splited_args[0].equals("") )
                 {
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
                 }
 
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
 
             /*  Commande requierant un paramètre en chaîne de caractère ou sans. [Peut utiliser les guillemets] */
             case 22:
@@ -213,57 +203,57 @@ public class Utilitaire
             case 30:
                 if ( splited_args.length > 1 )
                 {
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 }
 
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
 
             /*  Commande requierant deux paramètres entier  */
             case 14:
                 if ( splited_args.length > 2 )
                 {
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 }
                 else if ( splited_args.length < 2 )
                 {
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 }
 
                 if ( !isInt( new String[]{ splited_args[0], splited_args[1] } ) )
                 {
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
                 }
 
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
     
             /*  Commande requierant 3 paramètres entier ou 1 chaîne de caractère */
             case 16:
             case 17:
                 if ( (splited_args.length > 3) )
                 {
-                    return NOMBRE_PARAM_SUP;
+                    return GestionErreur.NOMBRE_PARAM_SUP;
                 }
                 
                 if ( splited_args.length == 3 )
                 {
                     if ( !isInt( new String[]{ splited_args[0], splited_args[1], splited_args[2] } ) )
                     {
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                     }
                 }
                 else if ( splited_args.length == 1 );
                 else
                 {
-                    return PARAM_INCORRECTE; // A CHANGER
+                    return GestionErreur.PARAM_INCORRECTE; // A CHANGER
                 }
 
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
 
             /*  Cas particulier pour la fonction REPEAT */
             case 27:
                 if ( splited_args.length < 3 )
                 {
-                    return NOMBRE_PARAM_LESS;
+                    return GestionErreur.NOMBRE_PARAM_LESS;
                 }
 
                 String[] command_list = parseRepeat(args);
@@ -287,58 +277,58 @@ public class Utilitaire
                                                             ||  tmp[0].equalsIgnoreCase("exit") )
                     {
                         StockageDonnee.setParamErreur( tmp[0], true );
-                        return REPEAT_PARAM_NON_VALIDE;
+                        return GestionErreur.REPEAT_PARAM_NON_VALIDE;
                     }
 
                     int retour = correctArguments(tmp[0], (tmp.length > 1 ? tmp[1] : ""));
 
-                    if ( retour != SUCCESS )
+                    if ( retour != GestionErreur.SUCCESS )
                     {
                         return retour;
                     }
                 }
 
-                return SUCCESS;
+                return GestionErreur.SUCCESS;
     
             /*  Cas particulier pour la fonction DOFIGURE   */
             case 18:
                 if ( splited_args[0].equalsIgnoreCase("triangle") )
                 {
-                    return  ( splited_args.length < 8 ? NOMBRE_PARAM_LESS :
-                                ( splited_args.length > 8 ? NOMBRE_PARAM_SUP :
+                    return  ( splited_args.length < 8 ? GestionErreur.NOMBRE_PARAM_LESS :
+                                ( splited_args.length > 8 ? GestionErreur.NOMBRE_PARAM_SUP :
                                     ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], splited_args[5],
-                                        splited_args[6], splited_args[7] } ) ? SUCCESS : PARAM_INCORRECTE)));
+                                        splited_args[6], splited_args[7] } ) ? GestionErreur.SUCCESS : GestionErreur.PARAM_INCORRECTE)));
 
                 }
                 else if ( splited_args[0].equalsIgnoreCase("carre") )
                 {
-                    return  ( splited_args.length < 5 ? NOMBRE_PARAM_LESS :
-                                ( splited_args.length > 5 ? NOMBRE_PARAM_SUP :
+                    return  ( splited_args.length < 5 ? GestionErreur.NOMBRE_PARAM_LESS :
+                                ( splited_args.length > 5 ? GestionErreur.NOMBRE_PARAM_SUP :
                                     ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } ) 
-                                        ? SUCCESS : PARAM_INCORRECTE)));
+                                        ? GestionErreur.SUCCESS : GestionErreur.PARAM_INCORRECTE)));
                 }
                 else if ( splited_args[0].equalsIgnoreCase("rectangle") )
                 {
-                    return  ( splited_args.length < 6 ? NOMBRE_PARAM_LESS :
-                                ( splited_args.length > 6 ? NOMBRE_PARAM_SUP :
+                    return  ( splited_args.length < 6 ? GestionErreur.NOMBRE_PARAM_LESS :
+                                ( splited_args.length > 6 ? GestionErreur.NOMBRE_PARAM_SUP :
                                     ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], 
-                                        splited_args[5] } ) ? SUCCESS : PARAM_INCORRECTE)));
+                                        splited_args[5] } ) ? GestionErreur.SUCCESS : GestionErreur.PARAM_INCORRECTE)));
                 }
                 else if ( splited_args[0].equalsIgnoreCase("cercle") )
                 {
-                    return  ( splited_args.length < 5 ? NOMBRE_PARAM_LESS :
-                                ( splited_args.length > 5 ? NOMBRE_PARAM_SUP :
+                    return  ( splited_args.length < 5 ? GestionErreur.NOMBRE_PARAM_LESS :
+                                ( splited_args.length > 5 ? GestionErreur.NOMBRE_PARAM_SUP :
                                     ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4] } ) 
-                                      ? SUCCESS : PARAM_INCORRECTE)));
+                                      ? GestionErreur.SUCCESS : GestionErreur.PARAM_INCORRECTE)));
                 }
                 else
                 {
                     StockageDonnee.setParamErreur( splited_args[0], true );
-                    return PARAM_INCORRECTE;
+                    return GestionErreur.PARAM_INCORRECTE;
                 }
 
             default:
-                return COMMANDE_ERRONEE;
+                return GestionErreur.COMMANDE_ERRONEE;
         }
 
     }
