@@ -135,7 +135,7 @@ public class Utilitaire
         return StockageDonnee.getNumeroFonction(command) != -1; 
     }
 
-    public static int correctArguments(String command, String args)
+    public static int testArgs(String command, String args)
     {
         String[] splited_args = args.split(" ");
 
@@ -280,7 +280,7 @@ public class Utilitaire
                         return GestionErreur.REPEAT_PARAM_NON_VALIDE;
                     }
 
-                    int retour = correctArguments(tmp[0], (tmp.length > 1 ? tmp[1] : ""));
+                    int retour = testArgs(tmp[0], (tmp.length > 1 ? tmp[1] : ""));
 
                     if ( retour != GestionErreur.SUCCESS )
                     {

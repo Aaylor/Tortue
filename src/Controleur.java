@@ -1051,7 +1051,7 @@ public class Controleur{
 
     /**
      *  Fonction qui permet de changer la couleur
-     *  couleur Couleur du curseur
+     *  @param couleur Couleur du curseur
      *  @return si la fonction s'est bien deroulee.
      */
     public int setColor(String couleur)
@@ -1272,7 +1272,7 @@ public class Controleur{
                 path = chooser.getSelectedFile().getAbsolutePath();
                 if ( !path.matches(regex) )
                 {
-                    return 1; /* ERREUR A ECRIRE */
+                    return GestionErreur.DONT_MATCH;
                 }
 
             }
@@ -1291,7 +1291,7 @@ public class Controleur{
 	    	|| extension!="gif"	//ou gif
 	    	/*|| extension=="jpeg"	//ou jpeg*/
 	    	){
-	    		return GestionErreur.PARAM_INCORRECTE;
+	    		return GestionErreur.DONT_MATCH;
 	    	}
 	    }
     	
@@ -1313,7 +1313,7 @@ public class Controleur{
 	    	
 		}
 		else{
-			return GestionErreur.IMAGE_INEXISTANTE;
+			return GestionErreur.NOT_FOUND;
 		}
 		return GestionErreur.SUCCESS;
     }
@@ -1349,7 +1349,6 @@ public class Controleur{
             }
             catch (Exception e)
             {
-                
                 System.out.println("zhjrkjzehrjze");
             }
             finally
@@ -1619,17 +1618,17 @@ public class Controleur{
             if ( returnVal == JFileChooser.APPROVE_OPTION )
             {
                 pathname = chooser.getSelectedFile().getAbsolutePath();
-                if ( !pathname.matches(regex) )
-                {
-                    return 1; /* ERREUR A ECRIRE */
-                }
-
             }
             else
             {
                 return GestionErreur.SUCCESS;
             }
             
+        }
+                
+        if ( !pathname.matches(regex) )
+        {
+            return GestionErreur.DONT_MATCH;
         }
 
         File file_to_exec = new File(pathname);
@@ -1665,7 +1664,7 @@ public class Controleur{
                         }
                         else
                         {
-                            int retour = Utilitaire.correctArguments(splited_line[0], splited_line[1]);
+                            int retour = Utilitaire.testArgs(splited_line[0], splited_line[1]);
                             if ( retour != GestionErreur.SUCCESS )
                             {
                                 StockageDonnee.videTmp();
@@ -1697,7 +1696,7 @@ public class Controleur{
         }
         else
         {
-            return GestionErreur.COMMANDE_ERRONEE;
+            return GestionErreur.NOT_FOUND;
         }
 
     }
