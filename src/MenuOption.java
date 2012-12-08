@@ -48,6 +48,8 @@ public class MenuOption extends JDialog{
 	
     private JFormattedTextField largeurDessinTextField;
     private JFormattedTextField hauteurDessinTextField;
+    
+    private JFormattedTextField curseurEpaisseurTextField;
 	
     private String[] couleursPredefinie = {"Noir", "Bleu", "Cyan", "Gris", "Vert", "Magenta", "Orange", "Rose", "Rouge", "Jaune", "Blanc"};
 	
@@ -62,12 +64,13 @@ public class MenuOption extends JDialog{
     private static int configDessinBackgroundRed;
     private static int configDessinBackgroundGreen;
     private static int configDessinBackgroundBlue;
+    private static int configCurseurEpaisseur;
 	
 	
 	
 	public MenuOption(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		this.setSize(300, 605);
+		this.setSize(300, 620);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		initComponent();
@@ -96,6 +99,10 @@ public class MenuOption extends JDialog{
 		couleurDessinVertTextField.setText(""+configDessinBackgroundGreen);
 		couleurDessinBleuTextField = new JFormattedTextField(formatCouleur);
 		couleurDessinBleuTextField.setText(""+configDessinBackgroundBlue);
+		
+		//Configuration du JFormattedTextField recevant l'epaisseur du curseur (utilisant le meme format que celui des couleurs)
+		curseurEpaisseurTextField = new JFormattedTextField(formatCouleur);
+		curseurEpaisseurTextField.setText(""+configCurseurEpaisseur);
 		
 		//Configuration des JTextfield recevant la taille du dessin
 		NumberFormat formatTaille = NumberFormat.getIntegerInstance();
@@ -189,6 +196,15 @@ public class MenuOption extends JDialog{
 		panCurseur.add(panCouleurVertDefinir);
 		panCurseur.add(panCouleurBleuDefinir);
 		
+			//Epaisseur du curseur
+		JPanel panChoixCurseurEpaisseur = new JPanel();
+		JLabel labCurseurEpaisseur = new JLabel("Epaisseur par défaut : ");
+		panChoixCurseurEpaisseur.add(labCurseurEpaisseur);
+		panChoixCurseurEpaisseur.add(curseurEpaisseurTextField);
+
+		panCurseur.add(panChoixCurseurEpaisseur);
+		
+		
 		//Dessin
 		JPanel panDessin = new JPanel();
 		panDessin.setLayout(new BoxLayout(panDessin, BoxLayout.PAGE_AXIS));
@@ -265,7 +281,7 @@ public class MenuOption extends JDialog{
 		EnregistrerAnnuler.add(buttonAnnuler);
 		
 		
-		//Ajout de tous les JPanel dans la boite Option
+		//Ajoute de tous les JPanel dans la boite Option
 		//Box content = Box.createVerticalBox();
 		JPanel content = new JPanel();
 		content.add(panAffichage);
@@ -282,7 +298,7 @@ public class MenuOption extends JDialog{
 		////////////////////////////////////////////////
 			//Tailles
 		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 90));
-		panCurseur.setPreferredSize(new Dimension(this.getWidth() - 20, 210));
+		panCurseur.setPreferredSize(new Dimension(this.getWidth() - 20, 235));
 		panDessin.setPreferredSize(new Dimension(this.getWidth() - 20, 205));
 		
 			//Positionnement dans les section
@@ -306,6 +322,11 @@ public class MenuOption extends JDialog{
 		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDefinir.setLayout(new BoxLayout(panCouleurBleuDefinir, BoxLayout.LINE_AXIS));
 		panCouleurBleuDefinir.setMaximumSize(new Dimension(105, 20));
+
+
+		panChoixCurseurEpaisseur.setAlignmentX(LEFT_ALIGNMENT);
+		panChoixCurseurEpaisseur.setLayout(new BoxLayout(panChoixCurseurEpaisseur, BoxLayout.LINE_AXIS));
+		curseurEpaisseurTextField.setMaximumSize(new Dimension(45, 20));
 		
 			//Dessin
 		labTailleDessin.setAlignmentX(LEFT_ALIGNMENT);
@@ -386,8 +407,9 @@ public class MenuOption extends JDialog{
 	private void verificationDesValeurs(){
 		boolean erreurCouleur = false;
 		boolean erreurTailleDessin = false;
+		boolean erreurCurseurEpaisseur = false;
 		//On crée ensuite un tableau qui va contenir les valeurs correctes
-		int[] tabValeurs = new int[8];
+		int[] tabValeurs = new int[9];
 		
 		//Ajout des valeurs dans le tableau
 		
@@ -408,7 +430,9 @@ public class MenuOption extends JDialog{
 		tabValeurs[6] = Integer.parseInt(largeurDessinTextField.getText());
 		if(hauteurDessinTextField.getText().equals("")) hauteurDessinTextField.setText("-1");
 		tabValeurs[7] = Integer.parseInt(hauteurDessinTextField.getText());
-		
+		if(curseurEpaisseurTextField.getText().equals("")) curseurEpaisseurTextField.setText("-1");
+		tabValeurs[8] = Integer.parseInt(curseurEpaisseurTextField.getText());
+
 		//Verif des valeur
 		for(int i=0; i < tabValeurs.length; i++){
 			//Verif des couleurs
@@ -425,11 +449,15 @@ public class MenuOption extends JDialog{
 					}
 				}
 			}
-			//Verif taille dessin
+			//Verif taille dessin et epaisseur du curseur
 			else {
-				if (tabValeurs[i]<20){
-					tabValeurs[i] = 20;
+				if (tabValeurs[i]<50 && (i == 6 || i == 7)){//Si i correspond a la largeur ou la hauteur du dessin
+					tabValeurs[i] = 50;
 					erreurTailleDessin = true;
+				}
+				else if ((tabValeurs[i]<1 || tabValeurs[i]>500) && (i == 8)){//Si i correspond a l'epaisseur du curseur
+					tabValeurs[i] = 15;
+					erreurCurseurEpaisseur = true;
 				}
 			}
 		}
@@ -510,15 +538,19 @@ public class MenuOption extends JDialog{
 		}
 		
 		//Petit panneau d'erreur		
-		if (erreurCouleur || erreurTailleDessin){
+		if (erreurCouleur || erreurCurseurEpaisseur || erreurTailleDessin){
 			String stringErreur = "Attention :\n";
 			
 			if (erreurCouleur)
 				stringErreur += "Un champ de couleur ne peux contenir qu'un nombre compris entre 0 et 255, des valeurs ont été ajustées";
+			if (erreurCouleur && erreurCurseurEpaisseur )
+				stringErreur += "\n";
+			if (erreurCurseurEpaisseur)
+				stringErreur += "L'épaisseur du curseur doit être comprise entre 1 et 500, la valeura a été ajustée";
 			if (erreurCouleur && erreurTailleDessin )
 				stringErreur += "\n";
 			if (erreurTailleDessin)
-				stringErreur += "La taille du dessin ne peut pas être inférieure à 20*20, les valeurs ont été ajustées";
+				stringErreur += "La taille du dessin ne peut pas être inférieure à 50*50, les valeurs ont été ajustées";
 			//Affichage du message d'erreur
 			JOptionPane.showMessageDialog(null, stringErreur, "Erreur", JOptionPane.ERROR_MESSAGE);
 		}
@@ -556,6 +588,9 @@ public class MenuOption extends JDialog{
     		 
     		//Données 5 : valeur Blue du curseur
     		w.println("cursor blue=" + tabValeurs[2]);
+    		
+    		//Données 5 bis : epaisseur du curseur
+    		w.println("cursor width=" + tabValeurs[8]);
     		  
     		//Données 6 : Largeur du dessin
     		w.println("picture width=" + tabValeurs[6]);
@@ -618,6 +653,9 @@ public class MenuOption extends JDialog{
     public static int getConfigDessinBackgroundBlue(){
     	return configDessinBackgroundBlue;
     }
+    public static int getConfigCurseurEpaisseur(){
+    	return configCurseurEpaisseur;
+    }
     
     
 	  ////////////////////////////////////////////
@@ -653,5 +691,8 @@ public class MenuOption extends JDialog{
 	}
 	public static void setConfigDessinBackgroundBlue(int a){
 		configDessinBackgroundBlue = a;
+	}
+	public static void setConfigCurseurEpaisseur(int a){
+		configCurseurEpaisseur = a;
 	}
 }

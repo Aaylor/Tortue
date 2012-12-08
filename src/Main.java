@@ -36,6 +36,7 @@ public class Main{
     	//Initialisation des parametres
     	int largeurDessin = MenuOption.getConfigDessinLargeur();
     	int hauteurDessin = MenuOption.getConfigDessinHauteur();
+    	int epaisseurCurseur = MenuOption.getConfigCurseurEpaisseur();
     	int posXCurseur;
     	int posYCurseur;
     	if (MenuOption.getConfigCurseurEstCentre()){
@@ -52,7 +53,7 @@ public class Main{
     	
     	//Initialisation des composants
     	
-    	Curseur curseur = new Curseur(posXCurseur, posYCurseur, 90, couleurCurseur, (short)0, 30, (short)0);
+    	Curseur curseur = new Curseur(posXCurseur, posYCurseur, 90, couleurCurseur, (short)0, epaisseurCurseur, (short)0);
     	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, couleurBackgroundDessin, curseur);
     	BarreOutils barreOutils = new BarreOutils(curseur, zoneDessin);
     	zoneDessin.setBarreOutils(barreOutils);
@@ -172,7 +173,13 @@ public class Main{
     							MenuOption.setConfigDessinBackgroundBlue(stringToInt(valeur));
     					}
     				}
-    				
+    				else if(ligne.startsWith("cursorwidth=")){
+    					String valeur = ligne.substring(12);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=1 && stringToInt(valeur)<=500)
+    							MenuOption.setConfigCurseurEpaisseur(stringToInt(valeur));
+    					}
+    				}    				
     			}
     			br.close(); 
     		}		
@@ -214,6 +221,8 @@ public class Main{
 	    		w.println("cursor green=0");
 	    		//Données 5 : valeur Blue du curseur
 	    		w.println("cursor blue=0");
+	    		//Données 5 bis : L'epaisseur du curseur
+	    		w.println("cursor width=15");
 	    		//Données 6 : Largeur du dessin
 	    		w.println("picture width=500");
 	    		//Données 7 : Hauteur du dessin
@@ -252,6 +261,8 @@ public class Main{
 	    MenuOption.setConfigCurseurGreen(0);
 	    //Données 5 : valeur Blue du curseur
 	    MenuOption.setConfigCurseurBlue(0);
+	    //Données 5 bis : L'épaisseur du curseur
+	    MenuOption.setConfigCurseurEpaisseur(15);
 	    //Données 6 : Largeur du dessin
 	    MenuOption.setConfigDessinLargeur(500);
 	    //Données 7 : Hauteur du dessin
