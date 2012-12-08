@@ -561,16 +561,16 @@ public class MenuOption extends JDialog{
     		w.println("picture width=" + tabValeurs[6]);
     		
     		//Données 7 : Hauteur du dessin
-    		w.println("picture width=" + tabValeurs[7]);
+    		w.println("picture height=" + tabValeurs[7]);
     		  
     		//Données 8 : valeur Red du dessin
-    		w.println("background color=" + tabValeurs[3]);
+    		w.println("background color red=" + tabValeurs[3]);
     		  
     		//Données 9 : valeur Green du dessin
-    		w.println("background color=" + tabValeurs[4]);
+    		w.println("background color green=" + tabValeurs[4]);
     		  
     		//Données 10 : valeur Blue du dessin
-    		w.println("background color=" + tabValeurs[5]);
+    		w.println("background color blue=" + tabValeurs[5]);
     		 
     		//On écrit le tampon
     		w.flush();

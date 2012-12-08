@@ -1,14 +1,12 @@
 import java.awt.Color;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
@@ -90,7 +88,56 @@ public class Main{
     		donneeParDefaut();
     		
     		//2)Chargeons les données présentes dans le fichier config
-    		
+    		//lecture du fichier texte	
+    		try{
+    			//Initialisation des composants necessaires a la lecture du fichier
+    			InputStream ips=new FileInputStream(f); 
+    			InputStreamReader ipsr=new InputStreamReader(ips);
+    			BufferedReader br=new BufferedReader(ipsr);
+    			String ligne;
+    			
+    			//Traitement des lignes
+    			while ((ligne=br.readLine())!=null){
+    				//On met la ligne en miniscule, au cas ou
+    				ligne = ligne.toLowerCase();
+    				//Plein ecran ou fenetre
+    				if(ligne.startsWith("full screen=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("cursor at the center=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("cursor red=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("cursor green=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("cursor blue=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("picture width=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("picture height=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("background color red=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("background color green=")){
+    					System.out.println("ouais");
+    				}
+    				else if(ligne.startsWith("background color blue=")){
+    					System.out.println("ouais");
+    				}
+    				
+    			}
+    			br.close(); 
+    		}		
+    		catch (Exception e){
+    			System.out.println(e.toString());
+    		}
     		
     	}
     	else{
@@ -129,13 +176,13 @@ public class Main{
 	    		//Données 6 : Largeur du dessin
 	    		w.println("picture width=500");
 	    		//Données 7 : Hauteur du dessin
-	    		w.println("picture width=500");
+	    		w.println("picture height=500");
 	    		//Données 8 : valeur Red du dessin
-	    		w.println("background color=255");
+	    		w.println("background color red=255");
 	    		//Données 9 : valeur Green du dessin
-	    		w.println("background color=255");
+	    		w.println("background color green=255");
 	    		//Données 10 : valeur Blue du dessin
-	    		w.println("background color=255");
+	    		w.println("background color blue=255");
 	    		//On écrit le tampon
 	    		w.flush();
 	    		//On ferme l'ecriture
