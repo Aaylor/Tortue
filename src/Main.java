@@ -98,38 +98,79 @@ public class Main{
     			
     			//Traitement des lignes
     			while ((ligne=br.readLine())!=null){
-    				//On met la ligne en miniscule, au cas ou
+    				//On met la ligne en miniscule et on enleve les espace, au cas ou
     				ligne = ligne.toLowerCase();
+    				ligne = ligne.trim();
+    				ligne = ligne.replaceAll(" ", ""); 
+    				
     				//Plein ecran ou fenetre
-    				if(ligne.startsWith("full screen=")){
-    					System.out.println("ouais");
+    				if(ligne.startsWith("fullscreen=")){
+    					if(ligne.endsWith("true"))
+    						MenuOption.setConfigProgrammeEstFenetre(false);
+    					if(ligne.endsWith("false"))
+    						MenuOption.setConfigProgrammeEstFenetre(true);
     				}
-    				else if(ligne.startsWith("cursor at the center=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("cursoratthecenter=")){
+    					if(ligne.endsWith("true"))
+    						MenuOption.setConfigCurseurEstCentre(true);
+    					if(ligne.endsWith("false"))
+    						MenuOption.setConfigCurseurEstCentre(false);
     				}
-    				else if(ligne.startsWith("cursor red=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("cursorred=")){
+    					String valeur = ligne.substring(10);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
+    							MenuOption.setConfigCurseurRed(stringToInt(valeur));
+    					}
     				}
-    				else if(ligne.startsWith("cursor green=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("cursorgreen=")){
+    					String valeur = ligne.substring(12);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
+								MenuOption.setConfigCurseurGreen(stringToInt(valeur));
+    					}
     				}
-    				else if(ligne.startsWith("cursor blue=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("cursorblue=")){
+    					String valeur = ligne.substring(11);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
+    							MenuOption.setConfigCurseurBlue(stringToInt(valeur));
+    					}
     				}
-    				else if(ligne.startsWith("picture width=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("picturewidth=")){
+    					String valeur = ligne.substring(13);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=50)
+    							MenuOption.setConfigDessinLargeur(stringToInt(valeur));
+    					}
     				}
-    				else if(ligne.startsWith("picture height=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("pictureheight=")){
+    					String valeur = ligne.substring(14);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=50)
+    							MenuOption.setConfigDessinHauteur(stringToInt(valeur));
+    					}
     				}
-    				else if(ligne.startsWith("background color red=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("backgroundcolorred=")){
+    					String valeur = ligne.substring(19);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
+    							MenuOption.setConfigDessinBackgroundRed(stringToInt(valeur));
+    					}
     				}
-    				else if(ligne.startsWith("background color green=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("backgroundcolorgreen=")){
+    					String valeur = ligne.substring(21);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
+    							MenuOption.setConfigDessinBackgroundGreen(stringToInt(valeur));
+    					}
     				}
-    				else if(ligne.startsWith("background color blue=")){
-    					System.out.println("ouais");
+    				else if(ligne.startsWith("backgroundcolorblue=")){
+    					String valeur = ligne.substring(20);
+    					if(!valeur.isEmpty() && isNumeric(valeur)){
+    						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
+    							MenuOption.setConfigDessinBackgroundBlue(stringToInt(valeur));
+    					}
     				}
     				
     			}
@@ -221,6 +262,26 @@ public class Main{
 	    MenuOption.setConfigDessinBackgroundGreen(255);
 	    //Données 10 : valeur Blue du dessin
 	    MenuOption.setConfigDessinBackgroundBlue(255);
+    }
+    
+    public static boolean isNumeric(String str)  
+    {  
+      try  
+      {  
+        double d = Double.parseDouble(str);  
+      }  
+      catch(NumberFormatException nfe)  
+      {  
+        return false;  
+      }  
+      return true;  
+    }
+    
+    public static int stringToInt(String s) 
+    { 
+    Integer ger = new Integer(s); 
+    int i = ger.intValue(); 
+    return i; 
     }
     
     /**
