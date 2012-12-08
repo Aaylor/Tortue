@@ -1540,7 +1540,7 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui affiche le manuel de la commande
+     *  Fonction qui ferme le programme
      *  @return si la fonction s'est bien deroulee.
      */
     public int exit()
