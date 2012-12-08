@@ -1495,7 +1495,7 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui efface l'ecran de dessin
+     *  Fonction qui efface l'historique du terminale
      *  @return si la fonction s'est bien deroulee.
      */
     public int clear()
