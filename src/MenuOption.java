@@ -2,10 +2,13 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.NumberFormat;
 
 import javax.swing.BorderFactory;
@@ -523,76 +526,62 @@ public class MenuOption extends JDialog{
 		  /////////////////////////////////////////////////
 		 //CHARGEMENT DES DONNEES DANS UN FICHIER CONFIG//
 		/////////////////////////////////////////////////
+		//On crée le dossier config si il n'existe pas
+		File dossier = new File( new File(System.getProperty("user.dir")).getParent()
+                + File.separator + "config");
+    	if(!dossier.exists()) dossier.mkdir();
 		
-		//On supprime le fichier .config/.config.txt si il existe
+		
+		//On crée le Fichier f et l'ecriveur w
 		File f = new File( new File(System.getProperty("user.dir")).getParent() + File.separator
                 + "config" + File.separator + ".config.txt");
-		if(f.exists()) f.delete();
+		PrintWriter w;
 		
-		//On crée un nouveau fichier avec les bonnes données
-		DataOutputStream dos;
 		try {
-		      dos = new DataOutputStream(
-		              new BufferedOutputStream(
-		                new FileOutputStream(f)));
-
-		      //On écrit dans le fichier
-		      //Données 1 : si true, la fenetre est en mode fenetré
-		      if(affichageFenetre.isSelected()) dos.writeBoolean(true);
-		      else dos.writeBoolean(false);
-		      //Données 2 : si true, le curseur est centré
-		      if(posCurseurCentreButton.isSelected()) dos.writeBoolean(true);
-		      else dos.writeBoolean(false);
-		      //Données 3 : valeur Red du curseur
-		      dos.writeInt(tabValeurs[0]);
-		      
-		      //Données 4 : valeur Green du curseur
-		      dos.writeInt(tabValeurs[1]);
-		      
-		      //Données 5 : valeur Blue du curseur
-		      dos.writeInt(tabValeurs[2]);
-		      
-		      //Données 6 : Largeur du dessin
-		      dos.writeInt(tabValeurs[6]);
-		      
-		      //Données 7 : Hauteur du dessin
-		      dos.writeInt(tabValeurs[7]);
-		      
-		      //Données 8 : valeur Red du dessin
-		      dos.writeInt(tabValeurs[3]);
-		      
-		      //Données 9 : valeur Green du dessin
-		      dos.writeInt(tabValeurs[4]);
-		      
-		      //Données 10 : valeur Blue du dessin
-		      dos.writeInt(tabValeurs[5]);
-		      
-		      //On ferme l'ecriture
-		      dos.close();
-		      
-		      //Testons le tout
-		      /*
-		      DataInputStream dis;
-		      dis = new DataInputStream(
-		              new BufferedInputStream(
-		                new FileInputStream(
-		                  new File("config/.config.txt"))));
-		            
-		      System.out.println(dis.readBoolean());
-		      System.out.println(dis.readBoolean());
-		      System.out.println(dis.readInt());
-		      System.out.println(dis.readInt());
-		      System.out.println(dis.readInt());
-		      System.out.println(dis.readInt());
-		      System.out.println(dis.readInt());
-		      System.out.println(dis.readInt());
-		      System.out.println(dis.readInt());
-		      System.out.println(dis.readInt());
-		      */
-		      
-		    } catch (IOException e) {
-		      e.printStackTrace();
-		    }
+			if (f.exists()) f.delete();
+            f.createNewFile();
+            
+            w = new PrintWriter(new BufferedWriter(new FileWriter(f)));
+            
+          //On écrit dans le fichier
+    		//Données 1 : Mode plein ecran
+    		w.println("full screen=" + !affichageFenetre.isSelected());
+    		//Données 2 : si true, le curseur est centré
+    		w.println("cursor at the center=" + posCurseurCentreButton.isSelected());
+    		//Données 3 : valeur Red du curseur
+    		w.println("cursor red=" + tabValeurs[0]);
+    		
+    		//Données 4 : valeur Green du curseur
+    		w.println("cursor green=" + tabValeurs[1]);
+    		 
+    		//Données 5 : valeur Blue du curseur
+    		w.println("cursor blue=" + tabValeurs[2]);
+    		  
+    		//Données 6 : Largeur du dessin
+    		w.println("picture width=" + tabValeurs[6]);
+    		
+    		//Données 7 : Hauteur du dessin
+    		w.println("picture width=" + tabValeurs[7]);
+    		  
+    		//Données 8 : valeur Red du dessin
+    		w.println("background color=" + tabValeurs[3]);
+    		  
+    		//Données 9 : valeur Green du dessin
+    		w.println("background color=" + tabValeurs[4]);
+    		  
+    		//Données 10 : valeur Blue du dessin
+    		w.println("background color=" + tabValeurs[5]);
+    		 
+    		//On écrit le tampon
+    		w.flush();
+    		
+    		//On ferme l'ecriture
+    		w.close();
+			}
+		catch (IOException e) {
+			System.out.println("Probleme de E/S");
+			System.exit(-1);
+		}
 	}
 
 	  ////////////////////////////////////////////

@@ -1,12 +1,15 @@
 import java.awt.Color;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
 
@@ -74,111 +77,103 @@ public class Main{
     	if(!dossier.exists()) dossier.mkdir();
     	
     	
-    	File f = new File( new File(System.getProperty("user.dir")).getParent() + File.separator 
-                + "config" + File.separator + ".config.txt");   
+    	//On crée le Fichier de config f et l'ecriveur w
+		File f = new File( new File(System.getProperty("user.dir")).getParent() + File.separator
+                + "config" + File.separator + ".config.txt");
+		PrintWriter w;
+		
+		
     	//Verifions que le fichier de configuration existe
     	if(f.exists()){
-    		//Le fichier existe, chargeons les données par défauts
-    		DataInputStream dis;
+    		//Le fichier existe
+    		//1)Chargeons les données par défaut au cas ou toutes les lignes de configuration ne soient pas écrites
+    		donneeParDefaut();
     		
-    		try{
-	    		dis = new DataInputStream(
-			              				new BufferedInputStream(
-			              					new FileInputStream(f)));
-			            
-	    		MenuOption.setConfigProgrammeEstFenetre(dis.readBoolean());
-	    		MenuOption.setConfigCurseurEstCentre(dis.readBoolean());
-	    		MenuOption.setConfigCurseurRed(dis.readInt());
-	    		MenuOption.setConfigCurseurGreen(dis.readInt());
-	    		MenuOption.setConfigCurseurBlue(dis.readInt());
-	    		MenuOption.setConfigDessinLargeur(dis.readInt());
-	    		MenuOption.setConfigDessinHauteur(dis.readInt());
-	    		MenuOption.setConfigDessinBackgroundRed(dis.readInt());
-	    		MenuOption.setConfigDessinBackgroundGreen(dis.readInt());
-	    		MenuOption.setConfigDessinBackgroundBlue(dis.readInt());
-	    		//On ferme le stream
-	    			dis.close();
-    		} catch (IOException e) {
-  		      e.printStackTrace();
-  		      f.delete();
-  		      recreerFichierConfig = true;
-  		    }
+    		//2)Chargeons les données présentes dans le fichier config
+    		
+    		
     	}
     	else{
     		recreerFichierConfig = true;
     	}
+    	
     	//Le fichier config n'existe pas : on en créé un puis on charge les données par défaut
     	if(recreerFichierConfig){
     		String info;
     		if(!f.exists())
-    			info = "Le fichier de configuration est introuvable, un nouveau contenant des valeurs par défauts a été créé";
+    			info = "Le fichier de configuration est introuvable, un nouveau contenant des valeurs par défaut a été créé";
     		else
-    			info = "Une erreur est survenue lors du chargement du fichier du configuration, , un nouveau contenant des valeurs par défauts a été créé";
+    			info = "Une erreur est survenue lors du chargement du fichier du configuration, un nouveau contenant des valeurs par défauts a été créé";
     		JOptionPane.showMessageDialog(null, info, "Chargement du fichier config", JOptionPane.INFORMATION_MESSAGE);
     		
-    		
-	      //Chargement des données par défaut
-	      //Données 1 : si true, la fenetre est en mode fenetré
-	      MenuOption.setConfigProgrammeEstFenetre(true);
-	      //Données 2 : si true, le curseur est centré
-	      MenuOption.setConfigCurseurEstCentre(true);
-	      //Données 3 : valeur Red du curseur
-	      MenuOption.setConfigCurseurRed(0);
-	      //Données 4 : valeur Green du curseur
-	      MenuOption.setConfigCurseurGreen(0);
-	      //Données 5 : valeur Blue du curseur
-	      MenuOption.setConfigCurseurBlue(0);
-	      //Données 6 : Largeur du dessin
-	      MenuOption.setConfigDessinLargeur(300);
-	      //Données 7 : Hauteur du dessin
-	      MenuOption.setConfigDessinHauteur(300);
-	      //Données 8 : valeur Red du dessin
-	      MenuOption.setConfigDessinBackgroundRed(255);
-	      //Données 9 : valeur Green du dessin
-	      MenuOption.setConfigDessinBackgroundGreen(255);
-	      //Données 10 : valeur Blue du dessin
-	      MenuOption.setConfigDessinBackgroundBlue(255);
-
-	      
-	      try{    
-			//Creation du fichier config
-    		DataOutputStream dos;
-    		
-    		dos = new DataOutputStream(
-		              new BufferedOutputStream(
-		                new FileOutputStream(f)));
-
-		      //On écrit dans le fichier
-		      //Données 1 : si true, la fenetre est en mode fenetré
-		      dos.writeBoolean(true);
-		      //Données 2 : si true, le curseur est centré
-		      dos.writeBoolean(true);
-		      //Données 3 : valeur Red du curseur
-		      dos.writeInt(0);
-		      //Données 4 : valeur Green du curseur
-		      dos.writeInt(0);
-		      //Données 5 : valeur Blue du curseur
-		      dos.writeInt(0);
-		      //Données 6 : Largeur du dessin
-		      dos.writeInt(300);
-		      //Données 7 : Hauteur du dessin
-		      dos.writeInt(300);
-		      //Données 8 : valeur Red du dessin
-		      dos.writeInt(255);
-		      //Données 9 : valeur Green du dessin
-		      dos.writeInt(255);
-		      //Données 10 : valeur Blue du dessin
-		      dos.writeInt(255);
-		      //On ferme l'ecriture
-		      dos.close();
-		      } catch (IOException e) {
-			      e.printStackTrace();
-		      }
+    		//Chargement des données par défaut
+    		donneeParDefaut();
+	    
+			try {
+				if (f.exists()) f.delete();
+	            f.createNewFile();
+	            
+	            w = new PrintWriter(new BufferedWriter(new FileWriter(f)));
+	            
+	          //On écrit dans le fichier
+	    		//Données 1 : Mode plein ecran
+	    		w.println("full screen=false");
+	    		//Données 2 : si true, le curseur est centré
+	    		w.println("cursor at the center=true");
+	    		//Données 3 : valeur Red du curseur
+	    		w.println("cursor red=0");
+	    		//Données 4 : valeur Green du curseur
+	    		w.println("cursor green=0");
+	    		//Données 5 : valeur Blue du curseur
+	    		w.println("cursor blue=0");
+	    		//Données 6 : Largeur du dessin
+	    		w.println("picture width=500");
+	    		//Données 7 : Hauteur du dessin
+	    		w.println("picture width=500");
+	    		//Données 8 : valeur Red du dessin
+	    		w.println("background color=255");
+	    		//Données 9 : valeur Green du dessin
+	    		w.println("background color=255");
+	    		//Données 10 : valeur Blue du dessin
+	    		w.println("background color=255");
+	    		//On écrit le tampon
+	    		w.flush();
+	    		//On ferme l'ecriture
+	    		w.close();
+				}
+			catch (IOException e) {
+				System.out.println("Probleme de E/S");
+				System.exit(-1);
+			}
     	}
     	
     	
         return true;
 
+    }
+    
+    public static void donneeParDefaut(){
+    	//Chargement des données par défaut
+	    //Données 1 : si true, la fenetre est en mode fenetré
+	    MenuOption.setConfigProgrammeEstFenetre(true);
+	    //Données 2 : si true, le curseur est centré
+	    MenuOption.setConfigCurseurEstCentre(true);
+	    //Données 3 : valeur Red du curseur
+	    MenuOption.setConfigCurseurRed(0);
+	    //Données 4 : valeur Green du curseur
+	    MenuOption.setConfigCurseurGreen(0);
+	    //Données 5 : valeur Blue du curseur
+	    MenuOption.setConfigCurseurBlue(0);
+	    //Données 6 : Largeur du dessin
+	    MenuOption.setConfigDessinLargeur(500);
+	    //Données 7 : Hauteur du dessin
+	    MenuOption.setConfigDessinHauteur(500);
+	    //Données 8 : valeur Red du dessin
+	    MenuOption.setConfigDessinBackgroundRed(255);
+	    //Données 9 : valeur Green du dessin
+	    MenuOption.setConfigDessinBackgroundGreen(255);
+	    //Données 10 : valeur Blue du dessin
+	    MenuOption.setConfigDessinBackgroundBlue(255);
     }
     
     /**
