@@ -240,11 +240,6 @@ public class Utilitaire
 
             /*  Cas particulier pour la fonction REPEAT */
             case 28:
-                if ( splited_args.length < 3 )
-                {
-                    return GestionErreur.NOMBRE_PARAM_LESS;
-                }
-
                 String[] command_list = parseRepeat(args);
 
                 for ( String cmd : command_list )

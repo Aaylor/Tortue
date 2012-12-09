@@ -1560,7 +1560,7 @@ public class Controleur{
             {
                 String[] tmp = cmd.split(" ");
                 int compteur = 0;
-                
+               
                 while ( compteur < tmp.length )
                 {
                     if ( tmp[compteur].indexOf("+") >= 0 )
@@ -1578,19 +1578,8 @@ public class Controleur{
                     cmd += " " + tmp[h];
                     h++;
                 }
-                /*
-                if ( (cmd.indexOf("+") >= 0) )
-                {
-                 //   int inc_arg = Integer.parseInt( cmd.substring( cmd.indexOf("+")+1, cmd.indexOf(" ", cmd.indexOf("+")+1 ) ) );
-                    int inc_arg = Integer.parseInt( cmd.substring( cmd.indexOf("+")+1 ) );
-
-                    array_inc[i] = (j+1) * inc_arg;
-
-                    //cmd = cmd.substring( 0, cmd.indexOf("+")) + array_inc[i] + cmd.substring( cmd.indexOf(" ", cmd.indexOf("+")));
-                    cmd = cmd.substring( 0, cmd.indexOf("+")) + array_inc[i];
-                    System.out.println(cmd);
-                }
-*/
+                System.out.println(cmd);
+                
                 i++;
                 commande(cmd,false);
             }
