@@ -151,21 +151,22 @@ public class Utilitaire
             case 6:
             case 7:
             case 8:
-            case 10:
+            case 9:
             case 11:
-            case 21:
-            case 28:
+            case 12:
+            case 22:
             case 29:
-            case 31:
+            case 30:
+            case 32:
                 return ( splited_args[0] == "" ? GestionErreur.SUCCESS : GestionErreur.NOMBRE_PARAM_SUP );
        
             /*  Commande requierant un seul paramètre devant être un entier */
-            case 9:
-            case 12:
+            case 10:
             case 13:
-            case 15:
-            case 19:
+            case 14:
+            case 16:
             case 20:
+            case 21:
                 if ( splited_args.length > 1 )
                 {
                     return GestionErreur.NOMBRE_PARAM_SUP;
@@ -183,12 +184,12 @@ public class Utilitaire
                 return GestionErreur.SUCCESS;
 
             /*  Commande requierant un paramètre en chaîne de caractère ou sans. [Peut utiliser les guillemets] */
-            case 22:
             case 23:
             case 24:
             case 25:
             case 26:
-            case 30:
+            case 27:
+            case 31:
                 if ( splited_args.length > 1 )
                 {
                     return GestionErreur.NOMBRE_PARAM_SUP;
@@ -197,7 +198,7 @@ public class Utilitaire
                 return GestionErreur.SUCCESS;
 
             /*  Commande requierant deux paramètres entier  */
-            case 14:
+            case 15:
                 if ( splited_args.length > 2 )
                 {
                     return GestionErreur.NOMBRE_PARAM_SUP;
@@ -215,8 +216,8 @@ public class Utilitaire
                 return GestionErreur.SUCCESS;
     
             /*  Commande requierant 3 paramètres entier ou 1 chaîne de caractère */
-            case 16:
             case 17:
+            case 18:
                 if ( (splited_args.length > 3) )
                 {
                     return GestionErreur.NOMBRE_PARAM_SUP;
@@ -238,7 +239,7 @@ public class Utilitaire
                 return GestionErreur.SUCCESS;
 
             /*  Cas particulier pour la fonction REPEAT */
-            case 27:
+            case 28:
                 if ( splited_args.length < 3 )
                 {
                     return GestionErreur.NOMBRE_PARAM_LESS;
@@ -306,7 +307,7 @@ public class Utilitaire
                 return GestionErreur.SUCCESS;
     
             /*  Cas particulier pour la fonction DOFIGURE   */
-            case 18:
+            case 19:
                 if ( splited_args[0].equalsIgnoreCase("triangle") )
                 {
                     return  ( splited_args.length < 8 ? GestionErreur.NOMBRE_PARAM_LESS :
