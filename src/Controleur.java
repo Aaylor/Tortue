@@ -299,35 +299,42 @@ public class Controleur{
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
-            
+
             case 9:
+                retour = center();
+                if ( retour == 0 && write )
+                    StockageDonnee.ajoutLCEC(commande_parser, true);
+
+                return retour;
+            
+            case 10:
                 retour = rotate( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
            
-            case 10:
+            case 11:
                 return undo();
 
-            case 11:
+            case 12:
                 return redo();
 
-            case 12:
+            case 13:
                 retour = forward( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false);
 
                 return retour;
             
-            case 13:
+            case 14:
                 retour = backward( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false);
 
                 return retour;
             
-            case 14:
+            case 15:
                 retour = goTo(  Integer.parseInt( commande_parser[1] ),
                                 Integer.parseInt( commande_parser[2] ) );
                 boolean verif = false;
@@ -339,14 +346,14 @@ public class Controleur{
 
                 return retour;
             
-            case 15:
+            case 16:
                 retour = cursorWidth( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true);
 
                 return retour;
 
-            case 16:
+            case 17:
                 if ( commande_parser.length == 2 )
                 {
                     retour = setColor(commande_parser[1]);
@@ -363,7 +370,7 @@ public class Controleur{
            
                 return retour;
 
-            case 17:
+            case 18:
                 if ( commande_parser.length == 2 )
                 {
                     retour = setBackgroundColor(commande_parser[1]);
@@ -380,7 +387,7 @@ public class Controleur{
            
                 return retour;
             
-            case 18:
+            case 19:
                 if ( commande_parser[1].equalsIgnoreCase("triangle") )
                 {
                     return doFigure(3, new int[] {  Integer.parseInt(commande_parser[2]),
@@ -418,46 +425,46 @@ public class Controleur{
                     return GestionErreur.COMMANDE_ERRONEE;
                 }
             
-            case 19:
+            case 20:
                 return width( Integer.parseInt( commande_parser[1] ) );
             
-            case 20:
+            case 21:
                 return height( Integer.parseInt( commande_parser[1] ) );
             
-            case 21:
+            case 22:
                 return newFile();
             
-            case 22:
+            case 23:
                 if ( commande_parser.length == 2 )
                     return open(commande_parser[1]);
 
                 return open("");
             
-            case 23:
+            case 24:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return save();
             
-            case 24:
+            case 25:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return saveas("");
             
-            case 25:
+            case 26:
                 if ( commande_parser.length == 2 )
                     return savehistory(commande_parser[1]);
                 else
                     return savehistory("");
             
-            case 26:
+            case 27:
                 if ( commande_parser.length == 2 )
                     return exec(commande_parser[1]);
 
                 return exec("");
             
-            case 27:
+            case 28:
                 int nombre_de_repetition = Integer.parseInt(commande_parser[1]);
 
                 String args = "";
@@ -475,19 +482,19 @@ public class Controleur{
 
                 return retour;
                 
-            case 28:
+            case 29:
                 return clear();
             
-            case 29:
+            case 30:
                 return help();
             
-            case 30:
+            case 31:
                 if ( commande_parser.length < 2 )
                     return man(false, "");
                 else
                     return man(true, commande_parser[1]);
             
-            case 31:
+            case 32:
                 return exit();
 
             default:
