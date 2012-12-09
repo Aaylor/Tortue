@@ -59,9 +59,9 @@ public class Main{
     	BarreOutils barreOutils = new BarreOutils(curseur, zoneDessin);
     	zoneDessin.setBarreOutils(barreOutils);
     	Fenetre fenetre = new Fenetre(zoneDessin, barreOutils);
-        
     	Controleur c = new Controleur(fenetre, curseur);
-        
+
+    	fenetre.rendreVisible();
     }
 
     /**

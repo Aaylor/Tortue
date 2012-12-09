@@ -67,10 +67,6 @@ public class Fenetre extends JFrame{
             }
         };
         this.addWindowListener(exitListener);
-		
-		//Affichage de la fenetre (ne pas placer avant)
-        resizeEverything();
-  		this.setVisible(true);
 	}
 	
 	  /////////////////////////////////////////////////
@@ -85,6 +81,11 @@ public class Fenetre extends JFrame{
 		barreOutils.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
 		conteneurVertical.setPreferredSize(new Dimension(this.getWidth()/3, this.getHeight()));
 		conteneurVertical.setMaximumSize(new Dimension(this.getWidth()/3, Short.MAX_VALUE));
+	}
+	public void rendreVisible(){
+		//Affichage de la fenetre (ne pas placer avant)
+		resizeEverything();
+  		this.setVisible(true);
 	}
 	
 	  /////////////////////////////////////////////////

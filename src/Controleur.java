@@ -1656,4 +1656,7 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
 
+    public Terminal getTerminal(){
+    	return term;
+    }
 }
