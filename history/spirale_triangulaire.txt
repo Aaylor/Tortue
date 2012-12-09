@@ -6,13 +6,13 @@
 ##################################################
 
 new
-width 700
-height 700
+width 500
+height 500
 penup
 penup 
 rotate 90 
 setbackgroundcolor gray
-goto 350 350
+goto 250 300
 pendown 
 cursorwidth 1 
 rotate 60 
@@ -117,3 +117,303 @@ rotate -120
 forward 10
 left
 forward 5
+penup
+goto 0 5
+pendown
+setcolor red
+goto 5 0
+penup
+goto 0 10
+pendown
+setcolor 102 0 0
+goto 10 0
+penup
+goto 0 15
+pendown
+setcolor red
+goto 15 0
+penup
+goto 0 20
+pendown
+setcolor 102 0 0
+goto 20 0
+penup
+goto 0 25
+pendown
+setcolor red
+goto 25 0
+penup
+goto 0 30
+pendown
+setcolor 102 0 0
+goto 30 0
+penup
+goto 0 35
+pendown
+setcolor red
+goto 35 0
+penup
+goto 0 40
+pendown
+setcolor 102 0 0
+goto 40 0
+penup
+goto 0 45
+pendown
+setcolor red
+goto 45 0
+penup
+goto 0 50
+pendown
+setcolor 102 0 0
+goto 50 0
+penup
+goto 0 55
+pendown
+setcolor red
+goto 55 0
+penup
+goto 0 60
+pendown
+setcolor 102 0 0
+goto 60 0
+penup
+goto 0 65
+pendown
+setcolor red
+goto 65 0
+penup
+goto 0 70
+pendown
+setcolor 102 0 0
+goto 70 0
+penup
+goto 0 75
+pendown
+setcolor red
+goto 75 0
+penup
+goto 0 80
+pendown
+setcolor 102 0 0
+goto 80 0
+penup
+goto 0 85
+pendown
+setcolor red
+goto 85 0
+penup
+goto 0 90
+pendown
+setcolor 102 0 0
+goto 90 0
+penup
+goto 0 95
+pendown
+setcolor red
+goto 95 0
+penup
+goto 0 100
+pendown
+setcolor 102 0 0
+goto 100 0
+penup
+goto 0 105
+pendown
+setcolor red
+goto 105 0
+penup
+goto 0 110
+pendown
+setcolor 102 0 0
+goto 110 0
+penup
+goto 0 115
+pendown
+setcolor red
+goto 115 0
+penup
+goto 0 120
+pendown
+setcolor 102 0 0
+goto 120 0
+penup
+goto 0 125
+pendown
+setcolor red
+goto 125 0
+penup
+goto 0 130
+pendown
+setcolor 102 0 0
+goto 130 0
+penup
+goto 0 135
+pendown
+setcolor red
+goto 135 0
+penup
+goto 0 140
+pendown
+setcolor 102 0 0
+goto 140 0
+penup
+goto 0 145
+pendown
+setcolor red
+goto 145 0
+penup
+goto 0 150
+pendown
+setcolor 102 0 0
+goto 150 0
+penup
+goto 0 155
+pendown
+setcolor red
+goto 155 0
+penup
+goto 0 160
+pendown
+setcolor 102 0 0
+goto 160 0
+penup
+goto 0 165
+pendown
+setcolor red
+goto 165 0
+penup
+goto 0 170
+pendown
+setcolor 102 0 0
+goto 170 0
+penup
+goto 0 175
+pendown
+setcolor red
+goto 175 0
+penup
+goto 0 180
+pendown
+setcolor 102 0 0
+goto 180 0
+penup
+goto 0 185
+pendown
+setcolor red
+goto 185 0
+penup
+goto 0 190
+pendown
+setcolor 102 0 0
+goto 190 0
+penup
+goto 0 195
+pendown
+setcolor red
+goto 195 0
+penup
+goto 0 200
+pendown
+setcolor 102 0 0
+goto 200 0
+penup
+goto 0 205
+pendown
+setcolor red
+goto 5 200
+penup
+goto 0 210
+pendown
+setcolor 102 0 0
+goto 210 0
+penup
+goto 0 215
+pendown
+setcolor red
+goto 215 0
+penup
+goto 0 220
+pendown
+setcolor 102 0 0
+goto 220 0
+penup
+goto 0 225
+pendown
+setcolor red
+goto 225 0
+penup
+goto 0 230
+pendown
+setcolor 102 0 0
+goto 230 0
+penup
+goto 0 235
+pendown
+setcolor red
+goto 235 0
+penup
+goto 0 240
+pendown
+setcolor 102 0 0
+goto 240 0
+penup
+goto 0 245
+pendown
+setcolor red
+goto 245 0
+penup
+goto 0 250
+pendown
+setcolor 102 0 0
+goto 250 0
+penup
+goto 0 255
+pendown
+setcolor red
+goto 255 0
+penup
+goto 0 260
+pendown
+setcolor 102 0 0
+goto 260 0
+penup
+goto 0 265
+pendown
+setcolor red
+goto 265 0
+penup
+goto 0 270
+pendown
+setcolor 102 0 0
+goto 270 0
+penup
+goto 0 275
+pendown
+setcolor red
+goto 275 0
+penup
+goto 0 280
+pendown
+setcolor 102 0 0
+goto 280 0
+penup
+goto 0 285
+pendown
+setcolor red
+goto 285 0
+penup
+goto 0 290
+pendown
+setcolor 102 0 0
+goto 290 0
+penup
+goto 0 295
+pendown
+setcolor red
+goto 295 0
+penup
+goto 0 300
+pendown
+setcolor 102 0 0
+goto 300 0
