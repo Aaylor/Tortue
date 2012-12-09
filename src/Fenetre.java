@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 
 
 @SuppressWarnings("serial")
@@ -87,6 +88,18 @@ public class Fenetre extends JFrame{
 		resizeEverything();
   		this.setVisible(true);
 	}
+    public static void definirThemeNimbus(){
+ 	   String system_lf = UIManager.getSystemLookAndFeelClassName().toLowerCase();
+ 	   if(system_lf.contains("metal")){
+ 	       try {
+ 	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+ 	       }catch (Exception e) {}
+ 	   }else{
+ 	       try {
+ 	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+ 	       }catch (Exception e) {}
+ 	   }
+ 	 }
 	
 	  /////////////////////////////////////////////////
 	 //               ACCESSEURS                    //
