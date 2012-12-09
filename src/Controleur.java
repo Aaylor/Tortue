@@ -700,20 +700,38 @@ public class Controleur{
     	double posX = curseur.getPosX() + valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
 		double posY = curseur.getPosY() + valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
 		
-		//conditions pour que le curseur ne depasse pas la zone de dessin
 		
-		if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
-        
-        if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
-        
-        if(posX <0) curseur.setPosX(0); //valeur negative : on replace à 0
-        
-        if(posY <0) curseur.setPosY(0); //valeur negative : on replace à 0
-        
-        if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
-        
-        if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
-        
+		if((curseur.getOrientation()==0) || (curseur.getOrientation()%360==0) || curseur.getOrientation()==180 || curseur.getOrientation()%360==180){
+			curseur.setPosY(curseur.getPosY());
+			
+			if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
+			
+			if(posY <0) curseur.setPosY(0); //valeur negative : on replace à 0
+			
+			if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
+		}
+		else if(curseur.getOrientation()==90 || curseur.getOrientation()%360==90 || curseur.getOrientation()==270 || curseur.getOrientation()%360==270){
+			curseur.setPosX(curseur.getPosX());
+			
+			if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
+			
+			if(posX <0) curseur.setPosX(0); //valeur negative : on replace à 0
+			
+			if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
+		}
+		else{//conditions pour que le curseur ne depasse pas la zone de dessin
+			if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
+	        
+	        if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
+	        
+	        if(posX <0) curseur.setPosX(0); //valeur negative : on replace à 0
+	        
+	        if(posY <0) curseur.setPosY(0); //valeur negative : on replace à 0
+	        
+	        if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
+	        
+	        if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
+		}
         if(curseur.isDown() && curseur.getType() == 0){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
         	StockageDonnee.ajoutListeDessin(t);
@@ -744,20 +762,46 @@ public class Controleur{
     	double posX = curseur.getPosX() - valeur * Math.sin(curseur.getOrientation() * Math.PI / 180);
 		double posY = curseur.getPosY() - valeur * Math.cos(curseur.getOrientation() * Math.PI / 180);
 		
-		//conditions pour que le curseur ne depasse pas la zone de dessin
-		
-		if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
-		       
-		if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
-		        
-		if(posX <0) curseur.setPosX(0); //valeur negative : on replace à 0
-		       
-		if(posY <0) curseur.setPosY(0); //valeur negative : on replace à 0
-		        
-		if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
-		        
-		if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
-       
+		//si l'orientation du curseur est verticale, on garde le meme y, pour eviter les bugs graphiques
+		if((curseur.getOrientation()==0) || (curseur.getOrientation()%360==0) || curseur.getOrientation()==180 || curseur.getOrientation()%360==180){
+			//on garde le meme y
+			curseur.setPosY(curseur.getPosY());
+			
+			//on traite y
+			if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
+			
+			if(posY <0) curseur.setPosY(0); //valeur negative : on replace à 0
+			
+			if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
+		}
+		//si l'orientation du curseur est horizontale, on garde le meme x, pour eviter les bugs graphiques, surtout pour 270
+		else if(curseur.getOrientation()==90 || curseur.getOrientation()%360==90 || curseur.getOrientation()==270 || curseur.getOrientation()%360==270){
+			//on garde le meme x
+			curseur.setPosX(curseur.getPosX());
+			
+			//on traite x
+			if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
+			
+			if(posX <0) curseur.setPosX(0); //valeur negative : on replace à 0
+			
+			if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
+		}
+		//sinon on traite normalement
+		else{
+			//conditions pour que le curseur ne depasse pas la zone de dessin
+			
+			if(posX <= zd.getLargeurDessin() && posX >= 0) curseur.setPosX((int)posX); //ok
+			       
+			if(posY <= zd.getHauteurDessin() && posY >= 0) curseur.setPosY((int)posY); //ok 
+			        
+			if(posX <0) curseur.setPosX(0); //valeur negative : on replace à 0
+			       
+			if(posY <0) curseur.setPosY(0); //valeur negative : on replace à 0
+			        
+			if(posX > zd.getLargeurDessin()) curseur.setPosX(zd.getLargeurDessin()); //trop grand : on met à la position max
+			        
+			if(posY > zd.getHauteurDessin()) curseur.setPosY(zd.getHauteurDessin()); //trop grand : on met à la position max
+		}
 		if(curseur.isDown() && curseur.getType() == 0){
         	Traceur t = new Traceur(1, curseur.getEpaisseur(), curseur.getCouleur(), posX1, posY1, curseur.getPosX(), curseur.getPosY(), curseur.getForme());
         	StockageDonnee.ajoutListeDessin(t);
@@ -772,7 +816,21 @@ public class Controleur{
 		this.zd.repaint();
         return GestionErreur.SUCCESS;
     }
-
+    
+    /**
+     *  Fonction qui permet de deplacer le pointeur au centre
+     *  @return si la fonction s'est bien deroulee.
+     */
+    public int center(){
+    	
+    	int x=zd.getLargeurDessin()/2;
+    	int y=zd.getHauteurDessin()/2;
+    	curseur.setPosition(x, y);
+    	
+    	this.zd.repaint();
+    	return GestionErreur.SUCCESS;
+    }
+    
     /**
      *  Fonction qui permet de deplacer le pointeur
      *  @param value Abscisse d'arrivee
