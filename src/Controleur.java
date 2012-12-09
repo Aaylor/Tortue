@@ -1550,7 +1550,7 @@ public class Controleur{
     public int repeat(int nombre_de_repetitions, String args)
     {
         String[] command_list = Utilitaire.parseRepeat(args);
-        int[] array_inc = new int[ command_list.length ];
+        int[][] array_inc = new int[ command_list.length ][];
 
         int j = 0;
         while ( nombre_de_repetitions > 0 )
@@ -1558,7 +1558,27 @@ public class Controleur{
             int i = 0;
             for ( String cmd : command_list )
             {
-                System.out.println(cmd);
+                String[] tmp = cmd.split(" ");
+                int compteur = 0;
+                
+                while ( compteur < tmp.length )
+                {
+                    if ( tmp[compteur].indexOf("+") >= 0 )
+                    {
+                        int inc_arg = Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("+")+1 ) );
+                        tmp[compteur] = String.valueOf((j+1) * inc_arg);
+                    }
+                    compteur++;
+                }
+
+                cmd = tmp[0];
+                int h = 1;
+                while ( h < tmp.length )
+                {
+                    cmd += " " + tmp[h];
+                    h++;
+                }
+                /*
                 if ( (cmd.indexOf("+") >= 0) )
                 {
                  //   int inc_arg = Integer.parseInt( cmd.substring( cmd.indexOf("+")+1, cmd.indexOf(" ", cmd.indexOf("+")+1 ) ) );
@@ -1570,7 +1590,7 @@ public class Controleur{
                     cmd = cmd.substring( 0, cmd.indexOf("+")) + array_inc[i];
                     System.out.println(cmd);
                 }
-
+*/
                 i++;
                 commande(cmd,false);
             }
@@ -1656,7 +1676,4 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
 
-    public Terminal getTerminal(){
-    	return term;
-    }
 }

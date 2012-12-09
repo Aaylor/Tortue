@@ -272,25 +272,29 @@ public class Utilitaire
                     int retour = 0;
                     if ( tmp.length > 1 )
                     {
-                        if ( (tmp[1].indexOf("+") == 0) )
+                        String[] tmp2 = tmp[1].split(" ");
+                        String new_arg = "";
+                        int compteur = 0;
+                        while ( compteur < tmp2.length )
                         {
-                            String new_arg = "";
-                            while ( (tmp[1].indexOf("+") >= 0) )
+                            if ( tmp2[compteur].indexOf("+") >= 0 )
                             {
-                                char calculation = tmp[1].charAt(0);
-                  //              int inc_arg = Integer.parseInt( tmp[1].substring( tmp[1].indexOf("+")+1, tmp[1].indexOf(" ",tmp[1].indexOf("+")) ) );
-                                int inc_arg = Integer.parseInt( tmp[1].substring( tmp[1].indexOf("+")+1 ) );
-                                new_arg += String.valueOf(inc_arg) + " ";
-                                tmp[1] = tmp[1].substring( 0, tmp[1].indexOf("+")) + String.valueOf(inc_arg) 
-                                    + " " + tmp[1].indexOf(" ", tmp[1].indexOf("+"));
+                                String supposed_to_be_int = tmp2[compteur].substring( tmp2[compteur].indexOf("+")+1 );
+                                if ( !isInt( supposed_to_be_int ) )
+                                {
+                                    return GestionErreur.PARAM_INCORRECTE;
+                                }
 
-                                retour = testArgs(tmp[0], new_arg);
+                                tmp2[compteur] = String.valueOf( supposed_to_be_int );
                             }
+
+                            new_arg += tmp2[compteur] + (compteur == tmp2.length-1 ? "" : " ");
+
+                            compteur++;
                         }
-                        else
-                        {
-                            retour = testArgs(tmp[0], tmp[1]);
-                        }
+
+                        tmp[1] = new_arg;
+                        retour = testArgs(tmp[0], tmp[1]);
                     }
                     else
                     {
