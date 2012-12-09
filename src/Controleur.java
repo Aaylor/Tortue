@@ -900,6 +900,7 @@ public class Controleur{
         if(StockageDonnee.isAColor(couleur)){
         	Color c = StockageDonnee.getColor(couleur);
         	curseur.setCouleur(c);
+            barreOutils.misAJourSliderCouleur( c.getRed(), c.getGreen(), c.getBlue() );
         }
         else{
             StockageDonnee.setParamErreur(couleur, false);
@@ -936,6 +937,7 @@ public class Controleur{
         }
 
     	curseur.setCouleur(new Color(red,green,blue));
+        barreOutils.misAJourSliderCouleur(red, green, blue);
         return GestionErreur.SUCCESS;
     }
 
@@ -1578,7 +1580,6 @@ public class Controleur{
                     cmd += " " + tmp[h];
                     h++;
                 }
-                System.out.println(cmd);
                 
                 i++;
                 commande(cmd,false);

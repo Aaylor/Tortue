@@ -291,7 +291,7 @@ public class StockageDonnee
         }
         else
         {
-            liste_erreurs.put(-1, param);
+            liste_erreurs.put(-1, " : " + param);
         }
     }
 

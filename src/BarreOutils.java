@@ -165,7 +165,6 @@ public class BarreOutils extends JToolBar {
 	    slider.setMajorTickSpacing(25);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
-	    	  curseur.setEpaisseur(((JSlider)event.getSource()).getValue());/*A ENLEVER PAR LA SUITE*/
 	    	  controleur.commande("cursorwidth " + ((JSlider)event.getSource()).getValue(), true);
 	    	  zoneDessin.repaint();
 	      }
@@ -173,6 +172,14 @@ public class BarreOutils extends JToolBar {
 	    
 	    return slider;
 	}
+
+    /**Modifie le slider lors de la commande cursorwidth
+     * @param width largeur
+     */
+    public void misAJourSliderEpaisseur(int width)
+    {
+        sliderEpaisseur.setValue(width);
+    }
 	
 	/**Renvoit le Slider lié à la composante Rouge de la couleur du curseur
 	 * @return Le JSlider lié à la composante Rouge de la couleur du curseur
@@ -242,6 +249,18 @@ public class BarreOutils extends JToolBar {
 	    });	    
 	    return slider;
 	}
+
+    /**Met à jour les sliders
+     * @param red couleur rouge
+     * @param green couleur verte
+     * @param blue couleur bleue
+     */
+    public void misAJourSliderCouleur(int red, int green, int blue)
+    {
+        sliderRed.setValue(red);
+        sliderGreen.setValue(green);
+        sliderBlue.setValue(blue);
+    }
 	
 	/**Fonction renvoyant le Bouton Lever/Poser l'outil
 	 * @return le bouton lever/popser l'outil*/

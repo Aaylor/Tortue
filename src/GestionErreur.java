@@ -31,7 +31,7 @@ public class GestionErreur
      */
     public static String setMessageErreur(int numero_erreur)
     {
-        String message = "   /!\\ Erreur : ";
+        String message = "   /!\\ Erreur";
         String param = StockageDonnee.getParamErreur();
         
         if ( !param.equals("") ) 
