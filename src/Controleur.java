@@ -1485,19 +1485,35 @@ public class Controleur{
     public int repeat(int nombre_de_repetitions, String args)
     {
         String[] command_list = Utilitaire.parseRepeat(args);
+        int[] array_inc = new int[ command_list.length ];
+
+        int j = 0;
         while ( nombre_de_repetitions > 0 )
         {
+            int i = 0;
             for ( String cmd : command_list )
             {
+                if ( (cmd.indexOf("+") >= 0) || (cmd.indexOf("-") >= 0) )
+                {
+                    int inc_arg = Integer.parseInt( cmd.substring( cmd.indexOf("+")+1 ) );
+
+                    array_inc[i] = (j+1) * inc_arg;
+
+                    cmd = cmd.substring( 0, cmd.indexOf("+")) + array_inc[i];
+                    System.out.println(cmd);
+                }
+
+                i++;
                 commande(cmd,false);
             }
+            j++;
             nombre_de_repetitions--;
         }
         return GestionErreur.SUCCESS;
     }
 
     /**
-     *  Fonction qui efface l'historique du terminale
+     *  Fonction qui efface l'ecran de dessin
      *  @return si la fonction s'est bien deroulee.
      */
     public int clear()
@@ -1542,7 +1558,7 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui ferme le programme
+     *  Fonction qui affiche le manuel de la commande
      *  @return si la fonction s'est bien deroulee.
      */
     public int exit()
