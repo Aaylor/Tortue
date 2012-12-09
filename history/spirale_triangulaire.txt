@@ -67,7 +67,7 @@ setcolor 0 0 255
 cursorwidth 2
 rotate 90
 forward 5
-rotate 0
+right
 forward 470
 rotate 120
 forward 438
@@ -79,3 +79,41 @@ rotate 120
 forward 378
 rotate -120
 forward 360
+right
+forward 338
+rotate 120
+forward 317
+rotate -120
+forward 300
+right
+forward 280
+rotate 120
+forward 258
+rotate -120
+forward 241
+right
+forward 220
+rotate 120
+forward 198
+rotate -120
+forward 182
+right
+forward 160
+rotate 120
+forward 138
+rotate -120
+forward 122
+right
+forward 100
+rotate 120
+forward 79
+rotate -120
+forward 62
+right
+forward 42
+rotate 120
+forward 21
+rotate -120
+forward 10
+left
+forward 5
