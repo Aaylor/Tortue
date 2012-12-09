@@ -278,8 +278,8 @@ public class Utilitaire
                             while ( (tmp[1].indexOf("+") >= 0) )
                             {
                                 char calculation = tmp[1].charAt(0);
-                                int inc_arg = Integer.parseInt( tmp[1].substring( tmp[1].indexOf("+")+1, tmp[1].indexOf(" ",tmp[1].indexOf("+")) ) );
-
+                  //              int inc_arg = Integer.parseInt( tmp[1].substring( tmp[1].indexOf("+")+1, tmp[1].indexOf(" ",tmp[1].indexOf("+")) ) );
+                                int inc_arg = Integer.parseInt( tmp[1].substring( tmp[1].indexOf("+")+1 ) );
                                 new_arg += String.valueOf(inc_arg) + " ";
                                 tmp[1] = tmp[1].substring( 0, tmp[1].indexOf("+")) + String.valueOf(inc_arg) 
                                     + " " + tmp[1].indexOf(" ", tmp[1].indexOf("+"));

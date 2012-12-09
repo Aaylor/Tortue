@@ -1559,13 +1559,15 @@ public class Controleur{
             for ( String cmd : command_list )
             {
                 System.out.println(cmd);
-                while ( (cmd.indexOf("+") >= 0) )
+                if ( (cmd.indexOf("+") >= 0) )
                 {
-                    int inc_arg = Integer.parseInt( cmd.substring( cmd.indexOf("+")+1, cmd.indexOf(" ", cmd.indexOf("+")+1 ) ) );
+                 //   int inc_arg = Integer.parseInt( cmd.substring( cmd.indexOf("+")+1, cmd.indexOf(" ", cmd.indexOf("+")+1 ) ) );
+                    int inc_arg = Integer.parseInt( cmd.substring( cmd.indexOf("+")+1 ) );
 
                     array_inc[i] = (j+1) * inc_arg;
 
-                    cmd = cmd.substring( 0, cmd.indexOf("+")) + array_inc[i] + cmd.substring( cmd.indexOf(" ", cmd.indexOf("+")));
+                    //cmd = cmd.substring( 0, cmd.indexOf("+")) + array_inc[i] + cmd.substring( cmd.indexOf(" ", cmd.indexOf("+")));
+                    cmd = cmd.substring( 0, cmd.indexOf("+")) + array_inc[i];
                     System.out.println(cmd);
                 }
 
