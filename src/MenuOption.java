@@ -26,6 +26,8 @@ import javax.swing.JRadioButton;
 public class MenuOption extends JDialog{
     private JRadioButton affichageFenetre = new JRadioButton("Fenêtré");
     private JRadioButton affichagePleinEcran = new JRadioButton("Plein écran");
+    private JRadioButton themeMetal = new JRadioButton("Metal");
+    private JRadioButton themeNimbus = new JRadioButton("Nimbus");
     private JRadioButton posCurseurCentreButton = new JRadioButton("Centré");
     private JRadioButton posCurseurHautGaucheButton = new JRadioButton("En haut à gauche");
 	
@@ -52,6 +54,7 @@ public class MenuOption extends JDialog{
 	
     //Données de configuration du programme
     private static boolean configProgrammeEstFenetre;//True : Le programme se lance en mode fenetre, False : le programme se lance en plein ecran
+    private static boolean configThemeEstMetal;
     private static boolean configCurseurEstCentre;//True : Le curseur est centré au démarrage, False : le curseur est en haut à gauche
     private static int configCurseurRed;
     private static int configCurseurGreen;
@@ -67,7 +70,7 @@ public class MenuOption extends JDialog{
 	
 	public MenuOption(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		this.setSize(300, 620);
+		this.setSize(300, 680);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		initComponent();
@@ -119,6 +122,7 @@ public class MenuOption extends JDialog{
 		panAffichage.setLayout(new BoxLayout(panAffichage, BoxLayout.PAGE_AXIS));
 		panAffichage.setBorder(BorderFactory.createTitledBorder("Affichage"));
 		
+		//Mode d'affichage
 		JLabel labTailleFenetre = new JLabel("Mode d'affichage au démarrage :");
 		
 		ButtonGroup affichage = new ButtonGroup();
@@ -127,10 +131,21 @@ public class MenuOption extends JDialog{
 		if(configProgrammeEstFenetre) affichageFenetre.setSelected(true);
 		else affichagePleinEcran.setSelected(true);
 			
+		//Theme sous Windows
+		JLabel labTheme = new JLabel("Thème sous Windows :");
+		
+		ButtonGroup themeGroup = new ButtonGroup();
+		themeGroup.add(themeMetal);
+		themeGroup.add(themeNimbus);
+		if(configThemeEstMetal) themeMetal.setSelected(true);
+		else themeNimbus.setSelected(true);
 		
 		panAffichage.add(labTailleFenetre);
 		panAffichage.add(affichageFenetre);
 		panAffichage.add(affichagePleinEcran);
+		panAffichage.add(labTheme);
+		panAffichage.add(themeMetal);
+		panAffichage.add(themeNimbus);
 		
 		//Curseur
 		JPanel panCurseur = new JPanel();
@@ -294,7 +309,7 @@ public class MenuOption extends JDialog{
 		 //POSITIONNEMENT DU TOUT DANS LA DIALOGUE BOX //
 		////////////////////////////////////////////////
 			//Tailles
-		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 90));
+		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 150));
 		panCurseur.setPreferredSize(new Dimension(this.getWidth() - 20, 235));
 		panDessin.setPreferredSize(new Dimension(this.getWidth() - 20, 205));
 		
@@ -575,6 +590,11 @@ public class MenuOption extends JDialog{
           //On écrit dans le fichier
     		//Données 1 : Mode plein ecran
     		w.println("full screen=" + !affichageFenetre.isSelected());
+    		//Données 1bis : Theme sous windows
+    		if(themeMetal.isSelected())
+    			w.println("design=metal");
+    		else
+    			w.println("design=nimbus");
     		//Données 2 : si true, le curseur est centré
     		w.println("cursor at the center=" + posCurseurCentreButton.isSelected());
     		//Données 3 : valeur Red du curseur
@@ -653,7 +673,9 @@ public class MenuOption extends JDialog{
     public static int getConfigCurseurEpaisseur(){
     	return configCurseurEpaisseur;
     }
-    
+    public static boolean getConfigThemeEstMetal(){
+		return configThemeEstMetal;
+	}
     
 	  ////////////////////////////////////////////
 	 //          MODIFIEURS
@@ -691,5 +713,8 @@ public class MenuOption extends JDialog{
 	}
 	public static void setConfigCurseurEpaisseur(int a){
 		configCurseurEpaisseur = a;
+	}
+	public static void setConfigThemeEstMetal(boolean a){
+		configThemeEstMetal = a;
 	}
 }

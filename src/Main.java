@@ -52,16 +52,14 @@ public class Main{
     	Color couleurBackgroundDessin = new Color(MenuOption.getConfigDessinBackgroundRed(), MenuOption.getConfigDessinBackgroundGreen(), MenuOption.getConfigDessinBackgroundBlue());
     	
     	
-    	//Initialisation des composants
-    	
     	Curseur curseur = new Curseur(posXCurseur, posYCurseur, 90, couleurCurseur, (short)0, epaisseurCurseur, (short)0);
     	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, couleurBackgroundDessin, curseur);
     	BarreOutils barreOutils = new BarreOutils(curseur, zoneDessin);
     	zoneDessin.setBarreOutils(barreOutils);
     	Fenetre fenetre = new Fenetre(zoneDessin, barreOutils);
-        
     	Controleur c = new Controleur(fenetre, curseur);
-        
+    	
+    	fenetre.rendreVisible();
     }
 
     /**
@@ -180,7 +178,16 @@ public class Main{
     						if(stringToInt(valeur)>=1 && stringToInt(valeur)<=500)
     							MenuOption.setConfigCurseurEpaisseur(stringToInt(valeur));
     					}
-    				}    				
+    				}
+    				else if(ligne.startsWith("design=")){
+    					if(ligne.endsWith("nimbus")){
+    						MenuOption.setConfigThemeEstMetal(false);
+    						Fenetre.definirThemeNimbus();
+    					}
+    					else{
+    						MenuOption.setConfigThemeEstMetal(true);
+    					}
+    				}
     			}
     			br.close(); 
     		}		
@@ -214,6 +221,8 @@ public class Main{
 	          //On écrit dans le fichier
 	    		//Données 1 : Mode plein ecran
 	    		w.println("full screen=false");
+	    		//Données 1bis : Theme sous windows
+	    		w.println("design=nimbus");
 	    		//Données 2 : si true, le curseur est centré
 	    		w.println("cursor at the center=true");
 	    		//Données 3 : valeur Red du curseur
@@ -254,6 +263,8 @@ public class Main{
     	//Chargement des données par défaut
 	    //Données 1 : si true, la fenetre est en mode fenetré
 	    MenuOption.setConfigProgrammeEstFenetre(true);
+	  //Données 1bis : si true, la theme par defaut est Metal
+	    MenuOption.setConfigThemeEstMetal(false);
 	    //Données 2 : si true, le curseur est centré
 	    MenuOption.setConfigCurseurEstCentre(true);
 	    //Données 3 : valeur Red du curseur
@@ -296,25 +307,12 @@ public class Main{
     return i; 
     }
     
-    public static void setBestLookAndFeelAvailable(){
-    	   String system_lf = UIManager.getSystemLookAndFeelClassName().toLowerCase();
-    	   if(system_lf.contains("metal")){
-    	       try {
-    	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-    	       }catch (Exception e) {}
-    	   }else{
-    	       try {
-    	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    	       }catch (Exception e) {}
-    	   }
-    	 }
     /**
      *  Fonction main
      *  @param args     Parametres des lignes de commandes
      */
     public static void main(String[] args)
     {
-    	setBestLookAndFeelAvailable();
         init();
         start_program();
 
