@@ -1497,7 +1497,7 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui efface l'ecran de dessin
+     *  Fonction qui efface l'historique du terminale
      *  @return si la fonction s'est bien deroulee.
      */
     public int clear()
@@ -1542,7 +1542,7 @@ public class Controleur{
     }
 
     /**
-     *  Fonction qui affiche le manuel de la commande
+     *  Fonction qui ferme le programme
      *  @return si la fonction s'est bien deroulee.
      */
     public int exit()
