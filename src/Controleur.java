@@ -817,12 +817,17 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
     
+    /**
+     *  Fonction qui permet de deplacer le pointeur au centre
+     *  @return si la fonction s'est bien deroulee.
+     */
     public int center(){
     	
     	int x=zd.getLargeurDessin()/2;
     	int y=zd.getHauteurDessin()/2;
     	curseur.setPosition(x, y);
     	
+    	this.zd.repaint();
     	return GestionErreur.SUCCESS;
     }
     
