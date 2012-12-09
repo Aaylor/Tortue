@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class Main{
 
@@ -295,13 +296,25 @@ public class Main{
     return i; 
     }
     
+    public static void setBestLookAndFeelAvailable(){
+    	   String system_lf = UIManager.getSystemLookAndFeelClassName().toLowerCase();
+    	   if(system_lf.contains("metal")){
+    	       try {
+    	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+    	       }catch (Exception e) {}
+    	   }else{
+    	       try {
+    	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    	       }catch (Exception e) {}
+    	   }
+    	 }
     /**
      *  Fonction main
      *  @param args     Parametres des lignes de commandes
      */
     public static void main(String[] args)
     {
-
+    	setBestLookAndFeelAvailable();
         init();
         start_program();
 
