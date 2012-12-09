@@ -9,7 +9,7 @@ import java.util.Enumeration;
 @SuppressWarnings("serial")
 public class Terminal extends JPanel implements KeyListener{
 
-    private static final JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
+    private static final JTextArea historique = new JTextArea("Bienvenue dans Carapuce, le logiciel de type Tortue !\n");
     private static final JScrollPane scroll_pane = new JScrollPane(historique,
             JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     
