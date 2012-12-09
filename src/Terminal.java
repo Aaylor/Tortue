@@ -228,7 +228,9 @@ public class Terminal extends JPanel implements KeyListener{
         String term_text = historique.getText().toLowerCase();
         return term_text.lastIndexOf(s.toLowerCase());
     }
-
+    public JTextArea getTextArea(){
+    	return historique;
+    }
     /**
      *  Remplace par une chaîne de caractère, à la position donnée, dans l'historique du terminal
      *  @param remplacement Chaîne de caractère qui va remplacer l'ancienne
