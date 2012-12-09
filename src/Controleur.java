@@ -886,6 +886,7 @@ public class Controleur{
     public int cursorWidth(int valeur)
     {
         curseur.setEpaisseur(valeur);
+        barreOutils.misAJourSliderEpaisseur(valeur);
         zd.repaint();
         return GestionErreur.SUCCESS;
     }

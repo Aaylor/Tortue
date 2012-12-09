@@ -287,11 +287,11 @@ public class StockageDonnee
     {
         if ( append )
         {
-            liste_erreurs.put(-1, liste_erreurs.get(-1) + " : " + param); 
+            liste_erreurs.put(-1, liste_erreurs.get(-1) + ": " + param); 
         }
         else
         {
-            liste_erreurs.put(-1, " : " + param);
+            liste_erreurs.put(-1, ": " + param);
         }
     }
 

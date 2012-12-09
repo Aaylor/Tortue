@@ -27,7 +27,7 @@ public class Fenetre extends JFrame{
      *  Constructeur de la fenetre
      */
 	Fenetre(ZoneDessin zoneDessin, BarreOutils barreOutils){
-		//Initialisation de la JFrame
+        //Initialisation de la JFrame
 		this.setTitle("Carapuce");
 		//Taille et caractéristiques de la JFrame
 		if(MenuOption.getConfigProgrammeEstFenetre())
@@ -52,7 +52,7 @@ public class Fenetre extends JFrame{
 		conteneurVertical.setLayout(new BorderLayout());
 		this.barreOutils = barreOutils; 
 		conteneurVertical.add(barreOutils, BorderLayout.NORTH);
-		conteneurVertical.add(terminal);
+        conteneurVertical.add(terminal);
 		
 		Box conteneurPrincipal = Box.createHorizontalBox();
 		conteneurPrincipal.add(scrollPaneZoneDessin);

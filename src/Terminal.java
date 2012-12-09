@@ -9,7 +9,7 @@ import java.util.Enumeration;
 @SuppressWarnings("serial")
 public class Terminal extends JPanel implements KeyListener{
 
-    private static final JTextArea historique = new JTextArea("Bienvenue dans Carapuce, le logiciel de type Tortue !\n");
+    private static final JTextArea historique = new JTextArea("Bienvenue sur Carapuce ! Le logiciel fait pour les tortues !\n");
     private static final JScrollPane scroll_pane = new JScrollPane(historique,
             JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
     
@@ -31,7 +31,6 @@ public class Terminal extends JPanel implements KeyListener{
         this.add(Terminal.scroll_pane, BorderLayout.CENTER);
         
         this.champ_de_commande.addKeyListener(this);
-
     }
     
 
@@ -133,12 +132,13 @@ public class Terminal extends JPanel implements KeyListener{
     {
 
         this.champ_de_commande = new JTextField(50);
+        this.champ_de_commande.setFocusable(true);
+        this.champ_de_commande.setFocusTraversalKeysEnabled(false);
+        this.champ_de_commande.requestFocusInWindow();
         this.champ_de_commande.setBackground(Color.black);
         this.champ_de_commande.setForeground(Color.white);
+        this.champ_de_commande.setCaretColor(Color.white);
         this.champ_de_commande.setSize( this.getWidth(), 20 );
-        this.champ_de_commande.setFocusable(true);
-        this.champ_de_commande.requestFocus();
-        this.champ_de_commande.setFocusTraversalKeysEnabled(false);
 
         Terminal.historique.setLineWrap(true);
         Terminal.historique.setWrapStyleWord(true);
@@ -228,9 +228,7 @@ public class Terminal extends JPanel implements KeyListener{
         String term_text = historique.getText().toLowerCase();
         return term_text.lastIndexOf(s.toLowerCase());
     }
-    public JTextArea getTextArea(){
-    	return historique;
-    }
+
     /**
      *  Remplace par une chaîne de caractère, à la position donnée, dans l'historique du terminal
      *  @param remplacement Chaîne de caractère qui va remplacer l'ancienne
