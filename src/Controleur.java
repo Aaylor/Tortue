@@ -640,6 +640,8 @@ public class Controleur{
                 commande( StockageDonnee.getLCEC(i), false );
                 i++;
             }
+
+            StockageDonnee.videLCU();
         }
         else
         {
