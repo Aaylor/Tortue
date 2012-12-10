@@ -19,6 +19,7 @@ public class StockageDonnee
     
     private static String pathname_save = new String("");
     private static boolean image_save = true;
+    private static boolean has_undone = false;
 
     /**
      *  Fonction qui initialise toutes les collections
@@ -402,6 +403,11 @@ public class StockageDonnee
         {
             changeImageSave();
         }
+
+        if ( has_undone )
+        {
+            videLCU();
+        }
         return true;
     }
 
@@ -624,6 +630,24 @@ public class StockageDonnee
     public static void setImageSave(boolean b)
     {
         image_save = b;
+    }
+
+    /**
+     *  Fonctiion qui change la valeur du boolean
+     *  @param b nouvelle valeur du boolean
+     */
+    public static void setHasUndone(boolean b)
+    {
+        has_undone = b;
+    }
+
+    /**
+     *  Fonction qui renvoie la valeur du boolean
+     *  @return boolean
+     */
+    public static boolean getHasUndone()
+    {
+        return has_undone;
     }
 
     /**

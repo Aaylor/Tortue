@@ -648,7 +648,7 @@ public class Controleur{
                 i++;
             }
 
-            StockageDonnee.videLCU();
+            StockageDonnee.setHasUndone(true);
         }
         else
         {
