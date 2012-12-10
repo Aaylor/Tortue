@@ -130,6 +130,19 @@ public class Utilitaire
                 JOptionPane.QUESTION_MESSAGE);
     }
 
+    /**
+     *  Affiche et renvoie l'action de l'utilisateur
+     *  @param msg_dialog Le message afficher à l'écran
+     *  @param title Titre de la fenêtre
+     */
+     public static void getInformationalPane(String msg_dialog, String title)
+     {
+        new JOptionPane().showMessageDialog(null,
+            msg_dialog,
+            title,
+            JOptionPane.INFORMATION_MESSAGE);
+     }
+
     public static boolean isACommand(String command)
     {
         return StockageDonnee.getNumeroFonction(command) != -1; 

@@ -1626,12 +1626,19 @@ public class Controleur{
         if ( isNotEmpty )
         {
             if ( Utilitaire.isACommand(commande) )
-                System.out.println(StockageDonnee.getManuel(commande));
+            {
+                Utilitaire.getInformationalPane( StockageDonnee.getManuel(commande), commande.toUpperCase() );
+            }
             else
-                System.out.println("La commande n'existe pas");
+            {
+                StockageDonnee.setParamErreur(commande, false);
+                return GestionErreur.PARAM_MAN_INCORRECTE; 
+            }
         }
         else
-            System.out.println("Quel page voulez vous ? (Syntaxe : man <commande>)");
+        {
+           term.addMessage("   Indiquez la commande souhaitée. ( Syntaxe : \"man <commande>\" )"); 
+        }
         return GestionErreur.SUCCESS;
 
     }

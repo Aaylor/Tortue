@@ -12,7 +12,8 @@ public class GestionErreur
     public static final int PARAM_INCORRECTE = 202;
     public static final int COULEUR_INEXISTANTE = 203;
     public static final int REPEAT_PARAM_NON_VALIDE = 204;
-   
+    public static final int PARAM_MAN_INCORRECTE = 205;
+
     /*  Erreur Undo/Redo    */
     public static final int CANT_UNDO = 300;
     public static final int CANT_REDO = 301;
