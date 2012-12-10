@@ -380,7 +380,7 @@ public class StockageDonnee
      *  Fonction ajoutant la commande à la collection correspondante
      *  @param commande Commande entrée par l'utilisateur
      */
-    public static boolean ajoutLCEC(String[] commande, boolean verifLastCommand)
+    public static boolean ajoutLCEC(String[] commande, boolean verifLastCommand, boolean removeRedo)
     {
 
         String s = "";
@@ -414,10 +414,11 @@ public class StockageDonnee
             changeImageSave();
         }
 
-        if ( has_undone )
+        if ( removeRedo && has_undone )
         {
             videLCU();
         }
+
         return true;
     }
 

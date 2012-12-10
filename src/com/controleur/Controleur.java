@@ -247,7 +247,7 @@ public class Controleur{
                 retour = pendown();
                 if ( retour == 0 && write )
                 {
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
                 }
 
                 return retour;
@@ -256,70 +256,70 @@ public class Controleur{
             case 1:
                 retour = penup();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
 
             case 2:
                 retour = pencil();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
 
             case 3:
                 retour = eraser();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
             
                 return retour;
 
             case 4:
                 retour = change_forme();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
 
             case 5:
                 retour = up();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
             
             case 6:
                 retour = down();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
             
             case 7:
                 retour = left();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
             
             case 8:
                 retour = right();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
 
             case 9:
                 retour = center();
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
             
             case 10:
                 retour = rotate( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
            
@@ -332,14 +332,14 @@ public class Controleur{
             case 13:
                 retour = forward( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, false);
+                    StockageDonnee.ajoutLCEC(commande_parser, false, true);
 
                 return retour;
             
             case 14:
                 retour = backward( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, false);
+                    StockageDonnee.ajoutLCEC(commande_parser, false, true);
 
                 return retour;
             
@@ -351,14 +351,14 @@ public class Controleur{
                     verif = true;
                 
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, verif);
+                    StockageDonnee.ajoutLCEC(commande_parser, verif, true);
 
                 return retour;
             
             case 16:
                 retour = cursorWidth( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
 
@@ -375,7 +375,7 @@ public class Controleur{
                 }
 
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
            
                 return retour;
 
@@ -392,7 +392,7 @@ public class Controleur{
                 }
 
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
            
                 return retour;
             
@@ -487,7 +487,7 @@ public class Controleur{
                 retour = repeat(nombre_de_repetition, args.trim());
                 
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, false);
+                    StockageDonnee.ajoutLCEC(commande_parser, false, true);
 
                 return retour;
                 
@@ -678,7 +678,7 @@ public class Controleur{
         if ( Utilitaire.canRedo() )
         {
             StockageDonnee.ajoutLCEC( new String[]{ StockageDonnee.remove_liste_commande_undo(
-                        StockageDonnee.getSize_LCU()-1) } , false );
+                        StockageDonnee.getSize_LCU()-1) } , false, false );
             StockageDonnee.videListeDessin();
             
             curseur.mergeCurseur(first_curseur);
@@ -1570,6 +1570,7 @@ public class Controleur{
             int i = 0;
             for ( String cmd : command_list )
             {
+                System.out.println(cmd);
                 String[] tmp = cmd.split(" ");
                 int compteur = 0;
                
