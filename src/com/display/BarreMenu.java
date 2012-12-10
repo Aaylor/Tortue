@@ -27,6 +27,10 @@ public class BarreMenu extends JMenuBar{
     
     //JMenu "Outils"
 	private JMenu menuOutils = new JMenu("Outils");
+	private JMenu changerTheme = new JMenu("Changer de thème");
+	private JMenuItem themeSysteme = new JMenuItem("Système");
+	private JMenuItem themeNimbus = new JMenuItem("Nimbus");
+	private JMenuItem themeMetal = new JMenuItem("Metal");
 	private JMenuItem options = new JMenuItem("Paramètres");
 	private JMenuItem aPropos = new JMenuItem("A propos");
 	
@@ -104,6 +108,7 @@ public class BarreMenu extends JMenuBar{
 				aPropos();
 			}
 		});
+		
 		
 	}
 	

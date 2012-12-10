@@ -1,5 +1,8 @@
 package com.display;
 
+
+//import de.javasoft.plaf.synthetica.SyntheticaStandardLookAndFeel;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
@@ -101,9 +104,20 @@ public class Fenetre extends JFrame{
 	       }catch (Exception e) {}
  	 }
     public static void definirThemeSysteme(){
-	 	try {
+    	/*
+        try 
+        {
+          UIManager.setLookAndFeel(new SyntheticaStandardLookAndFeel());
+        } 
+        catch (Exception e) 
+        {
+          e.printStackTrace();
+        }
+	 	*/
+    	try {
 	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	       }catch (Exception e) {}
+	       
   	 }
     public static void definirThemeMetal(){
     	try {

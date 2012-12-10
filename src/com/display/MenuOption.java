@@ -316,17 +316,7 @@ public class MenuOption extends JDialog{
 		 //POSITIONNEMENT DU TOUT DANS LA DIALOGUE BOX //
 		////////////////////////////////////////////////
 			//Tailles
-		/*
-		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 150));
-		panCurseur.setPreferredSize(new Dimension(this.getWidth() - 20, 235));
-		panDessin.setPreferredSize(new Dimension(this.getWidth() - 20, 205));
-		
-		panAffichage.add(labTailleFenetre);
-		panAffichage.add(affichageFenetre);
-		panAffichage.add(affichagePleinEcran);
-		panAffichage.add(panThemePredefini);
-		*/
-		
+
 		panAffichage.setMinimumSize(new Dimension(this.getWidth() - 20, 0));
 		panAffichage.setMaximumSize(new Dimension(this.getWidth() - 20, Short.MAX_VALUE));
 		
@@ -351,31 +341,29 @@ public class MenuOption extends JDialog{
 		
 		panCouleurRougeDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurRougeDefinir.setLayout(new BoxLayout(panCouleurRougeDefinir, BoxLayout.LINE_AXIS));
-		panCouleurRougeDefinir.setMaximumSize(new Dimension(105, 20));
+		panCouleurRougeDefinir.setMaximumSize(new Dimension(105, 22));
 		
-		panCouleurVertDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDefinir.setLayout(new BoxLayout(panCouleurVertDefinir, BoxLayout.LINE_AXIS));
-		panCouleurVertDefinir.setMaximumSize(new Dimension(105, 20));
+		panCouleurVertDefinir.setMaximumSize(new Dimension(105, 22));
 		
 		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
-		panCouleurBleuDefinir.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDefinir.setLayout(new BoxLayout(panCouleurBleuDefinir, BoxLayout.LINE_AXIS));
-		panCouleurBleuDefinir.setMaximumSize(new Dimension(105, 20));
+		panCouleurBleuDefinir.setMaximumSize(new Dimension(105, 22));
 
 
 		panChoixCurseurEpaisseur.setAlignmentX(LEFT_ALIGNMENT);
 		panChoixCurseurEpaisseur.setLayout(new BoxLayout(panChoixCurseurEpaisseur, BoxLayout.LINE_AXIS));
-		curseurEpaisseurTextField.setMaximumSize(new Dimension(45, 20));
+		curseurEpaisseurTextField.setMaximumSize(new Dimension(45, 22));
 		
 			//Dessin
 		labTailleDessin.setAlignmentX(LEFT_ALIGNMENT);
 		panChoixLargeurDessin.setAlignmentX(LEFT_ALIGNMENT);
 		panChoixLargeurDessin.setLayout(new BoxLayout(panChoixLargeurDessin, BoxLayout.LINE_AXIS));
-		largeurDessinTextField.setMaximumSize(new Dimension(80, 20));
+		largeurDessinTextField.setMaximumSize(new Dimension(80, 22));
 		panChoixHauteurDessin.setAlignmentX(LEFT_ALIGNMENT);
 		panChoixHauteurDessin.setLayout(new BoxLayout(panChoixHauteurDessin, BoxLayout.LINE_AXIS));
-		hauteurDessinTextField.setMaximumSize(new Dimension(80, 20));
+		hauteurDessinTextField.setMaximumSize(new Dimension(80, 22));
 		
 		panCouleurDessinPredefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurDessinPredefinie.setLayout(new BoxLayout(panCouleurDessinPredefinie, BoxLayout.LINE_AXIS));
@@ -385,15 +373,15 @@ public class MenuOption extends JDialog{
 		
 		panCouleurRougeDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurRougeDessinDefinie.setLayout(new BoxLayout(panCouleurRougeDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurRougeDessinDefinie.setMaximumSize(new Dimension(105, 20));
+		panCouleurRougeDessinDefinie.setMaximumSize(new Dimension(105, 22));
 		
 		panCouleurVertDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurVertDessinDefinie.setLayout(new BoxLayout(panCouleurVertDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurVertDessinDefinie.setMaximumSize(new Dimension(105, 20));
+		panCouleurVertDessinDefinie.setMaximumSize(new Dimension(105, 22));
 		
 		panCouleurBleuDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDessinDefinie.setLayout(new BoxLayout(panCouleurBleuDessinDefinie, BoxLayout.LINE_AXIS));
-		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(105, 20));
+		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(105, 22));
 		
 		
 		
