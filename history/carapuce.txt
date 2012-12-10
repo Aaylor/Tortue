@@ -1,0 +1,334 @@
+##################################################
+##################################################
+##		HISTORIQUE GENERE LE		##
+##		12-12-12_18-46-12		##
+##################################################
+##################################################
+
+new
+width 500
+height 500
+penup
+penup 
+cursorwidth 10 
+goto 216 50 
+pendown 
+forme 
+forward 60 
+down 
+forward 10 
+right 
+forward 20 
+down 
+forward 10 
+right 
+forward 10 
+down 
+forward 10 
+right 
+forward 10 
+down 
+forward 10 
+right 
+forward 10 
+down 
+forward 20 
+right 
+forward 10 
+down 
+forward 70 
+left 
+forward 10 
+down 
+forward 30 
+right 
+forward 20 
+up 
+forward 10 
+right 
+forward 10 
+up 
+forward 10 
+right 
+forward 30 
+down 
+forward 10 
+right 
+forward 10 
+down 
+left 
+forward 10 
+down 
+forward 20 
+left 
+forward 10 
+down 
+forward 20 
+left 
+forward 10 
+down 
+forward 30 
+right 
+forward 10 
+down 
+forward 20 
+right 
+forward 20 
+up 
+forward 10 
+right 
+forward 10 
+up 
+forward 10 
+right 
+forward 20 
+up 
+forward 10 
+right 
+forward 30 
+down 
+forward 10 
+right 
+forward 10 
+down 
+forward 10 
+right 
+forward 10 
+down 
+forward 20 
+right 
+forward 10 
+down 
+forward 20 
+left 
+forward 10 
+down 
+forward 20 
+left 
+forward 10 
+down 
+forward 10 
+left 
+forward 10 
+down 
+forward 10 
+left 
+forward 20 
+down 
+forward 10 
+left 
+forward 30 
+down 
+forward 10 
+left 
+forward 30 
+down 
+forward 40 
+right 
+forward 10 
+down 
+forward 10 
+left 
+forward 20 
+down 
+forward 10 
+left 
+forward 10 
+up 
+forward 10 
+left 
+forward 20 
+down 
+forward 10 
+left 
+forward 10 
+up 
+forward 10 
+left 
+forward 10 
+up 
+forward 20 
+left 
+forward 10 
+up 
+forward 10 
+left 
+forward 70 
+down 
+forward 10 
+left 
+forward 10 
+down 
+forward 10 
+left 
+forward 20 
+down 
+forward 10 
+left 
+forward 10 
+up 
+forward 10 
+left 
+forward 20 
+down 
+forward 10 
+left 
+forward 10 
+up 
+forward 10 
+left 
+forward 10 
+right 
+forward 10 
+up 
+forward 30 
+left 
+forward 10 
+up 
+forward 30 
+right 
+forward 10 
+up 
+forward 10 
+right 
+forward 10 
+up 
+forward 10 
+right 
+forward 10 
+up 
+forward 80 
+left 
+forward 20 
+up 
+forward 10 
+left 
+forward 20 
+up 
+forward 10 
+left 
+forward 10 
+up 
+forward 10 
+left 
+forward 10 
+up 
+forward 40 
+down 
+forward 10 
+right 
+forward 20 
+up 
+forward 10 
+down 
+forward 10 
+right 
+forward 30 
+up 
+forward 10 
+forward 10 
+left 
+forward 10 
+up 
+forward 10 
+left 
+forward 10 
+up 
+forward 10 
+right 
+forward 10 
+up 
+forward 50 
+right 
+forward 10 
+up 
+forward 20 
+right 
+forward 10 
+up 
+forward 10 
+right 
+forward 10 
+up 
+forward 10 
+right 
+forward 10 
+up 
+forward 10 
+right 
+forward 20 
+up 
+penup 
+backward 60 
+left 
+forward 50 
+down 
+setcolor 191 0 0 
+pendown 
+forward 10 
+setcolor 255 255 255 
+forward 10 
+setcolor 191 0 0 
+forward 10 
+setcolor 0 0 0 
+forward 10 
+setcolor 255 255 255 
+left 
+forward 10 
+down 
+forward 10 
+right 
+forward 10 
+setcolor 0 191 255 
+forward 10 
+setcolor 0 0 255 
+forward 10 
+up 
+setcolor 0 191 255 
+forward 70 
+left 
+forward 10 
+up 
+forward 10 
+backward 40 
+setcolor 0 0 255 
+backward 20 
+setcolor 0 191 255 
+backward 10 
+penup 
+backward 20 
+pendown 
+backward 10 
+setcolor 0 0 0 
+backward 10 
+setcolor 0 0 255 
+backward 10 
+setcolor 0 0 0 
+backward 10 
+setcolor 0 191 255 
+backward 10 
+left 
+forward 40 
+forward 10 
+setcolor 0 0 255 
+up 
+forward 10 
+setcolor 0 191 255 
+forward 20 
+backward 20 
+left 
+forward 10 
+backward 60 
+forward 30 
+up 
+forward 10 
+left 
+forward 10 
+backward 20 
+setcolor 0 0 255 
+backward 10 
+penup 
+forward 50 
+pendown 
+up 
+forward 20 
