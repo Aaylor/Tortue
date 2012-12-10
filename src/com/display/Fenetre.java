@@ -98,16 +98,22 @@ public class Fenetre extends JFrame{
   		this.setVisible(true);
 	}
     public static void definirThemeNimbus(){
- 	   String system_lf = UIManager.getSystemLookAndFeelClassName().toLowerCase();
- 	   if(system_lf.contains("metal")){
- 	       try {
- 	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
- 	       }catch (Exception e) {}
- 	   }else{
- 	       try {
- 	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
- 	       }catch (Exception e) {}
- 	   }
+	 	try {
+	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	       }catch (Exception e) {}/*
+    	try {
+	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+	       }catch (Exception e) {}*/
+ 	 }
+    public static void definirThemeSysteme(){
+	 	try {
+	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	       }catch (Exception e) {}
+  	 }
+    public static void definirThemeMetal(){
+    	try {
+	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+	       }catch (Exception e) {}
  	 }
 	
 	  /////////////////////////////////////////////////
