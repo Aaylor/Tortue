@@ -188,12 +188,17 @@ public class Main{
     					}
     				}
     				else if(ligne.startsWith("design=")){
+    					if(ligne.endsWith("system")){
+    						MenuOption.setConfigTheme(0);
+    						Fenetre.definirThemeSysteme();
+    					}
     					if(ligne.endsWith("nimbus")){
-    						MenuOption.setConfigThemeEstMetal(false);
+    						MenuOption.setConfigTheme(1);
     						Fenetre.definirThemeNimbus();
     					}
-    					else{
-    						MenuOption.setConfigThemeEstMetal(true);
+    					if(ligne.endsWith("metal")){
+    						MenuOption.setConfigTheme(2);
+    						Fenetre.definirThemeMetal();
     					}
     				}
     			}
@@ -230,7 +235,7 @@ public class Main{
 	    		//Données 1 : Mode plein ecran
 	    		w.println("full screen=false");
 	    		//Données 1bis : Theme sous windows
-	    		w.println("design=nimbus");
+	    		w.println("design=system");
 	    		//Données 2 : si true, le curseur est centré
 	    		w.println("cursor at the center=true");
 	    		//Données 3 : valeur Red du curseur
@@ -271,8 +276,8 @@ public class Main{
     	//Chargement des données par défaut
 	    //Données 1 : si true, la fenetre est en mode fenetré
 	    MenuOption.setConfigProgrammeEstFenetre(true);
-	  //Données 1bis : si true, la theme par defaut est Metal
-	    MenuOption.setConfigThemeEstMetal(false);
+	    //Données 1bis : 0: Thème fourni par le systeme
+	    MenuOption.setConfigTheme(0);
 	    //Données 2 : si true, le curseur est centré
 	    MenuOption.setConfigCurseurEstCentre(true);
 	    //Données 3 : valeur Red du curseur

@@ -97,7 +97,7 @@ public class Fenetre extends JFrame{
 	}
     public static void definirThemeNimbus(){
     	try {
-	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+	           UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 	       }catch (Exception e) {}
  	 }
     public static void definirThemeSysteme(){
@@ -107,7 +107,7 @@ public class Fenetre extends JFrame{
   	 }
     public static void definirThemeMetal(){
     	try {
-	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+	           UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 	       }catch (Exception e) {}
  	 }
 	

@@ -1,5 +1,6 @@
 package com.display;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,8 +29,7 @@ import javax.swing.JRadioButton;
 public class MenuOption extends JDialog{
     private JRadioButton affichageFenetre = new JRadioButton("Fenêtré");
     private JRadioButton affichagePleinEcran = new JRadioButton("Plein écran");
-    private JRadioButton themeMetal = new JRadioButton("Metal");
-    private JRadioButton themeNimbus = new JRadioButton("Nimbus");
+    private JComboBox themeComboBox;
     private JRadioButton posCurseurCentreButton = new JRadioButton("Centré");
     private JRadioButton posCurseurHautGaucheButton = new JRadioButton("En haut à gauche");
 	
@@ -53,10 +53,11 @@ public class MenuOption extends JDialog{
     private JFormattedTextField curseurEpaisseurTextField;
 	
     private String[] couleursPredefinie = {"Noir", "Bleu", "Cyan", "Gris", "Vert", "Magenta", "Orange", "Rose", "Rouge", "Jaune", "Blanc"};
+    private String[] themeDisponibles = {"Système", "Nimbus", "Metal"};
 	
     //Données de configuration du programme
     private static boolean configProgrammeEstFenetre;//True : Le programme se lance en mode fenetre, False : le programme se lance en plein ecran
-    private static boolean configThemeEstMetal;
+    private static int configTheme;
     private static boolean configCurseurEstCentre;//True : Le curseur est centré au démarrage, False : le curseur est en haut à gauche
     private static int configCurseurRed;
     private static int configCurseurGreen;
@@ -134,20 +135,19 @@ public class MenuOption extends JDialog{
 		else affichagePleinEcran.setSelected(true);
 			
 		//Theme sous Windows
+		JPanel panThemePredefini = new JPanel();
 		JLabel labTheme = new JLabel("Thème sous Windows :");
-		
-		ButtonGroup themeGroup = new ButtonGroup();
-		themeGroup.add(themeMetal);
-		themeGroup.add(themeNimbus);
-		if(configThemeEstMetal) themeMetal.setSelected(true);
-		else themeNimbus.setSelected(true);
+
+		themeComboBox = new JComboBox();
+		for(int i = 0; i<themeDisponibles.length; i++)
+			themeComboBox.addItem(themeDisponibles[i]);
+		panThemePredefini.add(labTheme);
+		panThemePredefini.add(themeComboBox);
 		
 		panAffichage.add(labTailleFenetre);
 		panAffichage.add(affichageFenetre);
 		panAffichage.add(affichagePleinEcran);
-		panAffichage.add(labTheme);
-		panAffichage.add(themeMetal);
-		panAffichage.add(themeNimbus);
+		panAffichage.add(panThemePredefini);
 		
 		//Curseur
 		JPanel panCurseur = new JPanel();
@@ -317,6 +317,11 @@ public class MenuOption extends JDialog{
 		
 			//Positionnement dans les section
 			//Affichage
+		panThemePredefini.setAlignmentX(LEFT_ALIGNMENT);
+		panThemePredefini.setLayout(new BoxLayout(panThemePredefini, BoxLayout.LINE_AXIS));
+		themeComboBox.setMaximumSize(new Dimension(80, 18));
+		
+			//Curseur
 		labCouleurCurseur.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurCurseurPredefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurCurseurPredefinie.setLayout(new BoxLayout(panCouleurCurseurPredefinie, BoxLayout.LINE_AXIS));
@@ -593,9 +598,13 @@ public class MenuOption extends JDialog{
     		//Données 1 : Mode plein ecran
     		w.println("full screen=" + !affichageFenetre.isSelected());
     		//Données 1bis : Theme sous windows
-    		if(themeMetal.isSelected())
+    		String theme = (String)themeComboBox.getSelectedItem();
+    		theme = theme.toLowerCase(); 		
+    		if(theme.startsWith("syst"))
+    			w.println("design=system");
+    		else if(theme.equals("metal"))
     			w.println("design=metal");
-    		else
+    		else if(theme.equals("nimbus"))
     			w.println("design=nimbus");
     		//Données 2 : si true, le curseur est centré
     		w.println("cursor at the center=" + posCurseurCentreButton.isSelected());
@@ -675,8 +684,8 @@ public class MenuOption extends JDialog{
     public static int getConfigCurseurEpaisseur(){
     	return configCurseurEpaisseur;
     }
-    public static boolean getConfigThemeEstMetal(){
-		return configThemeEstMetal;
+    public static int getConfigTheme(){
+		return configTheme;
 	}
     
 	  ////////////////////////////////////////////
@@ -716,7 +725,7 @@ public class MenuOption extends JDialog{
 	public static void setConfigCurseurEpaisseur(int a){
 		configCurseurEpaisseur = a;
 	}
-	public static void setConfigThemeEstMetal(boolean a){
-		configThemeEstMetal = a;
+	public static void setConfigTheme(int a){
+		configTheme = a;
 	}
 }
