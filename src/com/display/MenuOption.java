@@ -1,3 +1,5 @@
+package com.display;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +23,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 @SuppressWarnings("serial")
 public class MenuOption extends JDialog{

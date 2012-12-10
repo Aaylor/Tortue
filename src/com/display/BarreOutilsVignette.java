@@ -1,7 +1,16 @@
+package com.display;
+
 import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 
 public class BarreOutilsVignette extends JPanel {

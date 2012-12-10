@@ -1,3 +1,12 @@
+package com.error;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
+
 public class GestionErreur
 {
     

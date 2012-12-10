@@ -1,3 +1,5 @@
+package com.display;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
@@ -11,6 +13,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 
 @SuppressWarnings("serial")
@@ -26,7 +35,7 @@ public class Fenetre extends JFrame{
     /**
      *  Constructeur de la fenetre
      */
-	Fenetre(ZoneDessin zoneDessin, BarreOutils barreOutils){
+	public Fenetre(ZoneDessin zoneDessin, BarreOutils barreOutils){
         //Initialisation de la JFrame
 		this.setTitle("Carapuce");
 		//Taille et caractéristiques de la JFrame

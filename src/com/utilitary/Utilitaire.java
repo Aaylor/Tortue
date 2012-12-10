@@ -1,8 +1,17 @@
+package com.utilitary;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
 import java.io.File;
 import java.util.Date;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 public class Utilitaire
 {

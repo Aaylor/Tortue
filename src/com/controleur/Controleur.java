@@ -1,3 +1,5 @@
+package com.controleur;
+
 import java.util.Date;
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -11,6 +13,13 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.*;
 import javax.imageio.ImageIO;
 import javax.swing.SwingWorker;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 public class Controleur{
 

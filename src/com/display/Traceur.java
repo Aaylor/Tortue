@@ -1,5 +1,14 @@
+package com.display;
+
 import javax.swing.*;
 import java.awt.*;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 public class Traceur extends JPanel{
 	

@@ -1,6 +1,15 @@
+package com.display;
+
 import java.awt.Color;
 
 import javax.swing.JPanel;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 @SuppressWarnings("serial")
 public class Curseur extends JPanel {
@@ -17,12 +26,12 @@ public class Curseur extends JPanel {
     /**
      *  Constructeur vide
      */
-    Curseur(){}
+    public Curseur(){}
 
     /**
 	 * Constructeur du curseur
 	 */
-	Curseur (int posX, int posY, int orientation, Color couleur, short type, int epaisseur, short forme) {
+	public Curseur (int posX, int posY, int orientation, Color couleur, short type, int epaisseur, short forme) {
 		this.posX = posX;
 		this.posY = posY;
 		this.orientation = orientation;

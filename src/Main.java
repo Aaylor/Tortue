@@ -12,6 +12,14 @@ import java.io.PrintWriter;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
+
+
 public class Main{
 
     /**

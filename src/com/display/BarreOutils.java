@@ -1,3 +1,5 @@
+package com.display;
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +15,13 @@ import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 @SuppressWarnings("serial")
 public class BarreOutils extends JToolBar {
@@ -36,7 +45,7 @@ public class BarreOutils extends JToolBar {
      *  @param zoneDessin : La zone de dessin du programme
      */
     
-	BarreOutils(final Curseur curseur, final ZoneDessin zoneDessin){
+	public BarreOutils(final Curseur curseur, final ZoneDessin zoneDessin){
 		this.curseur = curseur;
 		this.zoneDessin = zoneDessin;
 		boutonPoserCrayon = boutonPoserCrayon();

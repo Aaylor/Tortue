@@ -1,3 +1,5 @@
+package com.term;
+
 import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.Color; //TEMPORAIRE, juste pour le positionnement
@@ -5,6 +7,13 @@ import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Enumeration;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 @SuppressWarnings("serial")
 public class Terminal extends JPanel implements KeyListener{
@@ -20,7 +29,7 @@ public class Terminal extends JPanel implements KeyListener{
     /**
      *  Constructeur du Terminal
      */
-	Terminal()
+	public Terminal()
     {
 
 		this.setBackground(Color.BLACK);//TEMPORAIRE, juste pour le positionnement

@@ -1,3 +1,5 @@
+package com.display;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,6 +16,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
+
+import com.controleur.Controleur;
+import com.display.*;
+import com.error.*;
+import com.stockage.StockageDonnee;
+import com.term.Terminal;
+import com.utilitary.*;
 
 @SuppressWarnings("serial")
 public class ZoneDessin extends JPanel{
@@ -37,7 +46,7 @@ public class ZoneDessin extends JPanel{
      * @param Color La couleur d'arrière plan de la zone de Dessin
      * @param curseur Le curseur utilisé par le programme
      * */
-	ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur){
+	public ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur){
 		this.largeurDessin = largeurDessin;
 		this.hauteurDessin = hauteurDessin;
 		this.background = background;
