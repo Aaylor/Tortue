@@ -25,7 +25,6 @@ public class Controleur{
 
     private Terminal term = null;
     private ZoneDessin zd = null;
-    private BarreOutils zb = null;
     private Curseur curseur = null;
     private Curseur first_curseur = null;
     private BarreMenu barreMenu = null;
@@ -57,8 +56,8 @@ public class Controleur{
         zd = f.getZoneDessin();
         zd.setControleur(this);
         
-        zb = f.getZoneBouton();
-        zb.setControleur(this);
+        barreOutils = f.getZoneBouton();
+        barreOutils.setControleur(this);
 
         barreMenu = f.getBarreMenu();
         barreMenu.setControleur(this);
@@ -86,7 +85,8 @@ public class Controleur{
 		commande_parser = parse(s);
         if ( write )
         {
-            if ( (commande_parser[0].equalsIgnoreCase("setcolor") || commande_parser[0].equalsIgnoreCase("cursorwidth")) 
+            if ( (commande_parser[0].equalsIgnoreCase("setcolor") || commande_parser[0].equalsIgnoreCase("cursorwidth") 
+                        || (commande_parser[0].equalsIgnoreCase("goto") && !curseur.isDown()) ) 
                     && StockageDonnee.lastCommande().equalsIgnoreCase(commande_parser[0]) )
             {
                 term.remplace(s, term.getLastIndexOf(commande_parser[0]));  
@@ -106,20 +106,20 @@ public class Controleur{
 
         if ( Utilitaire.canUndo() )
         {
-            zb.enableBoutonUndo();
+            barreOutils.enableBoutonUndo();
         }
         else
         {
-            zb.disableBoutonUndo();
+            barreOutils.disableBoutonUndo();
         }
 
         if ( Utilitaire.canRedo() ) 
         {
-            zb.enableBoutonRedo();
+            barreOutils.enableBoutonRedo();
         }
         else
         {
-            zb.disableBoutonRedo();
+            barreOutils.disableBoutonRedo();
         }
 
         term.replaceCompteur();
@@ -661,7 +661,7 @@ public class Controleur{
         }
         else
         {
-            zb.disableBoutonUndo();
+            barreOutils.disableBoutonUndo();
             return GestionErreur.CANT_UNDO;
         }
 
@@ -693,7 +693,7 @@ public class Controleur{
         }
         else
         {
-            zb.disableBoutonRedo();
+            barreOutils.disableBoutonRedo();
             return GestionErreur.CANT_REDO;
         }
             
