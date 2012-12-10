@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 
 @SuppressWarnings("serial")
 public class MenuOption extends JDialog{
@@ -72,7 +73,7 @@ public class MenuOption extends JDialog{
 	
 	public MenuOption(JFrame parent, String title, boolean modal){
 		super(parent, title, modal);
-		this.setSize(300, 680);
+		this.setSize(300, 600);
 	    this.setLocationRelativeTo(null);
 	    this.setResizable(false);
 		initComponent();
@@ -288,40 +289,52 @@ public class MenuOption extends JDialog{
 		
 		
 		//Bouton Enregistrer/Quitter
-		JPanel EnregistrerAnnuler = new JPanel();
+		JPanel panEnregistrerAnnuler = new JPanel();
 		JButton buttonEnregistrer = new JButton("Enregistrer");
 		JButton buttonAnnuler = new JButton("Annuler");
 		
-		EnregistrerAnnuler.add(buttonEnregistrer);
-		EnregistrerAnnuler.add(buttonAnnuler);
+		panEnregistrerAnnuler.add(buttonEnregistrer);
+		panEnregistrerAnnuler.add(buttonAnnuler);
 		
 		
 		//Ajoute de tous les JPanel dans la boite Option
-		//Box content = Box.createVerticalBox();
-		JPanel content = new JPanel();
+		
+		Box content = Box.createVerticalBox();
 		content.add(panAffichage);
 		content.add(panCurseur);
 		content.add(panDessin);
-		content.add(EnregistrerAnnuler);
 		
+		JScrollPane jScroll = new JScrollPane(content, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		Box content2 = Box.createVerticalBox();
+		content2.add(jScroll);
+		content2.add(panEnregistrerAnnuler);
 		//Affichage
-		this.getContentPane().add(content);
+		this.getContentPane().add(content2);
 		
 		
 		  ////////////////////////////////////////////////
 		 //POSITIONNEMENT DU TOUT DANS LA DIALOGUE BOX //
 		////////////////////////////////////////////////
 			//Tailles
-		//panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 150));
-		/*panAffichage.add(labTailleFenetre);
-		panAffichage.add(affichageFenetre);
-		panAffichage.add(affichagePleinEcran);
-		panAffichage.add(panThemePredefini);*/
-		int a = labTailleFenetre.getHeight() + affichageFenetre.getHeight() + affichagePleinEcran.getHeight() + panThemePredefini.getHeight();
-		System.out.println(a);
-		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, a));
+		/*
+		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 150));
 		panCurseur.setPreferredSize(new Dimension(this.getWidth() - 20, 235));
 		panDessin.setPreferredSize(new Dimension(this.getWidth() - 20, 205));
+		
+		panAffichage.add(labTailleFenetre);
+		panAffichage.add(affichageFenetre);
+		panAffichage.add(affichagePleinEcran);
+		panAffichage.add(panThemePredefini);
+		*/
+		
+		panAffichage.setMinimumSize(new Dimension(this.getWidth() - 20, 0));
+		panAffichage.setMaximumSize(new Dimension(this.getWidth() - 20, Short.MAX_VALUE));
+		
+		panCurseur.setMinimumSize(new Dimension(this.getWidth() - 20, 0));
+		panCurseur.setMaximumSize(new Dimension(this.getWidth() - 20, Short.MAX_VALUE));
+
+		panDessin.setMinimumSize(new Dimension(this.getWidth() - 20, 0));
+		panDessin.setMaximumSize(new Dimension(this.getWidth() - 20, Short.MAX_VALUE));
 		
 			//Positionnement dans les section
 			//Affichage
@@ -381,6 +394,8 @@ public class MenuOption extends JDialog{
 		panCouleurBleuDessinDefinie.setAlignmentX(LEFT_ALIGNMENT);
 		panCouleurBleuDessinDefinie.setLayout(new BoxLayout(panCouleurBleuDessinDefinie, BoxLayout.LINE_AXIS));
 		panCouleurBleuDessinDefinie.setMaximumSize(new Dimension(105, 20));
+		
+		
 		
 		  /////////////////////////////////////////////////
 		 //       INTERACTIONS AVEC LES BOUTONS         //
