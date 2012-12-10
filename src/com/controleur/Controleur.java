@@ -1570,11 +1570,10 @@ public class Controleur{
             int i = 0;
             for ( String cmd : command_list )
             {
-                System.out.println(cmd);
                 String[] tmp = cmd.split(" ");
                 int compteur = 0;
                
-                while ( compteur < tmp.length )
+                while ( compteur < tmp.length && !tmp[compteur].equalsIgnoreCase("repeat") )
                 {
                     if ( tmp[compteur].indexOf("+") >= 0 )
                     {
@@ -1593,6 +1592,7 @@ public class Controleur{
                 }
                 
                 i++;
+                System.out.println(cmd);
                 commande(cmd,false);
             }
             j++;
