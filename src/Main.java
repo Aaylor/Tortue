@@ -59,15 +59,15 @@ public class Main{
     	Color couleurCurseur = new Color(MenuOption.getConfigCurseurRed(), MenuOption.getConfigCurseurGreen(), MenuOption.getConfigCurseurBlue());
     	Color couleurBackgroundDessin = new Color(MenuOption.getConfigDessinBackgroundRed(), MenuOption.getConfigDessinBackgroundGreen(), MenuOption.getConfigDessinBackgroundBlue());
     	
-    	
+    	Terminal term = new Terminal();
     	Curseur curseur = new Curseur(posXCurseur, posYCurseur, 90, couleurCurseur, (short)0, epaisseurCurseur, (short)0);
     	ZoneDessin zoneDessin = new ZoneDessin(largeurDessin,hauteurDessin, couleurBackgroundDessin, curseur);
     	BarreOutils barreOutils = new BarreOutils(curseur, zoneDessin);
     	zoneDessin.setBarreOutils(barreOutils);
-    	Fenetre fenetre = new Fenetre(zoneDessin, barreOutils);
+    	Fenetre fenetre = new Fenetre(zoneDessin, barreOutils, term);
     	Controleur c = new Controleur(fenetre, curseur);
     	
-    	fenetre.rendreVisible();
+        fenetre.rendreVisible();
     }
 
     /**
