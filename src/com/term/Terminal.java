@@ -248,4 +248,13 @@ public class Terminal extends JPanel implements KeyListener{
         Terminal.historique.replaceRange(remplacement, pos, Terminal.historique.getText().length());
     }
 
+    /**
+     *  Renvoie le champ de commande
+     *  @return champ_de_commande
+     */
+    public JTextField getChampDeCommande()
+    {
+        return champ_de_commande;
+    }
+
 }

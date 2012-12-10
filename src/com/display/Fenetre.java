@@ -21,7 +21,7 @@ import com.term.Terminal;
 @SuppressWarnings("serial")
 public class Fenetre extends JFrame{
 	BarreMenu barreMenu = new BarreMenu();//Barre de menu
-	Terminal terminal = new Terminal();
+	Terminal terminal;
 	ZoneDessin zoneDessin; //L'objet est associé dans Fenetre pendant l'initialisation
 	BarreOutils barreOutils;
 	Controleur controleur;
@@ -31,7 +31,7 @@ public class Fenetre extends JFrame{
     /**
      *  Constructeur de la fenetre
      */
-	public Fenetre(ZoneDessin zoneDessin, BarreOutils barreOutils){
+	public Fenetre(ZoneDessin zoneDessin, BarreOutils barreOutils, Terminal term){
         //Initialisation de la JFrame
 		this.setTitle("Carapuce");
 		//Taille et caractéristiques de la JFrame
@@ -53,6 +53,8 @@ public class Fenetre extends JFrame{
 		this.zoneDessin = zoneDessin;
 		scrollPaneZoneDessin = new JScrollPane(zoneDessin);
 		
+        this.terminal = term;
+
 		//Positionnement des sous fenetres
 		conteneurVertical.setLayout(new BorderLayout());
 		this.barreOutils = barreOutils; 
