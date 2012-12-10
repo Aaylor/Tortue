@@ -268,9 +268,40 @@ public class BarreOutils extends JToolBar {
      */
     public void misAJourSliderCouleur(int red, int green, int blue)
     {
+        ChangeListener[] tmp_red = sliderRed.getChangeListeners();
+        ChangeListener[] tmp_green = sliderGreen.getChangeListeners();
+        ChangeListener[] tmp_blue = sliderBlue.getChangeListeners();
+
+        for ( ChangeListener listener : tmp_red )
+        {
+            sliderRed.removeChangeListener(listener);
+        }
+        for ( ChangeListener listener : tmp_green )
+        {
+            sliderGreen.removeChangeListener(listener);
+        }
+        for ( ChangeListener listener : tmp_blue )
+        {
+            sliderBlue.removeChangeListener(listener);
+        }
+    
         sliderRed.setValue(red);
         sliderGreen.setValue(green);
         sliderBlue.setValue(blue);
+        vignetteCouleur.repaint();
+
+        for ( ChangeListener listener : tmp_red )
+        {
+            sliderRed.addChangeListener(listener);
+        }
+        for ( ChangeListener listener : tmp_green )
+        {
+            sliderGreen.addChangeListener(listener);
+        }
+        for ( ChangeListener listener : tmp_blue )
+        {
+            sliderBlue.addChangeListener(listener);
+        }
     }
 	
 	/**Fonction renvoyant le Bouton Lever/Poser l'outil
