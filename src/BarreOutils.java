@@ -178,7 +178,18 @@ public class BarreOutils extends JToolBar {
      */
     public void misAJourSliderEpaisseur(int width)
     {
+    	ChangeListener[] tmp = sliderEpaisseur.getChangeListeners();
+    	for ( ChangeListener listener : tmp )
+    	{
+    		sliderEpaisseur.removeChangeListener(listener);
+    	}
+    	
         sliderEpaisseur.setValue(width);
+        
+        for ( ChangeListener listener : tmp )
+        {
+        	sliderEpaisseur.addChangeListener(listener);
+        }
     }
 	
 	/**Renvoit le Slider lié à la composante Rouge de la couleur du curseur
