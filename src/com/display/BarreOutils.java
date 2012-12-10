@@ -17,11 +17,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.controleur.Controleur;
-import com.display.*;
-import com.error.*;
-import com.stockage.StockageDonnee;
-import com.term.Terminal;
-import com.utilitary.*;
 
 @SuppressWarnings("serial")
 public class BarreOutils extends JToolBar {

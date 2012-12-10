@@ -5,11 +5,6 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import com.controleur.Controleur;
-import com.display.*;
-import com.error.*;
-import com.stockage.StockageDonnee;
-import com.term.Terminal;
-import com.utilitary.*;
 
 @SuppressWarnings("serial")
 public class Curseur extends JPanel {

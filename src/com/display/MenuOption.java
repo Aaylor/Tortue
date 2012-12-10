@@ -24,13 +24,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import com.controleur.Controleur;
-import com.display.*;
-import com.error.*;
-import com.stockage.StockageDonnee;
-import com.term.Terminal;
-import com.utilitary.*;
-
 @SuppressWarnings("serial")
 public class MenuOption extends JDialog{
     private JRadioButton affichageFenetre = new JRadioButton("Fenêtré");

@@ -15,11 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
 import com.controleur.Controleur;
-import com.display.*;
-import com.error.*;
-import com.stockage.StockageDonnee;
 import com.term.Terminal;
-import com.utilitary.*;
 
 
 @SuppressWarnings("serial")
@@ -98,12 +94,9 @@ public class Fenetre extends JFrame{
   		this.setVisible(true);
 	}
     public static void definirThemeNimbus(){
-	 	try {
-	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-	       }catch (Exception e) {}/*
     	try {
 	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-	       }catch (Exception e) {}*/
+	       }catch (Exception e) {}
  	 }
     public static void definirThemeSysteme(){
 	 	try {

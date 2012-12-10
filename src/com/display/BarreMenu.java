@@ -11,11 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import com.controleur.Controleur;
-import com.display.*;
-import com.error.*;
-import com.stockage.StockageDonnee;
-import com.term.Terminal;
-import com.utilitary.*;
 
 @SuppressWarnings("serial")
 public class BarreMenu extends JMenuBar{
