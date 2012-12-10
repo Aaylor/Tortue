@@ -1,6 +1,5 @@
 package com.display;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -143,6 +142,8 @@ public class MenuOption extends JDialog{
 			themeComboBox.addItem(themeDisponibles[i]);
 		panThemePredefini.add(labTheme);
 		panThemePredefini.add(themeComboBox);
+		//Selection par defaut du curseur
+		themeComboBox.setSelectedIndex(configTheme);
 		
 		panAffichage.add(labTailleFenetre);
 		panAffichage.add(affichageFenetre);
@@ -311,7 +312,14 @@ public class MenuOption extends JDialog{
 		 //POSITIONNEMENT DU TOUT DANS LA DIALOGUE BOX //
 		////////////////////////////////////////////////
 			//Tailles
-		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 150));
+		//panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, 150));
+		/*panAffichage.add(labTailleFenetre);
+		panAffichage.add(affichageFenetre);
+		panAffichage.add(affichagePleinEcran);
+		panAffichage.add(panThemePredefini);*/
+		int a = labTailleFenetre.getHeight() + affichageFenetre.getHeight() + affichagePleinEcran.getHeight() + panThemePredefini.getHeight();
+		System.out.println(a);
+		panAffichage.setPreferredSize(new Dimension(this.getWidth() - 20, a));
 		panCurseur.setPreferredSize(new Dimension(this.getWidth() - 20, 235));
 		panDessin.setPreferredSize(new Dimension(this.getWidth() - 20, 205));
 		
