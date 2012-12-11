@@ -71,11 +71,13 @@ public class Utilitaire
         first_index = args.indexOf("[");
         last_index = args.lastIndexOf("]");
         String tmp = "";
+        String tmp2 = "";
 
         if ( first_index >= 0 && last_index >= first_index )
         {
             tmp = args.substring(first_index, last_index+1).replaceAll(";", "x00AB");
-            args = args.substring(0, first_index) + tmp;
+            tmp2 = args.substring(last_index+1);
+            args = args.substring(0, first_index) + tmp + tmp2;
         }
 
         String[] args_split = args.split(";");
@@ -91,6 +93,23 @@ public class Utilitaire
 
         return args_split;
 
+    }
+
+    /**
+     *  Renvoie le nombre d'incrémentation total
+     *  @return nombre d'incrémentation
+     */
+    public static int nbIncrementation(String cmd)
+    {
+        int number = 0;
+
+        while ( cmd.indexOf("+") >= 0 )
+        {
+            cmd = cmd.substring( cmd.indexOf("+")+1 );
+            number++;
+        }
+
+        return number;
     }
 
     /**

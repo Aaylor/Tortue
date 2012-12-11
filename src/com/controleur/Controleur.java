@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,6 +31,7 @@ public class Controleur{
     private Curseur first_curseur = null;
     private BarreMenu barreMenu = null;
     private BarreOutils barreOutils = null;
+    private Memory repeat_memory;
 
     /**
      *  Créer le contrôleur et lui donne la gestion de la fenêtre et du curseur
@@ -484,7 +487,12 @@ public class Controleur{
                     i++;
                 }
 
-                retour = repeat(nombre_de_repetition, args.trim());
+                if ( repeat_memory == null )
+                {
+                    repeat_memory = new Memory( Utilitaire.nbIncrementation( args.trim() ) );
+                }
+
+                retour = repeat(nombre_de_repetition, args.trim(), true, 0, repeat_memory.length()-1);
                 
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false, true);
@@ -1559,41 +1567,60 @@ public class Controleur{
      *  @param args Argument à repeter n fois.
      *  @return si la fonction s'est bien deroulee.
      */
-    public int repeat(int nombre_de_repetitions, String args)
+    public int repeat(int nombre_de_repetitions, String args, boolean first_repeat, int compteur_min, int compteur_max)
     {
         String[] command_list = Utilitaire.parseRepeat(args);
-        int[][] array_inc = new int[ command_list.length ][];
+        //System.out.println( "COMPTEUR MIN : " + compteur_min + "\nCOMPTEUR MAX : " + compteur_max );
 
-        int j = 0;
+            for ( String ancmd : command_list );
+               // System.out.println(ancmd);
+        
+            int j = 0;
         while ( nombre_de_repetitions > 0 )
         {
+            if ( first_repeat )
+            {
+                repeat_memory.setCompteur(0);
+            }
+
             int i = 0;
             for ( String cmd : command_list )
             {
-                String[] tmp = cmd.split(" ");
+                String[] tmp = cmd.trim().split(" ");
                 int compteur = 0;
                
                 while ( compteur < tmp.length && !tmp[compteur].equalsIgnoreCase("repeat") )
                 {
                     if ( tmp[compteur].indexOf("+") >= 0 )
                     {
-                        int inc_arg = Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("+")+1 ) );
-                        tmp[compteur] = String.valueOf((j+1) * inc_arg);
+                        repeat_memory.set( repeat_memory.getCompteur(), repeat_memory.get( repeat_memory.getCompteur() )
+                                + Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("+")+1) ) );
+                        tmp[compteur] = String.valueOf(repeat_memory.get(repeat_memory.getCompteur()));
+                        //System.out.println(compteur + "\t" + cmd);
+                        repeat_memory.incrementCompteur(compteur_min, compteur_max);
                     }
                     compteur++;
                 }
 
-                cmd = tmp[0];
+                String new_cmd = tmp[0];
                 int h = 1;
                 while ( h < tmp.length )
                 {
-                    cmd += " " + tmp[h];
+                    new_cmd += " " + tmp[h];
                     h++;
                 }
-                
+               
                 i++;
-                System.out.println(cmd);
-                commande(cmd,false);
+                //System.out.println(cmd + "\t" + new_cmd);
+                if ( !tmp[0].equalsIgnoreCase("repeat") )
+                {
+                    commande(new_cmd,false);
+                }
+                else
+                {
+                    int max = Utilitaire.nbIncrementation(cmd);
+                    repeat( Integer.parseInt(tmp[1]), cmd, false, repeat_memory.getCompteur(), repeat_memory.getCompteur()+max-1 );
+                }
             }
             j++;
             nombre_de_repetitions--;
