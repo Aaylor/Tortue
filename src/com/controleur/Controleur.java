@@ -681,7 +681,7 @@ public class Controleur{
             int i = 0;
             while ( i < StockageDonnee.getSize_LCEC() )
             {
-                commande( StockageDonnee.getLCEC(i), false );
+                commande( StockageDonnee.getLCEC(i), false, true );
                 i++;
             }
 
@@ -714,7 +714,7 @@ public class Controleur{
             int i = 0;
             while ( i < StockageDonnee.getSize_LCEC() )
             {
-                commande( StockageDonnee.getLCEC(i), false );
+                commande( StockageDonnee.getLCEC(i), false, true );
                 i++;
             }
 
@@ -1658,7 +1658,7 @@ public class Controleur{
                 //System.out.println(cmd + "\t" + new_cmd);
                 if ( !tmp[0].equalsIgnoreCase("repeat") )
                 {
-                    commande(new_cmd,false);
+                    commande(new_cmd, false, false);
                 }
                 else
                 {
