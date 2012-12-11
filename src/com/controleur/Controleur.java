@@ -1099,6 +1099,7 @@ public class Controleur{
      */
     public int grid()
     {
+    	MenuGrille menuGrille = new MenuGrille(null, true);
         return GestionErreur.SUCCESS;
     }
 
