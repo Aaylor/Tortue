@@ -10,13 +10,12 @@ import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 import com.controleur.Controleur;
 
 public class MenuGrille extends JDialog {
-
-	private Controleur controleur;
 	
 	private JLabel labWidth = new JLabel("Largeur des cases de la grille :"); 
 	private JLabel labHeight = new JLabel("Hauteur Horizontal des cases de la grille :");
@@ -24,8 +23,8 @@ public class MenuGrille extends JDialog {
 	private JFormattedTextField textFieldHeight;
 	private JButton buttonEnregistrer = new JButton("Enregistrer");
 	private JButton buttonAnnuler = new JButton("Annuler");
-	public static boolean itWorked;
 	
+	public static boolean itWorked;
 	public static int widthCaseDefined;
 	public static int heightCaseDefined;
 	
@@ -82,13 +81,15 @@ public class MenuGrille extends JDialog {
 	}
 	
 	public void verificationDesValeurs(){
-		if(!textFieldWidth.getText().equals("") && !textFieldHeight.getText().equals("") && Integer.parseInt(textFieldWidth.getText()) < 1  && Integer.parseInt(textFieldHeight.getText()) < 1){
+		if(!textFieldWidth.getText().equals("") && !textFieldHeight.getText().equals("") && Integer.parseInt(textFieldWidth.getText()) >= 1  && Integer.parseInt(textFieldHeight.getText()) >= 1){
 			widthCaseDefined = Integer.parseInt(textFieldWidth.getText());
 			heightCaseDefined = Integer.parseInt(textFieldHeight.getText());
+			itWorked = true;
 			
-			controleur.commande("grid " + widthCaseDefined + " " + heightCaseDefined, false, true);
-	        setVisible(false);
-			
+			setVisible(false);
+		}
+		else{
+    		JOptionPane.showMessageDialog(null, "Erreur", "Valeurs saisies incorrectes", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
@@ -98,13 +99,4 @@ public class MenuGrille extends JDialog {
 	public int getHeightCaseDefined(){
 		return heightCaseDefined;
 	}
-	
-    /**
-     *  Modifieur du controleur
-     *  @param c nouveau controleur
-     */
-    public void setControleur(Controleur c)
-    {
-        this.controleur = c;
-    } 
 }
