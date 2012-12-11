@@ -601,6 +601,7 @@ public class Controleur{
     {
         this.curseur.setForme( this.curseur.getForme() == 1 ? (short)0 : (short)1 );
         this.barreOutils.affichageBoutonForme();
+        BarreMenu.affichageItemPixelArtMode();
         zd.repaint();
         return GestionErreur.SUCCESS;
     }
@@ -1124,6 +1125,9 @@ public class Controleur{
     {
     	ZoneDessin.setGridEnable(false);
     	ZoneDessin.setGridMagnetism(false);
+    	BarreMenu.affichageItemPixelArtMode();
+    	BarreMenu.affichageItemMagnetisme();
+    	BarreMenu.affichageItemActiverGrille();
 		zd.repaint();
         return GestionErreur.SUCCESS;
     }

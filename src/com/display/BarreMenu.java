@@ -32,8 +32,8 @@ public class BarreMenu extends JMenuBar{
     
 	//JMenu "Affichage"
 	private JMenu menuAffichage = new JMenu("Affichage");
-	private JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
-	private JMenuItem magnetisme = new JMenuItem("Magnetisme à la grille");
+	private static JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
+	private static JMenuItem magnetisme = new JMenuItem("Magnetisme à la grille");
 	private static JMenuItem modePixelArt = new JMenuItem("Mode Pixel Art");
 	
     //JMenu "Outils"
@@ -177,7 +177,7 @@ public class BarreMenu extends JMenuBar{
 	
 	private void activerGrille(){
 		if(ZoneDessin.gridEnable){
-			controleur.commande("disableGrid", true, true);
+			controleur.commande("disablegrid", true, true);
 		}
 		else{
 			controleur.commande("grid", true, true);
@@ -198,11 +198,15 @@ public class BarreMenu extends JMenuBar{
 			controleur.commande("grid", true, true);
 		}
 		controleur.commande("cursorwidth " + ZoneDessin.getWidthCaseGrid(), true, true);
-		activerMagnetisme();
+		if(controleur.getCurseur().getForme() == 0)
+			controleur.commande("forme", true, true);
+		if(!ZoneDessin.gridMagnetism)
+			activerMagnetisme();
 		ZoneDessin.setPixelArtModeEnable(true);
+		affichageItemPixelArtMode();
 	}
 	
-	public void affichageItemActiverGrille(){
+	static public void affichageItemActiverGrille(){
 		if(ZoneDessin.gridEnable){
 			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
 		}
@@ -212,7 +216,7 @@ public class BarreMenu extends JMenuBar{
 		affichageItemMagnetisme();
 	}
 	
-	public void affichageItemMagnetisme(){
+	static public void affichageItemMagnetisme(){
 		if(ZoneDessin.gridEnable){
 			magnetisme.setEnabled(true);
 			if(ZoneDessin.gridMagnetism){
@@ -227,7 +231,7 @@ public class BarreMenu extends JMenuBar{
 		}
 	}
 	public static void affichageItemPixelArtMode(){
-		if(ZoneDessin.gridEnable && ZoneDessin.gridMagnetism && ZoneDessin.getWidthCaseGrid() == controleur.getCurseur().getEpaisseur() && ZoneDessin.getHeightCaseGrid() == controleur.getCurseur().getEpaisseur()){
+		if(ZoneDessin.gridEnable && ZoneDessin.gridMagnetism && ZoneDessin.getWidthCaseGrid() == controleur.getCurseur().getEpaisseur() && ZoneDessin.getHeightCaseGrid() == controleur.getCurseur().getEpaisseur() && controleur.getCurseur().getForme() == 1){
 			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
 		}
 		else{
