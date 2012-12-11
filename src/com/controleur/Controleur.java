@@ -1616,10 +1616,7 @@ public class Controleur{
         String[] command_list = Utilitaire.parseRepeat(args);
         //System.out.println( "COMPTEUR MIN : " + compteur_min + "\nCOMPTEUR MAX : " + compteur_max );
 
-            for ( String ancmd : command_list );
-               // System.out.println(ancmd);
-        
-            int j = 0;
+        int j = 0;
         while ( nombre_de_repetitions > 0 )
         {
             if ( first_repeat )
@@ -1640,7 +1637,7 @@ public class Controleur{
                         repeat_memory.set( repeat_memory.getCompteur(), repeat_memory.get( repeat_memory.getCompteur() )
                                 + Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("+")+1) ) );
                         tmp[compteur] = String.valueOf(repeat_memory.get(repeat_memory.getCompteur()));
-                        //System.out.println(compteur + "\t" + cmd);
+                        System.out.println(compteur + "\t" + cmd);
                         repeat_memory.incrementCompteur(compteur_min, compteur_max);
                     }
                     compteur++;
@@ -1655,7 +1652,7 @@ public class Controleur{
                 }
                
                 i++;
-                //System.out.println(cmd + "\t" + new_cmd);
+                System.out.println(cmd + "\t" + new_cmd);
                 if ( !tmp[0].equalsIgnoreCase("repeat") )
                 {
                     commande(new_cmd, false, false);
@@ -1664,6 +1661,7 @@ public class Controleur{
                 {
                     int max = Utilitaire.nbIncrementation(cmd);
                     repeat( Integer.parseInt(tmp[1]), cmd, false, repeat_memory.getCompteur(), repeat_memory.getCompteur()+max-1 );
+                    repeat_memory.incrementCompteur(compteur_min, compteur_max);
                 }
             }
             j++;
