@@ -1,7 +1,7 @@
 ##################################################
 ##################################################
 ##		HISTORIQUE GENERE LE		##
-##		12-12-12_21-03-17		##
+##		12-12-12_22-04-30		##
 ##################################################
 ##################################################
 
@@ -11,7 +11,7 @@ height 500
 penup
 penup 
 cursorwidth 10 
-goto 216 50 
+goto 215 55 
 pendown 
 forme 
 forward 60 
@@ -538,42 +538,1079 @@ forward 10
 down 
 forward 30 
 up 
-forward 10  
-right  
-forward 10  
-up  
-forward 20    
-left   
-penup   
-forward 10   
-pendown   
-setcolor 0 154 255   
-forward 20  
-up  
-forward 10  
-right  
-forward 10  
-penup  
-forward 10  
-pendown  
-setcolor 0 126 108  
-forward 0  
-penup  
-backward 10  
-up  
-forward 10  
-left  
-pendown  
-forward 10  
-penup  
-forward 10  
-down  
-forward 10  
-pendown  
-forward 0  
-penup  
-forward 10  
-left  
-forward 10  
-pendown  
-forward 0  
+forward 10 
+right 
+forward 10 
+up 
+forward 20 
+left 
+penup 
+forward 10 
+pendown 
+setcolor 0 154 255 
+forward 20 
+up 
+forward 10 
+right 
+forward 10 
+penup 
+forward 10 
+pendown 
+setcolor 0 126 108 
+forward 0 
+penup 
+backward 10 
+up 
+forward 10 
+left 
+pendown 
+forward 10 
+penup 
+forward 10 
+down 
+forward 10 
+pendown 
+forward 0 
+penup 
+forward 10 
+left 
+forward 10 
+pendown 
+forward 0 
+penup 
+goto 415 315 
+setcolor 0 154 255 
+goto 415 315 
+pendown 
+goto 415 315 
+goto 415 315 
+goto 415 315 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 285 
+goto 415 285 
+goto 415 285 
+goto 415 285 
+goto 415 285 
+goto 415 285 
+goto 415 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 425 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 275 
+goto 435 275 
+goto 435 275 
+goto 435 275 
+goto 445 275 
+goto 445 275 
+goto 445 275 
+goto 445 275 
+goto 445 275 
+goto 445 285 
+goto 445 285 
+goto 445 285 
+goto 445 285 
+goto 445 285 
+goto 445 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 285 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 305 
+goto 425 295 
+goto 425 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 455 305 
+goto 455 305 
+goto 455 305 
+goto 455 305 
+goto 455 305 
+goto 455 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 305 
+goto 465 315 
+goto 465 315 
+goto 465 315 
+goto 465 305 
+goto 455 305 
+goto 455 305 
+goto 455 305 
+goto 455 295 
+goto 455 295 
+goto 455 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 445 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 435 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 425 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 295 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 415 305 
+goto 405 305 
+goto 405 305 
+goto 405 305 
+goto 405 305 
+penup 
+goto 455 285 
+setcolor 66 85 125 
+pendown 
+goto 455 285 
+penup 
+goto 465 295 
+pendown 
+goto 465 295 
+penup 
+goto 405 295 
+pendown 
+goto 405 295 
+penup 
+goto 385 305 
+pendown 
+goto 385 375 
+goto 375 375 
+goto 375 365 
+goto 395 375 
+goto 395 365 
+goto 405 365 
+goto 405 315 
+goto 395 315 
+goto 395 305 
+goto 395 355 
+penup 
+goto 325 345 
+pendown 
+goto 315 345 
+penup 
+goto 315 355 
+pendown 
+goto 315 355  
+penup 
+goto 345 355 
+pendown 
+goto 345 355 
+penup 
+goto 355 365 
+pendown 
+goto 355 425 
+goto 325 425 
+goto 335 425 
+goto 335 435 
+goto 335 425 
+goto 365 425 
+goto 375 425 
+goto 365 425 
+goto 365 395 
+goto 345 395 
+goto 345 385 
+goto 345 415 
+goto 325 415 
+goto 325 395 
+goto 315 395 
+goto 315 385 
+goto 315 405 
+goto 335 405 
+goto 335 395 
+goto 325 425 
+penup 
+goto 325 435 
+setcolor 0 154 255 
+pendown 
+goto 325 435 
+penup 
+goto 355 205 
+pendown 
+goto 365 205 
+goto 355 205 
+goto 355 215 
+goto 335 215 
+goto 345 225 
+goto 325 225 
+goto 345 235 
+goto 325 235 
+goto 335 245 
+goto 315 245 
+goto 325 255 
+goto 315 255 
+penup 
+goto 165 425 
+pendown 
+goto 165 425 
+penup 
+goto 195 425 
+pendown 
+goto 195 425 
+penup 
+goto 165 385 
+pendown 
+goto 165 365 
+goto 175 365 
+goto 175 355 
+goto 175 395 
+goto 185 395 
+goto 185 355 
+goto 185 375 
+goto 195 375 
+goto 195 385 
+penup 
+goto 195 185 
+pendown 
+goto 255 185 
+goto 195 185 
+goto 195 195 
+goto 205 195 
+goto 205 185 
+goto 215 185 
+goto 215 175 
+goto 215 165 
+goto 205 165 
+goto 205 105 
+goto 225 105 
+goto 225 95 
+goto 235 95 
+goto 235 85 
+goto 245 85 
+goto 245 75 
+goto 255 75 
+goto 265 75 
+goto 265 65 
+goto 265 75 
+goto 265 65 
+goto 275 65 
+goto 275 75 
+goto 275 85 
+goto 285 75 
+goto 285 85 
+goto 295 75 
+goto 295 85 
+goto 305 85 
+goto 305 95 
+goto 315 95 
+goto 315 105 
+goto 315 115 
+goto 315 125 
+goto 305 125 
+goto 305 135 
+goto 305 125 
+goto 295 125 
+goto 295 125 
+goto 295 125 
+goto 295 125 
+goto 295 125 
+goto 295 115 
+goto 295 115 
+goto 295 115 
+goto 295 115 
+goto 295 115 
+goto 295 115 
+goto 295 115 
+goto 295 115 
+goto 295 115 
+goto 305 115 
+goto 305 115 
+goto 305 115 
+goto 305 115 
+goto 305 115 
+goto 305 105 
+goto 305 105 
+goto 305 105 
+goto 305 105 
+goto 305 105 
+goto 305 105 
+goto 295 105 
+goto 295 105 
+goto 295 105 
+goto 295 105 
+goto 295 95 
+goto 295 95 
+goto 295 95 
+goto 295 95 
+goto 295 95 
+goto 295 95 
+goto 285 95 
+goto 285 95 
+goto 285 95 
+goto 285 95 
+goto 285 95 
+goto 285 95 
+goto 285 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 85 
+goto 265 85 
+goto 265 85 
+goto 265 85 
+goto 255 85 
+goto 255 85 
+goto 255 85 
+goto 255 85 
+goto 255 85 
+goto 255 85 
+goto 245 85 
+goto 245 85 
+goto 245 95 
+goto 245 95 
+goto 245 95 
+goto 245 95 
+goto 245 95 
+goto 235 95 
+goto 245 95 
+goto 245 95 
+goto 245 95 
+goto 245 95 
+goto 255 95 
+goto 255 95 
+goto 255 95 
+goto 255 95 
+goto 295 95 
+goto 295 115 
+goto 285 115 
+goto 275 115 
+goto 265 115 
+goto 265 105 
+goto 265 105 
+goto 265 105 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 265 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 275 95 
+goto 285 95 
+goto 285 105 
+goto 285 105 
+goto 285 105 
+goto 285 105 
+goto 285 105 
+goto 285 105 
+goto 275 105 
+goto 275 105 
+goto 275 105 
+goto 275 105 
+goto 275 105 
+goto 255 105 
+goto 245 105 
+goto 245 115 
+goto 245 95 
+goto 235 105 
+goto 235 115 
+goto 235 125 
+goto 235 135 
+goto 245 135 
+goto 245 145 
+goto 245 145 
+goto 245 145 
+goto 245 145 
+goto 245 145 
+goto 245 145 
+goto 245 145 
+goto 245 155 
+goto 245 155 
+goto 245 155 
+goto 245 155 
+goto 245 155 
+goto 245 155 
+goto 245 155 
+goto 245 155 
+goto 245 155 
+goto 245 165 
+goto 245 165 
+goto 245 165 
+goto 245 165 
+goto 245 165 
+goto 245 165 
+goto 245 165 
+goto 245 165 
+goto 245 165 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 245 175 
+goto 235 175 
+goto 235 175 
+goto 235 175 
+goto 235 175 
+goto 235 175 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 235 165 
+goto 225 165 
+goto 225 165 
+goto 225 165 
+goto 225 165 
+goto 225 165 
+goto 225 165 
+goto 225 165 
+goto 225 165 
+goto 225 175 
+goto 225 165 
+goto 225 165 
+goto 225 165 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 145 
+goto 225 145 
+goto 225 145 
+goto 225 145 
+goto 225 145 
+goto 225 135 
+goto 225 135 
+goto 225 135 
+goto 225 125 
+goto 225 125 
+goto 225 125 
+goto 225 125 
+goto 225 125 
+goto 225 115 
+goto 225 115 
+goto 225 115 
+goto 225 115 
+goto 225 115 
+goto 225 115 
+goto 225 115 
+goto 215 115 
+goto 215 115 
+goto 215 115 
+goto 215 115 
+goto 215 115 
+goto 215 125 
+goto 215 125 
+goto 215 125 
+goto 215 125 
+goto 215 125 
+goto 215 135 
+goto 215 135 
+goto 215 135 
+goto 215 135 
+goto 215 135 
+goto 215 145 
+goto 215 145 
+goto 215 145 
+goto 215 145 
+goto 215 145 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 215 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 225 155 
+goto 235 155 
+goto 235 155 
+goto 235 155 
+goto 235 155 
+goto 235 155 
+goto 235 155 
+goto 235 145 
+goto 235 145 
+goto 235 145 
+goto 235 145 
+goto 235 145 
+goto 235 145 
+goto 235 145 
+goto 235 145 
+goto 245 185 
+goto 255 185 
+goto 255 175 
+goto 265 175 
+penup 
+goto 255 125 
+pendown 
+goto 255 125 
+penup 
+goto 195 95 
+setcolor 192 192 192 
+pendown 
+goto 205 95 
+goto 205 95 
+goto 205 95 
+goto 205 95 
+goto 205 95 
+goto 205 95 
+goto 205 85 
+goto 205 85 
+goto 205 85 
+goto 205 85 
+goto 205 85 
+goto 205 85 
+goto 215 95 
+goto 215 75 
+goto 225 85 
+goto 225 75 
+goto 235 75 
+goto 235 65 
+goto 255 65 
+penup 
+goto 355 265 
+setcolor 0 0 0 
+pendown 
+goto 355 265 
+penup 
+goto 345 275 
+pendown 
+goto 345 275 
+penup 
+goto 335 285 
+pendown 
+goto 315 285 
+penup 
+goto 365 315 
+pendown 
+goto 365 315 
+penup 
+goto 195 225 
+pendown 
+goto 195 225 
+penup 
+goto 195 205 
+pendown 
+goto 205 205 
+penup 
+goto 255 145 
+pendown 
+goto 255 135 
+goto 265 135 
+goto 265 135 
+goto 265 125 
+goto 265 165 
+goto 265 135 
+goto 275 135 
+penup 
+goto 255 115 
+setcolor 0 154 255 
+goto 245 125 
+pendown 
+goto 255 115 
+penup 
+goto 255 155 
+setcolor 192 192 192 
+pendown 
+goto 255 155 
+penup 
+goto 285 145 
+pendown 
+goto 285 165 
+goto 285 125 
+goto 275 125 
+penup 
+goto 305 235 
+pendown 
+goto 305 235 
+penup 
+goto 345 285 
+pendown 
+goto 345 335 
+goto 355 335 
+goto 355 345 
+penup 
+goto 365 355 
+pendown 
+goto 365 355 
+penup 
+goto 335 315 
+pendown 
+goto 335 295 
+penup 
+goto 255 165 
+setcolor 191 0 0 
+pendown 
+goto 255 165 
+penup 
+goto 275 165 
+pendown 
+goto 275 145 
+penup 
+goto 275 195 
+pendown 
+goto 285 195 
+goto 275 195 
+goto 275 205 
+goto 265 205 
+penup 
+goto 255 215 
+pendown 
+goto 215 215 
+goto 215 205 
+penup 
+goto 255 55 
+setcolor 66 85 125 
+pendown 
+penup 
+goto 215 55 
+eraser 
+goto 215 55 
+pendown 
+goto 215 55 
+pencil 
+penup 
+goto 255 55 
+pendown 
+goto 225 55 
+penup 
+goto 215 65 
+pendown 
+goto 205 65 
+penup 
+goto 195 75 
+pendown 
+goto 195 75 
+penup 
+goto 175 115 
+pendown 
+goto 175 115 
+penup 
+goto 255 125 
+pendown 
+goto 255 125 
+penup 
+goto 245 115 
+pendown 
+goto 245 115 
+penup 
+goto 255 105 
+pendown 
+goto 255 105 
+penup 
+goto 265 115 
+pendown 
+goto 285 115 
+penup 
+goto 295 125 
+pendown 
+goto 295 125 
+penup 
+goto 305 145 
+pendown 
+goto 305 175 
+goto 295 165 
+goto 295 175 
+goto 275 175 
+goto 325 175 
+goto 325 125 
+goto 325 135 
+goto 315 135 
+goto 315 165 
+goto 305 135 
+goto 315 135 
+goto 315 125 
+goto 315 195 
+goto 305 195 
+goto 305 205 
+goto 285 205 
+goto 285 215 
+goto 265 215 
+goto 265 225 
+goto 215 225 
+penup 
+goto 205 215 
+pendown 
+goto 195 215 
+penup 
+goto 275 185 
+pendown 
+goto 265 185 
+penup 
+goto 215 195 
+pendown 
+goto 215 195 
+penup 
+goto 205 175 
+pendown 
+goto 205 175 
+penup 
+goto 145 195 
+pendown 
+goto 145 205 
+penup 
+goto 175 345 
+pendown 
+goto 175 345 
+penup 
+goto 165 355 
+pendown 
+goto 165 355 
+penup 
+goto 155 365 
+pendown 
+goto 155 375 
+penup 
+goto 165 395 
+pendown 
+goto 165 395 
+penup 
+goto 175 405 
+pendown 
+goto 175 425 
+goto 175 415 
+goto 205 415 
+goto 205 425 
+goto 205 415 
+goto 215 415 
+goto 215 405 
+goto 225 405 
+goto 215 405 
+goto 215 395 
+goto 195 395 
+goto 205 395 
+goto 205 385 
+goto 205 405 
+goto 185 405 
+penup 
+goto 375 205 
+pendown 
+goto 385 205 
+goto 375 205 
+goto 375 215 
+goto 375 225 
+penup 
+goto 365 235 
+pendown 
+goto 365 245 
+goto 355 235 
+goto 355 255 
+goto 345 245 
+goto 345 265 
+goto 335 255 
+goto 335 275 
+goto 325 265 
+goto 325 275 
+goto 315 265 
+goto 315 275 
+goto 315 265 
+goto 305 265 
+goto 305 255 
+penup 
+goto 315 235 
+pendown 
+goto 315 235 
+penup 
+goto 325 215 
+pendown 
+goto 325 215 
+penup 
+goto 345 205 
+pendown 
+goto 345 205 
+penup 
+goto 355 195 
+pendown 
+goto 355 195 
+penup 
+goto 145 245 
+pendown 
+goto 195 245 
+goto 195 235 
+goto 205 235 
+penup 
+goto 185 245 
+pendown 
+goto 185 265 
+goto 185 255 
+goto 165 255 
+penup 
+setcolor 0 126 108 
+goto 295 135 
+pendown 
+goto 295 155 
+penup 
+goto 335 115 
+pendown 
+goto 335 115 
+penup 
+goto 325 105 
+pendown 
+goto 325 95 
+penup 
+goto 315 85 
+pendown 
+goto 315 85 
+penup 
+goto 305 75 
+pendown 
+goto 305 75 
+penup 
+goto 295 65 
+pendown 
+goto 285 65 
+penup 
+goto 275 55 
+pendown 
+goto 265 55 
+penup 
+goto 185 85 
+pendown 
+goto 185 85 
+penup 
+goto 175 95 
+pendown 
+goto 175 105 
+penup 
+goto 165 115 
+pendown 
+goto 165 155 
+penup 
+goto 155 165 
+pendown 
+goto 155 165 
+penup 
+goto 155 205 
+pendown 
+goto 155 205 
+penup 
+goto 205 225 
+pendown 
+goto 205 225 
+penup 
+goto 215 235 
+pendown 
+goto 215 235 
+penup 
+goto 325 205 
+pendown 
+goto 325 205 
+penup 
+goto 365 195 
+pendown 
+goto 385 195 
+penup 
+goto 365 215 
+pendown 
+goto 365 225 
+goto 355 225 
+penup 
+goto 315 225 
+pendown 
+goto 315 225 
+penup 
+goto 295 225 
+pendown 
+goto 295 225 
+penup 
+goto 305 245 
+pendown 
+goto 305 245 
+penup 
+goto 245 405 
+setcolor 191 0 0 
+pendown 
+goto 255 405 
+penup 
+goto 235 395 
+pendown 
+goto 225 395 
+penup 
+goto 215 385 
+pendown 
+goto 215 385 
+penup 
+goto 285 185 
+setcolor 0 126 108 
+pendown 
+goto 285 185 
+penup 
+setcolor 66 85 125  
+goto 295 195 
+pendown 
+goto 295 185 
+goto 305 185 
+goto 325 185 
+penup 
+goto 315 205 
+setcolor 0 0 0 
+pendown 
+goto 315 205 
+penup 
+goto 305 215 
+pendown 
+goto 305 215 
+penup 
+goto 295 215 
+setcolor 0 126 108 
+pendown 
+goto 295 215 
+goto 315 215 
+penup 
+goto 305 215 
+setcolor 0 0 0 
+pendown 
+goto 305 215 
+penup 
+goto 285 225 
+pendown 
+goto 275 225 
+penup 
+goto 265 235 
+pendown 
+goto 225 235 
+penup 
