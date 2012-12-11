@@ -32,12 +32,13 @@ public class BarreMenu extends JMenuBar{
     
 	//JMenu "Affichage"
 	private JMenu menuAffichage = new JMenu("Affichage");
+	private JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
+	private JMenuItem magnetisme = new JMenuItem("Magnetisme à la grille");
+	private JMenuItem modeTortue = new JMenuItem("Mode Tortue");
 	
     //JMenu "Outils"
 	private JMenu menuOutils = new JMenu("Outils");
-	private JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
-	private JMenuItem modeTortue = new JMenuItem("Désactiver la grille");
-	private JMenu changerTheme = new JMenu("Mode Tortue");
+	private JMenu changerTheme = new JMenu("Changer de thème");
 	private JMenuItem themeSysteme = new JMenuItem("Système");
 	private JMenuItem themeNimbus = new JMenuItem("Nimbus");
 	private JMenuItem themeMetal = new JMenuItem("Metal");
@@ -62,6 +63,8 @@ public class BarreMenu extends JMenuBar{
 		//Menu Affichage
 		this.add(menuAffichage);
 		menuAffichage.add(activerLaGrille);
+		menuAffichage.add(magnetisme);
+		menuAffichage.add(modeTortue);
 		
 		//Menu "Outils"
 		this.add(menuOutils);
@@ -173,10 +176,10 @@ public class BarreMenu extends JMenuBar{
 	
 	public void affichageItemActiverGrille(){
 		if(ZoneDessin.gridEnable){
-			activerLaGrille.setIcon(new ImageIcon(""));
+			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
 		}
 		else{
-			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
+			activerLaGrille.setIcon(new ImageIcon(""));
 		}
 	}
 	

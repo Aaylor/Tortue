@@ -1094,6 +1094,7 @@ public class Controleur{
     	ZoneDessin.setGridEnable(true);
 		zd.setWidthCaseGrid(height);
 		zd.setHeightCaseGrid(width);
+		barreMenu.affichageItemActiverGrille();
 		zd.repaint();
         return GestionErreur.SUCCESS;
     }
@@ -1108,6 +1109,7 @@ public class Controleur{
     		ZoneDessin.setGridEnable(true);
     		zd.setWidthCaseGrid(MenuGrille.heightCaseDefined);
     		zd.setHeightCaseGrid(MenuGrille.widthCaseDefined);
+    		barreMenu.affichageItemActiverGrille();
     		zd.repaint();
             return GestionErreur.SUCCESS;
     	}
