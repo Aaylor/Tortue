@@ -35,6 +35,7 @@ public class BarreMenu extends JMenuBar{
 	private JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
 	private JMenuItem magnetisme = new JMenuItem("Magnetisme à la grille");
 	private JMenuItem modeTortue = new JMenuItem("Mode Tortue");
+	private JMenuItem modePixelArt = new JMenuItem("Mode Pixel Art");
 	
     //JMenu "Outils"
 	private JMenu menuOutils = new JMenu("Outils");
@@ -64,7 +65,11 @@ public class BarreMenu extends JMenuBar{
 		this.add(menuAffichage);
 		menuAffichage.add(activerLaGrille);
 		menuAffichage.add(magnetisme);
+		magnetisme.setEnabled(false);
 		menuAffichage.add(modeTortue);
+		modeTortue.setEnabled(false);
+		menuAffichage.add(modePixelArt);
+		modePixelArt.setEnabled(false);
 		
 		//Menu "Outils"
 		this.add(menuOutils);
@@ -129,7 +134,17 @@ public class BarreMenu extends JMenuBar{
 				activerGrille();
 			}
 		});
-		
+		magnetisme.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				if(ZoneDessin.gridMagnetism){
+					ZoneDessin.setGridMagnetism(false);
+				}
+				else{
+					ZoneDessin.setGridMagnetism(true);
+				}
+				affichageItemMagnetisme();
+			}
+		});		
 		
 	}
 	
@@ -180,6 +195,32 @@ public class BarreMenu extends JMenuBar{
 		}
 		else{
 			activerLaGrille.setIcon(new ImageIcon(""));
+		}
+		affichageItemMagnetisme();
+		affichageItemModeTortue();
+	}
+	
+	public void affichageItemMagnetisme(){
+		if(ZoneDessin.gridEnable){
+			magnetisme.setEnabled(true);
+			if(ZoneDessin.gridMagnetism){
+				magnetisme.setIcon(new ImageIcon("../img/ok.png"));
+			}
+			else{
+				magnetisme.setIcon(new ImageIcon(""));
+			}
+		}
+		else{
+			magnetisme.setEnabled(false);
+		}
+	}
+	
+	public void affichageItemModeTortue(){
+		if(ZoneDessin.gridEnable){
+			modeTortue.setEnabled(true);
+		}
+		else{
+			magnetisme.setEnabled(false);
 		}
 	}
 	

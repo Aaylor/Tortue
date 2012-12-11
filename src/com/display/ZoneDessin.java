@@ -36,7 +36,7 @@ public class ZoneDessin extends JPanel{
 	public static boolean gridEnable;
 	private int widthCaseGrid;
 	private int heightCaseGrid;
-	private boolean gridMagnetism;
+	public static boolean gridMagnetism;
 	
     private Controleur controleur;
 
@@ -440,7 +440,7 @@ public class ZoneDessin extends JPanel{
 		return gridMagnetism;
 	}
 
-	public void setGridMagnetism(boolean gridMagnetism) {
-		this.gridMagnetism = gridMagnetism;
+	public static void setGridMagnetism(boolean g) {
+		gridMagnetism = g;
 	}
 }

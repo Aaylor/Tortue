@@ -1122,6 +1122,8 @@ public class Controleur{
     public int disablegrid()
     {
     	ZoneDessin.setGridEnable(false);
+    	ZoneDessin.setGridMagnetism(false);
+		zd.repaint();
         return GestionErreur.SUCCESS;
     }
 
