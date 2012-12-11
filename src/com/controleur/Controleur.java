@@ -30,6 +30,7 @@ public class Controleur{
     private Curseur curseur = null;
     private Curseur first_curseur = null;
     private BarreMenu barreMenu = null;
+    private BarreMenuGrille barreMenuGrille = null;
     private BarreOutils barreOutils = null;
     private Memory repeat_memory;
 
