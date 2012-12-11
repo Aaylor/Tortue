@@ -152,7 +152,6 @@ public class StockageDonnee
         liste_des_commandes.put("exit", 34);
         
         return true;
-
     }
 
     /**

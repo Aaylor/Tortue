@@ -320,7 +320,7 @@ public class Controleur{
                 return retour;
             
             case 10:
-                retour = rotate( Integer.parseInt( commande_parser[1] ) );
+                retour = rotate( Integer.parseInt( commande_parser[1] ) % 360 );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
