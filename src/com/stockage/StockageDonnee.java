@@ -137,17 +137,19 @@ public class StockageDonnee
         liste_des_commandes.put("do", 19);
         liste_des_commandes.put("width", 20);
         liste_des_commandes.put("height", 21);
-        liste_des_commandes.put("new", 22);
-        liste_des_commandes.put("open", 23);
-        liste_des_commandes.put("save", 24);
-        liste_des_commandes.put("saveas", 25);
-        liste_des_commandes.put("savehistory", 26);
-        liste_des_commandes.put("exec", 27);
-        liste_des_commandes.put("repeat", 28);
-        liste_des_commandes.put("clear", 29);
-        liste_des_commandes.put("help", 30);
-        liste_des_commandes.put("man", 31);
-        liste_des_commandes.put("exit", 32);
+        liste_des_commandes.put("grid", 22);
+        liste_des_commandes.put("disablegrid", 23);
+        liste_des_commandes.put("new", 24);
+        liste_des_commandes.put("open", 25);
+        liste_des_commandes.put("save", 26);
+        liste_des_commandes.put("saveas", 27);
+        liste_des_commandes.put("savehistory", 28);
+        liste_des_commandes.put("exec", 29);
+        liste_des_commandes.put("repeat", 30);
+        liste_des_commandes.put("clear", 31);
+        liste_des_commandes.put("help", 32);
+        liste_des_commandes.put("man", 33);
+        liste_des_commandes.put("exit", 34);
         
         return true;
 

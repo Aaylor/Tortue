@@ -442,41 +442,61 @@ public class Controleur{
             
             case 21:
                 return height( Integer.parseInt( commande_parser[1] ) );
-            
+
             case 22:
+                if ( commande_parser.length == 3 )
+                {
+                    retour = grid( Integer.parseInt(commande_parser[2]), Integer.parseInt(commande_parser[2]) );
+                }
+                else
+                {
+                    retour = grid();
+                }
+
+                if ( retour == 0 && write )
+                {
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
+                }
+
+                return retour;
+
+            case 23:
+                return disablegrid();
+            
+            case 24:
                 return newFile();
             
-            case 23:
+            case 25:
                 if ( commande_parser.length == 2 )
                     return open(commande_parser[1]);
 
                 return open("");
             
-            case 24:
+            case 26:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return save();
             
-            case 25:
+            case 27:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return saveas("");
             
-            case 26:
+            case 28:
                 if ( commande_parser.length == 2 )
                     return savehistory(commande_parser[1]);
                 else
                     return savehistory("");
             
-            case 27:
+            case 29:
                 if ( commande_parser.length == 2 )
                     return exec(commande_parser[1]);
 
                 return exec("");
             
-            case 28:
+            case 30:
                 int nombre_de_repetition = Integer.parseInt(commande_parser[1]);
 
                 String args = "";
@@ -499,19 +519,19 @@ public class Controleur{
 
                 return retour;
                 
-            case 29:
+            case 31:
                 return clear();
             
-            case 30:
+            case 32:
                 return help();
             
-            case 31:
+            case 33:
                 if ( commande_parser.length < 2 )
                     return man(false, "");
                 else
                     return man(true, commande_parser[1]);
             
-            case 32:
+            case 34:
                 return exit();
 
             default:
@@ -1063,6 +1083,30 @@ public class Controleur{
         	curseur.setPosY(zd.getHauteurDessin());
         }
         this.zd.repaint();
+        return GestionErreur.SUCCESS;
+    }
+
+    /**
+     *  JAVADOC
+     */
+    public int grid( int height, int width )
+    {
+        return GestionErreur.SUCCESS;
+    }
+
+    /**
+     *  JAVADOC
+     */
+    public int grid()
+    {
+        return GestionErreur.SUCCESS;
+    }
+
+    /**
+     *  JAVADOC
+     */
+    public int disablegrid()
+    {
         return GestionErreur.SUCCESS;
     }
 
