@@ -1,9 +1,14 @@
 package com.display;
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -25,9 +30,14 @@ public class BarreMenu extends JMenuBar{
 	private JMenuItem enregistrerHistorique = new JMenuItem("Enregistrer l'historique");
 	private JMenuItem quitter = new JMenuItem("Quitter");
     
+	//JMenu "Affichage"
+	private JMenu menuAffichage = new JMenu("Affichage");
+	
     //JMenu "Outils"
 	private JMenu menuOutils = new JMenu("Outils");
-	private JMenu changerTheme = new JMenu("Changer de thème");
+	private JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
+	private JMenuItem modeTortue = new JMenuItem("Désactiver la grille");
+	private JMenu changerTheme = new JMenu("Mode Tortue");
 	private JMenuItem themeSysteme = new JMenuItem("Système");
 	private JMenuItem themeNimbus = new JMenuItem("Nimbus");
 	private JMenuItem themeMetal = new JMenuItem("Metal");
@@ -48,6 +58,12 @@ public class BarreMenu extends JMenuBar{
         menuFichier.add(enregistrerHistorique);
         menuFichier.add(enregistrerImage);
 		menuFichier.add(quitter);
+		
+		//Menu Affichage
+		this.add(menuAffichage);
+		menuAffichage.add(activerLaGrille);
+		if(ZoneDessin.isGridEnable())
+			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
 		
 		//Menu "Outils"
 		this.add(menuOutils);
@@ -108,6 +124,11 @@ public class BarreMenu extends JMenuBar{
 				aPropos();
 			}
 		});
+		activerLaGrille.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				activerGrille();
+			}
+		});
 		
 		
 	}
@@ -142,6 +163,24 @@ public class BarreMenu extends JMenuBar{
 								"Gauthier Lo\n",
 								"A propos",
 								JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	private void activerGrille(){
+		if(ZoneDessin.isGridEnable()){
+			controleur.commande("disableGrid", true);
+		}
+		else{
+			controleur.commande("grid", true);
+		}
+	}
+	
+	public void affichageItemActiverGrille(){
+		if(ZoneDessin.isGridEnable()){
+			activerLaGrille.setIcon(new ImageIcon(""));
+		}
+		else{
+			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
+		}
 	}
 	
     /**

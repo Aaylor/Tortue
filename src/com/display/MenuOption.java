@@ -136,7 +136,7 @@ public class MenuOption extends JDialog{
 			
 		//Theme sous Windows
 		JPanel panThemePredefini = new JPanel();
-		JLabel labTheme = new JLabel("Thème sous Windows :");
+		JLabel labTheme = new JLabel("Thème :");
 
 		themeComboBox = new JComboBox();
 		for(int i = 0; i<themeDisponibles.length; i++)
