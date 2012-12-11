@@ -1585,7 +1585,7 @@ public class Controleur{
 
                 while ( StockageDonnee.getSize_Tmp() > 0 )
                 {
-                    commande( StockageDonnee.getTmp(0), true );
+                    commande( StockageDonnee.getTmp(0), true, true );
                     zd.repaint();
                 }
 
