@@ -136,7 +136,7 @@ public class BarreOutils extends JToolBar {
 		});
 		boutonForme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-                controleur.commande("forme", true);
+                controleur.commande("forme", true, true);
 			}
 		});
 		boutonRedo.addActionListener(new ActionListener(){
@@ -169,7 +169,7 @@ public class BarreOutils extends JToolBar {
 	    slider.setMajorTickSpacing(25);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
-	    	  controleur.commande("cursorwidth " + ((JSlider)event.getSource()).getValue(), true);
+	    	  controleur.commande("cursorwidth " + ((JSlider)event.getSource()).getValue(), true, true);
 	    	  zoneDessin.repaint();
 	      }
 	    });
@@ -211,7 +211,7 @@ public class BarreOutils extends JToolBar {
 	      public void stateChanged(ChangeEvent event){
 	    	  int r = ((JSlider)event.getSource()).getValue();
 	    	  controleur.commande("setcolor " + r + " " + curseur.getCouleur().getGreen()
-                  + " " + curseur.getCouleur().getBlue(), true);
+                  + " " + curseur.getCouleur().getBlue(), true, true);
               zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
@@ -234,7 +234,7 @@ public class BarreOutils extends JToolBar {
 	      public void stateChanged(ChangeEvent event){
 	    	  int g = ((JSlider)event.getSource()).getValue();
               controleur.commande("setcolor " + curseur.getCouleur().getRed() + " " + g
-                  + " " + curseur.getCouleur().getBlue(), true);
+                  + " " + curseur.getCouleur().getBlue(), true, true);
 	    	  zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }

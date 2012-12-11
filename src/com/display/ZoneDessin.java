@@ -94,7 +94,7 @@ public class ZoneDessin extends JPanel{
                 	posX_final = (posX_final/widthCaseGrid)*widthCaseGrid + widthCaseGrid/2;
                 	posY_final = (posY_final/heightCaseGrid)*heightCaseGrid + heightCaseGrid/2;
                 }
-                c.commande("goto " + posX_final + " " + posY_final, true );
+                c.commande("goto " + posX_final + " " + posY_final, true, true);
 				repaint();
 				break;
 			//Clic molette
