@@ -6,6 +6,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 
@@ -19,7 +20,17 @@ public class MenuGrille extends JDialog {
 	private JButton buttonAnnuler = new JButton("Annuler");
 	
 	
-	public MenuGrille(){
+	public MenuGrille(JFrame parent, boolean modal){
+		super(parent, "Afficher la grille", modal);
+	    this.setLocationRelativeTo(null);
+	    this.setResizable(false);
+		initComponent();
+		this.pack();
+		this.setVisible(true);
+		
+	}
+	
+	public void initComponent(){
 		NumberFormat format = NumberFormat.getIntegerInstance();
 		format.setMaximumIntegerDigits(3);
 		textFieldWidth = new JFormattedTextField(format);

@@ -116,7 +116,6 @@ public class BarreMenu extends JMenuBar{
 		options.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				MenuOption menuOption = new MenuOption(null, "Option", true);
-				
 			}
 		});
 		aPropos.addActionListener(new ActionListener(){
@@ -167,10 +166,11 @@ public class BarreMenu extends JMenuBar{
 	
 	private void activerGrille(){
 		if(ZoneDessin.isGridEnable()){
-			controleur.commande("disableGrid", true);
+			controleur.commande("disableGrid", true, true);
 		}
 		else{
-			controleur.commande("grid", true);
+			controleur.commande("grid", true, true);
+			grid();
 		}
 	}
 	
@@ -181,6 +181,10 @@ public class BarreMenu extends JMenuBar{
 		else{
 			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
 		}
+	}
+	
+	public void grid(){
+		MenuGrille menuGrille = new MenuGrille(null, true);
 	}
 	
     /**
