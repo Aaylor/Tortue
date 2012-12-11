@@ -924,6 +924,7 @@ public class Controleur{
     {
         curseur.setEpaisseur(valeur);
         barreOutils.misAJourSliderEpaisseur(valeur);
+        BarreMenu.affichageItemPixelArtMode();
         zd.repaint();
         return GestionErreur.SUCCESS;
     }
@@ -1786,4 +1787,7 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
 
+    public Curseur getCurseur(){
+    	return curseur;
+    }
 }

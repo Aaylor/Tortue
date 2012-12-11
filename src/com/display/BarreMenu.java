@@ -20,7 +20,7 @@ import com.controleur.Controleur;
 @SuppressWarnings("serial")
 public class BarreMenu extends JMenuBar{
 	
-	private Controleur controleur;
+	private static Controleur controleur;
 	//JMenu "Fichier"
 	private JMenu menuFichier = new JMenu("Fichier");
 	private JMenuItem nouveau = new JMenuItem("Nouveau");
@@ -34,8 +34,7 @@ public class BarreMenu extends JMenuBar{
 	private JMenu menuAffichage = new JMenu("Affichage");
 	private JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
 	private JMenuItem magnetisme = new JMenuItem("Magnetisme à la grille");
-	private JMenuItem modeTortue = new JMenuItem("Mode Tortue");
-	private JMenuItem modePixelArt = new JMenuItem("Mode Pixel Art");
+	private static JMenuItem modePixelArt = new JMenuItem("Mode Pixel Art");
 	
     //JMenu "Outils"
 	private JMenu menuOutils = new JMenu("Outils");
@@ -66,10 +65,7 @@ public class BarreMenu extends JMenuBar{
 		menuAffichage.add(activerLaGrille);
 		menuAffichage.add(magnetisme);
 		magnetisme.setEnabled(false);
-		menuAffichage.add(modeTortue);
-		modeTortue.setEnabled(false);
 		menuAffichage.add(modePixelArt);
-		modePixelArt.setEnabled(false);
 		
 		//Menu "Outils"
 		this.add(menuOutils);
@@ -136,15 +132,14 @@ public class BarreMenu extends JMenuBar{
 		});
 		magnetisme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				if(ZoneDessin.gridMagnetism){
-					ZoneDessin.setGridMagnetism(false);
-				}
-				else{
-					ZoneDessin.setGridMagnetism(true);
-				}
-				affichageItemMagnetisme();
+				activerMagnetisme();
 			}
-		});		
+		});
+		modePixelArt.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				activerPixelArtMode();
+			}
+		});
 		
 	}
 	
@@ -189,6 +184,24 @@ public class BarreMenu extends JMenuBar{
 		}
 	}
 	
+	private void activerMagnetisme(){
+		if(ZoneDessin.gridMagnetism){
+			ZoneDessin.setGridMagnetism(false);
+		}
+		else{
+			ZoneDessin.setGridMagnetism(true);
+		}
+		affichageItemMagnetisme();
+	}
+	private void activerPixelArtMode(){
+		while(!ZoneDessin.gridEnable){
+			controleur.commande("grid", true, true);
+		}
+		controleur.commande("cursorwidth " + ZoneDessin.getWidthCaseGrid(), true, true);
+		activerMagnetisme();
+		ZoneDessin.setPixelArtModeEnable(true);
+	}
+	
 	public void affichageItemActiverGrille(){
 		if(ZoneDessin.gridEnable){
 			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
@@ -197,7 +210,6 @@ public class BarreMenu extends JMenuBar{
 			activerLaGrille.setIcon(new ImageIcon(""));
 		}
 		affichageItemMagnetisme();
-		affichageItemModeTortue();
 	}
 	
 	public void affichageItemMagnetisme(){
@@ -214,13 +226,12 @@ public class BarreMenu extends JMenuBar{
 			magnetisme.setEnabled(false);
 		}
 	}
-	
-	public void affichageItemModeTortue(){
-		if(ZoneDessin.gridEnable){
-			modeTortue.setEnabled(true);
+	public static void affichageItemPixelArtMode(){
+		if(ZoneDessin.gridEnable && ZoneDessin.gridMagnetism && ZoneDessin.getWidthCaseGrid() == controleur.getCurseur().getEpaisseur() && ZoneDessin.getHeightCaseGrid() == controleur.getCurseur().getEpaisseur()){
+			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
 		}
 		else{
-			magnetisme.setEnabled(false);
+			modePixelArt.setIcon(new ImageIcon(""));
 		}
 	}
 	
