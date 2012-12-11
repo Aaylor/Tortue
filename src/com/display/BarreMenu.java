@@ -133,25 +133,25 @@ public class BarreMenu extends JMenuBar{
 	}
 	
 	private void nouveau(){
-		controleur.commande("new", true);
+		controleur.commande("new", true, true);
 	}
 	private void ouvrirImage(){
-		controleur.commande("open", true);
+		controleur.commande("open", true, true);
 	}
 	private void ouvrirHistorique(){
-		controleur.commande("exec", true);
+		controleur.commande("exec", true, true);
 	}	
 	private void enregistrerImage(){
-		controleur.commande("save", true);
+		controleur.commande("save", true, true);
 	}
 	
 	private void enregistrerHistorique(){
-		controleur.commande("savehistory", true);
+		controleur.commande("savehistory", true, true);
 	}
 	
 	/**Entre la commande "exit" dans le terminal, pour fermer le programme*/
 	public void quitter(){
-        controleur.commande("exit", false);
+        controleur.commande("exit", false, true);
 	}
 	
 	private void aPropos(){
