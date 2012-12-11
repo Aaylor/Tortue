@@ -80,7 +80,7 @@ public class Controleur{
      *  @param s Commande entree par l'utilisateur
      *  @return Si la fonction s'est correctement deroulee
      */
-    public boolean commande(String s, boolean write)
+    public boolean commande(String s, boolean write, boolean flush)
     {
 	    String[] commande_parser;
         s = rework_command(s);
@@ -99,6 +99,11 @@ public class Controleur{
                 term.addMessage(" > " + s);
             }
             StockageDonnee.ajoutLCEG(s);
+        }
+
+        if ( flush && repeat_memory != null )
+        {
+            repeat_memory = null;
         }
 
         int numero_renvoie = init(commande_parser,write);
@@ -451,11 +456,6 @@ public class Controleur{
                 else
                 {
                     retour = grid();
-                }
-
-                if ( retour == 0 && write )
-                {
-                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
                 }
 
                 return retour;
