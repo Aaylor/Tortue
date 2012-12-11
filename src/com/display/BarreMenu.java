@@ -170,7 +170,6 @@ public class BarreMenu extends JMenuBar{
 		}
 		else{
 			controleur.commande("grid", true, true);
-			grid();
 		}
 	}
 	
@@ -181,10 +180,6 @@ public class BarreMenu extends JMenuBar{
 		else{
 			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
 		}
-	}
-	
-	public void grid(){
-		MenuGrille menuGrille = new MenuGrille(null, true);
 	}
 	
     /**
