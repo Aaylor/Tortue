@@ -104,16 +104,6 @@ public class Fenetre extends JFrame{
 	       }catch (Exception e) {}
  	 }
     public static void definirThemeSysteme(){
-    	/*
-        try 
-        {
-          UIManager.setLookAndFeel(new SyntheticaStandardLookAndFeel());
-        } 
-        catch (Exception e) 
-        {
-          e.printStackTrace();
-        }
-	 	*/
     	try {
 	           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 	       }catch (Exception e) {}
@@ -123,7 +113,11 @@ public class Fenetre extends JFrame{
     	try {
 	           UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 	       }catch (Exception e) {}
- 	 }
+ 	 } public static void definirThemeOldy(){
+     	try {
+	           UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+	       }catch (Exception e) {}
+	 }
 	
 	  /////////////////////////////////////////////////
 	 //               ACCESSEURS                    //

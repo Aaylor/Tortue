@@ -33,6 +33,10 @@ public class ZoneDessin extends JPanel{
 	private int clicSouris;//1 : Clic gauche, 2 : Clic du milieu, 3 : Clic Droit
 	private boolean affichageCurseur = true;
 	
+	private boolean gridEnable;
+	private int widthCaseGrid;
+	private int heightCaseGrid;
+	private boolean gridMagnetism;
 	
     private Controleur controleur;
 
@@ -86,6 +90,10 @@ public class ZoneDessin extends JPanel{
                     : (posY - ecartVertical > this.getHauteurDessin()) ? this.getHauteurDessin()
                     : (posY - ecartVertical);
 
+                if(gridMagnetism){//Si la grille est magnetisee, on centre le point dans le carreau sur lequel il est
+                	posX_final = (posX_final/widthCaseGrid)*widthCaseGrid + widthCaseGrid/2;
+                	posY_final = (posY_final/heightCaseGrid)*heightCaseGrid + heightCaseGrid/2;
+                }
                 c.commande("goto " + posX_final + " " + posY_final, true );
 				repaint();
 				break;
@@ -228,7 +236,23 @@ public class ZoneDessin extends JPanel{
 		g.fillRect(ecartHorizontal + largeurDessin, ecartVertical + 5, 5, hauteurDessin);
 		g.fillRect(ecartHorizontal + 5, ecartVertical + hauteurDessin, largeurDessin, 5);
 		
-		//ETAPE 4 : Afficher le curseur
+		//ETAPE 4 : Afficher la grille
+		if(gridEnable){
+			g.setStroke(new BasicStroke(0));
+			g.setColor(new Color(180, 180, 180));
+			int compteur = 0;
+			while(compteur*widthCaseGrid <= largeurDessin){
+				g.drawLine(posXAbsolue(compteur*widthCaseGrid), posYAbsolue(0), posXAbsolue(compteur*widthCaseGrid), posYAbsolue(hauteurDessin));
+				compteur++;
+			}
+			compteur = 0;
+			while(compteur*heightCaseGrid <= hauteurDessin){
+				g.drawLine(posXAbsolue(0), posYAbsolue(compteur*heightCaseGrid), posXAbsolue(largeurDessin), posYAbsolue(compteur*heightCaseGrid));
+				compteur++;
+			}
+		}
+		
+		//ETAPE 5 : Afficher le curseur
 		if(affichageCurseur){
 			//Deux curseurs à afficher : le curseur négatif (pour plus de lisibilité) et le curseur normal
 			
@@ -388,4 +412,35 @@ public class ZoneDessin extends JPanel{
      *  @param b Booleen définissant l'affichage du curseur
      *  */
     public void setAffichageCurseur(boolean b){ affichageCurseur = b;}
+
+	public boolean isGridEnable() {
+		return gridEnable;
+	}
+
+	public void setGridEnable(boolean gridEnable) {
+		this.gridEnable = gridEnable;
+	}
+	public int getWidthCaseGrid() {
+		return widthCaseGrid;
+	}
+
+	public void setWidthCaseGrid(int widthCaseGrid) {
+		this.widthCaseGrid = widthCaseGrid;
+	}
+
+	public int getHeightCaseGrid() {
+		return heightCaseGrid;
+	}
+
+	public void setHeightCaseGrid(int heightCaseGrid) {
+		this.heightCaseGrid = heightCaseGrid;
+	}
+
+	public boolean isGridMagnetism() {
+		return gridMagnetism;
+	}
+
+	public void setGridMagnetism(boolean gridMagnetism) {
+		this.gridMagnetism = gridMagnetism;
+	}
 }
