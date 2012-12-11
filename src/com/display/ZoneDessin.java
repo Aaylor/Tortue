@@ -33,10 +33,10 @@ public class ZoneDessin extends JPanel{
 	private int clicSouris;//1 : Clic gauche, 2 : Clic du milieu, 3 : Clic Droit
 	private boolean affichageCurseur = true;
 	
-	private static boolean gridEnable;
-	private static int widthCaseGrid;
-	private static int heightCaseGrid;
-	private static boolean gridMagnetism;
+	public static boolean gridEnable;
+	private int widthCaseGrid;
+	private int heightCaseGrid;
+	private boolean gridMagnetism;
 	
     private Controleur controleur;
 
@@ -413,27 +413,27 @@ public class ZoneDessin extends JPanel{
      *  */
     public void setAffichageCurseur(boolean b){ affichageCurseur = b;}
 
-	public static boolean isGridEnable() {
+	public boolean isGridEnable() {
 		return gridEnable;
 	}
 
-	public void setGridEnable(boolean gridEnable) {
-		this.gridEnable = gridEnable;
+	public static void setGridEnable(boolean a) {
+		gridEnable = a;
 	}
 	public int getWidthCaseGrid() {
 		return widthCaseGrid;
 	}
 
-	public void setWidthCaseGrid(int widthCaseGrid) {
-		this.widthCaseGrid = widthCaseGrid;
+	public void setWidthCaseGrid(int a) {
+		widthCaseGrid = a;
 	}
 
 	public int getHeightCaseGrid() {
 		return heightCaseGrid;
 	}
 
-	public void setHeightCaseGrid(int heightCaseGrid) {
-		this.heightCaseGrid = heightCaseGrid;
+	public void setHeightCaseGrid(int a) {
+		heightCaseGrid = a;
 	}
 
 	public boolean isGridMagnetism() {

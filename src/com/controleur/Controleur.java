@@ -1091,6 +1091,10 @@ public class Controleur{
      */
     public int grid( int height, int width )
     {
+    	ZoneDessin.setGridEnable(true);
+		zd.setWidthCaseGrid(MenuGrille.widthCaseDefined);
+		zd.setHeightCaseGrid(MenuGrille.heightCaseDefined);
+		zd.repaint();
         return GestionErreur.SUCCESS;
     }
 
@@ -1099,7 +1103,7 @@ public class Controleur{
      */
     public int grid()
     {
-    	MenuGrille menuGrille = new MenuGrille(null, true);
+    	MenuGrille menuGrille = new MenuGrille(null, true);    		
         return GestionErreur.SUCCESS;
     }
 
@@ -1108,6 +1112,7 @@ public class Controleur{
      */
     public int disablegrid()
     {
+    	ZoneDessin.setGridEnable(false);
         return GestionErreur.SUCCESS;
     }
 

@@ -62,8 +62,6 @@ public class BarreMenu extends JMenuBar{
 		//Menu Affichage
 		this.add(menuAffichage);
 		menuAffichage.add(activerLaGrille);
-		if(ZoneDessin.isGridEnable())
-			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
 		
 		//Menu "Outils"
 		this.add(menuOutils);
@@ -165,7 +163,7 @@ public class BarreMenu extends JMenuBar{
 	}
 	
 	private void activerGrille(){
-		if(ZoneDessin.isGridEnable()){
+		if(ZoneDessin.gridEnable){
 			controleur.commande("disableGrid", true, true);
 		}
 		else{
@@ -174,7 +172,7 @@ public class BarreMenu extends JMenuBar{
 	}
 	
 	public void affichageItemActiverGrille(){
-		if(ZoneDessin.isGridEnable()){
+		if(ZoneDessin.gridEnable){
 			activerLaGrille.setIcon(new ImageIcon(""));
 		}
 		else{
