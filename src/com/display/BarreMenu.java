@@ -187,6 +187,8 @@ public class BarreMenu extends JMenuBar{
 	private void activerMagnetisme(){
 		if(ZoneDessin.gridMagnetism){
 			ZoneDessin.setGridMagnetism(false);
+			ZoneDessin.setPixelArtModeEnable(false);
+			BarreMenu.affichageItemPixelArtMode();
 		}
 		else{
 			ZoneDessin.setGridMagnetism(true);
@@ -194,16 +196,18 @@ public class BarreMenu extends JMenuBar{
 		affichageItemMagnetisme();
 	}
 	private void activerPixelArtMode(){
-		while(!ZoneDessin.gridEnable){
-			controleur.commande("grid", true, true);
+		MenuGrille.setPixelArtDisplay(true);
+		controleur.commande("grid", true, true);
+		if(MenuGrille.getPixelArtDisplay()){
+			controleur.commande("cursorwidth " + ZoneDessin.getWidthCaseGrid(), true, true);
+			if(controleur.getCurseur().getForme() == 0)
+				controleur.commande("forme", true, true);
+			if(!ZoneDessin.gridMagnetism)
+				activerMagnetisme();
+			ZoneDessin.setPixelArtModeEnable(true);
+			affichageItemPixelArtMode();
+			MenuGrille.setPixelArtDisplay(false);
 		}
-		controleur.commande("cursorwidth " + ZoneDessin.getWidthCaseGrid(), true, true);
-		if(controleur.getCurseur().getForme() == 0)
-			controleur.commande("forme", true, true);
-		if(!ZoneDessin.gridMagnetism)
-			activerMagnetisme();
-		ZoneDessin.setPixelArtModeEnable(true);
-		affichageItemPixelArtMode();
 	}
 	
 	static public void affichageItemActiverGrille(){

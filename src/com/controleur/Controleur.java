@@ -1125,6 +1125,7 @@ public class Controleur{
     {
     	ZoneDessin.setGridEnable(false);
     	ZoneDessin.setGridMagnetism(false);
+    	ZoneDessin.setPixelArtModeEnable(false);
     	BarreMenu.affichageItemPixelArtMode();
     	BarreMenu.affichageItemMagnetisme();
     	BarreMenu.affichageItemActiverGrille();
