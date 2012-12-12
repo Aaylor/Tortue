@@ -32,6 +32,7 @@ public class Controleur{
     private BarreMenu barreMenu = null;
     private MenuGrille barreMenuGrille = null;
     private BarreOutils barreOutils = null;
+    private BarreOutilsVignette vignette = null;
     private Memory repeat_memory;
 
     /**
@@ -62,6 +63,9 @@ public class Controleur{
         
         barreOutils = f.getZoneBouton();
         barreOutils.setControleur(this);
+
+        vignette = barreOutils.getVignetteCouleur();
+        vignette.setControleur(this);
 
         barreMenu = f.getBarreMenu();
         barreMenu.setControleur(this);
