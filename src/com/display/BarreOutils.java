@@ -491,4 +491,9 @@ public class BarreOutils extends JToolBar {
 			boutonForme.setSelected(false);
 		}
 	}
+
+	public BarreOutilsVignette getVignetteCouleur() {
+		return vignetteCouleur;
+	}
+	
 }
