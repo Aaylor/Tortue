@@ -1070,9 +1070,7 @@ public class Controleur{
     {
         zd.setLargeur(valeur);
         zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
-        if(curseur.getPosX()>zd.getLargeurDessin()){
-        	curseur.setPosX(zd.getLargeurDessin());
-        }
+        center();
         this.zd.repaint();
         return GestionErreur.SUCCESS;
     }
@@ -1086,9 +1084,7 @@ public class Controleur{
     {
         zd.setHauteur(valeur);
         zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
-        if(curseur.getPosY()>zd.getHauteurDessin()){
-        	curseur.setPosY(zd.getHauteurDessin());
-        }
+        center();
         this.zd.repaint();
         return GestionErreur.SUCCESS;
     }

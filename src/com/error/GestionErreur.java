@@ -59,7 +59,7 @@ public class GestionErreur
      */
     public static void writeInLog(String error_msg, boolean append)
     {
-        File log_folder = new File();
+        File log_folder;
         /* TODO */
     }
 
