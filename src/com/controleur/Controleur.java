@@ -380,11 +380,19 @@ public class Controleur{
                 {
                     retour = setColor(commande_parser[1]);
                 }
+                else if ( commande_parser.length == 3 )
+                {
+                    retour = setColor(  Integer.parseInt(commande_parser[1]),
+                                        Integer.parseInt(commande_parser[2]),
+                                        Integer.parseInt(commande_parser[3]),
+                                        255);
+                }
                 else
                 {
                     retour = setColor(  Integer.parseInt(commande_parser[1]),
                                         Integer.parseInt(commande_parser[2]),
-                                        Integer.parseInt(commande_parser[3]));
+                                        Integer.parseInt(commande_parser[3]),
+                                        Integer.parseInt(commande_parser[4]));
                 }
 
                 if ( retour == 0 && write )
@@ -963,7 +971,7 @@ public class Controleur{
      *  @param blue Bleu curseur
      *  @return si la fonction s'est bien deroulee.
      */
-    public int setColor(int red, int green, int blue)
+    public int setColor(int red, int green, int blue, int alpha)
     {
         if ( red < 0 || red > 255 )
         {
@@ -981,7 +989,7 @@ public class Controleur{
             return GestionErreur.PARAM_INCORRECTE;
         }
 
-    	curseur.setCouleur(new Color(red,green,blue));
+    	curseur.setCouleur(new Color(red,green,blue,alpha));
         barreOutils.misAJourSliderCouleur(red, green, blue);
         return GestionErreur.SUCCESS;
     }

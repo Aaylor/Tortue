@@ -257,8 +257,37 @@ public class Utilitaire
 
                 return GestionErreur.SUCCESS;
     
-            /*  Commande requierant 3 paramètres entier ou 1 chaîne de caractère */
+            /*  Commande requierant 3 ou 4 paramètres entiers, ou 1 chaîne de caractère */
             case 17:
+                if ( (splited_args.length > 4) )
+                {
+                    return GestionErreur.NOMBRE_PARAM_SUP;
+                }
+
+                if ( splited_args.length >= 3 )
+                {
+                    if ( !isInt( new String[]{ splited_args[0], splited_args[1], splited_args[2] } ) )
+                    {
+                        return PARAM_INCORRECTE;
+                    }
+
+                    if ( splited_args.length == 4 )
+                    {
+                        if ( !isInt( splited_args[4] ) )
+                        {
+                            return PARAM_INCORRECTE;
+                        }
+                    }
+                }
+                else if ( splited_args.length == 1);
+                else
+                {
+                    return GestionErreur.PARAM_INCORRECTE;
+                }
+
+                return GestionErreur.SUCCESS;
+            
+            /*  Commande requierant 3 paramètres entier ou 1 chaîne de caractère */
             case 18:
                 if ( (splited_args.length > 3) )
                 {
