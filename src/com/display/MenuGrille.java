@@ -10,13 +10,14 @@ import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 import com.controleur.Controleur;
 
 public class MenuGrille extends JDialog {
-
-	private Controleur controleur;
+	
+	private static boolean pixelArtDisplay;
 	
 	private JLabel labWidth = new JLabel("Largeur des cases de la grille :"); 
 	private JLabel labHeight = new JLabel("Hauteur Horizontal des cases de la grille :");
@@ -24,8 +25,8 @@ public class MenuGrille extends JDialog {
 	private JFormattedTextField textFieldHeight;
 	private JButton buttonEnregistrer = new JButton("Enregistrer");
 	private JButton buttonAnnuler = new JButton("Annuler");
-	public static boolean itWorked;
 	
+	public static boolean itWorked;
 	public static int widthCaseDefined;
 	public static int heightCaseDefined;
 	
@@ -50,8 +51,10 @@ public class MenuGrille extends JDialog {
 		Box form = Box.createVerticalBox();
 		form.add(labWidth);
 		form.add(textFieldWidth);
-		form.add(labHeight);
-		form.add(textFieldHeight);
+		if(!pixelArtDisplay){
+			form.add(labHeight);
+			form.add(textFieldHeight);
+		}
 		JScrollPane jScroll = new JScrollPane(form, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		
 		Box validerAnnuler = Box.createHorizontalBox();
@@ -76,19 +79,36 @@ public class MenuGrille extends JDialog {
 		    });
 		buttonAnnuler.addActionListener(new ActionListener(){
 		      public void actionPerformed(ActionEvent arg0) {
+		    	pixelArtDisplay = false;
 		        setVisible(false);
 		      }      
 		    });
 	}
 	
 	public void verificationDesValeurs(){
-		if(!textFieldWidth.getText().equals("") && !textFieldHeight.getText().equals("") && Integer.parseInt(textFieldWidth.getText()) < 1  && Integer.parseInt(textFieldHeight.getText()) < 1){
-			widthCaseDefined = Integer.parseInt(textFieldWidth.getText());
-			heightCaseDefined = Integer.parseInt(textFieldHeight.getText());
-			
-			controleur.commande("grid " + widthCaseDefined + " " + heightCaseDefined, false, true);
-	        setVisible(false);
-			
+		if(!pixelArtDisplay){
+			if(!textFieldWidth.getText().equals("") && !textFieldHeight.getText().equals("") && Integer.parseInt(textFieldWidth.getText()) >= 1  && Integer.parseInt(textFieldHeight.getText()) >= 1){
+				widthCaseDefined = Integer.parseInt(textFieldWidth.getText());
+				heightCaseDefined = Integer.parseInt(textFieldHeight.getText());
+				itWorked = true;
+				
+				setVisible(false);
+			}
+			else{
+	    		JOptionPane.showMessageDialog(null, "Erreur", "Valeurs saisies incorrectes", JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		else{
+			if(!textFieldWidth.getText().equals("") && Integer.parseInt(textFieldWidth.getText()) >= 1){
+				widthCaseDefined = Integer.parseInt(textFieldWidth.getText());
+				heightCaseDefined = Integer.parseInt(textFieldWidth.getText());
+				itWorked = true;
+				
+				setVisible(false);
+			}
+			else{
+	    		JOptionPane.showMessageDialog(null, "Erreur", "Valeurs saisies incorrectes", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	}
 	
@@ -98,13 +118,10 @@ public class MenuGrille extends JDialog {
 	public int getHeightCaseDefined(){
 		return heightCaseDefined;
 	}
-	
-    /**
-     *  Modifieur du controleur
-     *  @param c nouveau controleur
-     */
-    public void setControleur(Controleur c)
-    {
-        this.controleur = c;
-    } 
+	public static void setPixelArtDisplay(boolean a){
+		pixelArtDisplay = a;
+	}
+	public static boolean getPixelArtDisplay(){
+		return pixelArtDisplay;
+	}
 }

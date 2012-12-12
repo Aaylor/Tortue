@@ -20,7 +20,7 @@ import com.controleur.Controleur;
 @SuppressWarnings("serial")
 public class BarreMenu extends JMenuBar{
 	
-	private Controleur controleur;
+	private static Controleur controleur;
 	//JMenu "Fichier"
 	private JMenu menuFichier = new JMenu("Fichier");
 	private JMenuItem nouveau = new JMenuItem("Nouveau");
@@ -32,12 +32,13 @@ public class BarreMenu extends JMenuBar{
     
 	//JMenu "Affichage"
 	private JMenu menuAffichage = new JMenu("Affichage");
+	private static JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
+	private static JMenuItem magnetisme = new JMenuItem("Magnetisme à la grille");
+	private static JMenuItem modePixelArt = new JMenuItem("Mode Pixel Art");
 	
     //JMenu "Outils"
 	private JMenu menuOutils = new JMenu("Outils");
-	private JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
-	private JMenuItem modeTortue = new JMenuItem("Désactiver la grille");
-	private JMenu changerTheme = new JMenu("Mode Tortue");
+	private JMenu changerTheme = new JMenu("Changer de thème");
 	private JMenuItem themeSysteme = new JMenuItem("Système");
 	private JMenuItem themeNimbus = new JMenuItem("Nimbus");
 	private JMenuItem themeMetal = new JMenuItem("Metal");
@@ -62,6 +63,9 @@ public class BarreMenu extends JMenuBar{
 		//Menu Affichage
 		this.add(menuAffichage);
 		menuAffichage.add(activerLaGrille);
+		menuAffichage.add(magnetisme);
+		magnetisme.setEnabled(false);
+		menuAffichage.add(modePixelArt);
 		
 		//Menu "Outils"
 		this.add(menuOutils);
@@ -126,7 +130,16 @@ public class BarreMenu extends JMenuBar{
 				activerGrille();
 			}
 		});
-		
+		magnetisme.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				activerMagnetisme();
+			}
+		});
+		modePixelArt.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				activerPixelArtMode();
+			}
+		});
 		
 	}
 	
@@ -164,19 +177,69 @@ public class BarreMenu extends JMenuBar{
 	
 	private void activerGrille(){
 		if(ZoneDessin.gridEnable){
-			controleur.commande("disableGrid", true, true);
+			controleur.commande("disablegrid", true, true);
 		}
 		else{
 			controleur.commande("grid", true, true);
 		}
 	}
 	
-	public void affichageItemActiverGrille(){
-		if(ZoneDessin.gridEnable){
-			activerLaGrille.setIcon(new ImageIcon(""));
+	private void activerMagnetisme(){
+		if(ZoneDessin.gridMagnetism){
+			ZoneDessin.setGridMagnetism(false);
+			ZoneDessin.setPixelArtModeEnable(false);
+			BarreMenu.affichageItemPixelArtMode();
 		}
 		else{
+			ZoneDessin.setGridMagnetism(true);
+		}
+		affichageItemMagnetisme();
+	}
+	private void activerPixelArtMode(){
+		MenuGrille.setPixelArtDisplay(true);
+		controleur.commande("grid", true, true);
+		if(MenuGrille.getPixelArtDisplay()){
+			controleur.commande("cursorwidth " + ZoneDessin.getWidthCaseGrid(), true, true);
+			if(controleur.getCurseur().getForme() == 0)
+				controleur.commande("forme", true, true);
+			if(!ZoneDessin.gridMagnetism)
+				activerMagnetisme();
+			ZoneDessin.setPixelArtModeEnable(true);
+			affichageItemPixelArtMode();
+			MenuGrille.setPixelArtDisplay(false);
+		}
+	}
+	
+	static public void affichageItemActiverGrille(){
+		if(ZoneDessin.gridEnable){
 			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
+		}
+		else{
+			activerLaGrille.setIcon(new ImageIcon(""));
+		}
+		affichageItemMagnetisme();
+	}
+	
+	static public void affichageItemMagnetisme(){
+		if(ZoneDessin.gridEnable){
+			magnetisme.setEnabled(true);
+			if(ZoneDessin.gridMagnetism){
+				magnetisme.setIcon(new ImageIcon("../img/ok.png"));
+			}
+			else{
+				magnetisme.setIcon(new ImageIcon(""));
+			}
+		}
+		else{
+			magnetisme.setEnabled(false);
+		}
+	}
+	public static void affichageItemPixelArtMode(){
+		if(ZoneDessin.gridEnable && ZoneDessin.gridMagnetism && ZoneDessin.getWidthCaseGrid() == controleur.getCurseur().getEpaisseur() && ZoneDessin.getHeightCaseGrid() == controleur.getCurseur().getEpaisseur() && controleur.getCurseur().getForme() == 1){
+			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
+		}
+		else{
+			modePixelArt.setIcon(new ImageIcon(""));
 		}
 	}
 	
