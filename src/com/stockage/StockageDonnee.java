@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Enumeration;
 
+import javax.swing.JTextArea;
+
 import com.controleur.Controleur;
 import com.display.*;
 import com.error.*;
@@ -222,17 +224,17 @@ public class StockageDonnee
                                 + "\nFixe la couleur du curseur.");
         manuel.put("setbackgroundcolor", "Manuel\n=====\nCommande : setbackgroundcolor\nSyntaxe : setbackgroundcolor <couleur>. "
                                 + "\nFixe la couleur de fond.");
-        manuel.put("do", "Manuel\n=====\nCommande : do\nSyntaxe : /* TODO */\n");
+        manuel.put("do", "Manuel\n=====\nCommande : do\nSyntaxe : \n");
         manuel.put("width", "Manuel\n=====\nCommande : width\nSyntaxe : width <int width>"
                                 + "\nFixe la largeur de la zone de dessin.");
         manuel.put("height", "Manuel\n=====\nCommande : height\nSyntaxe : height <int height>"
                                 + "\nFixe la hauteur de la zone de dessin.");
-        manuel.put("new", "Manuel\n=====\nCommande : new\nSyntaxe : /* TODO */\n");
-        manuel.put("open", "Manuel\n=====\nCommande : open\nSyntaxe : /* TODO */\n");
-        manuel.put("save", "Manuel\n=====\nCommande : save\nSyntaxe : /* TODO */\n");
-        manuel.put("saveas", "Manuel\n=====\nCommande : saveas\nSyntaxe : /* TODO */\n");
-        manuel.put("savehistory", "Manuel\n=====\nCommande : savehistory\nSyntaxe : /* TODO */\n");
-        manuel.put("exec", "Manuel\n=====\nCommande : exec\nSyntaxe : /* TODO */\n");
+        manuel.put("new", "Manuel\n=====\nCommande : new\nSyntaxe : \n");
+        manuel.put("open", "Manuel\n=====\nCommande : open\nSyntaxe : \n");
+        manuel.put("save", "Manuel\n=====\nCommande : save\nSyntaxe : \n");
+        manuel.put("saveas", "Manuel\n=====\nCommande : saveas\nSyntaxe : \n");
+        manuel.put("savehistory", "Manuel\n=====\nCommande : savehistory\nSyntaxe : \n");
+        manuel.put("exec", "Manuel\n=====\nCommande : exec\nSyntaxe : \n");
         manuel.put("repeat", "Manuel\n======\nCommande : repeat\nSyntaxe : repeat, repeat <nombre_de_commande>"
                                 + ", repeat <nombre_de_commande> <nombre_de_repetition>\n"
                                 + "Repète les dernières actions de l'utilisateur. Si l'utilisateur n'entre aucun argument, alors la commande "

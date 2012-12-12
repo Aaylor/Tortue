@@ -1,7 +1,11 @@
 package com.utilitary;
 
+import java.awt.Dimension;
+import java.awt.BorderLayout;
 import javax.swing.JFileChooser;
+import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import java.text.SimpleDateFormat;
 import java.io.File;
 import java.util.Date;
@@ -149,9 +153,7 @@ public class Utilitaire
      */
     public static int getOptionPane(String msg_dialog, String title)
     {
-        JOptionPane option_pane = new JOptionPane();
-            
-        return  option_pane.showConfirmDialog(null,
+        return  JOptionPane.showConfirmDialog(null,
                 msg_dialog,
                 title,
                 JOptionPane.YES_NO_CANCEL_OPTION,
@@ -165,8 +167,21 @@ public class Utilitaire
      */
      public static void getInformationalPane(String msg_dialog, String title)
      {
-        new JOptionPane().showMessageDialog(null,
-            msg_dialog,
+        JPanel inf = new JPanel();
+        inf.setLayout( new BorderLayout() );
+        inf.setSize( new Dimension(200, 50) );
+        
+        JTextArea dialog = new JTextArea(msg_dialog);
+        dialog.setLineWrap(true);
+        dialog.setWrapStyleWord(true);
+        dialog.setEnabled(false);
+        dialog.setColumns(30);
+
+        inf.add( new JTextArea(msg_dialog) );
+
+        JOptionPane information = new JOptionPane();
+        information.showMessageDialog(null,
+            inf,
             title,
             JOptionPane.INFORMATION_MESSAGE);
      }
@@ -278,6 +293,7 @@ public class Utilitaire
                             return GestionErreur.PARAM_INCORRECTE;
                         }
                     }
+                    
                 }
                 else if ( splited_args.length == 1);
                 else

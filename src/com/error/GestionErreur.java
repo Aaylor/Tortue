@@ -1,5 +1,7 @@
 package com.error;
 
+import java.io.File;
+
 import com.controleur.Controleur;
 import com.display.*;
 import com.error.*;
@@ -50,6 +52,15 @@ public class GestionErreur
         message += StockageDonnee.getMessageErreur(numero_erreur);
     
         return message;
+    }
+
+    /**
+     *  JAVADOC
+     */
+    public static void writeInLog(String error_msg, boolean append)
+    {
+        File log_folder = new File();
+        /* TODO */
     }
 
 }

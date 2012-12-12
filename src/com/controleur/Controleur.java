@@ -977,21 +977,9 @@ public class Controleur{
      */
     public int setColor(int red, int green, int blue, int alpha)
     {
-        if ( red < 0 || red > 255 )
-        {
-            StockageDonnee.setParamErreur( String.valueOf(red), false );
-            return GestionErreur.PARAM_INCORRECTE;
-        }
-        else if ( green < 0 || green > 255 )
-        {
-            StockageDonnee.setParamErreur( String.valueOf(green), false );
-            return GestionErreur.PARAM_INCORRECTE;
-        }
-        else if ( blue < 0 || blue > 255 )
-        {
-            StockageDonnee.setParamErreur( String.valueOf(blue), false );
-            return GestionErreur.PARAM_INCORRECTE;
-        }
+        red = ( red < 0 ? 0 : ( red > 255 ? 255 : red ) );
+        green = ( green < 0 ? 0 : ( green > 255 ? 255 : green ) );
+        blue = ( red < 0 ? 0 : ( blue > 255 ? 255 : blue ) );
 
     	curseur.setCouleur(new Color(red,green,blue,alpha));
         barreOutils.misAJourSliderCouleur(red, green, blue);
@@ -1677,7 +1665,7 @@ public class Controleur{
                         repeat_memory.set( repeat_memory.getCompteur(), repeat_memory.get( repeat_memory.getCompteur() )
                                 + Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("+")+1) ) );
                         tmp[compteur] = String.valueOf(repeat_memory.get(repeat_memory.getCompteur()));
-                        System.out.println(compteur + "\t" + cmd);
+               //         System.out.println(compteur + "\t" + cmd);
                         repeat_memory.incrementCompteur(compteur_min, compteur_max);
                     }
                     compteur++;
@@ -1692,7 +1680,7 @@ public class Controleur{
                 }
                
                 i++;
-                System.out.println(cmd + "\t" + new_cmd);
+                //System.out.println(cmd + "\t" + new_cmd);
                 if ( !tmp[0].equalsIgnoreCase("repeat") )
                 {
                     commande(new_cmd, false, false);
