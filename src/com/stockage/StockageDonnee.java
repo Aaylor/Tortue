@@ -194,8 +194,8 @@ public class StockageDonnee
 
         manuel = new Hashtable<String, String>();
 
-        manuel.put("pendown", "Manuel\n=====\nCommande : pendown\nSyntaxe : pendown, pas d'arguments possible"
-                                + "\nRepose le curseur, et permet ainsi de pouvoir dessiner.");
+        manuel.put("pendown", "Syntaxe : pendown, pas d'arguments possible"
+                                + "<br />Repose le curseur, et permet ainsi de pouvoir dessiner.");
         manuel.put("penup", "Manuel\n=====\nCommande : penup\nSyntaxe : penup, pas d'arguments possible"
                                 + "\nLève le curseur, et l'empêche de dessiner");
         manuel.put("pencil", "Manuel\n=====\nCommande : pencil\nSyntaxe : pencil, pas d'arguments possible"

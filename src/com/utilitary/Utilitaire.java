@@ -2,10 +2,11 @@ package com.utilitary;
 
 import java.awt.Dimension;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import javax.swing.JFileChooser;
-import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.JFrame;
+import javax.swing.JEditorPane;
 import java.text.SimpleDateFormat;
 import java.io.File;
 import java.util.Date;
@@ -167,23 +168,16 @@ public class Utilitaire
      */
      public static void getInformationalPane(String msg_dialog, String title)
      {
-        JPanel inf = new JPanel();
-        inf.setLayout( new BorderLayout() );
-        inf.setSize( new Dimension(200, 50) );
+        JFrame window_man = new JFrame( "Manuel : " + title );
+        window_man.setSize( new Dimension( 500, 200 ) );
+		window_man.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        JTextArea dialog = new JTextArea(msg_dialog);
-        dialog.setLineWrap(true);
-        dialog.setWrapStyleWord(true);
+        JEditorPane dialog = new JEditorPane("text/html", msg_dialog);
+        dialog.setBackground(Color.black);
         dialog.setEnabled(false);
-        dialog.setColumns(30);
 
-        inf.add( new JTextArea(msg_dialog) );
-
-        JOptionPane information = new JOptionPane();
-        information.showMessageDialog(null,
-            inf,
-            title,
-            JOptionPane.INFORMATION_MESSAGE);
+        window_man.add(dialog);
+        window_man.setVisible(true);
      }
 
     public static boolean isACommand(String command)
