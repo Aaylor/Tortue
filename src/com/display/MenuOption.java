@@ -53,7 +53,7 @@ public class MenuOption extends JDialog{
     private JFormattedTextField curseurEpaisseurTextField;
 	
     private String[] couleursPredefinie = {"Noir", "Bleu", "Cyan", "Gris", "Vert", "Magenta", "Orange", "Rose", "Rouge", "Jaune", "Blanc"};
-    private String[] themeDisponibles = {"Système", "Nimbus", "Metal"};
+    private String[] themeDisponibles = {"Système", "Nimbus", "Metal", "Oldy"};
 	
     //Données de configuration du programme
     private static boolean configProgrammeEstFenetre;//True : Le programme se lance en mode fenetre, False : le programme se lance en plein ecran
@@ -617,6 +617,8 @@ public class MenuOption extends JDialog{
     			w.println("design=metal");
     		else if(theme.equals("nimbus"))
     			w.println("design=nimbus");
+    		else if(theme.equals("oldy"))
+    			w.println("design=oldy");
     		//Données 2 : si true, le curseur est centré
     		w.println("cursor at the center=" + posCurseurCentreButton.isSelected());
     		//Données 3 : valeur Red du curseur

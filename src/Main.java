@@ -200,6 +200,10 @@ public class Main{
     						MenuOption.setConfigTheme(2);
     						Fenetre.definirThemeMetal();
     					}
+    					if(ligne.endsWith("oldy")){
+    						MenuOption.setConfigTheme(3);
+    						Fenetre.definirThemeOldy();
+    					}
     				}
     			}
     			br.close(); 

@@ -2,6 +2,7 @@ package com.display;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,14 +25,18 @@ public class BarreOutilsVignette extends JButton {
 		this.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				Color couleur = JColorChooser.showDialog(null, "Choix de la couleur", Color.WHITE);
-				controleur.commande("setcolor " + couleur.getRed() + " " + couleur.getGreen() + " " + couleur.getBlue() + " " + couleur.getAlpha(), true, true);
+				if(couleur != null)
+					controleur.commande("setcolor " + couleur.getRed() + " " + couleur.getGreen() + " " + couleur.getBlue() + " " + couleur.getAlpha(), true, true);
 			}
 		});
 	}
 	
 	public void paintComponent(Graphics g){
-		g.setColor(new Color(c.getCouleur().getRed(), c.getCouleur().getGreen(), c.getCouleur().getBlue()));
-		g.fillRect(0,0,this.getWidth(),this.getHeight());
+		Color couleur = new Color(c.getCouleur().getRed(), c.getCouleur().getGreen(), c.getCouleur().getBlue());
+		g.setColor(couleur);
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		g.setColor(Color.gray);
+		g.drawRect(0,0,this.getWidth()-1,this.getHeight()-1);
 	}
 	
 	public void setControleur(Controleur c){
