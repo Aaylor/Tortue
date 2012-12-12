@@ -380,7 +380,7 @@ public class Controleur{
                 {
                     retour = setColor(commande_parser[1]);
                 }
-                else if ( commande_parser.length == 3 )
+                else if ( commande_parser.length == 4 )
                 {
                     retour = setColor(  Integer.parseInt(commande_parser[1]),
                                         Integer.parseInt(commande_parser[2]),

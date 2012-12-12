@@ -268,14 +268,14 @@ public class Utilitaire
                 {
                     if ( !isInt( new String[]{ splited_args[0], splited_args[1], splited_args[2] } ) )
                     {
-                        return PARAM_INCORRECTE;
+                        return GestionErreur.PARAM_INCORRECTE;
                     }
 
                     if ( splited_args.length == 4 )
                     {
-                        if ( !isInt( splited_args[4] ) )
+                        if ( !isInt( splited_args[3] ) )
                         {
-                            return PARAM_INCORRECTE;
+                            return GestionErreur.PARAM_INCORRECTE;
                         }
                     }
                 }
