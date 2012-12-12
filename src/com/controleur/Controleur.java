@@ -1260,6 +1260,14 @@ public class Controleur{
         { 
             File dessin = new File(path_to_drawing);
             zd.setAffichageCurseur(false);
+
+            boolean tmp_grid = zd.isGridEnable();
+
+            if ( tmp_grid )
+            {
+                zd.setGridEnable(false);
+            }
+
             BufferedImage tmpSave = new BufferedImage(  2000,
                                                         2000,
                                                         BufferedImage.TYPE_3BYTE_BGR);
@@ -1283,6 +1291,10 @@ public class Controleur{
             finally
             {
                 zd.setAffichageCurseur(true);
+                if ( tmp_grid )
+                {
+                    zd.setGridEnable(true);
+                }
             }
         }
         else
@@ -1380,7 +1392,14 @@ public class Controleur{
             BufferedImage tmpSave = new BufferedImage(  2000,
                                                         2000,
                                                         BufferedImage.TYPE_3BYTE_BGR);
-     
+    
+            boolean tmp_grid = zd.isGridEnable();
+
+            if ( tmp_grid )
+            {
+                zd.setGridEnable(false);
+            }
+
             Graphics2D g = (Graphics2D)tmpSave.getGraphics();
             zd.paint(g);
 
@@ -1399,6 +1418,11 @@ public class Controleur{
             finally
             {
                 zd.setAffichageCurseur(true);
+                
+                if ( tmp_grid )
+                {
+                    zd.setGridEnable(true);
+                }
             }
         }
            
