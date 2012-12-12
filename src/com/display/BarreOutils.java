@@ -150,8 +150,6 @@ public class BarreOutils extends JToolBar {
 			}
 		});
         
-        
-        
     }
     
 	/**Renvoit le Slider lié à l'épaisseur du curseur

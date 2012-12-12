@@ -30,6 +30,11 @@ public class BarreMenu extends JMenuBar{
 	private JMenuItem enregistrerHistorique = new JMenuItem("Enregistrer l'historique");
 	private JMenuItem quitter = new JMenuItem("Quitter");
     
+	//JMenu Edition
+	private JMenu menuEdition = new JMenu("Edition");
+	private JMenuItem precedent = new JMenuItem("Précédent");
+	private JMenuItem suivant = new JMenuItem("Suivant");
+	
 	//JMenu "Affichage"
 	private JMenu menuAffichage = new JMenu("Affichage");
 	private static JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
@@ -60,12 +65,17 @@ public class BarreMenu extends JMenuBar{
         menuFichier.add(enregistrerImage);
 		menuFichier.add(quitter);
 		
+		//Menu Edition
+		this.add(menuEdition);
+		menuEdition.add(precedent);
+		menuEdition.add(suivant);
+		menuEdition.add(modePixelArt);
+		
 		//Menu Affichage
 		this.add(menuAffichage);
 		menuAffichage.add(activerLaGrille);
 		menuAffichage.add(magnetisme);
 		magnetisme.setEnabled(false);
-		menuAffichage.add(modePixelArt);
 		
 		//Menu "Outils"
 		this.add(menuOutils);
@@ -83,6 +93,8 @@ public class BarreMenu extends JMenuBar{
 		quitter.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_MASK));
 		options.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_MASK));
 		aPropos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_COMMA, KeyEvent.CTRL_MASK));
+		suivant.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, KeyEvent.CTRL_MASK));
+		precedent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, KeyEvent.CTRL_MASK));
 		
 		//Ajout des Action Listener
 		nouveau.addActionListener(new ActionListener(){
@@ -140,7 +152,16 @@ public class BarreMenu extends JMenuBar{
 				activerPixelArtMode();
 			}
 		});
-		
+		precedent.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				controleur.commande("undo", true, true);
+			}
+		});
+		suivant.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				controleur.commande("redo", true, true);
+			}
+		});
 	}
 	
 	private void nouveau(){
@@ -250,5 +271,13 @@ public class BarreMenu extends JMenuBar{
     public void setControleur(Controleur c)
     {
         this.controleur = c;
-    } 
+    }
+
+	public JMenuItem getPrecedent() {
+		return precedent;
+	}
+
+	public JMenuItem getSuivant() {
+		return suivant;
+	} 
 }

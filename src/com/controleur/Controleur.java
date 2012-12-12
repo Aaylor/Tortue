@@ -120,19 +120,23 @@ public class Controleur{
         if ( Utilitaire.canUndo() )
         {
             barreOutils.enableBoutonUndo();
+            barreMenu.getPrecedent().setEnabled(true);
         }
         else
         {
             barreOutils.disableBoutonUndo();
+            barreMenu.getPrecedent().setEnabled(false);
         }
 
         if ( Utilitaire.canRedo() ) 
         {
             barreOutils.enableBoutonRedo();
+            barreMenu.getSuivant().setEnabled(true);
         }
         else
         {
             barreOutils.disableBoutonRedo();
+            barreMenu.getSuivant().setEnabled(false);
         }
 
         term.replaceCompteur();
