@@ -1,7 +1,7 @@
 ##################################################
 ##################################################
 ##		HISTORIQUE GENERE LE		##
-##		12-12-12_22-04-30		##
+##		12-12-12_9-49-37		##
 ##################################################
 ##################################################
 
@@ -801,7 +801,7 @@ goto 315 345
 penup 
 goto 315 355 
 pendown 
-goto 315 355  
+goto 315 355 
 penup 
 goto 345 355 
 pendown 
@@ -1579,7 +1579,7 @@ setcolor 0 126 108
 pendown 
 goto 285 185 
 penup 
-setcolor 66 85 125  
+setcolor 66 85 125 
 goto 295 195 
 pendown 
 goto 295 185 
@@ -1614,3 +1614,3846 @@ goto 265 235
 pendown 
 goto 225 235 
 penup 
+goto 263 196 
+setcolor 0 126 108 
+cursorwidth 10 
+pendown 
+penup 
+goto 265 195 
+pendown 
+goto 265 195 
+penup 
+goto 265 195 
+pendown 
+goto 265 195 
+penup 
+goto 255 195 
+pendown 
+goto 255 195 
+penup 
+goto 255 195 
+pendown 
+goto 255 195 
+penup 
+goto 255 195 
+pendown 
+goto 255 195 
+penup 
+goto 255 195 
+pendown 
+goto 255 195 
+penup 
+goto 245 195 
+pendown 
+goto 245 195 
+penup 
+goto 245 195 
+pendown 
+goto 245 195 
+penup 
+goto 245 195 
+pendown 
+goto 245 195 
+penup 
+goto 245 195 
+pendown 
+goto 245 195 
+penup 
+goto 235 195 
+pendown 
+goto 235 195 
+penup 
+goto 235 195 
+pendown 
+goto 235 195 
+penup 
+goto 235 195 
+pendown 
+goto 235 195 
+penup 
+goto 235 195 
+pendown 
+goto 235 195 
+penup 
+goto 235 195 
+pendown 
+goto 235 195 
+penup 
+goto 235 195 
+pendown 
+goto 235 195 
+penup 
+goto 235 195 
+pendown 
+goto 235 195 
+penup 
+goto 235 195 
+pendown 
+goto 235 195 
+penup 
+goto 225 195 
+pendown 
+goto 225 195 
+penup 
+goto 225 195 
+pendown 
+goto 225 195 
+setcolor 142 98 35 
+penup 
+goto 225 205 
+pendown 
+goto 225 205 
+penup 
+goto 235 205 
+pendown 
+goto 235 205 
+penup 
+goto 235 205 
+pendown 
+goto 235 205 
+penup 
+goto 235 205 
+pendown 
+goto 235 205 
+penup 
+goto 235 205 
+pendown 
+goto 235 205 
+penup 
+goto 235 205 
+pendown 
+goto 235 205 
+penup 
+goto 235 205 
+pendown 
+goto 235 205 
+penup 
+goto 245 205 
+pendown 
+goto 245 205 
+penup 
+goto 245 205 
+pendown 
+goto 245 205 
+penup 
+goto 245 205 
+pendown 
+goto 245 205 
+penup 
+goto 245 205 
+pendown 
+goto 245 205 
+penup 
+goto 245 205 
+pendown 
+goto 245 205 
+penup 
+goto 245 205 
+pendown 
+goto 245 205 
+penup 
+goto 245 205 
+pendown 
+goto 245 205 
+penup 
+goto 255 205 
+pendown 
+goto 255 205 
+penup 
+goto 255 205 
+pendown 
+goto 255 205 
+penup 
+goto 255 205 
+pendown 
+goto 255 205 
+penup 
+goto 355 275 
+pendown 
+goto 355 275 
+penup 
+goto 355 275 
+pendown 
+goto 355 275 
+penup 
+goto 355 285 
+pendown 
+goto 355 285 
+penup 
+goto 355 285 
+pendown 
+goto 355 285 
+penup 
+goto 355 295 
+pendown 
+goto 355 295 
+penup 
+goto 355 295 
+pendown 
+goto 355 295 
+penup 
+goto 355 295 
+pendown 
+goto 355 295 
+penup 
+goto 355 295 
+pendown 
+goto 355 295 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 305 
+pendown 
+goto 355 305 
+penup 
+goto 355 315 
+pendown 
+goto 355 315 
+penup 
+goto 355 315 
+pendown 
+goto 355 315 
+penup 
+goto 355 315 
+pendown 
+goto 355 315 
+penup 
+goto 355 315 
+pendown 
+goto 355 315 
+penup 
+goto 355 315 
+pendown 
+goto 355 315 
+penup 
+goto 355 315 
+pendown 
+goto 355 315 
+penup 
+goto 355 315 
+pendown 
+goto 355 315 
+penup 
+goto 355 315 
+pendown 
+goto 355 315 
+penup 
+goto 355 325 
+pendown 
+goto 355 325 
+penup 
+goto 355 325 
+pendown 
+goto 355 325 
+penup 
+goto 355 325 
+pendown 
+goto 355 325 
+penup 
+goto 355 325 
+pendown 
+goto 355 325 
+penup 
+goto 355 325 
+pendown 
+goto 355 325 
+penup 
+goto 355 325 
+pendown 
+goto 355 325 
+penup 
+goto 365 325 
+pendown 
+goto 365 325 
+penup 
+goto 365 325 
+pendown 
+goto 365 325 
+penup 
+goto 365 325 
+pendown 
+goto 365 325 
+penup 
+goto 365 325 
+pendown 
+goto 365 325 
+penup 
+goto 365 325 
+pendown 
+goto 365 325 
+penup 
+goto 365 335 
+pendown 
+goto 365 335 
+penup 
+goto 365 335 
+pendown 
+goto 365 335 
+penup 
+goto 365 335 
+pendown 
+goto 365 335 
+penup 
+goto 365 335 
+pendown 
+goto 365 335 
+penup 
+goto 365 335 
+pendown 
+goto 365 335 
+penup 
+goto 365 335 
+pendown 
+goto 365 335 
+penup 
+goto 365 335 
+pendown 
+goto 365 335 
+penup 
+goto 365 335 
+pendown 
+goto 365 335 
+penup 
+goto 365 305 
+pendown 
+goto 365 305 
+penup 
+goto 365 305 
+pendown 
+goto 365 305 
+penup 
+goto 365 305 
+pendown 
+goto 365 305 
+penup 
+goto 365 295 
+pendown 
+goto 365 295 
+penup 
+goto 365 295 
+pendown 
+goto 365 295 
+penup 
+goto 365 295 
+pendown 
+goto 365 295 
+penup 
+goto 365 295 
+pendown 
+goto 365 295 
+penup 
+goto 365 295 
+pendown 
+goto 365 295 
+penup 
+goto 365 285 
+pendown 
+goto 365 285 
+penup 
+goto 365 285 
+pendown 
+goto 365 285 
+penup 
+goto 295 225 
+pendown 
+goto 295 225 
+penup 
+goto 205 245 
+pendown 
+goto 205 245 
+penup 
+goto 205 245 
+pendown 
+goto 205 245 
+penup 
+goto 205 245 
+pendown 
+goto 205 245 
+penup 
+goto 205 255 
+pendown 
+goto 205 255 
+penup 
+goto 205 255 
+pendown 
+goto 205 255 
+penup 
+goto 205 255 
+pendown 
+goto 205 255 
+penup 
+goto 205 255 
+pendown 
+goto 205 255 
+penup 
+goto 205 255 
+pendown 
+goto 205 255 
+penup 
+goto 195 255 
+pendown 
+goto 195 255 
+penup 
+goto 195 255 
+pendown 
+goto 195 255 
+penup 
+goto 195 255 
+pendown 
+goto 195 255 
+penup 
+goto 195 255 
+pendown 
+goto 195 255 
+penup 
+goto 195 265 
+pendown 
+goto 195 265 
+penup 
+goto 195 265 
+pendown 
+goto 195 265 
+penup 
+goto 195 265 
+pendown 
+goto 195 265 
+penup 
+goto 195 265 
+pendown 
+goto 195 265 
+penup 
+goto 195 265 
+pendown 
+goto 195 265 
+penup 
+goto 185 275 
+pendown 
+goto 185 275 
+penup 
+goto 185 275 
+pendown 
+goto 185 275 
+penup 
+goto 185 275 
+pendown 
+goto 185 275 
+penup 
+goto 185 285 
+pendown 
+goto 185 285 
+penup 
+goto 185 285 
+pendown 
+goto 185 285 
+penup 
+goto 185 285 
+pendown 
+goto 185 285 
+penup 
+goto 185 285 
+pendown 
+goto 185 285 
+penup 
+goto 185 285 
+pendown 
+goto 185 285 
+penup 
+goto 185 285 
+pendown 
+goto 185 285 
+penup 
+goto 185 285 
+pendown 
+goto 185 285 
+penup 
+goto 185 295 
+pendown 
+goto 185 295 
+penup 
+goto 185 295 
+pendown 
+goto 185 295 
+penup 
+goto 185 295 
+pendown 
+goto 185 295 
+penup 
+goto 185 295 
+pendown 
+goto 185 295 
+penup 
+goto 185 295 
+pendown 
+goto 185 295 
+penup 
+goto 185 305 
+pendown 
+goto 185 305 
+penup 
+goto 185 305 
+pendown 
+goto 185 305 
+penup 
+goto 185 305 
+pendown 
+goto 185 305 
+penup 
+goto 185 305 
+pendown 
+goto 185 305 
+penup 
+goto 185 315 
+pendown 
+goto 185 315 
+penup 
+goto 185 315 
+pendown 
+goto 185 315 
+penup 
+goto 185 315 
+pendown 
+goto 185 315 
+penup 
+goto 185 315 
+pendown 
+goto 185 315 
+penup 
+goto 185 315 
+pendown 
+goto 185 315 
+penup 
+goto 185 315 
+pendown 
+goto 185 315 
+penup 
+goto 185 315 
+pendown 
+goto 185 315 
+penup 
+goto 185 325 
+pendown 
+goto 185 325 
+penup 
+goto 185 325 
+pendown 
+goto 185 325 
+penup 
+goto 185 325 
+pendown 
+goto 185 325 
+penup 
+goto 185 325 
+pendown 
+goto 185 325 
+penup 
+goto 185 325 
+pendown 
+goto 185 325 
+penup 
+goto 185 325 
+pendown 
+goto 185 325 
+penup 
+goto 185 325 
+pendown 
+goto 185 325 
+penup 
+goto 185 335 
+pendown 
+goto 185 335 
+penup 
+goto 185 335 
+pendown 
+goto 185 335 
+penup 
+goto 185 335 
+pendown 
+goto 185 335 
+penup 
+goto 185 335 
+pendown 
+goto 185 335 
+penup 
+goto 185 335 
+pendown 
+goto 185 335 
+penup 
+goto 185 335 
+pendown 
+goto 185 335 
+penup 
+goto 185 335 
+pendown 
+goto 185 335 
+penup 
+goto 185 345 
+pendown 
+goto 185 345 
+penup 
+goto 185 345 
+pendown 
+goto 185 345 
+penup 
+goto 185 345 
+pendown 
+goto 185 345 
+penup 
+goto 195 355 
+pendown 
+goto 195 355 
+penup 
+goto 195 355 
+pendown 
+goto 195 355 
+penup 
+goto 195 355 
+pendown 
+goto 195 355 
+penup 
+goto 195 355 
+pendown 
+goto 195 355 
+penup 
+goto 195 365 
+pendown 
+goto 195 365 
+penup 
+goto 195 365 
+pendown 
+goto 195 365 
+penup 
+goto 195 365 
+pendown 
+goto 195 365 
+penup 
+goto 205 375 
+pendown 
+goto 205 375 
+penup 
+goto 205 375 
+pendown 
+goto 205 375 
+penup 
+goto 205 375 
+pendown 
+goto 205 375 
+penup 
+goto 215 375 
+pendown 
+goto 215 375 
+penup 
+goto 215 375 
+pendown 
+goto 215 375 
+penup 
+goto 215 375 
+pendown 
+goto 215 375 
+penup 
+goto 215 375 
+pendown 
+goto 215 375 
+penup 
+goto 225 365 
+pendown 
+goto 225 365 
+penup 
+goto 225 365 
+pendown 
+goto 225 365 
+penup 
+goto 225 365 
+pendown 
+goto 225 365 
+penup 
+goto 235 365 
+pendown 
+goto 235 365 
+penup 
+goto 235 365 
+pendown 
+goto 235 365 
+penup 
+goto 235 365 
+pendown 
+goto 235 365 
+penup 
+goto 235 365 
+pendown 
+goto 235 365 
+penup 
+goto 235 365 
+pendown 
+goto 235 365 
+penup 
+goto 245 375 
+pendown 
+goto 245 375 
+penup 
+goto 245 375 
+pendown 
+goto 245 375 
+penup 
+goto 245 375 
+pendown 
+goto 245 375 
+penup 
+goto 245 375 
+pendown 
+goto 245 375 
+penup 
+goto 245 375 
+pendown 
+goto 245 375 
+penup 
+goto 245 375 
+pendown 
+goto 245 375 
+penup 
+goto 255 375 
+pendown 
+goto 255 375 
+penup 
+goto 265 385 
+pendown 
+goto 265 385 
+penup 
+goto 265 385 
+pendown 
+goto 265 385 
+penup 
+goto 265 385 
+pendown 
+goto 265 385 
+penup 
+goto 265 385 
+pendown 
+goto 265 385 
+penup 
+goto 275 385 
+pendown 
+goto 275 385 
+penup 
+goto 275 385 
+pendown 
+goto 275 385 
+penup 
+goto 275 385 
+pendown 
+goto 275 385 
+penup 
+goto 275 385 
+pendown 
+goto 275 385 
+penup 
+goto 275 385 
+pendown 
+goto 275 385 
+penup 
+goto 275 385 
+pendown 
+goto 275 385 
+penup 
+goto 285 385 
+pendown 
+goto 285 385 
+penup 
+goto 285 385 
+pendown 
+goto 285 385 
+penup 
+goto 295 385 
+pendown 
+goto 295 385 
+penup 
+goto 295 395 
+pendown 
+goto 295 395 
+penup 
+goto 305 335 
+pendown 
+goto 305 335 
+penup 
+goto 295 325 
+pendown 
+goto 295 325 
+penup 
+goto 285 315 
+pendown 
+goto 285 315 
+penup 
+goto 285 315 
+pendown 
+goto 285 315 
+penup 
+goto 285 305 
+pendown 
+goto 285 305 
+penup 
+goto 285 305 
+pendown 
+goto 285 305 
+penup 
+goto 275 315 
+pendown 
+goto 275 315 
+penup 
+goto 295 295 
+pendown 
+goto 295 295 
+penup 
+goto 195 305 
+pendown 
+goto 195 305 
+penup 
+goto 215 315 
+pendown 
+goto 215 315 
+penup 
+goto 215 315 
+pendown 
+goto 215 315 
+penup 
+goto 215 315 
+pendown 
+goto 215 315 
+penup 
+goto 215 315 
+pendown 
+goto 215 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 235 315 
+pendown 
+goto 235 315 
+penup 
+goto 235 315 
+pendown 
+goto 235 315 
+penup 
+goto 235 315 
+pendown 
+goto 235 315 
+penup 
+goto 235 315 
+pendown 
+goto 235 315 
+penup 
+goto 235 315 
+pendown 
+goto 235 315 
+penup 
+goto 225 305 
+pendown 
+goto 225 305 
+penup 
+goto 225 305 
+pendown 
+goto 225 305 
+penup 
+goto 225 305 
+pendown 
+goto 225 305 
+penup 
+goto 225 305 
+pendown 
+goto 225 305 
+penup 
+goto 225 305 
+pendown 
+goto 225 305 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 315 
+pendown 
+goto 225 315 
+penup 
+goto 225 325 
+pendown 
+goto 225 325 
+penup 
+goto 215 265 
+pendown 
+goto 215 265 
+penup 
+goto 215 265 
+pendown 
+goto 215 265 
+penup 
+goto 225 265 
+pendown 
+goto 225 265 
+penup 
+goto 225 265 
+pendown 
+goto 225 265 
+penup 
+goto 225 265 
+pendown 
+goto 225 265 
+penup 
+goto 225 265 
+pendown 
+goto 225 265 
+penup 
+goto 225 265 
+pendown 
+goto 225 265 
+penup 
+goto 235 265 
+pendown 
+goto 235 265 
+penup 
+goto 235 265 
+pendown 
+goto 235 265 
+penup 
+goto 235 265 
+pendown 
+goto 235 265 
+penup 
+goto 235 265 
+pendown 
+goto 235 265 
+penup 
+goto 235 265 
+pendown 
+goto 235 265 
+penup 
+goto 235 265 
+pendown 
+goto 235 265 
+penup 
+goto 245 265 
+pendown 
+goto 245 265 
+penup 
+goto 245 265 
+pendown 
+goto 245 265 
+penup 
+goto 245 265 
+pendown 
+goto 245 265 
+penup 
+goto 245 265 
+pendown 
+goto 245 265 
+penup 
+goto 245 265 
+pendown 
+goto 245 265 
+penup 
+goto 255 255 
+pendown 
+goto 255 255 
+penup 
+goto 255 255 
+pendown 
+goto 255 255 
+penup 
+goto 265 255 
+pendown 
+goto 265 255 
+penup 
+goto 265 255 
+pendown 
+goto 265 255 
+penup 
+goto 265 255 
+pendown 
+goto 265 255 
+penup 
+goto 265 255 
+pendown 
+goto 265 255 
+penup 
+goto 275 255 
+pendown 
+goto 275 255 
+penup 
+goto 275 255 
+pendown 
+goto 275 255 
+penup 
+goto 285 255 
+pendown 
+goto 285 255 
+penup 
+goto 285 255 
+pendown 
+goto 285 255 
+penup 
+goto 285 255 
+pendown 
+goto 285 255 
+penup 
+goto 285 255 
+pendown 
+goto 285 255 
+penup 
+goto 285 255 
+pendown 
+goto 285 255 
+penup 
+goto 285 255 
+pendown 
+goto 285 255 
+penup 
+goto 285 255 
+pendown 
+goto 285 255 
+penup 
+goto 285 255 
+pendown 
+goto 285 255 
+penup 
+goto 295 255 
+pendown 
+goto 295 255 
+penup 
+goto 295 255 
+pendown 
+goto 295 255 
+penup 
+goto 305 275 
+pendown 
+goto 305 275 
+penup 
+goto 305 275 
+pendown 
+goto 305 275 
+penup 
+goto 305 275 
+pendown 
+goto 305 275 
+penup 
+goto 305 265 
+pendown 
+goto 305 265 
+penup 
+goto 305 265 
+pendown 
+goto 305 265 
+penup 
+goto 305 265 
+pendown 
+goto 305 265 
+penup 
+goto 305 265 
+pendown 
+goto 305 265 
+setcolor 153 149 49 
+penup 
+goto 215 255 
+pendown 
+goto 215 255 
+penup 
+goto 215 255 
+pendown 
+goto 215 255 
+penup 
+goto 225 255 
+pendown 
+goto 225 255 
+penup 
+goto 225 255 
+pendown 
+goto 225 255 
+penup 
+goto 225 255 
+pendown 
+goto 225 255 
+penup 
+goto 235 255 
+pendown 
+goto 235 255 
+penup 
+goto 235 255 
+pendown 
+goto 235 255 
+penup 
+goto 235 255 
+pendown 
+goto 235 255 
+penup 
+goto 245 255 
+pendown 
+goto 245 255 
+penup 
+goto 245 255 
+pendown 
+goto 245 255 
+penup 
+goto 245 255 
+pendown 
+goto 245 255 
+penup 
+goto 225 245 
+pendown 
+goto 225 245 
+penup 
+goto 225 245 
+pendown 
+goto 225 245 
+penup 
+goto 235 245 
+pendown 
+goto 235 245 
+penup 
+goto 245 245 
+pendown 
+goto 245 245 
+penup 
+goto 255 245 
+pendown 
+goto 255 245 
+penup 
+goto 255 245 
+pendown 
+goto 255 245 
+penup 
+goto 255 245 
+pendown 
+goto 255 245 
+penup 
+goto 275 265 
+pendown 
+goto 275 265 
+penup 
+goto 275 265 
+pendown 
+goto 275 265 
+penup 
+goto 275 265 
+pendown 
+goto 275 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 285 265 
+pendown 
+goto 285 265 
+penup 
+goto 295 265 
+pendown 
+goto 295 265 
+penup 
+goto 295 265 
+pendown 
+goto 295 265 
+penup 
+goto 295 265 
+pendown 
+goto 295 265 
+penup 
+goto 295 265 
+pendown 
+goto 295 265 
+penup 
+goto 295 265 
+pendown 
+goto 295 265 
+penup 
+goto 295 275 
+pendown 
+goto 295 275 
+penup 
+goto 295 275 
+pendown 
+goto 295 275 
+penup 
+goto 295 275 
+pendown 
+goto 295 275 
+penup 
+goto 295 275 
+pendown 
+goto 295 275 
+penup 
+goto 295 275 
+pendown 
+goto 295 275 
+penup 
+goto 295 275 
+pendown 
+goto 295 275 
+penup 
+goto 285 275 
+pendown 
+goto 285 275 
+penup 
+goto 285 275 
+pendown 
+goto 285 275 
+penup 
+goto 285 275 
+pendown 
+goto 285 275 
+penup 
+goto 285 275 
+pendown 
+goto 285 275 
+penup 
+goto 285 275 
+pendown 
+goto 285 275 
+penup 
+goto 285 275 
+pendown 
+goto 285 275 
+penup 
+goto 285 275 
+pendown 
+goto 285 275 
+penup 
+goto 285 275 
+pendown 
+goto 285 275 
+penup 
+goto 285 285 
+pendown 
+goto 285 285 
+penup 
+goto 285 285 
+pendown 
+goto 285 285 
+penup 
+goto 285 285 
+pendown 
+goto 285 285 
+penup 
+goto 285 285 
+pendown 
+goto 285 285 
+penup 
+goto 285 285 
+pendown 
+goto 285 285 
+penup 
+goto 285 285 
+pendown 
+goto 285 285 
+penup 
+goto 285 285 
+pendown  
+goto 285 285  
+penup  
+goto 285 285  
+pendown  
+goto 285 285  
+penup  
+goto 285 295  
+pendown  
+goto 285 295  
+penup  
+goto 285 295  
+pendown  
+goto 285 295  
+penup 
+goto 275 305 
+pendown 
+goto 275 305 
+penup 
+goto 305 295 
+pendown 
+goto 305 295 
+penup 
+goto 305 295 
+pendown 
+goto 305 295 
+penup 
+goto 305 295 
+pendown 
+goto 305 295 
+penup 
+goto 305 295 
+pendown 
+goto 305 295 
+penup 
+goto 305 305 
+pendown 
+goto 305 305 
+penup 
+goto 305 305 
+pendown 
+goto 305 305 
+penup 
+goto 305 305 
+pendown 
+goto 305 305 
+penup 
+goto 305 305 
+pendown 
+goto 305 305 
+penup 
+goto 305 305 
+pendown 
+goto 305 305 
+penup 
+goto 305 315 
+pendown 
+goto 305 315 
+penup 
+goto 305 315 
+pendown 
+goto 305 315 
+penup 
+goto 305 315 
+pendown 
+goto 305 315 
+penup 
+goto 305 315 
+pendown 
+goto 305 315 
+penup 
+goto 305 325 
+pendown 
+goto 305 325 
+penup 
+goto 305 325 
+pendown 
+goto 305 325 
+penup 
+goto 305 325 
+pendown 
+goto 305 325 
+penup 
+goto 305 325 
+pendown 
+goto 305 325 
+penup 
+goto 305 325 
+pendown 
+goto 305 325 
+penup 
+goto 295 305 
+pendown 
+goto 295 305 
+penup 
+goto 295 305 
+pendown 
+goto 295 305 
+penup 
+goto 295 305 
+pendown 
+goto 295 305 
+penup 
+goto 295 315 
+pendown 
+goto 295 315 
+penup 
+goto 295 315 
+pendown 
+goto 295 315 
+penup 
+goto 295 315 
+pendown 
+goto 295 315 
+penup 
+goto 315 315 
+pendown 
+goto 315 315 
+penup 
+goto 315 315 
+pendown 
+goto 315 315 
+penup 
+goto 315 315 
+pendown 
+goto 315 315 
+penup 
+goto 315 315 
+pendown 
+goto 315 315 
+penup 
+goto 315 325 
+pendown 
+goto 315 325 
+penup 
+goto 315 325 
+pendown 
+goto 315 325 
+penup 
+goto 315 325 
+pendown 
+goto 315 325 
+penup 
+goto 315 325 
+pendown 
+goto 315 325 
+penup 
+goto 315 325 
+pendown 
+goto 315 325 
+penup 
+goto 275 325 
+pendown 
+goto 275 325 
+penup 
+goto 285 335 
+pendown 
+goto 285 335 
+penup 
+goto 285 335 
+pendown 
+goto 285 335 
+penup 
+goto 285 335 
+pendown 
+goto 285 335 
+penup 
+goto 285 335 
+pendown 
+goto 285 335 
+penup 
+goto 285 345 
+pendown 
+goto 285 345 
+penup 
+goto 285 345 
+pendown 
+goto 285 345 
+penup 
+goto 285 345 
+pendown 
+goto 285 345 
+penup 
+goto 205 355 
+pendown 
+goto 205 355 
+penup 
+goto 205 355 
+pendown 
+goto 205 355 
+penup 
+goto 215 355 
+pendown 
+goto 215 355 
+penup 
+goto 215 355 
+pendown 
+goto 215 355 
+penup 
+goto 195 345 
+pendown 
+goto 195 345 
+penup 
+goto 235 355 
+pendown 
+goto 235 355 
+penup 
+goto 205 305 
+pendown 
+goto 205 305 
+penup 
+goto 215 275 
+pendown 
+goto 215 275 
+cursorwidth 10 
+setcolor 129 119 84 
+penup 
+goto 215 245 
+pendown 
+goto 215 245 
+penup 
+goto 265 245 
+pendown 
+goto 265 245 
+penup 
+goto 265 245 
+pendown 
+goto 265 245 
+penup 
+goto 275 245 
+pendown 
+goto 275 245 
+penup 
+goto 275 245 
+pendown 
+goto 275 245 
+penup 
+goto 275 245 
+pendown 
+goto 275 245 
+penup 
+goto 275 245 
+pendown 
+goto 275 245 
+penup 
+goto 275 245 
+pendown 
+goto 275 245 
+penup 
+goto 285 245 
+pendown 
+goto 285 245 
+penup 
+goto 285 245 
+pendown 
+goto 285 245 
+penup 
+goto 285 245 
+pendown 
+goto 285 245 
+penup 
+goto 285 245 
+pendown 
+goto 285 245 
+penup 
+goto 295 245 
+pendown 
+goto 295 245 
+penup 
+goto 295 245 
+pendown 
+goto 295 245 
+penup 
+goto 295 245 
+pendown 
+goto 295 245 
+penup 
+goto 295 245 
+pendown 
+goto 295 245 
+penup 
+goto 295 245 
+pendown 
+goto 295 245 
+penup 
+goto 295 245 
+pendown 
+goto 295 245 
+penup 
+goto 295 235 
+pendown 
+goto 295 235 
+penup 
+goto 295 235 
+pendown 
+goto 295 235 
+penup 
+goto 295 235 
+pendown 
+goto 295 235 
+penup 
+goto 295 235 
+pendown 
+goto 295 235 
+penup 
+goto 295 235 
+pendown 
+goto 295 235 
+penup 
+goto 295 235 
+pendown 
+goto 295 235 
+penup 
+goto 295 235 
+pendown 
+goto 295 235 
+penup 
+goto 295 235 
+pendown 
+goto 295 235 
+penup 
+goto 285 235 
+pendown 
+goto 285 235 
+penup 
+goto 285 235 
+pendown 
+goto 285 235 
+penup 
+goto 285 235 
+pendown 
+goto 285 235 
+penup 
+goto 285 235 
+pendown 
+goto 285 235 
+penup 
+goto 285 235 
+pendown 
+goto 285 235 
+penup 
+goto 285 235 
+pendown 
+goto 285 235 
+penup 
+goto 275 235 
+pendown 
+goto 275 235 
+penup 
+goto 275 235 
+pendown 
+goto 275 235 
+penup 
+goto 275 235 
+pendown 
+goto 275 235 
+penup 
+goto 275 235 
+pendown 
+goto 275 235 
+penup 
+goto 305 235 
+pendown 
+goto 305 235 
+penup 
+goto 295 285 
+pendown 
+goto 295 285 
+penup 
+goto 295 285 
+pendown 
+goto 295 285 
+penup 
+goto 295 285 
+pendown 
+goto 295 285 
+penup 
+goto 295 285 
+pendown 
+goto 295 285 
+penup 
+goto 295 285 
+pendown 
+goto 295 285 
+penup 
+goto 295 285 
+pendown 
+goto 295 285 
+penup 
+goto 305 285 
+pendown 
+goto 305 285 
+penup 
+goto 305 285 
+pendown 
+goto 305 285 
+penup 
+goto 305 285 
+pendown 
+goto 305 285 
+penup 
+goto 305 285 
+pendown 
+goto 305 285 
+penup 
+goto 305 285 
+pendown 
+goto 305 285 
+penup 
+goto 305 285 
+pendown 
+goto 305 285 
+penup 
+goto 305 285 
+pendown 
+goto 305 285 
+penup 
+goto 305 285 
+pendown 
+goto 305 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 315 285 
+pendown 
+goto 315 285 
+penup 
+goto 325 285 
+pendown 
+goto 325 285 
+penup 
+goto 325 285 
+pendown 
+goto 325 285 
+penup 
+goto 325 285 
+pendown 
+goto 325 285 
+penup 
+goto 325 285 
+pendown 
+goto 325 285 
+penup 
+goto 325 285 
+pendown 
+goto 325 285 
+penup 
+goto 325 285 
+pendown 
+goto 325 285 
+penup 
+goto 325 285 
+pendown 
+goto 325 285 
+penup 
+goto 315 275 
+pendown 
+goto 315 275 
+penup 
+goto 325 295 
+pendown 
+goto 325 295 
+penup 
+goto 325 295 
+pendown 
+goto 325 295 
+penup 
+goto 325 295 
+pendown 
+goto 325 295 
+penup 
+goto 325 295 
+pendown 
+goto 325 295 
+penup 
+goto 325 295 
+pendown 
+goto 325 295 
+penup 
+goto 325 295 
+pendown 
+goto 325 295 
+penup 
+goto 325 295 
+pendown 
+goto 325 295 
+penup 
+goto 325 295 
+pendown 
+goto 325 295 
+penup 
+goto 325 305 
+pendown 
+goto 325 305 
+penup 
+goto 325 305 
+pendown 
+goto 325 305 
+penup 
+goto 325 305 
+pendown 
+goto 325 305 
+penup 
+goto 325 305 
+pendown 
+goto 325 305 
+penup 
+goto 325 305 
+pendown 
+goto 325 305 
+penup 
+goto 325 305 
+pendown 
+goto 325 305 
+penup 
+goto 325 305 
+pendown 
+goto 325 305 
+penup 
+goto 325 305 
+pendown 
+goto 325 305 
+penup 
+goto 325 315 
+pendown 
+goto 325 315 
+penup 
+goto 325 315 
+pendown 
+goto 325 315 
+penup 
+goto 325 315 
+pendown 
+goto 325 315 
+penup 
+goto 325 315 
+pendown 
+goto 325 315 
+penup 
+goto 325 315 
+pendown 
+goto 325 315 
+penup 
+goto 325 315 
+pendown 
+goto 325 315 
+penup 
+goto 325 315 
+pendown 
+goto 325 315 
+penup 
+goto 325 315 
+pendown 
+goto 325 315 
+penup 
+goto 325 325 
+pendown 
+goto 325 325 
+penup 
+goto 325 325 
+pendown 
+goto 325 325 
+penup 
+goto 325 325 
+pendown 
+goto 325 325 
+penup 
+goto 325 325 
+pendown 
+goto 325 325 
+penup 
+goto 315 305 
+pendown 
+goto 315 305 
+penup 
+goto 315 305 
+pendown 
+goto 315 305 
+penup 
+goto 315 305 
+pendown 
+goto 315 305 
+penup 
+goto 315 295 
+pendown 
+goto 315 295 
+penup 
+goto 315 295 
+pendown 
+goto 315 295 
+penup 
+goto 315 295 
+pendown 
+goto 315 295 
+penup 
+goto 315 295 
+pendown 
+goto 315 295 
+penup 
+goto 315 295 
+pendown 
+goto 315 295 
+penup 
+goto 315 295 
+pendown 
+goto 315 295 
+penup 
+goto 315 295 
+pendown 
+goto 315 295 
+penup 
+goto 315 295 
+pendown 
+goto 315 295 
+penup 
+goto 315 335 
+pendown 
+goto 315 335 
+penup 
+goto 285 325 
+pendown 
+goto 285 325 
+penup 
+goto 295 335 
+pendown 
+goto 295 335 
+penup 
+goto 305 345 
+pendown 
+goto 305 345 
+penup 
+goto 295 345 
+pendown 
+goto 295 345 
+penup 
+goto 295 345 
+pendown 
+goto 295 345 
+penup 
+goto 295 345 
+pendown 
+goto 295 345 
+penup 
+goto 295 355 
+pendown 
+goto 295 355 
+penup 
+goto 295 355 
+pendown 
+goto 295 355 
+penup 
+goto 295 355 
+pendown 
+goto 295 355 
+penup 
+goto 295 355 
+pendown 
+goto 295 355 
+penup 
+goto 295 355 
+pendown 
+goto 295 355 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 365 
+pendown 
+goto 295 365 
+penup 
+goto 295 375 
+pendown 
+goto 295 375 
+penup 
+goto 295 375 
+pendown 
+goto 295 375 
+penup 
+goto 295 375 
+pendown 
+goto 295 375 
+penup 
+goto 295 375 
+pendown 
+goto 295 375 
+penup 
+goto 295 375 
+pendown 
+goto 295 375 
+penup 
+goto 285 375 
+pendown 
+goto 285 375 
+penup 
+goto 285 375 
+pendown 
+goto 285 375 
+penup 
+goto 285 375 
+pendown 
+goto 285 375 
+penup 
+goto 285 375 
+pendown 
+goto 285 375 
+penup 
+goto 285 375 
+pendown 
+goto 285 375 
+penup 
+goto 285 375 
+pendown 
+goto 285 375 
+penup 
+goto 285 375 
+pendown 
+goto 285 375 
+penup 
+goto 275 375 
+pendown 
+goto 275 375 
+penup 
+goto 275 375 
+pendown 
+goto 275 375 
+penup 
+goto 275 375 
+pendown 
+goto 275 375 
+penup 
+goto 275 375 
+pendown 
+goto 275 375 
+penup 
+goto 275 375 
+pendown 
+goto 275 375 
+penup 
+goto 275 375 
+pendown 
+goto 275 375 
+penup 
+goto 275 375 
+pendown 
+goto 275 375 
+penup 
+goto 265 375 
+pendown 
+goto 265 375 
+penup 
+goto 265 375 
+pendown 
+goto 265 375 
+penup 
+goto 265 375 
+pendown 
+goto 265 375 
+penup 
+goto 265 365 
+pendown 
+goto 265 365 
+penup 
+goto 265 365 
+pendown 
+goto 265 365 
+penup 
+goto 265 365 
+pendown 
+goto 265 365 
+penup 
+goto 265 365 
+pendown 
+goto 265 365 
+penup 
+goto 255 365 
+pendown 
+goto 255 365 
+penup 
+goto 255 365 
+pendown 
+goto 255 365 
+penup 
+goto 255 365 
+pendown 
+goto 255 365 
+penup 
+goto 245 365 
+pendown 
+goto 245 365 
+penup 
+goto 245 365 
+pendown 
+goto 245 365 
+penup 
+goto 245 365 
+pendown 
+goto 245 365 
+penup 
+goto 245 365 
+pendown 
+goto 245 365 
+penup 
+goto 245 365 
+pendown 
+goto 245 365 
+penup 
+goto 255 365 
+pendown 
+goto 255 365 
+penup 
+goto 255 365 
+pendown 
+goto 255 365 
+penup 
+goto 265 365 
+pendown 
+goto 265 365 
+penup 
+goto 265 365 
+pendown 
+goto 265 365 
+penup 
+goto 265 365 
+pendown 
+goto 265 365 
+penup 
+goto 265 365 
+pendown 
+goto 265 365 
+penup 
+goto 275 365 
+pendown 
+goto 275 365 
+penup 
+goto 275 365 
+pendown 
+goto 275 365 
+penup 
+goto 285 365 
+pendown 
+goto 285 365 
+penup 
+goto 285 365 
+pendown 
+goto 285 365 
+penup 
+goto 285 365 
+pendown 
+goto 285 365 
+penup 
+goto 285 365 
+pendown 
+goto 285 365 
+penup 
+goto 285 355 
+pendown 
+goto 285 355 
+penup 
+goto 285 355 
+pendown 
+goto 285 355 
+penup 
+goto 285 355 
+pendown 
+goto 285 355 
+penup 
+goto 285 355 
+pendown 
+goto 285 355 
+penup 
+goto 205 365 
+pendown 
+goto 205 365 
+penup 
+goto 205 365 
+pendown 
+goto 205 365 
+penup 
+goto 205 365 
+pendown 
+goto 205 365 
+penup 
+goto 215 365 
+pendown 
+goto 215 365 
+penup 
+goto 215 365 
+pendown 
+goto 215 365 
+penup 
+goto 215 365 
+pendown 
+goto 215 365 
+penup 
+goto 215 365 
+pendown 
+goto 215 365 
+penup 
+goto 215 365 
+pendown 
+goto 215 365 
+penup 
+goto 225 365 
+pendown 
+penup 
+goto 225 375 
+pendown 
+goto 225 375 
+penup 
+goto 225 375 
+pendown 
+goto 225 375 
+penup 
+goto 225 375 
+pendown 
+goto 225 375 
+penup 
+goto 225 375 
+pendown 
+goto 225 375 
+penup 
+goto 225 375 
+pendown 
+goto 225 375 
+penup 
+goto 235 375 
+pendown 
+goto 235 375 
+penup 
+goto 235 375 
+pendown 
+goto 235 375 
+penup 
+goto 235 375 
+pendown 
+goto 235 375 
+penup 
+goto 235 375 
+pendown 
+goto 235 375 
+penup 
+goto 235 375 
+pendown 
+goto 235 375 
+penup 
+goto 235 375 
+pendown 
+goto 235 375 
+penup 
+goto 225 375 
+pendown 
+goto 225 375 
+penup 
+goto 225 385 
+pendown 
+goto 225 385 
+penup 
+goto 225 385 
+pendown 
+goto 225 385 
+penup 
+goto 225 385 
+pendown 
+goto 225 385 
+penup 
+goto 225 385 
+pendown 
+goto 225 385 
+penup 
+goto 225 385 
+pendown 
+goto 225 385 
+penup 
+goto 225 385 
+pendown 
+goto 225 385 
+penup 
+goto 225 385 
+pendown 
+goto 225 385 
+penup 
+goto 225 385 
+pendown 
+goto 225 385 
+penup 
+goto 235 385 
+pendown 
+goto 235 385 
+penup 
+goto 235 385 
+pendown 
+goto 235 385 
+penup 
+goto 235 385 
+pendown 
+goto 235 385 
+penup 
+goto 235 385 
+pendown 
+goto 235 385 
+penup 
+goto 235 385 
+pendown 
+goto 235 385 
+penup 
+goto 235 385 
+pendown 
+goto 235 385 
+penup 
+goto 245 385 
+pendown 
+goto 245 385 
+penup 
+goto 245 385 
+pendown 
+goto 245 385 
+penup 
+goto 245 385 
+pendown 
+goto 245 385 
+penup 
+goto 245 385 
+pendown 
+goto 245 385 
+penup 
+goto 245 385 
+pendown 
+goto 245 385 
+penup 
+goto 245 385 
+pendown 
+goto 245 385 
+penup 
+goto 255 385 
+pendown 
+goto 255 385 
+penup 
+goto 255 385 
+pendown 
+goto 255 385 
+penup 
+goto 245 395 
+pendown 
+goto 245 395 
+penup 
+goto 255 395 
+pendown 
+goto 255 395 
+penup 
+goto 265 395 
+pendown 
+goto 265 395 
+penup 
+goto 285 395 
+pendown 
+goto 285 395 
+penup 
+goto 285 395 
+pendown 
+goto 285 395 
+penup 
+goto 285 395 
+pendown 
+goto 285 395 
+penup 
+goto 285 395 
+pendown 
+goto 285 395 
+penup 
+goto 275 395 
+pendown 
+goto 275 395 
+penup 
+goto 225 295 
+pendown 
+goto 225 295 
+penup 
+goto 225 295 
+pendown 
+goto 225 295 
+penup 
+goto 225 285 
+pendown 
+goto 225 285 
+penup 
+goto 225 285 
+pendown 
+goto 225 285 
+penup 
+goto 225 285 
+pendown 
+goto 225 285 
+penup 
+goto 225 285 
+pendown 
+goto 225 285 
+penup 
+goto 225 285 
+pendown 
+goto 225 285 
+penup 
+goto 225 285 
+pendown 
+goto 225 285 
+penup 
+goto 225 285 
+pendown 
+goto 225 285 
+penup 
+goto 225 275 
+pendown 
+goto 225 275 
+penup 
+goto 225 335 
+pendown 
+goto 225 335 
+penup 
+goto 225 335 
+pendown 
+goto 225 335 
+penup 
+goto 225 335 
+pendown 
+goto 225 335 
+penup 
+goto 225 335 
+pendown 
+goto 225 335 
+penup 
+goto 225 345 
+pendown 
+goto 225 345 
+penup 
+goto 225 345 
+pendown 
+goto 225 345 
+penup 
+goto 225 345 
+pendown 
+goto 225 345 
+penup 
+goto 225 345 
+pendown 
+goto 225 345 
+penup 
+goto 225 345 
+pendown 
+goto 225 345 
+penup 
+goto 225 345 
+pendown 
+goto 225 345 
+penup 
+goto 225 345 
+pendown 
+goto 225 345 
+penup 
+goto 225 345 
+pendown 
+goto 225 345 
+penup 
+goto 225 355 
+pendown 
+goto 225 355 
+penup 
+goto 225 355 
+pendown 
+goto 225 355 
+penup 
+goto 245 315 
+pendown 
+goto 245 315 
+penup 
+goto 245 315 
+pendown 
+goto 245 315 
+penup 
+goto 245 315 
+pendown 
+goto 245 315 
+penup 
+goto 245 315 
+pendown 
+goto 245 315 
+penup 
+goto 245 315 
+pendown 
+goto 245 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 255 315 
+pendown 
+goto 255 315 
+penup 
+goto 265 315 
+pendown 
+goto 265 315 
+penup 
+goto 205 315 
+pendown 
+goto 205 315 
+setcolor 153 149 49 
+penup 
+goto 335 335  
+setcolor 142 98 35 
+cursorwidth 10 
+penup 
+goto 335 335 
+pendown 
+goto 335 335 
+penup 
+goto 335 335 
+pendown 
+goto 335 335 
+penup 
+goto 335 335 
+pendown 
+goto 335 335 
+penup 
+goto 335 335 
+pendown 
+goto 335 335 
+penup 
+goto 335 335 
+pendown 
+goto 335 335 
+penup 
+goto 335 335 
+pendown 
+goto 335 335 
+penup 
+goto 335 325 
+pendown 
+goto 335 325 
+penup 
+goto 335 325 
+pendown 
+goto 335 325 
+penup 
+goto 335 325 
+pendown 
+goto 335 325 
+penup 
+goto 335 325 
+pendown 
+goto 335 325 
+penup 
+goto 335 325 
+pendown 
+goto 335 325 
+penup 
+goto 335 325 
+pendown 
+goto 335 325 
+penup 
+goto 335 325 
+pendown 
+goto 335 325 
+penup 
+goto 335 325 
+pendown 
+goto 335 325 
+penup 
+goto 335 315 
+pendown 
+goto 335 315 
+penup 
+goto 335 315 
+pendown 
+goto 335 315 
+penup 
+goto 345 325 
+pendown 
+goto 345 325 
+penup 
+goto 365 345 
+pendown 
+goto 365 345 
+setcolor 129 119 84 
+penup 
+goto 325 335 
+pendown 
+goto 325 335 
+penup 
+goto 305 355 
+pendown 
+goto 305 355 
+penup 
+goto 305 225 
+setcolor 192 192 192 
+penup 
+goto 305 225 
+pendown 
+goto 305 225 
+setcolor 144 144 110 
+penup 
+goto 205 265 
+pendown 
+goto 205 265 
+penup 
+goto 205 265 
+pendown 
+goto 205 265 
+penup 
+goto 205 275 
+pendown 
+goto 205 275 
+penup 
+goto 205 275 
+pendown 
+goto 205 275 
+penup 
+goto 205 275 
+pendown 
+goto 205 275 
+penup 
+goto 205 275 
+pendown 
+goto 205 275 
+penup 
+goto 205 285 
+pendown 
+goto 205 285 
+penup 
+goto 205 285 
+pendown 
+goto 205 285 
+penup 
+goto 205 285 
+pendown 
+goto 205 285 
+penup 
+goto 205 285 
+pendown 
+goto 205 285 
+penup 
+goto 205 285 
+pendown 
+goto 205 285 
+penup 
+goto 205 285 
+pendown 
+goto 205 285 
+penup 
+goto 205 285 
+pendown 
+goto 205 285 
+penup 
+goto 205 295 
+pendown 
+goto 205 295 
+penup 
+goto 205 295 
+pendown 
+goto 205 295 
+penup 
+goto 205 295 
+pendown 
+goto 205 295 
+penup 
+goto 215 285 
+pendown 
+goto 215 285 
+penup 
+goto 215 285 
+pendown 
+goto 215 285 
+penup 
+goto 215 285 
+pendown 
+goto 215 285 
+penup 
+goto 215 295 
+pendown 
+goto 215 295 
+penup 
+goto 215 295 
+pendown 
+goto 215 295 
+penup 
+goto 215 295 
+pendown 
+goto 215 295 
+penup 
+goto 215 295 
+pendown 
+goto 215 295 
+penup 
+goto 215 295 
+pendown 
+goto 215 295 
+penup 
+goto 215 305 
+pendown 
+goto 215 305 
+penup 
+goto 215 305 
+pendown 
+goto 215 305 
+penup 
+goto 195 295 
+pendown 
+goto 195 295 
+penup 
+goto 195 295 
+pendown 
+goto 195 295 
+penup 
+goto 195 285 
+pendown 
+goto 195 285 
+penup 
+goto 195 285 
+pendown 
+goto 195 285 
+penup 
+goto 195 285 
+pendown 
+goto 195 285 
+penup 
+goto 195 285 
+pendown 
+goto 195 285 
+penup 
+goto 195 275 
+pendown 
+goto 195 275 
+penup 
+goto 195 275 
+pendown 
+goto 195 275 
+penup 
+goto 195 275 
+pendown 
+goto 195 275 
+penup 
+goto 195 275 
+pendown 
+goto 195 275 
+penup 
+goto 195 275 
+pendown 
+goto 195 275 
+penup 
+goto 195 275 
+pendown 
+goto 195 275 
+penup 
+goto 195 275 
+pendown 
+goto 195 275 
+penup 
+goto 225 275 
+pendown 
+goto 225 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 235 275 
+pendown 
+goto 235 275 
+penup 
+goto 245 275 
+pendown 
+goto 245 275 
+penup 
+goto 245 275 
+pendown 
+goto 245 275 
+penup 
+goto 245 275 
+pendown 
+goto 245 275 
+penup 
+goto 245 275 
+pendown 
+goto 245 275 
+penup 
+goto 255 275 
+pendown 
+goto 255 275 
+penup 
+goto 255 275 
+pendown 
+goto 255 275 
+penup 
+goto 255 275 
+pendown 
+goto 255 275 
+penup 
+goto 255 275 
+pendown 
+goto 255 275 
+penup 
+goto 255 275 
+pendown 
+goto 255 275 
+penup 
+goto 255 275 
+pendown 
+goto 255 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 275 275 
+pendown 
+goto 275 275 
+penup 
+goto 275 275 
+pendown 
+goto 275 275 
+penup 
+goto 275 275 
+pendown 
+goto 275 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 275 
+pendown 
+goto 265 275 
+penup 
+goto 265 285 
+pendown 
+goto 265 285 
+penup 
+goto 265 285 
+pendown 
+goto 265 285 
+penup 
+goto 265 285 
+pendown 
+goto 265 285 
+penup 
+goto 265 285 
+pendown 
+goto 265 285 
+penup 
+goto 265 295 
+pendown 
+goto 265 295 
+penup 
+goto 275 295 
+pendown 
+goto 275 295 
+penup 
+goto 275 295 
+pendown 
+goto 275 295 
+penup 
+goto 275 295 
+pendown 
+goto 275 295 
+penup 
+goto 275 295 
+pendown 
+goto 275 295 
+penup 
+goto 275 285 
+pendown 
+goto 275 285 
+penup 
+goto 275 285 
+pendown 
+goto 275 285 
+penup 
+goto 275 285 
+pendown 
+goto 275 285 
+penup 
+goto 275 285 
+pendown 
+goto 275 285 
+penup 
+goto 265 285 
+pendown 
+goto 265 285 
+penup 
+goto 265 285 
+pendown 
+goto 265 285 
+penup 
+goto 255 285 
+pendown 
+goto 255 285 
+penup 
+goto 255 285 
+pendown 
+goto 255 285 
+penup 
+goto 245 285 
+pendown 
+goto 245 285 
+penup 
+goto 245 285 
+pendown 
+goto 245 285 
+penup 
+goto 245 285 
+pendown 
+goto 245 285 
+penup 
+goto 245 285 
+pendown 
+goto 245 285 
+penup 
+goto 245 285 
+pendown 
+goto 245 285 
+penup 
+goto 245 285 
+pendown 
+goto 245 285 
+penup 
+goto 245 285 
+pendown 
+goto 245 285 
+penup 
+goto 245 285 
+pendown 
+goto 245 285 
+penup 
+goto 235 285 
+pendown 
+goto 235 285 
+penup 
+goto 235 285 
+pendown 
+goto 235 285 
+penup 
+goto 235 285 
+pendown 
+goto 235 285 
+penup 
+goto 235 285 
+pendown 
+goto 235 285 
+penup 
+goto 235 285 
+pendown 
+goto 235 285 
+penup 
+goto 235 295 
+pendown 
+goto 235 295 
+penup 
+goto 235 295 
+pendown 
+goto 235 295 
+penup 
+goto 235 295 
+pendown 
+goto 235 295 
+penup 
+goto 235 295 
+pendown 
+goto 235 295 
+penup 
+goto 235 295 
+pendown 
+goto 235 295 
+penup 
+goto 235 295 
+pendown 
+goto 235 295 
+penup 
+goto 235 305 
+pendown 
+goto 235 305 
+penup 
+goto 235 305 
+pendown 
+goto 235 305 
+penup 
+goto 235 305 
+pendown 
+goto 235 305 
+penup 
+goto 235 305 
+pendown 
+goto 235 305 
+penup 
+goto 245 305 
+pendown 
+goto 245 305 
+penup 
+goto 245 305 
+pendown 
+goto 245 305 
+penup 
+goto 245 305 
+pendown 
+goto 245 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 255 305 
+pendown 
+goto 255 305 
+penup 
+goto 265 305 
+pendown 
+goto 265 305 
+penup 
+goto 265 305 
+pendown 
+goto 265 305 
+penup 
+goto 255 295 
+pendown 
+goto 255 295 
+penup 
+goto 255 295 
+pendown 
+goto 255 295 
+penup 
+goto 255 295 
+pendown 
+goto 255 295 
+penup 
+goto 245 295 
+pendown 
+goto 245 295 
+penup 
+goto 245 295 
+pendown 
+goto 245 295 
+penup 
+goto 195 315 
+pendown 
+goto 195 315 
+penup 
+goto 195 315 
+pendown 
+goto 195 315 
+penup 
+goto 195 325 
+pendown 
+goto 195 325 
+penup 
+goto 195 325 
+pendown 
+goto 195 325 
+penup 
+goto 195 325 
+pendown 
+goto 195 325 
+penup 
+goto 195 325 
+pendown 
+goto 195 325 
+penup 
+goto 195 325 
+pendown 
+goto 195 325 
+penup 
+goto 195 325 
+pendown 
+goto 195 325 
+penup 
+goto 195 325 
+pendown 
+goto 195 325 
+penup 
+goto 195 325 
+pendown 
+goto 195 325 
+penup 
+goto 195 335 
+pendown 
+goto 195 335 
+penup 
+goto 195 335 
+pendown 
+goto 195 335 
+penup 
+goto 195 335 
+pendown 
+goto 195 335 
+penup 
+goto 195 335 
+pendown 
+goto 195 335 
+penup 
+goto 195 335 
+pendown 
+goto 195 335 
+penup 
+goto 195 335 
+pendown 
+goto 195 335 
+penup 
+goto 195 335 
+pendown 
+goto 195 335 
+penup 
+goto 195 335 
+pendown 
+goto 195 335 
+penup 
+goto 205 335 
+pendown 
+goto 205 335 
+penup 
+goto 205 335 
+pendown 
+goto 205 335 
+penup 
+goto 205 335 
+pendown 
+goto 205 335 
+penup 
+goto 205 335 
+pendown 
+goto 205 335 
+penup 
+goto 205 335 
+pendown 
+goto 205 335 
+penup 
+goto 205 335 
+pendown 
+goto 205 335 
+penup 
+goto 205 335 
+pendown 
+goto 205 335 
+penup 
+goto 205 335 
+pendown 
+goto 205 335 
+penup 
+goto 205 345 
+pendown 
+goto 205 345 
+penup 
+goto 205 345 
+pendown 
+goto 205 345 
+penup 
+goto 205 345 
+pendown 
+goto 205 345 
+penup 
+goto 205 345 
+pendown 
+goto 205 345 
+penup 
+goto 205 345 
+pendown 
+goto 205 345 
+penup 
+goto 205 345 
+pendown 
+goto 205 345 
+penup 
+goto 205 345 
+pendown 
+goto 205 345 
+penup 
+goto 205 345 
+pendown 
+goto 205 345 
+penup 
+goto 215 345 
+pendown 
+goto 215 345 
+penup 
+goto 215 345 
+pendown 
+goto 215 345 
+penup 
+goto 215 345 
+pendown 
+goto 215 345 
+penup 
+goto 215 345 
+pendown 
+goto 215 345 
+penup 
+goto 215 345 
+pendown 
+goto 215 345 
+penup 
+goto 215 345 
+pendown 
+goto 215 345 
+penup 
+goto 215 335 
+pendown 
+goto 215 335 
+penup 
+goto 215 335 
+pendown 
+goto 215 335 
+penup 
+goto 215 335 
+pendown 
+goto 215 335 
+penup 
+goto 215 335 
+pendown 
+goto 215 335 
+penup 
+goto 215 335 
+pendown 
+goto 215 335 
+penup 
+goto 215 335 
+pendown 
+goto 215 335 
+penup 
+goto 215 325 
+pendown 
+goto 215 325 
+penup 
+goto 215 325 
+pendown 
+goto 215 325 
+penup 
+goto 215 325 
+pendown 
+goto 215 325 
+penup 
+goto 205 325 
+pendown 
+goto 205 325 
+penup 
+goto 205 325 
+pendown 
+goto 205 325 
+penup 
+goto 205 325 
+pendown 
+goto 205 325 
+penup 
+goto 205 325 
+pendown 
+goto 205 325 
+penup 
+goto 235 325 
+pendown 
+goto 235 325 
+penup 
+goto 235 325 
+pendown 
+goto 235 325 
+penup 
+goto 235 325 
+pendown 
+goto 235 325 
+penup 
+goto 235 325 
+pendown 
+goto 235 325 
+penup 
+goto 245 325 
+pendown 
+goto 245 325 
+penup 
+goto 245 325 
+pendown 
+goto 245 325 
+penup 
+goto 255 325 
+pendown 
+goto 255 325 
+penup 
+goto 255 325 
+pendown 
+goto 255 325 
+penup 
+goto 255 325 
+pendown 
+goto 255 325 
+penup 
+goto 255 325 
+pendown 
+goto 255 325 
+penup 
+goto 255 325 
+pendown 
+goto 255 325 
+penup 
+goto 255 325 
+pendown 
+goto 255 325 
+penup 
+goto 265 325 
+pendown 
+goto 265 325 
+penup 
+goto 265 325 
+pendown 
+goto 265 325 
+penup 
+goto 265 325 
+pendown 
+goto 265 325 
+penup 
+goto 265 325 
+pendown 
+goto 265 325 
+penup 
+goto 265 325 
+pendown 
+goto 265 325 
+penup 
+goto 265 325 
+pendown 
+goto 265 325 
+penup 
+goto 265 335 
+pendown 
+goto 265 335 
+penup 
+goto 265 335 
+pendown 
+goto 265 335 
+penup 
+goto 265 335 
+pendown 
+goto 265 335 
+penup 
+goto 265 335 
+pendown 
+goto 265 335 
+penup 
+goto 265 335 
+pendown 
+goto 265 335 
+penup 
+goto 275 335 
+pendown 
+goto 275 335 
+penup 
+goto 275 335 
+pendown 
+goto 275 335 
+penup 
+goto 275 335 
+pendown 
+goto 275 335 
+penup 
+goto 275 345 
+pendown 
+goto 275 345 
+penup 
+goto 275 345 
+pendown 
+goto 275 345 
+penup 
+goto 275 345 
+pendown 
+goto 275 345 
+penup 
+goto 275 345 
+pendown 
+goto 275 345 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 275 355 
+pendown 
+goto 275 355 
+penup 
+goto 265 355 
+pendown 
+goto 265 355 
+penup 
+goto 265 355 
+pendown 
+goto 265 355 
+penup 
+goto 265 355 
+pendown 
+goto 265 355 
+penup 
+goto 255 355 
+pendown 
+goto 255 355 
+penup 
+goto 255 355 
+pendown 
+goto 255 355 
+penup 
+goto 255 355 
+pendown 
+goto 255 355 
+penup 
+goto 245 355 
+pendown 
+goto 245 355 
+penup 
+goto 245 355 
+pendown 
+goto 245 355 
+penup 
+goto 245 355 
+pendown 
+goto 245 355 
+penup 
+goto 245 355 
+pendown 
+goto 245 355 
+penup 
+goto 245 355 
+pendown 
+goto 245 355 
+penup 
+goto 245 345 
+pendown 
+goto 245 345 
+penup 
+goto 245 345 
+pendown 
+goto 245 345 
+penup 
+goto 245 345 
+pendown 
+goto 245 345 
+penup 
+goto 245 345 
+pendown 
+goto 245 345 
+penup 
+goto 245 345 
+pendown 
+goto 245 345 
+penup 
+goto 235 345 
+pendown 
+goto 235 345 
+penup 
+goto 235 345 
+pendown 
+goto 235 345 
+penup 
+goto 235 345 
+pendown 
+goto 235 345 
+penup 
+goto 235 345 
+pendown 
+goto 235 345 
+penup 
+goto 235 345 
+pendown 
+goto 235 345 
+penup 
+goto 235 335 
+pendown 
+goto 235 335 
+penup 
+goto 235 335 
+pendown 
+goto 235 335 
+penup 
+goto 235 335 
+pendown 
+goto 235 335 
+penup 
+goto 235 335 
+pendown 
+goto 235 335 
+penup 
+goto 245 335 
+pendown 
+goto 245 335 
+penup 
+goto 245 335 
+pendown 
+goto 245 335 
+penup 
+goto 245 335 
+pendown 
+goto 245 335 
+penup 
+goto 255 335 
+pendown 
+goto 255 335 
+penup 
+goto 255 335 
+pendown 
+goto 255 335 
+penup 
+goto 255 335 
+pendown 
+goto 255 335 
+penup 
+goto 255 335 
+pendown 
+goto 255 335 
+penup 
+goto 255 335 
+pendown 
+goto 255 335 
+penup 
+goto 255 335 
+pendown 
+goto 255 335 
+penup 
+goto 255 345 
+pendown 
+goto 255 345 
+penup 
+goto 255 345 
+pendown 
+goto 255 345 
+penup 
+goto 255 345 
+pendown 
+goto 255 345 
+penup 
+goto 255 345 
+pendown 
+goto 255 345 
+penup 
+goto 255 345 
+pendown 
+goto 255 345 
+penup 
+goto 255 345 
+pendown 
+goto 255 345 
+penup 
+goto 265 345 
+pendown 
+goto 265 345 
+penup 
+goto 265 345 
+pendown 
+goto 265 345 
+penup 
+goto 265 345 
+pendown 
+goto 265 345 
+setcolor 129 119 84 
+penup 
+goto 225 275 
+pendown 
+goto 225 275 
+penup 
+goto 225 275 
+pendown 
+goto 225 275 
+penup 
+goto 255 265 
+pendown 
+goto 255 265 
+setcolor 153 149 49 
+penup 
+goto 265 265 
+pendown 
+goto 265 265 
