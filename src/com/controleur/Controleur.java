@@ -30,7 +30,7 @@ public class Controleur{
     private Curseur curseur = null;
     private Curseur first_curseur = null;
     private BarreMenu barreMenu = null;
-    private BarreMenuGrille barreMenuGrille = null;
+    private MenuGrille barreMenuGrille = null;
     private BarreOutils barreOutils = null;
     private Memory repeat_memory;
 
@@ -1610,23 +1610,7 @@ public class Controleur{
                 while ( StockageDonnee.getSize_Tmp() > 0 )
                 {
                     commande( StockageDonnee.getTmp(0), true, true );
-                    
-                    Thread t = new Thread(){
-                        public void run()
-                        {
-                            zd.repaint();
-                            try
-                            {
-                                System.out.println("g");
-                                Thread.sleep(1000000000);
-                            }
-                            catch (Exception e)
-                            {
-                                System.out.println("aaaaaaaaa");
-                            }
-                        }
-                    };
-                    t.start();
+                    zd.repaint();
                 }
 
             }
