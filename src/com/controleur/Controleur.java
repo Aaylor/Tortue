@@ -461,7 +461,7 @@ public class Controleur{
                 }
                 
                 if ( retour == 0 && write )
-                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
+                    StockageDonnee.ajoutLCEC(commande_parser, false, true);
            
                 return retour;
             
@@ -1068,10 +1068,10 @@ public class Controleur{
         }
         else if (type==3){
             StockageDonnee.ajoutListeDessin( new Traceur(3, curseur.getCouleur(), value[0], value[1], value[2], value[3],
-                        value[4], value[5], true ) );
+                        value[4], value[5], estRempli ) );
         }
         else if (type==4){
-            StockageDonnee.ajoutListeDessin( new Traceur(4, curseur.getCouleur(), value[2], value[0], value[1], true));
+            StockageDonnee.ajoutListeDessin( new Traceur(4, curseur.getCouleur(), value[2], value[0], value[1], estRempli));
         }
        
         zd.repaint();
