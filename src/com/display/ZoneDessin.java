@@ -33,10 +33,10 @@ public class ZoneDessin extends JPanel{
 	private int clicSouris;//1 : Clic gauche, 2 : Clic du milieu, 3 : Clic Droit
 	private boolean affichageCurseur = true;
 	
-	public static boolean gridEnable;
+	public boolean gridEnable;
 	private static int widthCaseGrid;
 	private static int heightCaseGrid;
-	public static boolean gridMagnetism;
+	public boolean gridMagnetismEnable;
 	
 	public static boolean pixelArtModeEnable;
 	
@@ -92,7 +92,7 @@ public class ZoneDessin extends JPanel{
                     : (posY - ecartVertical > this.getHauteurDessin()) ? this.getHauteurDessin()
                     : (posY - ecartVertical);
 
-                if(gridMagnetism){//Si la grille est magnetisee, on centre le point dans le carreau sur lequel il est
+                if(gridMagnetismEnable){//Si la grille est magnetisee, on centre le point dans le carreau sur lequel il est
                 	posX_final = (posX_final/widthCaseGrid)*widthCaseGrid + widthCaseGrid/2;
                 	posY_final = (posY_final/heightCaseGrid)*heightCaseGrid + heightCaseGrid/2;
                 }
@@ -424,7 +424,7 @@ public class ZoneDessin extends JPanel{
 		return gridEnable;
 	}
 
-	public static void setGridEnable(boolean a) {
+	public void setGridEnable(boolean a) {
 		gridEnable = a;
 	}
 
@@ -436,22 +436,22 @@ public class ZoneDessin extends JPanel{
 		heightCaseGrid = a;
 	}
 
-	public boolean isGridMagnetism() {
-		return gridMagnetism;
+	public boolean isGridMagnetismEnable() {
+		return gridMagnetismEnable;
 	}
 
-	public static void setGridMagnetism(boolean g) {
-		gridMagnetism = g;
+	public void setGridMagnetismEnable(boolean g) {
+		gridMagnetismEnable = g;
 	}
 	
-	public static void setPixelArtModeEnable(boolean g) {
+	public  void setPixelArtModeEnable(boolean g) {
 		pixelArtModeEnable = g;
 	}
-	public static int getWidthCaseGrid(){
+	public int getWidthCaseGrid(){
 		return widthCaseGrid;
 	}
 
-	public static int getHeightCaseGrid(){
+	public int getHeightCaseGrid(){
 		return heightCaseGrid;
 	}
 }

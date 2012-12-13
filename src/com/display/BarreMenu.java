@@ -228,13 +228,13 @@ public class BarreMenu extends JMenuBar{
 	}
 	
 	private void activerMagnetisme(){
-		if(ZoneDessin.gridMagnetism){
-			ZoneDessin.setGridMagnetism(false);
+		if(ZoneDessin.gridMagnetismEnable){
+			ZoneDessin.setGridMagnetismEnable(false);
 			ZoneDessin.setPixelArtModeEnable(false);
 			BarreMenu.affichageItemPixelArtMode();
 		}
 		else{
-			ZoneDessin.setGridMagnetism(true);
+			ZoneDessin.setGridMagnetismEnable(true);
 		}
 		affichageItemMagnetisme();
 	}
@@ -245,7 +245,7 @@ public class BarreMenu extends JMenuBar{
 			controleur.commande("cursorwidth " + ZoneDessin.getWidthCaseGrid(), true, true);
 			if(controleur.getCurseur().getForme() == 0)
 				controleur.commande("forme", true, true);
-			if(!ZoneDessin.gridMagnetism)
+			if(!ZoneDessin.gridMagnetismEnable)
 				activerMagnetisme();
 			ZoneDessin.setPixelArtModeEnable(true);
 			affichageItemPixelArtMode();
@@ -266,7 +266,7 @@ public class BarreMenu extends JMenuBar{
 	static public void affichageItemMagnetisme(){
 		if(ZoneDessin.gridEnable){
 			magnetisme.setEnabled(true);
-			if(ZoneDessin.gridMagnetism){
+			if(ZoneDessin.gridMagnetismEnable){
 				magnetisme.setIcon(new ImageIcon("../img/ok.png"));
 			}
 			else{
@@ -278,7 +278,7 @@ public class BarreMenu extends JMenuBar{
 		}
 	}
 	public static void affichageItemPixelArtMode(){
-		if(ZoneDessin.gridEnable && ZoneDessin.gridMagnetism && ZoneDessin.getWidthCaseGrid() == controleur.getCurseur().getEpaisseur() && ZoneDessin.getHeightCaseGrid() == controleur.getCurseur().getEpaisseur() && controleur.getCurseur().getForme() == 1){
+		if(ZoneDessin.gridEnable && ZoneDessin.gridMagnetismEnable && ZoneDessin.getWidthCaseGrid() == controleur.getCurseur().getEpaisseur() && ZoneDessin.getHeightCaseGrid() == controleur.getCurseur().getEpaisseur() && controleur.getCurseur().getForme() == 1){
 			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
 		}
 		else{
