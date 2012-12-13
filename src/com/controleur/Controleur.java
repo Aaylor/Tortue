@@ -424,41 +424,47 @@ public class Controleur{
             case 19:
                 if ( commande_parser[1].equalsIgnoreCase("triangle") )
                 {
-                    return doFigure(3, new int[] {  Integer.parseInt(commande_parser[2]),
-                                                    Integer.parseInt(commande_parser[3]), 
-                                                    Integer.parseInt(commande_parser[4]),
-                                                    Integer.parseInt(commande_parser[5]), 
-                                                    Integer.parseInt(commande_parser[6]),
-                                                    Integer.parseInt(commande_parser[7])},  
-                                                    Integer.parseInt(commande_parser[8]) == 0 ? false : true);
+                    retour = doFigure(3, new int[] {    Integer.parseInt(commande_parser[2]),
+                                                        Integer.parseInt(commande_parser[3]), 
+                                                        Integer.parseInt(commande_parser[4]),
+                                                        Integer.parseInt(commande_parser[5]), 
+                                                        Integer.parseInt(commande_parser[6]),
+                                                        Integer.parseInt(commande_parser[7])},  
+                                                        Integer.parseInt(commande_parser[8]) == 0 ? false : true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("square") )
                 {
-                    return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
-                                                    Integer.parseInt(commande_parser[3]), 
-                                                    Integer.parseInt(commande_parser[4]), 
-                                                    Integer.parseInt(commande_parser[4])},
-                                                    Integer.parseInt(commande_parser[5]) == 0 ? false : true);
+                    retour = doFigure(2, new int[] {    Integer.parseInt(commande_parser[2]),
+                                                        Integer.parseInt(commande_parser[3]), 
+                                                        Integer.parseInt(commande_parser[4]), 
+                                                        Integer.parseInt(commande_parser[4])},
+                                                        Integer.parseInt(commande_parser[5]) == 0 ? false : true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("rectangle") )
                 {
-                    return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
-                                                    Integer.parseInt(commande_parser[3]), 
-                                                    Integer.parseInt(commande_parser[4]), 
-                                                    Integer.parseInt(commande_parser[5])},
-                                                    Integer.parseInt(commande_parser[6]) == 0 ? false : true);
+                    retour = doFigure(2, new int[] {    Integer.parseInt(commande_parser[2]),
+                                                        Integer.parseInt(commande_parser[3]), 
+                                                        Integer.parseInt(commande_parser[4]), 
+                                                        Integer.parseInt(commande_parser[5])},
+                                                        Integer.parseInt(commande_parser[6]) == 0 ? false : true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("circle") )
                 {
-                    return doFigure(4, new int[] {  Integer.parseInt(commande_parser[2]),
-                                                    Integer.parseInt(commande_parser[3]),
-                                                    Integer.parseInt(commande_parser[4])},
-                                                    Integer.parseInt(commande_parser[5]) == 0 ? false : true);
+                    retour = doFigure(4, new int[] {    Integer.parseInt(commande_parser[2]),
+                                                        Integer.parseInt(commande_parser[3]),
+                                                        Integer.parseInt(commande_parser[4])},
+                                                        Integer.parseInt(commande_parser[5]) == 0 ? false : true);
                 }
                 else
                 {
                     return GestionErreur.COMMANDE_ERRONEE;
                 }
+                
+                if ( retour == 0 && write )
+                    StockageDonnee.ajoutLCEC(commande_parser, true, true);
+           
+                return retour;
+            
             
             case 20:
                 return width( Integer.parseInt( commande_parser[1] ) );
