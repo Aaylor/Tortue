@@ -1180,7 +1180,7 @@ public class Controleur{
      */
     public int pixelart(int size)
     {
-    	setPixelArtMod(size);
+    	setPixelArtMod(true, size);
 		
 		return GestionErreur.SUCCESS;
     }
@@ -1195,28 +1195,31 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
 
-    public void setPixelArtMod(int size){
-    	//Afficher la grille
-    	zd.setGridEnable(true);
-    	zd.setWidthCaseGrid(size);
-		zd.setHeightCaseGrid(size);
-		
-    	//Activer le magnetisme
-		zd.setGridMagnetismEnable(true);
-		
-    	//Changer la taille du curseur
-		curseur.setEpaisseur(size);
-		
-		//Changer la forme du curseur
-		curseur.setForme((short)1);
-		
-		//Abaisser le curseur
-		curseur.setIsDown(true);
-		
-		//Activation du mode tortue
-		zd.setPixelArtModeEnable(true);
-		
-		zd.repaint();
+    public void setPixelArtMod(boolean enable, int size){
+    	if(enable){
+	    	//Afficher la grille
+	    	setGrid(true, size, size);
+			
+	    	//Activer le magnetisme
+			setMagnetism(true);
+			
+	    	//Changer la taille du curseur
+			curseur.setEpaisseur(size);
+			
+			//Changer la forme du curseur
+			curseur.setForme((short)1);
+			
+			//Abaisser le curseur
+			curseur.setIsDown(true);
+			
+			//Activation du mode tortue
+			zd.setPixelArtModeEnable(true);
+			
+			zd.repaint();
+    	}
+    	else{
+    		zd.setPixelArtModeEnable(false);
+    	}
     }
     
     /**

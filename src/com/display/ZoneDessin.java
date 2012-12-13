@@ -196,7 +196,7 @@ public class ZoneDessin extends JPanel{
 				int[] y = {posYAbsolue(t.getYOrigine()),
 						posYAbsolue(t.getYArrivee()),
 						posYAbsolue(t.getY3())};
-				if(!t.estRempli()){
+				if(t.estRempli()){
 						g.fillPolygon(x, y, 3);
 					}
 				else{
@@ -207,7 +207,7 @@ public class ZoneDessin extends JPanel{
 			//Si le t est un Cercle
 			else if (t.getType() == 4){
 				//On va faire une boucle qui dessin des triangle successifs selon l'epaisseur du curseur
-				if(!t.estRempli()){
+				if(t.estRempli()){
 					g.fillOval(posXAbsolue(t.getXOrigine()), posYAbsolue(t.getYOrigine()), t.getLargeur(), t.getHauteur());
 				}
 				else{
