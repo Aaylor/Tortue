@@ -1800,7 +1800,24 @@ public class Controleur{
         System.exit(0);
         return GestionErreur.SUCCESS;
     }
+    
+    /**
+     * Envoie la commande penup ou pendown au terminal, en fonction de l'etat du curseur
+     */
+    public void penUpOrPenDown(){
+    	if(curseur.isDown())
+    		commande("penup", true, true);
+    	else
+    		commande("pendown", true, true);
+    }
 
+    public void pencilOrEraser(){
+    	if(curseur.getType() == 0)
+    		commande("eraser", true, true);
+    	else
+    		commande("pencil", true, true);
+    }
+    
     public Curseur getCurseur(){
     	return curseur;
     }

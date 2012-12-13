@@ -43,10 +43,10 @@ public class BarreMenu extends JMenuBar{
 	
     //JMenu "Outils"
 	private JMenu menuOutils = new JMenu("Outils");
-	private JMenu changerTheme = new JMenu("Changer de thème");
-	private JMenuItem themeSysteme = new JMenuItem("Système");
-	private JMenuItem themeNimbus = new JMenuItem("Nimbus");
-	private JMenuItem themeMetal = new JMenuItem("Metal");
+	private JMenuItem leverPoserOutil = new JMenuItem("Lever/Poser l'outil");
+	private JMenuItem gommeCrayon = new JMenuItem("Gomme/Crayon");
+	private JMenuItem changerFormeOutil = new JMenuItem("Changer la forme de l'outil");
+	
 	private JMenuItem options = new JMenuItem("Paramètres");
 	private JMenuItem aPropos = new JMenuItem("A propos");
 	
@@ -79,6 +79,10 @@ public class BarreMenu extends JMenuBar{
 		
 		//Menu "Outils"
 		this.add(menuOutils);
+		menuOutils.add(leverPoserOutil);
+		menuOutils.add(gommeCrayon);
+		menuOutils.add(changerFormeOutil);
+		menuOutils.addSeparator();
 		menuOutils.add(options);
 		menuOutils.add(aPropos);
 		
@@ -95,6 +99,9 @@ public class BarreMenu extends JMenuBar{
 		aPropos.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_COMMA, KeyEvent.CTRL_MASK));
 		suivant.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, KeyEvent.CTRL_MASK));
 		precedent.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, KeyEvent.CTRL_MASK));
+		leverPoserOutil.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, KeyEvent.CTRL_MASK));
+		gommeCrayon.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.CTRL_MASK));
+		changerFormeOutil.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK));
 		
 		//Ajout des Action Listener
 		nouveau.addActionListener(new ActionListener(){
@@ -160,6 +167,21 @@ public class BarreMenu extends JMenuBar{
 		suivant.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
 				controleur.commande("redo", true, true);
+			}
+		});
+		leverPoserOutil.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				controleur.penUpOrPenDown();
+			}
+		});
+		gommeCrayon.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				controleur.pencilOrEraser();
+			}
+		});
+		changerFormeOutil.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				controleur.commande("shape", true, true);
 			}
 		});
 	}
