@@ -429,7 +429,8 @@ public class Controleur{
                                                     Integer.parseInt(commande_parser[4]),
                                                     Integer.parseInt(commande_parser[5]), 
                                                     Integer.parseInt(commande_parser[6]),
-                                                    Integer.parseInt(commande_parser[7])}, true);
+                                                    Integer.parseInt(commande_parser[7])},  
+                                                    Integer.parseInt(commande_parser[8]) == 0 ? false : true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("square") )
                 {
@@ -437,7 +438,7 @@ public class Controleur{
                                                     Integer.parseInt(commande_parser[3]), 
                                                     Integer.parseInt(commande_parser[4]), 
                                                     Integer.parseInt(commande_parser[4])},
-                                                    true);
+                                                    Integer.parseInt(commande_parser[5]) == 0 ? false : true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("rectangle") )
                 {
@@ -445,14 +446,14 @@ public class Controleur{
                                                     Integer.parseInt(commande_parser[3]), 
                                                     Integer.parseInt(commande_parser[4]), 
                                                     Integer.parseInt(commande_parser[5])},
-                                                    true);
+                                                    Integer.parseInt(commande_parser[6]) == 0 ? false : true);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("circle") )
                 {
                     return doFigure(4, new int[] {  Integer.parseInt(commande_parser[2]),
                                                     Integer.parseInt(commande_parser[3]),
                                                     Integer.parseInt(commande_parser[4])},
-                                                    true);
+                                                    Integer.parseInt(commande_parser[5]) == 0 ? false : true);
                 }
                 else
                 {
