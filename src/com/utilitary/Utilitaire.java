@@ -7,6 +7,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import javax.swing.JEditorPane;
+import javax.swing.text.html.StyleSheet;
+import javax.swing.text.html.HTMLEditorKit;
 import java.text.SimpleDateFormat;
 import java.io.File;
 import java.util.Date;
@@ -171,10 +173,25 @@ public class Utilitaire
         JFrame window_man = new JFrame( "Manuel : " + title );
         window_man.setSize( new Dimension( 500, 200 ) );
 		window_man.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        JEditorPane dialog = new JEditorPane("text/html", msg_dialog);
+       
+
+        String html =  "<html><head><style type=\"text/css\">h1 {color: red;}</style></head><body>" + msg_dialog + "</body></html>";
+
+        JEditorPane dialog = new JEditorPane();
+        dialog.setContentType("text/html");
+        dialog.setText(html);
         dialog.setBackground(Color.black);
-        dialog.setEnabled(false);
+        dialog.setEditable(false);
+
+        StyleSheet css = new StyleSheet();
+        css.addRule( "h1 {color:red}" );
+
+        HTMLEditorKit kit = (HTMLEditorKit)dialog.getEditorKit();
+        kit.setStyleSheet(css);
+        //dialog.setEditorKit(kit);
+        dialog.setText(html);
+
+        System.out.println( dialog.getText() );
 
         window_man.add(dialog);
         window_man.setVisible(true);

@@ -121,7 +121,7 @@ public class StockageDonnee
         liste_des_commandes.put("penup", 1);
         liste_des_commandes.put("pencil", 2);
         liste_des_commandes.put("eraser", 3);
-        liste_des_commandes.put("forme", 4); // Nom à modifier
+        liste_des_commandes.put("shape", 4);
         liste_des_commandes.put("up", 5);
         liste_des_commandes.put("down", 6);
         liste_des_commandes.put("left", 7);
@@ -195,36 +195,52 @@ public class StockageDonnee
 
         manuel = new Hashtable<String, String>();
 
-        manuel.put("pendown", "Syntaxe : pendown, pas d'arguments possible"
-                                + "<br />Repose le curseur, et permet ainsi de pouvoir dessiner.");
-        manuel.put("penup", "Manuel\n=====\nCommande : penup\nSyntaxe : penup, pas d'arguments possible"
-                                + "\nLève le curseur, et l'empêche de dessiner");
-        manuel.put("pencil", "Manuel\n=====\nCommande : pencil\nSyntaxe : pencil, pas d'arguments possible"
-                                + "\nPasse en mode crayon : dessine selon la couleur et l'epaisseur courante.");
-        manuel.put("eraser", "Manuel\n=====\nCommande : eraser\nSyntaxe : eraser, pas d'arguments possible"
-                                + "\nPasse en mode gomme.");
-        manuel.put("up", "Manuel\n=====\nCommande : up\nSyntaxe : up, pas d'arguments possible"
-                                + "\nPlace le curseur vers le haut. Correspond à la commande \"rotate 180\"");
-        manuel.put("down", "Manuel\n=====\nCommande : down\nSyntaxe : down, pas d'arguments possible"
-                                + "\nPlace le curseur vers le bas. Correspond à la commande \"rotate 0\"");
-        manuel.put("left", "Manuel\n=====\nCommande : left\nSyntaxe : left, pas d'arguments possible"
-                                + "\nPlace le curseur vers la gauche. Correspond à la commande \"rotate 270\"");
-        manuel.put("right", "Manuel\n=====\nCommande : right\nSyntaxe : right, pas d'arguments possible" 
-                                + "\nPlace le curseur vers la doite. Correspond à la commande \"rotate 90\"");
-        manuel.put("rotate", "Manuel\n=====\nCommande : rotate\nSyntaxe : rotate <angle en degré>. L'angle doit être obligatoirement précisé."
-                                + "\nFait une rotation du curseur.");
-        manuel.put("forward", "Manuel\n=====\nCommande : forward\nSyntaxe : forward <entier en pixel>. Doit être précisé."
-                                + "\nFait avancer le curseur");
-        manuel.put("backward", "Manuel\n=====\nCommande : backward\nSyntaxe : bacward <entier en pixel>. Doit être précisé."
-                                + "\nFait reculer le curseur");
-        manuel.put("goto", "Manuel\n=====\nCommande : goto\nSyntaxe : goto <int x><int y>. x & y doivent être précisés."
-                                + "\nDéplace le curseur aux coordonnées x et y.");
-        manuel.put("cursorwidth", "Manuel\n=====\nCommande : cursorwidth\nSyntaxe : cursorwidth <int width>. Doit être précisé."
-                                + "\nFixe la largeur du curseur.");
-        manuel.put("setcolor", "Manuel\n=====\nCommande : setcolor\nSyntaxe : setcolor <couleur>. Doit être précisé."
-                                + "\nFixe la couleur du curseur.");
-        manuel.put("setbackgroundcolor", "Manuel\n=====\nCommande : setbackgroundcolor\nSyntaxe : setbackgroundcolor <couleur>. "
-                                + "\nFixe la couleur de fond.");
+        manuel.put("pendown", "<h1>Syntaxe :</h1> &nbsp;<ul><li>pendown <i>&nbsp;pas d'arguments possible</i></li></ul>"
+                                + "<br />Pose l'outil et permet ainsi de dessiner.");
+        manuel.put("penup", "Syntaxe : &nbsp;<ul><li>penup, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Lève l'outil et permet ainsi de ne pas dessiner.");
+        manuel.put("pencil", "Syntaxe : <ul><li>pencil, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Passe en mode crayon : dessine selon la couleur et l'epaisseur courante.");
+        manuel.put("eraser", "Syntaxe : <ul><li>eraser, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Passe en mode gomme : efface selon la couleur de fond.");
+        manuel.put("shape", "Syntaxe : <ul><li>shape, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Change la forme de l'outil ( soit carré, soit rond ).");
+        manuel.put("up", "Syntaxe : <ul><li>up, <i>pas d'arguments possible<i></li></ul>"
+                                + "<br />Place le curseur vers le haut. Correspond à la commande <i><b>\"rotate 90\"</b></i>");
+        manuel.put("down", "Syntaxe : <ul><li>down, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Place le curseur vers le bas. Correspond à la commande <i><b>\"rotate 270\"</b></i>");
+        manuel.put("left", "Syntaxe : <ul><li>left, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Place le curseur vers la gauche. Correspond à la commande <i><b>\"rotate 180\"</b></i>");
+        manuel.put("right", "Syntaxe : <ul><li>right, <i>pas d'arguments possible</i></li></ul>" 
+                                + "<br />Place le curseur vers la doite. Correspond à la commande <i><b>\"rotate 0\"</b></i>");
+        manuel.put("center", "Syntaxe : <ul><li>center, <i>pas d'arguments possible</i></li></ul>" 
+                                + "<br />Place l'outil au centre de la zone de dessin");
+        manuel.put("rotate", "Syntaxe : <ul><li>rotate <angle en degré></li></ul>"
+                                + "<br />Effectue une rotation du curseur.");
+        manuel.put("undo", "Syntaxe : <ul><li>undo, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Supprime les dernières actions.");
+        manuel.put("redo", "Syntaxe : <ul><li>redo, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Refait les dernières actions supprimées.");
+        manuel.put("forward", "Syntaxe : <ul><li>forward <entier en pixel></li></ul>"
+                                + "<br />Fait avancer le curseur");
+        manuel.put("backward", "Syntaxe : <ul><li>backward <entier en pixel></li></ul>"
+                                + "<br />Fait reculer le curseur");
+        manuel.put("goto", "Syntaxe : <ul><li>goto <entier x><entier y></li></ul>"
+                                + "<br />Déplace le curseur aux coordonnées x et y.");
+        manuel.put("cursorwidth", "Syntaxe : cursorwidth `int width`"
+                                + "<br />Fixe la largeur du curseur (Entre 1 et 100).");
+        manuel.put("setcolor", "Syntaxe : <ul><li>setcolor `couleur`</li>"
+                                + "<li>setcolor `int r` `int g` `int b`</li>"
+                                + "<li>setcolor `int r` `int g` `int b` `int alpha`</li></ul>"
+                                + "<br />Fixe la couleur du curseur selon l'utilisateur. Pour cela, il peut utiliser des noms"
+                                + "couleurs, ou encore des entiers r,g,b (correspondant respectivement aux couleurs rouge,"
+                                + "vert et bleue) tels qu'ils soient entre 0 et 255. "
+                                + "L'alpha correspond à la transparence du tracé (entre 0 et 255)");
+        manuel.put("setbackgroundcolor", "Syntaxe : <ul><li>setbackgroundcolor `couleur`</li>"
+                                + "<li>setcolor `int r` `int g` `int b`</li></ul>"
+                                + "<br />Fixe la couleur de fond."
+                                + "<br />Un nom de couleur peut être utilisé (voir annexe), ou bien des entiers r,g,b (correspondant "
+                                + "respectivement aux couleurs rouge, verte et bleue) tels qu'ils soient entre 0 et 255.");
         manuel.put("do", "Manuel\n=====\nCommande : do\nSyntaxe : \n");
         manuel.put("width", "Manuel\n=====\nCommande : width\nSyntaxe : width <int width>"
                                 + "\nFixe la largeur de la zone de dessin.");
