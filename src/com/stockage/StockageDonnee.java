@@ -32,6 +32,9 @@ public class StockageDonnee
     private static boolean image_save = true;
     private static boolean has_undone = false;
 
+    private static final String color_list_html = getColorListHtml(); 
+    private static String liste_commandes_valide_repeat;
+
     /**
      *  Fonction qui initialise toutes les collections
      *  @return boolean vérifiant l'initialisation de chacunes des collections
@@ -154,6 +157,7 @@ public class StockageDonnee
         liste_des_commandes.put("man", 34);
         liste_des_commandes.put("exit", 35);
         
+        liste_commandes_valide_repeat = getValidCommandRepeat();
         return true;
     }
 
@@ -235,34 +239,90 @@ public class StockageDonnee
                                 + "<br />Fixe la couleur du curseur selon l'utilisateur. Pour cela, il peut utiliser des noms"
                                 + "couleurs, ou encore des entiers r,g,b (correspondant respectivement aux couleurs rouge,"
                                 + "vert et bleue) tels qu'ils soient entre 0 et 255. "
-                                + "L'alpha correspond à la transparence du tracé (entre 0 et 255)");
+                                + "L'alpha correspond à la transparence du tracé (entre 0 et 255)<br /><br />"
+                                + color_list_html);
         manuel.put("setbackgroundcolor", "Syntaxe : <ul><li>setbackgroundcolor `couleur`</li>"
                                 + "<li>setcolor `int r` `int g` `int b`</li></ul>"
                                 + "<br />Fixe la couleur de fond."
                                 + "<br />Un nom de couleur peut être utilisé (voir annexe), ou bien des entiers r,g,b (correspondant "
-                                + "respectivement aux couleurs rouge, verte et bleue) tels qu'ils soient entre 0 et 255.");
-        manuel.put("do", "Manuel\n=====\nCommande : do\nSyntaxe : \n");
-        manuel.put("width", "Manuel\n=====\nCommande : width\nSyntaxe : width <int width>"
-                                + "\nFixe la largeur de la zone de dessin.");
-        manuel.put("height", "Manuel\n=====\nCommande : height\nSyntaxe : height <int height>"
-                                + "\nFixe la hauteur de la zone de dessin.");
-        manuel.put("new", "Manuel\n=====\nCommande : new\nSyntaxe : \n");
-        manuel.put("open", "Manuel\n=====\nCommande : open\nSyntaxe : \n");
-        manuel.put("save", "Manuel\n=====\nCommande : save\nSyntaxe : \n");
-        manuel.put("saveas", "Manuel\n=====\nCommande : saveas\nSyntaxe : \n");
-        manuel.put("savehistory", "Manuel\n=====\nCommande : savehistory\nSyntaxe : \n");
-        manuel.put("exec", "Manuel\n=====\nCommande : exec\nSyntaxe : \n");
-        manuel.put("repeat", "Manuel\n======\nCommande : repeat\nSyntaxe : repeat, repeat <nombre_de_commande>"
-                                + ", repeat <nombre_de_commande> <nombre_de_repetition>\n"
-                                + "Repète les dernières actions de l'utilisateur. Si l'utilisateur n'entre aucun argument, alors la commande "
-                                + "n'executera que la dernière actions. Si il rentre un seul argument, alors la commande executera les "
-                                + "x dernières actions de l'utilisateur.");
-        manuel.put("clear", "Manuel\n=====\nCommande : clear\nSyntaxe : clear, pas d'argument possible."
-                                + "\nEfface le contenu du terminal. (Son historique est de tout même conservé)");
-        manuel.put("help", "Manuel\n=====\nCommande : help\nSyntaxe : help, pas d'argument possible."
-                                + "\nAffiche la liste des commandes possible, ainsi qu ela description du programme");
-        manuel.put("man", "Manuel\n=====\nCommande : man\nSyntaxe : man <commande>"
-                                + "\nAffiche le manuel de la commande");
+                                + "respectivement aux couleurs rouge, verte et bleue) tels qu'ils soient entre 0 et 255.<br /><br />"
+                                + color_list_html);
+        manuel.put("do", "Syntaxe : <ul><li>do `nom figure` `args`</li></ul>"
+                                + "<br />Dessine une figure selon les arguments donné par l'utilisateur."
+                                + "<br /><br />"
+                                + "<u>Liste des noms de figures et de leurs arguments</u> :"
+                                + "<ul> <li>triangle `x1` `y1` `x2` `y2` `x3` `y3` `fill`</li>"
+                                + "     <li>circle `x1` `x2` `width` `fill`</li>"
+                                + "     <li>square `x1` `x2` `width` `fill`</li>"
+                                + "     <li>rectangle `x1` `x2` `width` `height` `fill`</li></ul>"
+                                + "<br />Les valeurs x1 à x3, y1 à y3, width, height sont des valeurs entières."
+                                + "<br />La valeur fill correspond à la valeur 0 si la figure est vide, 1 si la figure est remplie.");
+        manuel.put("width", "Syntaxe : <ul><li>width `width`</li></ul>"
+                                + "<br />Change la largeur de la zone de dessin. ( Ne recalcule pas le dessin )."
+                                + "<br />`width` est ici une valeur entière.");
+        manuel.put("height", "Syntaxe : <ul><li>height `height`</li></ul>"
+                                + "<br />Change la hauteur de la zone de dessin. ( Ne recalcule pas le dessin )."
+                                + "<br />`height` est ici une valeur entière.");
+        manuel.put("grid", "Syntaxe : <ul><li>grid</li><li>grid `width` `height`</li></ul>"
+                                + "<br />Affiche une grille sur la zone de dessin. Fait partie intégrante du mode pixelart."
+                                + "<br />Si aucun argument n'est entré, une boîte de dialogue est ouverte demande la largeur et"
+                                + "la hauteur des carreaux."
+                                + "<br />Les valeurs `width` et `height` sont des valeurs entières correspondant à la largeur et"
+                                + "à la hauteur des carreaux.");
+        manuel.put("disablegrid", "Syntaxe : <ul><li>disablegrid, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Désactive la grille.");
+        manuel.put("pixelart", "Syntaxe : <ul><li>pixelart</li><li>pixelart `size`</li></ul>"
+                                + "<br />Active le mode pixelart."
+                                + "<br />`size` correspond à la largeur/hauteur des carreaux de la grille"
+                                + "<br /><br />Le mode pixelart affiche une grille dans la zone de dessin, et permet de dessiner seulement à"
+                                + "l'intérieur des carreaux. La modification de la largeur, de la forme, ou si la grille est désactivé, alors "
+                                + "le mode pixel art est désactivé.");
+        manuel.put("new", "Syntaxe : <ul><li>new, <i>pas d'arguments possible</i></li></ul>"
+                                + "Créer un nouveau fichier. Si le fichier courrant a été modifié, alors une demande de sauvegarde "
+                                + "avant de créer le nouveau fichier.");
+        manuel.put("open", "Syntaxe : <ul><li>open</li><li>open `pathname`</li></ul>"
+                                + "Ouvre un fichier image."
+                                + "Si aucun argument n'est précisé, ouvre une boîte de dialogue permettant le choix d'un fichier image."
+                                + "L'argument `pathname`, doit être le chemin (absolu ou relatif) de l'image."
+                                + "Le programme ne peut ouvrir que des images PNG, JPG, GIF.");
+        manuel.put("save", "Syntaxe : <ul><li>save, <i>pas d'arguments possible</i></li></ul>"
+                                + "<br />Si l'image est déjà associé à un fichier image, alors sauvegarde automatiquement. "
+                                + "Sinon, ouvre une boîte de dialogue permettant de choisir où sauvegarder l'image."
+                                + "Les images ne peuvent être sauvegarder qu'en PNG, JPG, GIF.");
+        manuel.put("saveas", "Syntaxe : <ul><li>saveas</li><li>saveas `pathname`</li></ul>"
+                                + "<br />Si aucun argument n'est entré, on ouvre alors une boîte de dialogue permettant de choisir "
+                                + "où sauvegarder l'image."
+                                + "<br />L'argument `pathname` doit être un chemin valide où sauvegarder l'image. ATTENTION : sauvegarde "
+                                + "par dessus le fichier existant.");
+        manuel.put("savehistory", "Syntaxe : <ul><li>savehistory</li><li>savehistory `pathname`</li></ul>"
+                                + "<br />Permet de sauvegarder le fichier historique."
+                                + "<br />Si aucun argument n'est entré, ouvre une boîte de dialogue permettant de choisir où sauvegarder "
+                                + "l'historique."
+                                + "<br />L'argument `pathname` doit être un chemin valide où sauvegarder l'historique. ATTENTION : sauvegarde "
+                                + "par dessus le fichier existant."
+                                + "Le fichier ne peut être créer qu'en .txt");
+        manuel.put("exec", "Syntaxe : <ul><li>exec</li><li>exec `pathname`</li></ul>"
+                                + "<br />Permet d'executer un historique texte."
+                                + "<br />Si aucun argument n'est entré, ouvre une boîte de dialogue permettant de choisir le fichier "
+                                + "à executer."
+                                + "<br />L'argument `pathname doit être un chemin valide et un fichier texte.");
+        manuel.put("repeat", "Syntaxe : <ul><li>repeat `nombre de repetition` [`args1`; `args2`; ...; `argsN`]</li></ul>"
+                                + "<br />Permet d'effectuer la répétition d'une ou plusieurs suite de commandes."
+                                + "<br />L'argument `nombre de repetition` doit être un entier (ne peut aller au delà de 1000)"
+                                + "<br />Les arguments entrées sont valide si et seulement si elles appartiennent à la liste des commandes "
+                                + "valides, mais aussi si les valeurs entrées son valide."
+                                + "<br /><br />Des incrémentations sont possibles sur la majorité des commandes contenant des valeurs " 
+                                + "entières. (Exemple : repeat 10 [forward +10] &nbsp; A chaque répétition, incrémente de 10 la commande "
+                                + "forward."
+                                + "<br /><br />" + liste_commandes_valide_repeat);
+        manuel.put("clear", "Syntaxe : <ul><li>clear, <i>pas d'argument possible.</i></li></ul>"
+                                + "<br />Efface le contenu du terminal. ( Différent de l'historique )");
+        manuel.put("help", "Syntaxe : <ul><li>help, <i>pas d'argument possible.</i></li></ul>"
+                                + "<br />Affiche une liste des commandes.");
+        manuel.put("man", "Syntaxe : <ul><li>man `commande`</li></ul>"
+                                + "<br />Affiche le manuel de la commande entrée en argument");
+        manuel.put("exit", "Syntaxe : <ul><li>exit</li></ul>"
+                                + "<br />Quitte le programme.");
 
         return true;
     }
@@ -286,6 +346,44 @@ public class StockageDonnee
     	liste_couleur.put("white", Color.white);
     	
     	return true;
+    }
+
+    private static String getColorListHtml()
+    {
+        return new String(      "<u>Liste des couleurs :</u>"
+                            +   "<ul>   <li>black</li><li>blue</li><li>cyan</li>"
+                            +   "       <li>light_gray</li><li>gray</li><li>dark_gray</li>"
+                            +   "       <li>green</li><li>magenta</li><li>orange</li>"
+                            +   "       <li>pink</li><li>red</li><li>yellow</li><li>white</li>" );
+    }
+    
+    private static String getValidCommandRepeat()
+    {
+        String liste_valid_commande = "<u>Liste des commandes valides pour la fonction repeat :</u><ul>";
+        Enumeration<String> commandes = getEnumerationListeCommandes();
+
+        while ( commandes.hasMoreElements() )
+        {
+            String tmp_cmd = commandes.nextElement();
+            if ( !tmp_cmd.equalsIgnoreCase("undo")  ||  !tmp_cmd.equalsIgnoreCase("redo")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("width")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("height")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("new")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("open")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("save")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("saveas")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("savehistory")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("exec")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("clear")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("help")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("man")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("exit") )
+            {
+                liste_valid_commande += "<li>" + tmp_cmd + "</li>";
+            }
+        }
+
+        return liste_valid_commande + "</ul>";
     }
 
     /**

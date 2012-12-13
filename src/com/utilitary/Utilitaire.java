@@ -6,6 +6,7 @@ import java.awt.Color;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JEditorPane;
 import javax.swing.text.html.StyleSheet;
 import javax.swing.text.html.HTMLEditorKit;
@@ -170,30 +171,30 @@ public class Utilitaire
      */
      public static void getInformationalPane(String msg_dialog, String title)
      {
-        JFrame window_man = new JFrame( "Manuel : " + title );
-        window_man.setSize( new Dimension( 500, 200 ) );
+        JFrame window_man = new JFrame( "MANUEL : " + title );
+        window_man.setSize( new Dimension( 800, 500 ) );
 		window_man.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        
 
-        String html =  "<html><head><style type=\"text/css\">h1 {color: red;}</style></head><body>" + msg_dialog + "</body></html>";
+        String html =  "<html><head></head><body>" + msg_dialog + "</body></html>";
 
         JEditorPane dialog = new JEditorPane();
         dialog.setContentType("text/html");
-        dialog.setText(html);
-        dialog.setBackground(Color.black);
         dialog.setEditable(false);
 
-        StyleSheet css = new StyleSheet();
-        css.addRule( "h1 {color:red}" );
 
         HTMLEditorKit kit = (HTMLEditorKit)dialog.getEditorKit();
-        kit.setStyleSheet(css);
-        //dialog.setEditorKit(kit);
+        
+        StyleSheet css = kit.getStyleSheet();
+        css.addRule( "h1 {color:red}" );
+        
+        kit.setStyleSheet( css );
+        dialog.setEditorKit(kit);
         dialog.setText(html);
 
-        System.out.println( dialog.getText() );
-
-        window_man.add(dialog);
+        JScrollPane scroll_pane = new JScrollPane( dialog,  JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                                                            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
+        window_man.add(scroll_pane);
         window_man.setVisible(true);
      }
 
