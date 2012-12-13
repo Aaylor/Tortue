@@ -220,6 +220,12 @@ public class BarreMenu extends JMenuBar{
 			affichageMagnetisme(false);
 		}
 	}
+	public void affichagePixelArt(boolean  active){
+		if(active){
+			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
+		}
+		else modePixelArt.setIcon(new ImageIcon(""));
+	}
 	
 	private void nouveau(){
 		controleur.commande("new", true, true);

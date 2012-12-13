@@ -1158,12 +1158,14 @@ public class Controleur{
     		else{
     			zd.setGridMagnetismEnable(false);
     			barreMenu.affichageMagnetisme(false);
+    			setPixelArtMod(false, 0);
     		}
     		
     	}
     	else{
     		zd.setGridMagnetismEnable(false);
     		barreMenu.affichageMagnetisme(false);
+    		setPixelArtMod(false, 0);
     	}
     }
     public void alternateMagnetism(){
@@ -1222,10 +1224,13 @@ public class Controleur{
 			//Activation du mode tortue
 			zd.setPixelArtModeEnable(true);
 			
+			barreMenu.affichagePixelArt(true);
+			
 			zd.repaint();
     	}
     	else{
     		zd.setPixelArtModeEnable(false);
+    		barreMenu.affichagePixelArt(false);
     	}
     }
     
