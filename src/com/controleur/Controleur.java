@@ -431,7 +431,7 @@ public class Controleur{
                                                     Integer.parseInt(commande_parser[6]),
                                                     Integer.parseInt(commande_parser[7])}, true);
                 }
-                else if ( commande_parser[1].equalsIgnoreCase("carre") )
+                else if ( commande_parser[1].equalsIgnoreCase("square") )
                 {
                     return doFigure(2, new int[] {  Integer.parseInt(commande_parser[2]),
                                                     Integer.parseInt(commande_parser[3]), 
@@ -447,7 +447,7 @@ public class Controleur{
                                                     Integer.parseInt(commande_parser[5])},
                                                     true);
                 }
-                else if ( commande_parser[1].equalsIgnoreCase("cercle") )
+                else if ( commande_parser[1].equalsIgnoreCase("circle") )
                 {
                     return doFigure(4, new int[] {  Integer.parseInt(commande_parser[2]),
                                                     Integer.parseInt(commande_parser[3]),

@@ -172,7 +172,7 @@ public class Utilitaire
      public static void getInformationalPane(String msg_dialog, String title)
      {
         JFrame window_man = new JFrame( "MANUEL : " + title );
-        window_man.setSize( new Dimension( 800, 500 ) );
+        window_man.setSize( new Dimension( 500, 300 ) );
 		window_man.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        
 
@@ -453,7 +453,7 @@ public class Utilitaire
                                         splited_args[6], splited_args[7] } ) ? GestionErreur.SUCCESS : GestionErreur.PARAM_INCORRECTE)));
 
                 }
-                else if ( splited_args[0].equalsIgnoreCase("carre") )
+                else if ( splited_args[0].equalsIgnoreCase("square") )
                 {
                     return  ( splited_args.length < 5 ? GestionErreur.NOMBRE_PARAM_LESS :
                                 ( splited_args.length > 5 ? GestionErreur.NOMBRE_PARAM_SUP :
@@ -467,7 +467,7 @@ public class Utilitaire
                                     ( isInt( new String[]{ splited_args[1], splited_args[2], splited_args[3], splited_args[4], 
                                         splited_args[5] } ) ? GestionErreur.SUCCESS : GestionErreur.PARAM_INCORRECTE)));
                 }
-                else if ( splited_args[0].equalsIgnoreCase("cercle") )
+                else if ( splited_args[0].equalsIgnoreCase("circle") )
                 {
                     return  ( splited_args.length < 5 ? GestionErreur.NOMBRE_PARAM_LESS :
                                 ( splited_args.length > 5 ? GestionErreur.NOMBRE_PARAM_SUP :
