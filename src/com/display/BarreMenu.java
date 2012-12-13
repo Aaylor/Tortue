@@ -186,6 +186,25 @@ public class BarreMenu extends JMenuBar{
 		});
 	}
 	
+	private void activerGrille(){
+		controleur.commande("grid", true, true);
+	}
+	
+	private void activerMagnetisme(){
+		controleur.alternateMagnetism();
+	}
+	
+	private void activerPixelArtMode(){
+		controleur.commande("pixelart", true, true);
+	}
+	
+	public void affichageGrille(boolean  active){
+		if(active){
+			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
+		}
+		else activerLaGrille.setIcon(new ImageIcon(""));
+	}
+	
 	private void nouveau(){
 		controleur.commande("new", true, true);
 	}
@@ -216,74 +235,6 @@ public class BarreMenu extends JMenuBar{
 								"Gauthier Lo\n",
 								"A propos",
 								JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	private void activerGrille(){
-		if(ZoneDessin.gridEnable){
-			controleur.commande("disablegrid", true, true);
-		}
-		else{
-			controleur.commande("grid", true, true);
-		}
-	}
-	
-	private void activerMagnetisme(){
-		if(ZoneDessin.gridMagnetismEnable){
-			ZoneDessin.setGridMagnetismEnable(false);
-			ZoneDessin.setPixelArtModeEnable(false);
-			BarreMenu.affichageItemPixelArtMode();
-		}
-		else{
-			ZoneDessin.setGridMagnetismEnable(true);
-		}
-		affichageItemMagnetisme();
-	}
-	private void activerPixelArtMode(){
-		MenuGrille.setPixelArtDisplay(true);
-		controleur.commande("grid", true, true);
-		if(MenuGrille.getPixelArtDisplay()){
-			controleur.commande("cursorwidth " + ZoneDessin.getWidthCaseGrid(), true, true);
-			if(controleur.getCurseur().getForme() == 0)
-				controleur.commande("forme", true, true);
-			if(!ZoneDessin.gridMagnetismEnable)
-				activerMagnetisme();
-			ZoneDessin.setPixelArtModeEnable(true);
-			affichageItemPixelArtMode();
-			MenuGrille.setPixelArtDisplay(false);
-		}
-	}
-	
-	static public void affichageItemActiverGrille(){
-		if(ZoneDessin.gridEnable){
-			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
-		}
-		else{
-			activerLaGrille.setIcon(new ImageIcon(""));
-		}
-		affichageItemMagnetisme();
-	}
-	
-	static public void affichageItemMagnetisme(){
-		if(ZoneDessin.gridEnable){
-			magnetisme.setEnabled(true);
-			if(ZoneDessin.gridMagnetismEnable){
-				magnetisme.setIcon(new ImageIcon("../img/ok.png"));
-			}
-			else{
-				magnetisme.setIcon(new ImageIcon(""));
-			}
-		}
-		else{
-			magnetisme.setEnabled(false);
-		}
-	}
-	public static void affichageItemPixelArtMode(){
-		if(ZoneDessin.gridEnable && ZoneDessin.gridMagnetismEnable && ZoneDessin.getWidthCaseGrid() == controleur.getCurseur().getEpaisseur() && ZoneDessin.getHeightCaseGrid() == controleur.getCurseur().getEpaisseur() && controleur.getCurseur().getForme() == 1){
-			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
-		}
-		else{
-			modePixelArt.setIcon(new ImageIcon(""));
-		}
 	}
 	
     /**

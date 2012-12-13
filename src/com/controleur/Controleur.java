@@ -630,7 +630,6 @@ public class Controleur{
     {
         this.curseur.setForme( this.curseur.getForme() == 1 ? (short)0 : (short)1 );
         this.barreOutils.affichageBoutonForme();
-        BarreMenu.affichageItemPixelArtMode();
         zd.repaint();
         return GestionErreur.SUCCESS;
     }
@@ -954,7 +953,6 @@ public class Controleur{
     {
         curseur.setEpaisseur(valeur);
         barreOutils.misAJourSliderEpaisseur(valeur);
-        BarreMenu.affichageItemPixelArtMode();
         zd.repaint();
         return GestionErreur.SUCCESS;
     }
@@ -1124,15 +1122,20 @@ public class Controleur{
 
     public void setGrid(boolean enable, int width, int height){
     	if(enable){
+    		//Affichage de la grille
     		zd.setGridEnable(true);
 			zd.setWidthCaseGrid(height);
 			zd.setHeightCaseGrid(width);
-			
+			//Mise a jour du menu Bar
+			barreMenu.affichageGrille(true);
     	}
     	else{
+    		//Disparition de la grille
     		zd.setGridEnable(false);
     		zd.setGridMagnetismEnable(false);
     		zd.setPixelArtModeEnable(false);
+    		//Mise a jour du menu Bar
+    		barreMenu.affichageGrille(false);
     	}
     	zd.repaint();
     }
@@ -1147,6 +1150,12 @@ public class Controleur{
     	else{
     		zd.setGridEnable(false);
     	}
+    }
+    public void alternateMagnetism(){
+    	if(zd.isGridMagnetismEnable()){
+    		zd.setGridMagnetismEnable(false);
+    	}
+    	else zd.setGridMagnetismEnable(true);
     }
     
     /**
