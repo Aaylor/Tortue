@@ -205,6 +205,22 @@ public class BarreMenu extends JMenuBar{
 		else activerLaGrille.setIcon(new ImageIcon(""));
 	}
 	
+	public void affichageMagnetisme(boolean  active){
+		if(active){
+			magnetisme.setIcon(new ImageIcon("../img/ok.png"));
+		}
+		else magnetisme.setIcon(new ImageIcon(""));
+	}
+	public void setMagnetismeDisponible(boolean disponible){
+		if(disponible){
+			magnetisme.setEnabled(true);
+		}
+		else{
+			magnetisme.setEnabled(false);
+			affichageMagnetisme(false);
+		}
+	}
+	
 	private void nouveau(){
 		controleur.commande("new", true, true);
 	}
