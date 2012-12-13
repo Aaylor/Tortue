@@ -468,7 +468,7 @@ public class Controleur{
             case 22:
                 if ( commande_parser.length == 3 )
                 {
-                    retour = grid( Integer.parseInt(commande_parser[2]), Integer.parseInt(commande_parser[2]) );
+                    retour = grid( Integer.parseInt(commande_parser[1]), Integer.parseInt(commande_parser[2]) );
                 }
                 else
                 {
@@ -479,41 +479,53 @@ public class Controleur{
 
             case 23:
                 return disablegrid();
-            
+           
             case 24:
+                if ( commande_parser.length == 2 )
+                {
+                    retour = pixelart( Integer.parseInt( commande_parser[1] ) ); 
+                }
+                else
+                {
+                    retour = pixelart();
+                }
+
+                return retour;
+
+            case 25:
                 return newFile();
             
-            case 25:
+            case 26:
                 if ( commande_parser.length == 2 )
                     return open(commande_parser[1]);
 
                 return open("");
             
-            case 26:
+            case 27:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return save();
             
-            case 27:
+            case 28:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return saveas("");
             
-            case 28:
+            case 29:
                 if ( commande_parser.length == 2 )
                     return savehistory(commande_parser[1]);
                 else
                     return savehistory("");
             
-            case 29:
+            case 30:
                 if ( commande_parser.length == 2 )
                     return exec(commande_parser[1]);
 
                 return exec("");
             
-            case 30:
+            case 31:
                 int nombre_de_repetition = Integer.parseInt(commande_parser[1]);
 
                 String args = "";
@@ -536,19 +548,19 @@ public class Controleur{
 
                 return retour;
                 
-            case 31:
+            case 32:
                 return clear();
             
-            case 32:
+            case 33:
                 return help();
             
-            case 33:
+            case 34:
                 if ( commande_parser.length < 2 )
                     return man(false, "");
                 else
                     return man(true, commande_parser[1]);
             
-            case 34:
+            case 35:
                 return exit();
 
             default:
@@ -1131,6 +1143,25 @@ public class Controleur{
     	BarreMenu.affichageItemMagnetisme();
     	BarreMenu.affichageItemActiverGrille();
 		zd.repaint();
+        return GestionErreur.SUCCESS;
+    }
+
+    /**
+     *  JAVADOC
+     */
+    public int pixelart(int size)
+    {
+
+        return GestionErreur.SUCCESS;
+    }
+
+    /**
+     *  JAVADOC
+     */
+    public int pixelart()
+    {
+
+
         return GestionErreur.SUCCESS;
     }
 
