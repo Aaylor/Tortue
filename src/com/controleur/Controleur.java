@@ -1106,11 +1106,7 @@ public class Controleur{
      */
     public int grid( int height, int width )
     {
-    	ZoneDessin.setGridEnable(true);
-		zd.setWidthCaseGrid(height);
-		zd.setHeightCaseGrid(width);
-		barreMenu.affichageItemActiverGrille();
-		zd.repaint();
+    	setGrid(true, width, height);
         return GestionErreur.SUCCESS;
     }
 
@@ -1121,28 +1117,44 @@ public class Controleur{
     {
     	MenuGrille menuGrille = new MenuGrille(null, true); 
     	if(MenuGrille.itWorked){
-    		ZoneDessin.setGridEnable(true);
-    		zd.setWidthCaseGrid(MenuGrille.heightCaseDefined);
-    		zd.setHeightCaseGrid(MenuGrille.widthCaseDefined);
-    		barreMenu.affichageItemActiverGrille();
-    		zd.repaint();
-            return GestionErreur.SUCCESS;
+            setGrid(true, MenuGrille.widthCaseDefined, MenuGrille.heightCaseDefined);
     	}
         return GestionErreur.SUCCESS;
     }
 
+    public void setGrid(boolean enable, int width, int height){
+    	if(enable){
+    		zd.setGridEnable(true);
+			zd.setWidthCaseGrid(height);
+			zd.setHeightCaseGrid(width);
+			
+    	}
+    	else{
+    		zd.setGridEnable(false);
+    		zd.setGridMagnetismEnable(false);
+    		zd.setPixelArtModeEnable(false);
+    	}
+    	zd.repaint();
+    }
+    
+    public void setMagnetism(boolean b){
+    	if(b){
+    		if(zd.isGridEnable()){
+    			zd.setGridEnable(true);
+    		}
+    		else zd.setGridEnable(false);
+    	}
+    	else{
+    		zd.setGridEnable(false);
+    	}
+    }
+    
     /**
      *  JAVADOC
      */
     public int disablegrid()
     {
-    	ZoneDessin.setGridEnable(false);
-    	ZoneDessin.setGridMagnetism(false);
-    	ZoneDessin.setPixelArtModeEnable(false);
-    	BarreMenu.affichageItemPixelArtMode();
-    	BarreMenu.affichageItemMagnetisme();
-    	BarreMenu.affichageItemActiverGrille();
-		zd.repaint();
+    	setGrid(false, 0, 0);
         return GestionErreur.SUCCESS;
     }
 
@@ -1151,13 +1163,29 @@ public class Controleur{
      */
     public int pixelart(int size)
     {
+    	setPixelArtMod(size);
+		
+		return GestionErreur.SUCCESS;
+    }
+
+    /**
+     *  JAVADOC
+     */
+    public int pixelart()
+    {
+
+
+        return GestionErreur.SUCCESS;
+    }
+
+    public void setPixelArtMod(int size){
     	//Afficher la grille
-    	ZoneDessin.setGridEnable(true);
+    	zd.setGridEnable(true);
     	zd.setWidthCaseGrid(size);
 		zd.setHeightCaseGrid(size);
 		
     	//Activer le magnetisme
-		ZoneDessin.setGridMagnetism(true);
+		zd.setGridMagnetismEnable(true);
 		
     	//Changer la taille du curseur
 		curseur.setEpaisseur(size);
@@ -1172,19 +1200,8 @@ public class Controleur{
 		zd.setPixelArtModeEnable(true);
 		
 		zd.repaint();
-		return GestionErreur.SUCCESS;
     }
-
-    /**
-     *  JAVADOC
-     */
-    public int pixelart()
-    {
-
-
-        return GestionErreur.SUCCESS;
-    }
-
+    
     /**
      *  Fonction qui permet de creer un nouveau document
      *  @return si la fonction s'est bien deroulee.
@@ -1862,6 +1879,9 @@ public class Controleur{
     		commande("pendown", true, true);
     }
 
+    /**
+     * Envoie la commande eraser ou pencil au terminal, en fonction de l'etat du curseur
+     */
     public void pencilOrEraser(){
     	if(curseur.getType() == 0)
     		commande("eraser", true, true);
@@ -1872,4 +1892,7 @@ public class Controleur{
     public Curseur getCurseur(){
     	return curseur;
     }
+    
+
+
 }
