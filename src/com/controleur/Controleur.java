@@ -1151,8 +1151,28 @@ public class Controleur{
      */
     public int pixelart(int size)
     {
-
-        return GestionErreur.SUCCESS;
+    	//Afficher la grille
+    	ZoneDessin.setGridEnable(true);
+    	zd.setWidthCaseGrid(size);
+		zd.setHeightCaseGrid(size);
+		
+    	//Activer le magnetisme
+		ZoneDessin.setGridMagnetism(true);
+		
+    	//Changer la taille du curseur
+		curseur.setEpaisseur(size);
+		
+		//Changer la forme du curseur
+		curseur.setForme((short)1);
+		
+		//Abaisser le curseur
+		curseur.setIsDown(true);
+		
+		//Activation du mode tortue
+		zd.setPixelArtModeEnable(true);
+		
+		zd.repaint();
+		return GestionErreur.SUCCESS;
     }
 
     /**
