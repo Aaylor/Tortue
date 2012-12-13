@@ -1135,6 +1135,7 @@ public class Controleur{
 			zd.setHeightCaseGrid(width);
 			//Mise a jour du menu Bar
 			barreMenu.affichageGrille(true);
+    		barreMenu.setMagnetismeDisponible(true);
     	}
     	else{
     		//Disparition de la grille
@@ -1143,6 +1144,7 @@ public class Controleur{
     		zd.setPixelArtModeEnable(false);
     		//Mise a jour du menu Bar
     		barreMenu.affichageGrille(false);
+    		barreMenu.setMagnetismeDisponible(false);
     	}
     	zd.repaint();
     }
@@ -1150,19 +1152,25 @@ public class Controleur{
     public void setMagnetism(boolean b){
     	if(b){
     		if(zd.isGridEnable()){
-    			zd.setGridEnable(true);
+    			zd.setGridMagnetismEnable(true);
+    			barreMenu.affichageMagnetisme(true);
     		}
-    		else zd.setGridEnable(false);
+    		else{
+    			zd.setGridMagnetismEnable(false);
+    			barreMenu.affichageMagnetisme(false);
+    		}
+    		
     	}
     	else{
-    		zd.setGridEnable(false);
+    		zd.setGridMagnetismEnable(false);
+    		barreMenu.affichageMagnetisme(false);
     	}
     }
     public void alternateMagnetism(){
     	if(zd.isGridMagnetismEnable()){
-    		zd.setGridMagnetismEnable(false);
+    		setMagnetism(false);
     	}
-    	else zd.setGridMagnetismEnable(true);
+    	else setMagnetism(true);
     }
     
     /**
