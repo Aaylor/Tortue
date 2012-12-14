@@ -199,13 +199,13 @@ public class StockageDonnee
 
         manuel = new Hashtable<String, String>();
 
-        manuel.put("pendown", "<h1>Syntaxe :</h1> &nbsp;<ul><li>pendown <i>&nbsp;pas d'arguments possible</i></li></ul>"
+        manuel.put("pendown", "<div id=\"syntax\">Syntaxe : <ul><li>pendown <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<br />Pose l'outil et permet ainsi de dessiner.");
-        manuel.put("penup", "Syntaxe : &nbsp;<ul><li>penup, <i>pas d'arguments possible</i></li></ul>"
+        manuel.put("penup", "<div id=\"syntax\">Syntaxe : &nbsp;<ul><li>penup, <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<br />Lève l'outil et permet ainsi de ne pas dessiner.");
-        manuel.put("pencil", "Syntaxe : <ul><li>pencil, <i>pas d'arguments possible</i></li></ul>"
+        manuel.put("pencil", "<div id=\"syntax\">Syntaxe : <ul><li>pencil, <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<br />Passe en mode crayon : dessine selon la couleur et l'epaisseur courante.");
-        manuel.put("eraser", "Syntaxe : <ul><li>eraser, <i>pas d'arguments possible</i></li></ul>"
+        manuel.put("eraser", "<div id=\"syntax\">Syntaxe : <ul><li>eraser, <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<br />Passe en mode gomme : efface selon la couleur de fond.");
         manuel.put("shape", "Syntaxe : <ul><li>shape, <i>pas d'arguments possible</i></li></ul>"
                                 + "<br />Change la forme de l'outil ( soit carré, soit rond ).");

@@ -175,7 +175,7 @@ public class Utilitaire
 		window_man.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
        
 
-        String html =  "<html><head></head><body>" + msg_dialog + "</body></html>";
+        String html =  "<html><head></head><body><div id=\"global_div\">" + msg_dialog + "</div></body></html>";
 
         JEditorPane dialog = new JEditorPane();
         dialog.setContentType("text/html");
