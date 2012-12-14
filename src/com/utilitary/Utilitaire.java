@@ -171,7 +171,7 @@ public class Utilitaire
      public static void getInformationalPane(String msg_dialog, String title)
      {
         JFrame window_man = new JFrame( "MANUEL : " + title );
-        window_man.setSize( new Dimension( 500, 600 ) );
+        window_man.setMinimumSize( new Dimension( 500, 600 ) );
 		window_man.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     
         String html =  "<html><head></head><body><div class=\"global_div\">" + msg_dialog + "</div></body></html>";
@@ -402,7 +402,10 @@ public class Utilitaire
                                                             ||  tmp[0].equalsIgnoreCase("clear")
                                                             ||  tmp[0].equalsIgnoreCase("help")
                                                             ||  tmp[0].equalsIgnoreCase("man")
-                                                            ||  tmp[0].equalsIgnoreCase("exit") )
+                                                            ||  tmp[0].equalsIgnoreCase("exit")
+                                                            ||  tmp[0].equalsIgnoreCase("pixelart")
+                                                            ||  tmp[0].equalsIgnoreCase("grid")
+                                                            ||  tmp[0].equalsIgnoreCase("disablegrid") )
                     {
                         StockageDonnee.setParamErreur( tmp[0], true );
                         return GestionErreur.REPEAT_PARAM_NON_VALIDE;
