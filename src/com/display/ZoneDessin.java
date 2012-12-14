@@ -98,11 +98,11 @@ public class ZoneDessin extends JPanel{
                 	posY_final = (posY_final/heightCaseGrid)*heightCaseGrid + heightCaseGrid/2;
                 }
                 if(pixelArtModeEnable){
-                	c.commande("penup", true, true);
-                    c.commande("goto " + posX_final + " " + posY_final, true, true);
-                	c.commande("pendown", true, true);
+                	c.commande("penup", true, false, true);
+                    c.commande("goto " + posX_final + " " + posY_final, true, true, true);
+                	c.commande("pendown", true, false, true);
                 }
-                c.commande("goto " + posX_final + " " + posY_final, true, true);
+                c.commande("goto " + posX_final + " " + posY_final, true, true, true);
 				repaint();
 				break;
 			//Clic molette

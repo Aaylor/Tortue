@@ -136,7 +136,7 @@ public class BarreOutils extends JToolBar {
 		});
 		boutonForme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-                controleur.commande("forme", true, true);
+                controleur.commande("forme", true, false, true);
 			}
 		});
 		boutonRedo.addActionListener(new ActionListener(){
@@ -167,7 +167,7 @@ public class BarreOutils extends JToolBar {
 	    slider.setMajorTickSpacing(25);
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
-	    	  controleur.commande("cursorwidth " + ((JSlider)event.getSource()).getValue(), true, true);
+	    	  controleur.commande("cursorwidth " + ((JSlider)event.getSource()).getValue(), true, true, true);
 	    	  zoneDessin.repaint();
 	      }
 	    });
@@ -209,7 +209,7 @@ public class BarreOutils extends JToolBar {
 	      public void stateChanged(ChangeEvent event){
 	    	  int r = ((JSlider)event.getSource()).getValue();
 	    	  controleur.commande("setcolor " + r + " " + curseur.getCouleur().getGreen()
-                  + " " + curseur.getCouleur().getBlue(), true, true);
+                  + " " + curseur.getCouleur().getBlue(), true, true, true);
               zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
@@ -232,7 +232,7 @@ public class BarreOutils extends JToolBar {
 	      public void stateChanged(ChangeEvent event){
 	    	  int g = ((JSlider)event.getSource()).getValue();
               controleur.commande("setcolor " + curseur.getCouleur().getRed() + " " + g
-                  + " " + curseur.getCouleur().getBlue(), true, true);
+                  + " " + curseur.getCouleur().getBlue(), true, true, true);
 	    	  zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
@@ -255,7 +255,7 @@ public class BarreOutils extends JToolBar {
 	      public void stateChanged(ChangeEvent event){
 	    	  int b = ((JSlider)event.getSource()).getValue(); /* A ENLEVER */
               controleur.commande("setcolor " + curseur.getCouleur().getRed() + " "
-                  + curseur.getCouleur().getGreen() + " " + b, true, true);
+                  + curseur.getCouleur().getGreen() + " " + b, true, true, true);
 	    	  zoneDessin.repaint();
 	    	  vignetteCouleur.repaint();
 	      }
@@ -391,11 +391,11 @@ public class BarreOutils extends JToolBar {
 	 *  Appelée lors d'un clic gauche sur le bouton d'outil ou lors d'un clic droit sur la zone de dessin*/
 	public void interactionBoutonOutil(){
 		if (curseur.getType() == 0){
-            controleur.commande("eraser", true, true);
+            controleur.commande("eraser", true, false, true);
 			zoneDessin.repaint();
 		}
 		else{
-            controleur.commande("pencil", true, true);
+            controleur.commande("pencil", true, false, true);
 			zoneDessin.repaint();
 		}
 	}
@@ -404,16 +404,16 @@ public class BarreOutils extends JToolBar {
 	 *  Appelée lors d'un clic gauche sur le bouton "poser l'outil" ou lors d'un clic du milieu sur la zone de dessin*/
 	public void interactionBoutonPoserOutil(){
 		if (curseur.isDown()){
-			controleur.commande("penup", true, true);
+			controleur.commande("penup", true, false, true);
 		}
 		else{
-			controleur.commande("pendown", true, true);
+			controleur.commande("pendown", true, false, true);
 		}
 	}
 	
 	/**Fonction gérant l'interaction avec le bouton "revenir en arriere"*/
 	public void interactionBoutonUndo(){
-		controleur.commande("undo", true, true);
+		controleur.commande("undo", true, false, true);
 	}
 
     /**Fonction desactivant le bouton si la fonction ne peut plus être lancé */
@@ -428,7 +428,7 @@ public class BarreOutils extends JToolBar {
 
 	/**Fonction gérant l'interaction avec le bouton "revenir en arriere"*/
 	public void interactionBoutonRedo(){
-		controleur.commande("redo", true, true);
+		controleur.commande("redo", true, false, true);
 	}
 
     /**Fonction desactivant le bouton si la fonction ne peut plus être lancé */
@@ -445,7 +445,7 @@ public class BarreOutils extends JToolBar {
 	 *  Appelée lors d'une modification de la valeur du curseur */
 	public void interactionSliderEpaisseur(int v){
 		sliderEpaisseur.setValue(sliderEpaisseur.getValue() + v);
-		controleur.commande("cursorwidth " + sliderEpaisseur.getValue(), true, true);
+		controleur.commande("cursorwidth " + sliderEpaisseur.getValue(), true, true, true);
 	}
 	
     /**

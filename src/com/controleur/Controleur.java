@@ -85,7 +85,7 @@ public class Controleur{
      *  @param s Commande entree par l'utilisateur
      *  @return Si la fonction s'est correctement deroulee
      */
-    public boolean commande(String s, boolean write, boolean flush)
+    public boolean commande(String s, boolean write, boolean display, boolean flush)
     {
 	    String[] commande_parser;
         s = rework_command(s);
@@ -95,11 +95,11 @@ public class Controleur{
         {
             if ( (commande_parser[0].equalsIgnoreCase("setcolor") || commande_parser[0].equalsIgnoreCase("cursorwidth") 
                         || (commande_parser[0].equalsIgnoreCase("goto") && !curseur.isDown()) ) 
-                    && StockageDonnee.lastCommande().equalsIgnoreCase(commande_parser[0]) )
+                    && StockageDonnee.lastCommande().equalsIgnoreCase(commande_parser[0]) && display )
             {
                 term.remplace(s, term.getLastIndexOf(commande_parser[0]));  
             }
-            else
+            else if ( display )
             {
                 term.addMessage(" > " + s);
             }
@@ -718,7 +718,7 @@ public class Controleur{
             int i = 0;
             while ( i < StockageDonnee.getSize_LCEC() )
             {
-                commande( StockageDonnee.getLCEC(i), false, true );
+                commande( StockageDonnee.getLCEC(i), false, false, true );
                 i++;
             }
 
@@ -751,7 +751,7 @@ public class Controleur{
             int i = 0;
             while ( i < StockageDonnee.getSize_LCEC() )
             {
-                commande( StockageDonnee.getLCEC(i), false, true );
+                commande( StockageDonnee.getLCEC(i), false, false, true );
                 i++;
             }
 
@@ -1745,7 +1745,7 @@ public class Controleur{
 
                 while ( StockageDonnee.getSize_Tmp() > 0 )
                 {
-                    commande( StockageDonnee.getTmp(0), true, true );
+                    commande( StockageDonnee.getTmp(0), true, true, true );
                     zd.repaint();
                 }
 
@@ -1817,7 +1817,7 @@ public class Controleur{
                 //System.out.println(cmd + "\t" + new_cmd);
                 if ( !tmp[0].equalsIgnoreCase("repeat") )
                 {
-                    commande(new_cmd, false, false);
+                    commande(new_cmd, false, false, false);
                 }
                 else
                 {
@@ -1920,9 +1920,9 @@ public class Controleur{
      */
     public void penUpOrPenDown(){
     	if(curseur.isDown())
-    		commande("penup", true, true);
+    		commande("penup", true, false, true);
     	else
-    		commande("pendown", true, true);
+    		commande("pendown", true, false, true);
     }
 
     /**
@@ -1930,9 +1930,9 @@ public class Controleur{
      */
     public void pencilOrEraser(){
     	if(curseur.getType() == 0)
-    		commande("eraser", true, true);
+    		commande("eraser", true, false, true);
     	else
-    		commande("pencil", true, true);
+    		commande("pencil", true, false, true);
     }
     
     public Curseur getCurseur(){

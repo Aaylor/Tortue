@@ -56,7 +56,7 @@ public class Terminal extends JPanel implements KeyListener{
         if ( keyEvent.getKeyCode() == KeyEvent.VK_ENTER
                 && !this.champ_de_commande.getText().equals(""))
         {
-            controleur.commande(this.champ_de_commande.getText(), true, true);
+            controleur.commande(this.champ_de_commande.getText(), true, true, true);
             
             this.champ_de_commande.setText("");
         }

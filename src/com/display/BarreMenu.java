@@ -161,12 +161,12 @@ public class BarreMenu extends JMenuBar{
 		});
 		precedent.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				controleur.commande("undo", true, true);
+				controleur.commande("undo", true, false, true);
 			}
 		});
 		suivant.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				controleur.commande("redo", true, true);
+				controleur.commande("redo", true, false, true);
 			}
 		});
 		leverPoserOutil.addActionListener(new ActionListener(){
@@ -181,13 +181,13 @@ public class BarreMenu extends JMenuBar{
 		});
 		changerFormeOutil.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-				controleur.commande("shape", true, true);
+				controleur.commande("shape", true, false, true);
 			}
 		});
 	}
 	
 	private void activerGrille(){
-		controleur.commande("grid", true, true);
+		controleur.commande("grid", true, false, true);
 	}
 	
 	private void activerMagnetisme(){
@@ -195,7 +195,7 @@ public class BarreMenu extends JMenuBar{
 	}
 	
 	private void activerPixelArtMode(){
-		controleur.commande("pixelart", true, true);
+		controleur.commande("pixelart", true, false, true);
 	}
 	
 	public void affichageGrille(boolean  active){
@@ -228,25 +228,25 @@ public class BarreMenu extends JMenuBar{
 	}
 	
 	private void nouveau(){
-		controleur.commande("new", true, true);
+		controleur.commande("new", true, false, true);
 	}
 	private void ouvrirImage(){
-		controleur.commande("open", true, true);
+		controleur.commande("open", true, false, true);
 	}
 	private void ouvrirHistorique(){
-		controleur.commande("exec", true, true);
+		controleur.commande("exec", true, false, true);
 	}	
 	private void enregistrerImage(){
-		controleur.commande("save", true, true);
+		controleur.commande("save", true, false, true);
 	}
 	
 	private void enregistrerHistorique(){
-		controleur.commande("savehistory", true, true);
+		controleur.commande("savehistory", true, false, true);
 	}
 	
 	/**Entre la commande "exit" dans le terminal, pour fermer le programme*/
 	public void quitter(){
-        controleur.commande("exit", false, true);
+        controleur.commande("exit", false, false, true);
 	}
 	
 	private void aPropos(){

@@ -26,7 +26,7 @@ public class BarreOutilsVignette extends JButton {
 			public void actionPerformed(ActionEvent arg0){
 				Color couleur = JColorChooser.showDialog(null, "Choix de la couleur", Color.WHITE);
 				if(couleur != null)
-					controleur.commande("setcolor " + couleur.getRed() + " " + couleur.getGreen() + " " + couleur.getBlue() + " " + couleur.getAlpha(), true, true);
+					controleur.commande("setcolor " + couleur.getRed() + " " + couleur.getGreen() + " " + couleur.getBlue() + " " + couleur.getAlpha(), true, true, true);
 			}
 		});
 	}
