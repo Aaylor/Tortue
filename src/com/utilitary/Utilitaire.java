@@ -422,15 +422,34 @@ public class Utilitaire
                         int compteur = 0;
                         while ( compteur < tmp2.length )
                         {
-                            if ( tmp2[compteur].indexOf("+") >= 0 )
+                            if ( (tmp2[compteur].indexOf("+") >= 0) || (tmp2[compteur].indexOf("-") >= 0 ) )
                             {
-                                String supposed_to_be_int = tmp2[compteur].substring( tmp2[compteur].indexOf("+")+1 );
-                                if ( !isInt( supposed_to_be_int ) )
+                                String calcul;
+                                if ( (tmp2[compteur].indexOf("-") < 0) || (tmp2[compteur].indexOf("+") >= 0 && tmp2[compteur].indexOf("+") < tmp2[compteur].indexOf("-")) )
+                                {
+                                    calcul = "\\+";
+                                }
+                                else
+                                {
+                                    calcul = "-";
+                                }
+
+                                String[] supposed_to_be_int = tmp2[compteur].split(calcul);
+                                if ( supposed_to_be_int.length > 2 )
                                 {
                                     return GestionErreur.PARAM_INCORRECTE;
                                 }
+                                for ( String to_test : supposed_to_be_int )
+                                {
+                                    if ( !to_test.equals("") && !isInt( to_test ) )
+                                    {
+                                        return GestionErreur.PARAM_INCORRECTE;
+                                    }
+                                }
 
-                                tmp2[compteur] = String.valueOf( supposed_to_be_int );
+                                tmp2[compteur] = String.valueOf( (supposed_to_be_int[0].equals("") ? Integer.parseInt(supposed_to_be_int[1]) 
+                                                : (calcul.equals("-") ? Integer.parseInt(supposed_to_be_int[0])-Integer.parseInt(supposed_to_be_int[1]) 
+                                                : Integer.parseInt(supposed_to_be_int[0])+Integer.parseInt(supposed_to_be_int[1]) ) ) );
                             }
 
                             new_arg += tmp2[compteur] + (compteur == tmp2.length-1 ? "" : " ");
