@@ -1,6 +1,7 @@
 package com.error;
 
 import java.io.File;
+import java.io.*;
 
 import com.controleur.Controleur;
 import com.display.*;
@@ -57,10 +58,47 @@ public class GestionErreur
     /**
      *  JAVADOC
      */
-    public static void writeInLog(String error_msg, boolean append)
+    public static void writeInLog(String command, String error_msg, boolean append)
     {
-        File log_folder;
-        /* TODO */
+        File log_folder = new File( new File(System.getProperty("user.dir")).getParent()
+                                + File.separator + "log" );
+        
+        if ( !log_folder.exists() )
+        {
+            try
+            {
+                log_folder.mkdirs();
+            }
+            catch ( Exception e )
+            {
+                e.printStackTrace();
+            }
+        }
+
+        File log_file = new File( log_folder.getAbsolutePath() + File.separator + "error-log-" 
+            + Utilitaire.getCurDate("yy-MM-dd") + ".txt" );
+
+        try
+        {
+            if ( !log_file.exists() || !append )
+            {
+                log_file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(log_file, append);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter fSortie = new PrintWriter(bw);
+
+            fSortie.println("[" + Utilitaire.getCurDate("H-mm-ss") + "] :" 
+                + (command.equals("") ? "\n" : "\nDuring command : " + command + "\n") + error_msg + "\n");
+            fSortie.flush();
+
+            fSortie.close();
+        }
+        catch ( Exception e )
+        {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -124,14 +124,19 @@ public class Utilitaire
      *  Renvoie la date courante selon le format : yy-MM-yy_H-mm-ss
      *  @return La date courante
      */
-    public static String getCurDate()
+    public static String getCurDate(String format)
     {
-        String format = "yy-MM-dd_H-mm-ss";
         SimpleDateFormat formater = new SimpleDateFormat(format);
         Date date = new java.util.Date();
 
         return formater.format(date);
     }
+
+    /**
+     *  Renvoie la date courante selon le format : yy-MM-dd
+     *  @return La date courante
+     */
+
 
     /**
      *  Renvoie un JFileChooser selon les règles édictées par les paramètres
@@ -227,6 +232,7 @@ public class Utilitaire
             case 32:
             case 33:
             case 35:
+                StockageDonnee.setParamErreur("", false);
                 return ( splited_args[0] == "" ? GestionErreur.SUCCESS : GestionErreur.NOMBRE_PARAM_SUP );
       
             /*  Commande requierant un seul paramètre entier ou rien    */

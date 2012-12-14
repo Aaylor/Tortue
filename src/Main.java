@@ -205,6 +205,69 @@ public class Main{
     						Fenetre.definirThemeOldy();
     					}
     				}
+                    else if(ligne.startsWith("terminalbackgroundcolorred=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1);
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setBgColorRed(int_value);
+                        }
+                    }
+                    else if(ligne.startsWith("terminalbackgroundcolorgreen=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1).trim();
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setBgColorGreen(int_value);
+                        }
+                    }
+                    else if(ligne.startsWith("terminalbackgroundcolorblue=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1);
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setBgColorBlue(int_value);
+                        }
+                    }
+                    else if(ligne.startsWith("terminalfontcolorred=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1);
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setFontColorRed(int_value);
+                        }
+                    }
+                    else if(ligne.startsWith("terminalfontcolorgreen=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1);
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setFontColorGreen(int_value);
+                        }
+                    }
+                    else if(ligne.startsWith("terminalfontcolorblue=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1);
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setBgColorBlue(int_value);
+                        }
+                    }
+                    else if(ligne.startsWith("terminalcursorcolorred=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1);
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setCursorColorRed(int_value);
+                        }
+                    }
+                    else if(ligne.startsWith("terminalcursorcolorgreen=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1);
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setCursorColorGreen(int_value);
+                        }
+                    }
+                    else if(ligne.startsWith("terminalcursorcolorblue=")){
+                        String valeur = ligne.substring(ligne.indexOf("=")+1);
+                        if ( !valeur.isEmpty() && isNumeric(valeur) ){
+                            int int_value = stringToInt(valeur);
+                            Terminal.setCursorColorBlue(int_value);
+                        }
+                    }
     			}
     			br.close(); 
     		}		
@@ -260,6 +323,24 @@ public class Main{
 	    		w.println("background color green=255");
 	    		//Données 10 : valeur Blue du dessin
 	    		w.println("background color blue=255");
+                //Données 11 : valeur Red du background du terminal
+                w.println("terminal backgroundcolor red = 0");
+                //Données 12 : valeur Green du background du terminal
+                w.println("terminal backgroundcolor green = 0");
+                //Données 13 : valeur Blue du background du terminal
+                w.println("terminal backgroundcolor blue = 0");
+                //Données 14 : valeur Red de la couleur des caractères du terminal
+                w.println("terminal fontcolor red = 255");
+                //Données 15 : valeur Green de la couleur des caractères du terminal
+                w.println("terminal fontcolor green = 255");
+                //Données 16 : valeur Blue de la couleur des caractères du terminal
+                w.println("terminal fontcolor blue = 255");
+                //Données 17 : valeur Red de la couleur des caractères du terminal
+                w.println("terminal cursorcolor red = 255");
+                //Données 18 : valeur Green de la couleur des caractères du terminal
+                w.println("terminal cursorcolor green = 255");
+                //Données 19 : valeur Blue de la couleur des caractères du terminal
+                w.println("terminal cursorcolor blue = 255");
 	    		//On écrit le tampon
 	    		w.flush();
 	    		//On ferme l'ecriture
@@ -332,7 +413,6 @@ public class Main{
     {
         init();
         start_program();
-
     }
 
 }

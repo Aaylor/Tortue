@@ -26,6 +26,10 @@ public class Terminal extends JPanel implements KeyListener{
     private int compteur_commandes = -1;
     private JTextField champ_de_commande;
 
+    private static int[] bgColor = new int[] { 0, 0, 0 };
+    private static int[] fontColor = new int[] { 255, 255, 255 };
+    private static int[] cursorColor = new int[] { 255, 255, 255 }; 
+
     /**
      *  Constructeur du Terminal
      */
@@ -144,15 +148,15 @@ public class Terminal extends JPanel implements KeyListener{
         this.champ_de_commande.setFocusable(true);
         this.champ_de_commande.setFocusTraversalKeysEnabled(false);
         this.champ_de_commande.requestFocusInWindow();
-        this.champ_de_commande.setBackground(Color.black);
-        this.champ_de_commande.setForeground(Color.white);
-        this.champ_de_commande.setCaretColor(Color.white);
+        this.champ_de_commande.setBackground( new Color( bgColor[0], bgColor[1], bgColor[2] ) );
+        this.champ_de_commande.setForeground( new Color( fontColor[0], fontColor[1], fontColor[2] ) );
+        this.champ_de_commande.setCaretColor( new Color( cursorColor[0], cursorColor[1], cursorColor[2] ) );
         this.champ_de_commande.setSize( this.getWidth(), 20 );
 
         Terminal.historique.setLineWrap(true);
         Terminal.historique.setWrapStyleWord(true);
-        Terminal.historique.setBackground(Color.black);
-        Terminal.historique.setForeground(Color.white);
+        Terminal.historique.setBackground( new Color( bgColor[0], bgColor[1], bgColor[2] ) );
+        Terminal.historique.setForeground( new Color( fontColor[0], fontColor[1], fontColor[2] ) );
         Terminal.historique.setEnabled(false);
 
 
@@ -255,6 +259,98 @@ public class Terminal extends JPanel implements KeyListener{
     public JTextField getChampDeCommande()
     {
         return champ_de_commande;
+    }
+
+    /**
+     *  Change la couleur de fond rouge
+     *  @param red Correspond à la couleur rouge
+     */
+    public static void setBgColorRed(int red)
+    {
+        red = ( red < 0 ? 0 : red > 255 ? 255 : red );
+        bgColor[0] = red;
+    }
+
+    /**
+     *  Change la couleur de fond verte
+     *  @param green Correspond à la couleur verte
+     */
+    public static void setBgColorGreen(int green)
+    {
+                System.out.println(bgColor[1]);
+        green = ( green < 0 ? 0 : green > 255 ? 255 : green );
+        bgColor[1] = green;
+        System.out.println(bgColor[1]);
+    }
+
+    /**
+     *  Change la couleur de fond bleue
+     *  @param blue Correspond à la couleur bleue
+     */
+    public static void setBgColorBlue(int blue)
+    {
+        blue = ( blue < 0 ? 0 : blue > 255 ? 255 : blue );
+        bgColor[2] = blue;
+    }
+
+    /**
+     *  Change la couleur de l'écriture rouge
+     *  @param red Correspond à la couleur rouge
+     */
+    public static void setFontColorRed(int red)
+    {
+        red = ( red < 0 ? 0 : red > 255 ? 255 : red );
+        fontColor[0] = red;
+    }
+
+    /**
+     *  Change la couleur de l'écriture verte
+     *  @param green Correspond à la couleur verte
+     */
+    public static void setFontColorGreen(int green)
+    {
+        green = ( green < 0 ? 0 : green > 255 ? 255 : green );
+        fontColor[1] = green;
+    }
+
+    /**
+     *  Change la couleur de l'écriture bleue
+     *  @param blue Correspond à la couleur bleue
+     */
+    public static void setFontColorBlue(int blue)
+    {
+        blue = ( blue < 0 ? 0 : blue > 255 ? 255 : blue );
+        fontColor[2] = blue;
+    }
+
+    /**
+     *  Change la couleur du curseur rouge
+     *  @param red Correspond à la couleur rouge
+     */
+    public static void setCursorColorRed(int red)
+    {
+        red = ( red < 0 ? 0 : red > 255 ? 255 : red );
+        cursorColor[0] = red;
+    }
+
+    /**
+     *  Change la couleur du curseur verte
+     *  @param green Correspond à la couleur verte
+     */
+    public static void setCursorColorGreen(int green)
+    {
+        green = ( green < 0 ? 0 : green > 255 ? 255 : green );
+        cursorColor[1] = green;
+    }
+
+    /**
+     *  Change la couleur du curseur bleue
+     *  @param blue Correspond à la couleur bleue
+     */
+    public static void setCursorColorBlue(int blue)
+    {
+        blue = ( blue < 0 ? 0 : blue > 255 ? 255 : blue );
+        cursorColor[2] = blue;
     }
 
 }

@@ -1158,12 +1158,14 @@ public class Controleur{
     		else{
     			zd.setGridMagnetismEnable(false);
     			barreMenu.affichageMagnetisme(false);
+    			setPixelArtMod(false, 0);
     		}
     		
     	}
     	else{
     		zd.setGridMagnetismEnable(false);
     		barreMenu.affichageMagnetisme(false);
+    		setPixelArtMod(false, 0);
     	}
     }
     public void alternateMagnetism(){
@@ -1222,10 +1224,13 @@ public class Controleur{
 			//Activation du mode tortue
 			zd.setPixelArtModeEnable(true);
 			
+			barreMenu.affichagePixelArt(true);
+			
 			zd.repaint();
     	}
     	else{
     		zd.setPixelArtModeEnable(false);
+    		barreMenu.affichagePixelArt(false);
     	}
     }
     
@@ -1454,7 +1459,7 @@ public class Controleur{
 
             if ( !path_to_drawing.matches(regex) )
             {
-                path_to_drawing += File.separator + "save" + Utilitaire.getCurDate() + ".png";    
+                path_to_drawing += File.separator + "save" + Utilitaire.getCurDate("yy-MM-dd_H-mm-ss") + ".png";    
             }
 
             File tmp = new File(path_to_drawing).getParentFile();
@@ -1587,7 +1592,7 @@ public class Controleur{
             } 
             else
             {
-                pathname += File.separator + "history" + Utilitaire.getCurDate() + ".txt";
+                pathname += File.separator + "history" + Utilitaire.getCurDate("yy-MM-dd_H-mm-ss") + ".txt";
                 history = new File(pathname);
             }
                 
@@ -1623,7 +1628,7 @@ public class Controleur{
             fSortie.println("##################################################\n"
                            +"##################################################\n"
                            +"##\t\tHISTORIQUE GENERE LE\t\t##\n"
-                           +"##\t\t" + Utilitaire.getCurDate() + "\t\t##\n"
+                           +"##\t\t" + Utilitaire.getCurDate("yy-MM-dd_H-mm-ss") + "\t\t##\n"
                            +"##################################################\n"
                            +"##################################################\n");
 
