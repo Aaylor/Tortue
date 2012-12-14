@@ -104,6 +104,7 @@ public class Main{
     			BufferedReader br=new BufferedReader(ipsr);
     			String ligne;
     			
+                int i = 1;
     			//Traitement des lignes
     			while ((ligne=br.readLine())!=null){
     				//On met la ligne en miniscule et on enleve les espace, au cas ou
@@ -115,14 +116,18 @@ public class Main{
     				if(ligne.startsWith("fullscreen=")){
     					if(ligne.endsWith("true"))
     						MenuOption.setConfigProgrammeEstFenetre(false);
-    					if(ligne.endsWith("false"))
+    					else if (ligne.endsWith("false"))
     						MenuOption.setConfigProgrammeEstFenetre(true);
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("cursoratthecenter=")){
     					if(ligne.endsWith("true"))
     						MenuOption.setConfigCurseurEstCentre(true);
-    					if(ligne.endsWith("false"))
+    					else if(ligne.endsWith("false"))
     						MenuOption.setConfigCurseurEstCentre(false);
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("cursorred=")){
     					String valeur = ligne.substring(10);
@@ -130,6 +135,8 @@ public class Main{
     						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
     							MenuOption.setConfigCurseurRed(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("cursorgreen=")){
     					String valeur = ligne.substring(12);
@@ -137,6 +144,8 @@ public class Main{
     						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
 								MenuOption.setConfigCurseurGreen(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("cursorblue=")){
     					String valeur = ligne.substring(11);
@@ -144,6 +153,8 @@ public class Main{
     						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
     							MenuOption.setConfigCurseurBlue(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("picturewidth=")){
     					String valeur = ligne.substring(13);
@@ -151,6 +162,8 @@ public class Main{
     						if(stringToInt(valeur)>=50)
     							MenuOption.setConfigDessinLargeur(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("pictureheight=")){
     					String valeur = ligne.substring(14);
@@ -158,6 +171,8 @@ public class Main{
     						if(stringToInt(valeur)>=50)
     							MenuOption.setConfigDessinHauteur(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("backgroundcolorred=")){
     					String valeur = ligne.substring(19);
@@ -165,6 +180,8 @@ public class Main{
     						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
     							MenuOption.setConfigDessinBackgroundRed(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("backgroundcolorgreen=")){
     					String valeur = ligne.substring(21);
@@ -172,6 +189,8 @@ public class Main{
     						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
     							MenuOption.setConfigDessinBackgroundGreen(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("backgroundcolorblue=")){
     					String valeur = ligne.substring(20);
@@ -179,6 +198,8 @@ public class Main{
     						if(stringToInt(valeur)>=0 && stringToInt(valeur)<256)
     							MenuOption.setConfigDessinBackgroundBlue(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("cursorwidth=")){
     					String valeur = ligne.substring(12);
@@ -186,93 +207,182 @@ public class Main{
     						if(stringToInt(valeur)>=1 && stringToInt(valeur)<=500)
     							MenuOption.setConfigCurseurEpaisseur(stringToInt(valeur));
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
     				else if(ligne.startsWith("design=")){
     					if(ligne.endsWith("system")){
     						MenuOption.setConfigTheme(0);
     						Fenetre.definirThemeSysteme();
     					}
-    					if(ligne.endsWith("nimbus")){
+    					else if(ligne.endsWith("nimbus")){
     						MenuOption.setConfigTheme(1);
     						Fenetre.definirThemeNimbus();
     					}
-    					if(ligne.endsWith("metal")){
+    					else if(ligne.endsWith("metal")){
     						MenuOption.setConfigTheme(2);
     						Fenetre.definirThemeMetal();
     					}
-    					if(ligne.endsWith("oldy")){
+    					else if(ligne.endsWith("oldy")){
     						MenuOption.setConfigTheme(3);
     						Fenetre.definirThemeOldy();
     					}
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
     				}
                     else if(ligne.startsWith("terminalbackgroundcolorred=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setBgColorRed(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setBgColorRed(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
                     else if(ligne.startsWith("terminalbackgroundcolorgreen=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1).trim();
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setBgColorGreen(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setBgColorGreen(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
                     else if(ligne.startsWith("terminalbackgroundcolorblue=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setBgColorBlue(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setBgColorBlue(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
                     else if(ligne.startsWith("terminalfontcolorred=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setFontColorRed(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setFontColorRed(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
                     else if(ligne.startsWith("terminalfontcolorgreen=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setFontColorGreen(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setFontColorGreen(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
                     else if(ligne.startsWith("terminalfontcolorblue=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setBgColorBlue(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setFontColorBlue(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
                     else if(ligne.startsWith("terminalcursorcolorred=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setCursorColorRed(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setCursorColorRed(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
                     else if(ligne.startsWith("terminalcursorcolorgreen=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setCursorColorGreen(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setCursorColorGreen(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
                     else if(ligne.startsWith("terminalcursorcolorblue=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
                         if ( !valeur.isEmpty() && isNumeric(valeur) ){
                             int int_value = stringToInt(valeur);
-                            Terminal.setCursorColorBlue(int_value);
+                            if ( int_value >= 0 && int_value <= 255 ) 
+                            {
+                                Terminal.setCursorColorBlue(int_value);
+                            }
+                            else
+                            {
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                            }
                         }
+                        else
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
                     }
+                    else
+                        GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Incorrect command", true);
+
+                    i++;
     			}
     			br.close(); 
     		}		
     		catch (Exception e){
-    			System.out.println(e.toString());
+                GestionErreur.writeInLog( "", e.toString(), true );
     		}
     		
     	}

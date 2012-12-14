@@ -1386,7 +1386,7 @@ public class Controleur{
             }
             catch (Exception e)
             {
-                System.out.println("zhjrkjzehrjze");
+                GestionErreur.writeInLog( "", e.toString(), true );
             }
             finally
             {
@@ -1474,6 +1474,7 @@ public class Controleur{
                     }
                     catch(Exception e)
                     {
+                        GestionErreur.writeInLog( "", e.toString(), true );
                         return GestionErreur.CANT_CREATE;
                     }
                 }
@@ -1513,7 +1514,7 @@ public class Controleur{
             }
             catch (Exception e)
             {
-                System.out.println("zhjrkjzehrjze");
+                GestionErreur.writeInLog( "", e.toString(), true );
             }
             finally
             {
@@ -1608,6 +1609,7 @@ public class Controleur{
                     }
                     catch(Exception e)
                     {
+                        GestionErreur.writeInLog( "", e.toString(), true );
                         return GestionErreur.CANT_CREATE;
                     }
                 }
@@ -1647,6 +1649,7 @@ public class Controleur{
         }
         catch (Exception e)
         {
+            GestionErreur.writeInLog( "", e.toString(), true );
             return GestionErreur.CANT_CREATE;
         }
         
@@ -1740,6 +1743,7 @@ public class Controleur{
             }
             catch (Exception e)
             {
+                GestionErreur.writeInLog( "", e.toString(), true );
                 return GestionErreur.CANT_READ;
             }
 
@@ -1864,7 +1868,7 @@ public class Controleur{
         }
         else
         {
-           term.addMessage("   Indiquez la commande souhaitée. ( Syntaxe : \"man <commande>\" )"); 
+           term.addMessage("   Indiquez la commande souhaitée. ( Syntaxe : \"man commande\" )"); 
         }
         return GestionErreur.SUCCESS;
 

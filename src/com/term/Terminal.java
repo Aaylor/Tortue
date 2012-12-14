@@ -267,7 +267,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setBgColorRed(int red)
     {
-        red = ( red < 0 ? 0 : red > 255 ? 255 : red );
         bgColor[0] = red;
     }
 
@@ -277,10 +276,7 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setBgColorGreen(int green)
     {
-                System.out.println(bgColor[1]);
-        green = ( green < 0 ? 0 : green > 255 ? 255 : green );
         bgColor[1] = green;
-        System.out.println(bgColor[1]);
     }
 
     /**
@@ -289,7 +285,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setBgColorBlue(int blue)
     {
-        blue = ( blue < 0 ? 0 : blue > 255 ? 255 : blue );
         bgColor[2] = blue;
     }
 
@@ -299,7 +294,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setFontColorRed(int red)
     {
-        red = ( red < 0 ? 0 : red > 255 ? 255 : red );
         fontColor[0] = red;
     }
 
@@ -309,7 +303,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setFontColorGreen(int green)
     {
-        green = ( green < 0 ? 0 : green > 255 ? 255 : green );
         fontColor[1] = green;
     }
 
@@ -319,7 +312,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setFontColorBlue(int blue)
     {
-        blue = ( blue < 0 ? 0 : blue > 255 ? 255 : blue );
         fontColor[2] = blue;
     }
 
@@ -329,7 +321,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setCursorColorRed(int red)
     {
-        red = ( red < 0 ? 0 : red > 255 ? 255 : red );
         cursorColor[0] = red;
     }
 
@@ -339,7 +330,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setCursorColorGreen(int green)
     {
-        green = ( green < 0 ? 0 : green > 255 ? 255 : green );
         cursorColor[1] = green;
     }
 
@@ -349,7 +339,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public static void setCursorColorBlue(int blue)
     {
-        blue = ( blue < 0 ? 0 : blue > 255 ? 255 : blue );
         cursorColor[2] = blue;
     }
 
