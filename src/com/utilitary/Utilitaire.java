@@ -389,6 +389,7 @@ public class Utilitaire
 
                 for ( String cmd : command_list )
                 {
+                    cmd = cmd.replaceAll("\\[", "\\[ ").replaceAll("\\]", " \\] ").replaceAll("\\;", " ; ");
                     String[] tmp = cmd.trim().split(" ", 2);
 
                     if ( tmp[0].equalsIgnoreCase("undo")    ||  tmp[0].equalsIgnoreCase("redo")
