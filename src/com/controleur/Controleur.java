@@ -959,6 +959,7 @@ public class Controleur{
      */
     public int cursorWidth(int valeur)
     {
+        valeur = ( valeur < 0 ? 0 : valeur > 100 ? 100 : valeur );
         curseur.setEpaisseur(valeur);
         barreOutils.misAJourSliderEpaisseur(valeur);
         zd.repaint();

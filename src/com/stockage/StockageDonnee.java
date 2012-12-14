@@ -405,8 +405,9 @@ public class StockageDonnee
                                                     ||  !tmp_cmd.equalsIgnoreCase("man")
                                                     ||  !tmp_cmd.equalsIgnoreCase("exit")
                                                     ||  !tmp_cmd.equalsIgnoreCase("pixelart")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("setbackgroundcolor")
                                                     ||  !tmp_cmd.equalsIgnoreCase("grid")
-                                                    ||  !tmp_cmd.equalsIgnoreCase("disablegrid"))
+                                                    ||  !tmp_cmd.equalsIgnoreCase("disablegrid") )
             {
                 liste_valid_commande += "<li>" + tmp_cmd + "</li>";
             }

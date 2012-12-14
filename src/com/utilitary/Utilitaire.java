@@ -407,6 +407,7 @@ public class Utilitaire
                                                             ||  tmp[0].equalsIgnoreCase("exit")
                                                             ||  tmp[0].equalsIgnoreCase("pixelart")
                                                             ||  tmp[0].equalsIgnoreCase("grid")
+                                                            ||  tmp[0].equalsIgnoreCase("setbackgroundcolor")
                                                             ||  tmp[0].equalsIgnoreCase("disablegrid") )
                     {
                         StockageDonnee.setParamErreur( tmp[0], true );
