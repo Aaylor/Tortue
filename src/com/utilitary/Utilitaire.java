@@ -133,12 +133,6 @@ public class Utilitaire
     }
 
     /**
-     *  Renvoie la date courante selon le format : yy-MM-dd
-     *  @return La date courante
-     */
-
-
-    /**
      *  Renvoie un JFileChooser selon les règles édictées par les paramètres
      *  @param description Description des choix possibles
      *  @param regex Expression régulière correspondant aux choix possibles
