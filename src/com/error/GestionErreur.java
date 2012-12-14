@@ -25,6 +25,7 @@ public class GestionErreur
     public static final int COULEUR_INEXISTANTE = 203;
     public static final int REPEAT_PARAM_NON_VALIDE = 204;
     public static final int PARAM_MAN_INCORRECTE = 205;
+    public static final int PARAM_GRID_PIXELART_INCORRECTE = 206;
 
     /*  Erreur Undo/Redo    */
     public static final int CANT_UNDO = 300;
@@ -35,7 +36,6 @@ public class GestionErreur
     public static final int CANT_CREATE = 401;
     public static final int CANT_READ = 403;
     public static final int NOT_FOUND = 404;
-    
 
     /**
      *  Fonction qui envoie le message d'erreur au terminal

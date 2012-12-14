@@ -482,6 +482,7 @@ public class Controleur{
                     retour = grid();
                 }
 
+                System.out.println(retour);
                 return retour;
 
             case 23:
@@ -1113,8 +1114,7 @@ public class Controleur{
      */
     public int grid( int height, int width )
     {
-    	setGrid(true, width, height);
-        return GestionErreur.SUCCESS;
+    	return setGrid(true, width, height);
     }
 
     /**
@@ -1125,13 +1125,20 @@ public class Controleur{
     	MenuGrille.setPixelArtDisplay(false);
     	MenuGrille menuGrille = new MenuGrille(null, true); 
     	if(MenuGrille.itWorked){
-            setGrid(true, MenuGrille.widthCaseDefined, MenuGrille.heightCaseDefined);
+            int retour = setGrid(true, MenuGrille.widthCaseDefined, MenuGrille.heightCaseDefined);
+            if ( retour != GestionErreur.SUCCESS )
+                return retour;
     	}
         return GestionErreur.SUCCESS;
     }
 
-    public void setGrid(boolean enable, int width, int height){
-    	if(enable){
+    public int setGrid(boolean enable, int width, int height){
+    	if ( ( width < 2 ) || ( height > 2 ) )
+        {
+            return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
+        }
+        
+        if(enable){
     		//Affichage de la grille
     		zd.setGridEnable(true);
 			zd.setWidthCaseGrid(height);
@@ -1150,6 +1157,8 @@ public class Controleur{
     		barreMenu.setMagnetismeDisponible(false);
     	}
     	zd.repaint();
+
+        return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
     }
     
     public void setMagnetism(boolean b){
@@ -1192,9 +1201,7 @@ public class Controleur{
      */
     public int pixelart(int size)
     {
-    	setPixelArtMod(true, size);
-		
-		return GestionErreur.SUCCESS;
+    	return setPixelArtMod(true, size);
     }
 
     /**
@@ -1205,14 +1212,21 @@ public class Controleur{
     	MenuGrille.setPixelArtDisplay(true);
     	MenuGrille menuGrille = new MenuGrille(null, true); 
     	if(MenuGrille.itWorked){
-            setPixelArtMod(true, MenuGrille.widthCaseDefined);
+            int retour = setPixelArtMod(true, MenuGrille.widthCaseDefined);
+            if ( retour != GestionErreur.SUCCESS )
+                return retour;
     	}
     	MenuGrille.setPixelArtDisplay(false);
         return GestionErreur.SUCCESS;
     }
 
-    public void setPixelArtMod(boolean enable, int size){
-    	if(enable){
+    public int setPixelArtMod(boolean enable, int size){
+    	if ( size < 2 )
+        {
+            return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
+        }
+        
+        if(enable){
 	    	//Afficher la grille
 	    	setGrid(true, size, size);
 			
@@ -1239,6 +1253,8 @@ public class Controleur{
     		zd.setPixelArtModeEnable(false);
     		barreMenu.affichagePixelArt(false);
     	}
+
+        return GestionErreur.SUCCESS;
     }
     
     /**
