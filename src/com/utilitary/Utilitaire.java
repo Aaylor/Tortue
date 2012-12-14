@@ -184,7 +184,7 @@ public class Utilitaire
         HTMLEditorKit kit = (HTMLEditorKit)dialog.getEditorKit();
         
         StyleSheet css = kit.getStyleSheet();
-        css.addRule( "ul {list-style-type:circle;}" );
+        css.addRule( "ul {list-style-type:disc;}" );
         css.addRule( "body {background:#EFEFEF;}" );
         css.addRule( ".global_div {margin-right:5px; margin-left:5px;}" );
         css.addRule( "#syntax {background:#DDDDDD; margin-top:5px; margin-bottom:5px;}" );
@@ -196,6 +196,7 @@ public class Utilitaire
         kit.setStyleSheet( css );
         dialog.setEditorKit(kit);
         dialog.setText(html);
+        dialog.setCaretPosition(0);
 
         JScrollPane scroll_pane = new JScrollPane( dialog,  JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
                                                             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
