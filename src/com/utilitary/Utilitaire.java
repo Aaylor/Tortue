@@ -171,11 +171,10 @@ public class Utilitaire
      public static void getInformationalPane(String msg_dialog, String title)
      {
         JFrame window_man = new JFrame( "MANUEL : " + title );
-        window_man.setSize( new Dimension( 500, 300 ) );
+        window_man.setSize( new Dimension( 500, 600 ) );
 		window_man.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-       
-
-        String html =  "<html><head></head><body><div id=\"global_div\">" + msg_dialog + "</div></body></html>";
+    
+        String html =  "<html><head></head><body><div class=\"global_div\">" + msg_dialog + "</div></body></html>";
 
         JEditorPane dialog = new JEditorPane();
         dialog.setContentType("text/html");
@@ -185,7 +184,14 @@ public class Utilitaire
         HTMLEditorKit kit = (HTMLEditorKit)dialog.getEditorKit();
         
         StyleSheet css = kit.getStyleSheet();
-        css.addRule( "h1 {color:red}" );
+        css.addRule( "ul {list-style-type:circle;}" );
+        css.addRule( "body {background:#EFEFEF;}" );
+        css.addRule( ".global_div {margin-right:5px; margin-left:5px;}" );
+        css.addRule( "#syntax {background:#DDDDDD; margin-top:5px; margin-bottom:5px;}" );
+        css.addRule( "#explaination {background:#DDDDDD;}" );
+        css.addRule( "#cmd-color-list {background:#DDDDDD; margin-top:5px; margin-bottom:5px;}" );
+        css.addRule( "#example {background: #DDDDDD; margin-top:5px; margin-bottom:5px;} ");
+        css.addRule( "#no-chip {list-style-type:none;}" );
         
         kit.setStyleSheet( css );
         dialog.setEditorKit(kit);
