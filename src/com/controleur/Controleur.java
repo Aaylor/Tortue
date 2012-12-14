@@ -635,6 +635,7 @@ public class Controleur{
      */
     public int change_forme()
     {
+    	setPixelArtMod(false, 0);
         this.curseur.setForme( this.curseur.getForme() == 1 ? (short)0 : (short)1 );
         this.barreOutils.affichageBoutonForme();
         zd.repaint();
@@ -1120,6 +1121,7 @@ public class Controleur{
      */
     public int grid()
     {
+    	MenuGrille.setPixelArtDisplay(false);
     	MenuGrille menuGrille = new MenuGrille(null, true); 
     	if(MenuGrille.itWorked){
             setGrid(true, MenuGrille.widthCaseDefined, MenuGrille.heightCaseDefined);
@@ -1199,8 +1201,12 @@ public class Controleur{
      */
     public int pixelart()
     {
-
-
+    	MenuGrille.setPixelArtDisplay(true);
+    	MenuGrille menuGrille = new MenuGrille(null, true); 
+    	if(MenuGrille.itWorked){
+            setPixelArtMod(true, MenuGrille.widthCaseDefined);
+    	}
+    	MenuGrille.setPixelArtDisplay(false);
         return GestionErreur.SUCCESS;
     }
 
@@ -1240,6 +1246,7 @@ public class Controleur{
      */
     public int newFile()
     {
+    	setPixelArtMod(false, 0);
         boolean save_return = StockageDonnee.getImageSave();
 
         if ( !StockageDonnee.getImageSave() )
@@ -1289,6 +1296,7 @@ public class Controleur{
      */
     public int open(String path)
     {
+    	setPixelArtMod(false, 0);
     	String regex = "(.*)[\\.]([pP][nN][gG]||[jJ][pP][gG]||[gG][iI][fF])";
     	
     	if ( path.equals("") )
@@ -1664,6 +1672,7 @@ public class Controleur{
      */
     public int exec(String pathname)
     {
+    	setPixelArtMod(false, 0);
         String regex = "(.*)[\\.][tT][xX][tT]$";
         if ( pathname.equals("") )
         {
@@ -1765,6 +1774,7 @@ public class Controleur{
      */
     public int repeat(int nombre_de_repetitions, String args, boolean first_repeat, int compteur_min, int compteur_max)
     {
+    	setPixelArtMod(false, 0);
         String[] command_list = Utilitaire.parseRepeat(args);
         //System.out.println( "COMPTEUR MIN : " + compteur_min + "\nCOMPTEUR MAX : " + compteur_max );
 

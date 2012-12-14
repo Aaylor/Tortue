@@ -15,10 +15,7 @@ import javax.swing.JScrollPane;
 
 import com.controleur.Controleur;
 
-public class MenuGrille extends JDialog {
-	
-	private static boolean pixelArtDisplay;
-	
+public class MenuGrille extends JDialog {	
 	private JLabel labWidth = new JLabel("Largeur des cases de la grille :"); 
 	private JLabel labHeight = new JLabel("Hauteur Horizontal des cases de la grille :");
 	private JFormattedTextField textFieldWidth;
@@ -29,6 +26,7 @@ public class MenuGrille extends JDialog {
 	public static boolean itWorked;
 	public static int widthCaseDefined;
 	public static int heightCaseDefined;
+	private static boolean pixelArtDisplay;
 	
 	public MenuGrille(JFrame parent, boolean modal){
 		super(parent, "Afficher la grille", modal);
@@ -107,7 +105,7 @@ public class MenuGrille extends JDialog {
 				setVisible(false);
 			}
 			else{
-	    		JOptionPane.showMessageDialog(null, "Erreur", "Valeurs saisies incorrectes", JOptionPane.INFORMATION_MESSAGE);
+	    		JOptionPane.showMessageDialog(null, "Valeurs saisies incorrectes", "Erreur", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
 	}
