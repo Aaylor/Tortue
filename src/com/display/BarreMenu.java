@@ -38,8 +38,10 @@ public class BarreMenu extends JMenuBar{
 	//JMenu "Affichage"
 	private JMenu menuAffichage = new JMenu("Affichage");
 	private static JMenuItem activerLaGrille = new JMenuItem("Afficher la grille");
+	private static JMenuItem desactiverLaGrille = new JMenuItem("Désactiver la grille");
 	private static JMenuItem magnetisme = new JMenuItem("Magnetisme à la grille");
 	private static JMenuItem modePixelArt = new JMenuItem("Mode Pixel Art");
+	private static JMenuItem desactiverModePixelArt = new JMenuItem("Désactiver le mode Pixel Art");
 	
     //JMenu "Outils"
 	private JMenu menuOutils = new JMenu("Outils");
@@ -69,13 +71,18 @@ public class BarreMenu extends JMenuBar{
 		this.add(menuEdition);
 		menuEdition.add(precedent);
 		menuEdition.add(suivant);
-		menuEdition.add(modePixelArt);
 		
 		//Menu Affichage
 		this.add(menuAffichage);
 		menuAffichage.add(activerLaGrille);
+		menuAffichage.add(desactiverLaGrille);
+		desactiverLaGrille.setEnabled(false);
 		menuAffichage.add(magnetisme);
 		magnetisme.setEnabled(false);
+		menuAffichage.addSeparator();
+		menuAffichage.add(modePixelArt);
+		menuAffichage.add(desactiverModePixelArt);
+		desactiverModePixelArt.setEnabled(false);
 		
 		//Menu "Outils"
 		this.add(menuOutils);
@@ -184,6 +191,16 @@ public class BarreMenu extends JMenuBar{
 				controleur.commande("shape", true, false, true);
 			}
 		});
+		desactiverLaGrille.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				controleur.commande("disablegrid", true, false, true);
+			}
+		});
+		desactiverModePixelArt.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0){
+				controleur.commande("disablepixelart", true, false, true);
+			}
+		});
 	}
 	
 	private void activerGrille(){
@@ -203,6 +220,9 @@ public class BarreMenu extends JMenuBar{
 			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
 		}
 		else activerLaGrille.setIcon(new ImageIcon(""));
+	}
+	public void affichageDesactiverLaGrille(boolean  active){
+		desactiverLaGrille.setEnabled(active);
 	}
 	
 	public void affichageMagnetisme(boolean  active){
@@ -225,6 +245,9 @@ public class BarreMenu extends JMenuBar{
 			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
 		}
 		else modePixelArt.setIcon(new ImageIcon(""));
+	}
+	public void affichageDesactiverPixelArt(boolean  active){
+		desactiverModePixelArt.setEnabled(active);
 	}
 	
 	private void nouveau(){

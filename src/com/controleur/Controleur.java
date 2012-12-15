@@ -1133,7 +1133,7 @@ public class Controleur{
     }
 
     public int setGrid(boolean enable, int width, int height){
-    	if (enable && ( width < 2 ) || ( height < 2 ) ){
+    	if (enable && ( width < 2 ) || ( height < 2 )){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
         }
         
@@ -1144,6 +1144,7 @@ public class Controleur{
 			zd.setHeightCaseGrid(width);
 			//Mise a jour du menu Bar
 			barreMenu.affichageGrille(true);
+    		barreMenu.affichageDesactiverLaGrille(true);
     		barreMenu.setMagnetismeDisponible(true);
     	}
     	else{
@@ -1153,11 +1154,12 @@ public class Controleur{
     		zd.setPixelArtModeEnable(false);
     		//Mise a jour du menu Bar
     		barreMenu.affichageGrille(false);
+    		barreMenu.affichageDesactiverLaGrille(false);
     		barreMenu.setMagnetismeDisponible(false);
     	}
     	zd.repaint();
 
-        return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
+        return GestionErreur.SUCCESS;
     }
     
     public void setMagnetism(boolean b){
