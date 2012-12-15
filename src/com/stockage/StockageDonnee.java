@@ -296,6 +296,8 @@ public class StockageDonnee
                                 + "<br /><br />Le mode pixelart affiche une grille dans la zone de dessin, et permet de dessiner seulement &agrave;"
                                 + "l'int&eacute;rieur des carreaux. La modification de la largeur, de la forme, ou si la grille est d&eacute;sactiv&eacute;, alors "
                                 + "le mode pixel art est d&eacute;sactiv&eacute;.</div>");
+        manuel.put("disablepixelart", "<div id=\"syntax\">Syntaxe : <ul><li>disablepixelart</li></ul></div>"
+                                + "<div id=\"explaination\"> D&eacute;sactive le mode pixelart (voir le manuel pixelart)</div>");
         manuel.put("new", "<div id=\"syntax\">Syntaxe : <ul><li>new, <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<div id=\"explaination\">Cr&eacute;er un nouveau fichier. Si le fichier courrant a &eacute;t&eacute; modifi&eacute;, "
                                 + "alors une demande de sauvegarde "
