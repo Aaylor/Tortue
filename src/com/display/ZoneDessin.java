@@ -6,11 +6,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Robot;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -111,8 +111,43 @@ public class ZoneDessin extends JPanel{
 				break;
 			//Clic droit
 			case 3 :
-				barreOutils.interactionBoutonPoserOutil();
-				break;
+				if(!pixelArtModeEnable){
+					barreOutils.interactionBoutonPoserOutil();
+					break;
+				}
+				else{
+				//Le clic du droit va servir de pipette en mode pixel art
+					int posX_final2 = (posX - ecartHorizontal < 0) ? 0 
+		                    : (posX - ecartHorizontal > this.getLargeurDessin()) ? this.getLargeurDessin()
+		                    : (posX - ecartHorizontal);
+		                    
+		            int posY_final2 = (posY - ecartVertical < 0) ? 0 
+		                    : (posY - ecartVertical > this.getHauteurDessin()) ? this.getHauteurDessin()
+		                    : (posY - ecartVertical);
+		            
+
+					//On enleve la grille et le curseur
+			        gridEnable = false;
+			        affichageCurseur =false;
+			        this.repaint();
+			        //On capture l'image et on l'a met dans une bufferedImage
+					BufferedImage image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_ARGB);
+					Graphics2D gg = image.createGraphics();
+					try {
+						gg.translate(-ecartHorizontal, -ecartVertical);//On décale l'image dans la bufferedImage
+				        this.paint(gg);
+				        //On recupere la couleur du clic
+				        Color couleur = new Color(image.getRGB(posX_final2, posY_final2));
+				        //On envoie la commande au terminal
+				        c.commande("setcolor " + couleur.getRed() + " " + couleur.getGreen() + " "+ couleur.getBlue(), true, true, true);
+				    } finally {
+				        gg.dispose();
+				    }
+			        //On reaffiche la grille et le curseur
+			        gridEnable = true;
+			        affichageCurseur = true;
+			        this.repaint();
+				}
 		}
 				
 	}

@@ -1133,8 +1133,7 @@ public class Controleur{
     }
 
     public int setGrid(boolean enable, int width, int height){
-    	if (enable && ( width < 2 ) || ( height < 2 ) )
-        {
+    	if (enable && ( width < 2 ) || ( height < 2 ) ){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
         }
         
