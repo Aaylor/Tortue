@@ -332,35 +332,45 @@ public class Controleur{
                     StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
-            
+
             case 10:
+                return getPosition();
+            
+            case 11:
                 retour = rotate( Integer.parseInt( commande_parser[1] ) % 360 );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
-           
-            case 11:
-                return undo();
 
             case 12:
+                retour = addrotate ( Integer.parseInt( commande_parser[1] ) % 360 );
+                if ( retour == 0 && write )
+                    StockageDonnee.ajoutLCEC(commande_parser, false, true);
+
+                return retour;
+           
+            case 13:
+                return undo();
+
+            case 14:
                 return redo();
 
-            case 13:
+            case 15:
                 retour = forward( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false, true);
 
                 return retour;
             
-            case 14:
+            case 16:
                 retour = backward( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, false, true);
 
                 return retour;
             
-            case 15:
+            case 17:
                 retour = goTo(  Integer.parseInt( commande_parser[1] ),
                                 Integer.parseInt( commande_parser[2] ) );
                 boolean verif = false;
@@ -372,14 +382,14 @@ public class Controleur{
 
                 return retour;
             
-            case 16:
+            case 18:
                 retour = cursorWidth( Integer.parseInt( commande_parser[1] ) );
                 if ( retour == 0 && write )
                     StockageDonnee.ajoutLCEC(commande_parser, true, true);
 
                 return retour;
 
-            case 17:
+            case 19:
                 if ( commande_parser.length == 2 )
                 {
                     retour = setColor(commande_parser[1]);
@@ -404,7 +414,7 @@ public class Controleur{
            
                 return retour;
 
-            case 18:
+            case 20:
                 if ( commande_parser.length == 2 )
                 {
                     retour = setBackgroundColor(commande_parser[1]);
@@ -421,7 +431,7 @@ public class Controleur{
            
                 return retour;
             
-            case 19:
+            case 21:
                 if ( commande_parser[1].equalsIgnoreCase("triangle") )
                 {
                     retour = doFigure(3, new int[] {    Integer.parseInt(commande_parser[2]),
@@ -466,13 +476,13 @@ public class Controleur{
                 return retour;
             
             
-            case 20:
+            case 22:
                 return width( Integer.parseInt( commande_parser[1] ) );
             
-            case 21:
+            case 23:
                 return height( Integer.parseInt( commande_parser[1] ) );
 
-            case 22:
+            case 24:
                 if ( commande_parser.length == 3 )
                 {
                     retour = grid( Integer.parseInt(commande_parser[1]), Integer.parseInt(commande_parser[2]) );
@@ -485,10 +495,10 @@ public class Controleur{
                 System.out.println(retour);
                 return retour;
 
-            case 23:
+            case 25:
                 return disablegrid();
            
-            case 24:
+            case 26:
                 if ( commande_parser.length == 2 )
                 {
                     retour = pixelart( Integer.parseInt( commande_parser[1] ) ); 
@@ -500,43 +510,43 @@ public class Controleur{
 
                 return retour;
 
-            case 25:
+            case 27:
                 return disablePixelArt();
 
-            case 26:
+            case 28:
                 return newFile();
             
-            case 27:
+            case 29:
                 if ( commande_parser.length == 2 )
                     return open(commande_parser[1]);
 
                 return open("");
             
-            case 28:
+            case 30:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return save();
             
-            case 29:
+            case 31:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return saveas("");
             
-            case 30:
+            case 32:
                 if ( commande_parser.length == 2 )
                     return savehistory(commande_parser[1]);
                 else
                     return savehistory("");
             
-            case 31:
+            case 33:
                 if ( commande_parser.length == 2 )
                     return exec(commande_parser[1]);
 
                 return exec("");
             
-            case 32:
+            case 34:
                 int nombre_de_repetition = Integer.parseInt(commande_parser[1]);
 
                 String args = "";
@@ -559,19 +569,19 @@ public class Controleur{
 
                 return retour;
                 
-            case 33:
+            case 35:
                 return clear();
             
-            case 34:
+            case 36:
                 return help();
             
-            case 35:
+            case 37:
                 if ( commande_parser.length < 2 )
                     return man(false, "");
                 else
                     return man(true, commande_parser[1]);
             
-            case 36:
+            case 38:
                 return exit();
 
             default:
@@ -695,14 +705,52 @@ public class Controleur{
     }
 
     /**
+     *  Fonction qui permet de deplacer le pointeur au centre
+     *  @return si la fonction s'est bien deroulee.
+     */
+    public int center(){
+        
+        int x=zd.getLargeurDessin()/2;
+        int y=zd.getHauteurDessin()/2;
+        curseur.setPosition(x, y);
+        
+        this.zd.repaint();
+        return GestionErreur.SUCCESS;
+    }
+
+    /**
+     *  Fonction qui permet d'afficher la position courante de l'outil
+     *  @return si la fonction s'est bien déroulée
+     */
+    public int getPosition()
+    {
+        term.addMessage( "   x = " + this.curseur.getPosX() + " ; y = " + this.curseur.getPosY() );
+        return GestionErreur.SUCCESS;
+    }
+
+    /**
      *  Fonction qui permet de faire une rotation sur le pointeur
      *  @param valeur Valeur de l'angle
      *  @return si la fonction s'est bien deroulee.
      */
     public int rotate(int valeur)
     {
-    	this.curseur.setOrientation(valeur+90);
+    	this.curseur.setOrientation( ( valeur + 90 ) % 360 );
         this.zd.repaint();
+
+        return GestionErreur.SUCCESS;
+    }
+
+    /**
+     *  Fonction qui permet d'ajouter une rotation à l'orientation courante
+     *  @param valeur Valeur à ajouter à l'angle courant
+     *  @return si la fonction s'est bien déroulée
+     */
+    public int addrotate(int valeur)
+    {
+        this.curseur.setOrientation( ( ((int)this.curseur.getOrientation()) + valeur ) % 360 );
+        this.zd.repaint();
+
         return GestionErreur.SUCCESS;
     }
 
@@ -903,20 +951,6 @@ public class Controleur{
     }
     
     /**
-     *  Fonction qui permet de deplacer le pointeur au centre
-     *  @return si la fonction s'est bien deroulee.
-     */
-    public int center(){
-    	
-    	int x=zd.getLargeurDessin()/2;
-    	int y=zd.getHauteurDessin()/2;
-    	curseur.setPosition(x, y);
-    	
-    	this.zd.repaint();
-    	return GestionErreur.SUCCESS;
-    }
-    
-    /**
      *  Fonction qui permet de deplacer le pointeur
      *  @param value Abscisse d'arrivee
      *  @param value Ordonnee d'arrivee
@@ -1094,7 +1128,9 @@ public class Controleur{
     {
         zd.setLargeur(valeur);
         zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
-        center();
+        
+        this.curseur.setPosition( zd.getLargeurDessin()/2, zd.getHauteurDessin()/2 );
+
         this.zd.repaint();
         return GestionErreur.SUCCESS;
     }
@@ -1108,7 +1144,9 @@ public class Controleur{
     {
         zd.setHauteur(valeur);
         zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
-        center();
+        
+        this.curseur.setPosition( zd.getLargeurDessin()/2, zd.getHauteurDessin()/2 );
+
         this.zd.repaint();
         return GestionErreur.SUCCESS;
     }
