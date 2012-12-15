@@ -136,7 +136,7 @@ public class BarreOutils extends JToolBar {
 		});
 		boutonForme.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0){
-                controleur.commande("forme", true, false, true);
+                controleur.commande("shape", true, false, true);
 			}
 		});
 		boutonRedo.addActionListener(new ActionListener(){

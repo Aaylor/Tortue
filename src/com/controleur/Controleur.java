@@ -1148,7 +1148,6 @@ public class Controleur{
     		barreMenu.setMagnetismeDisponible(true);
     	}
     	else{
-    		System.out.println("test");
     		//Disparition de la grille
     		zd.setGridEnable(false);
     		zd.setGridMagnetismEnable(false);
@@ -1229,34 +1228,36 @@ public class Controleur{
         if(enable){
 	    	//Afficher la grille
 	    	setGrid(true, size, size);
-			
 	    	//Activer le magnetisme
 			setMagnetism(true);
-			
 	    	//Changer la taille du curseur
 			curseur.setEpaisseur(size);
-			
 			//Changer la forme du curseur
 			curseur.setForme((short)1);
-			
 			//Abaisser le curseur
 			curseur.setIsDown(true);
-			
 			//Activation du mode tortue
 			zd.setPixelArtModeEnable(true);
 			
 			barreMenu.affichagePixelArt(true);
+			barreMenu.affichageDesactiverPixelArt(true);
 			
 			zd.repaint();
     	}
     	else{
     		zd.setPixelArtModeEnable(false);
     		barreMenu.affichagePixelArt(false);
+			barreMenu.affichageDesactiverPixelArt(false);
     	}
 
         return GestionErreur.SUCCESS;
     }
     
+    
+    public int disablePixelArt(){
+    	setPixelArtMod(false, 0);
+    	return GestionErreur.SUCCESS;
+    }
     /**
      *  Fonction qui permet de creer un nouveau document
      *  @return si la fonction s'est bien deroulee.
