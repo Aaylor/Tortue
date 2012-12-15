@@ -1276,12 +1276,15 @@ public class Controleur{
 	    	//Activer le magnetisme
 			setMagnetism(true);
 	    	//Changer la taille du curseur
-			curseur.setEpaisseur(size);
-			//Changer la forme du curseur
-			curseur.setForme((short)1);
+			//curseur.setEpaisseur(size);
+			commande("cursorwidth " + size, true, false, true);
+            //Changer la forme du curseur
+			//curseur.setForme((short)1);
+            commande("shape", true, false, true);
 			//Abaisser le curseur
-			curseur.setIsDown(true);
-			//Activation du mode tortue
+			//curseur.setIsDown(true);
+			commande("pendown", true, false, true);
+            //Activation du mode tortue
 			zd.setPixelArtModeEnable(true);
 			
 			barreMenu.affichagePixelArt(true);
