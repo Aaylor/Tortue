@@ -230,9 +230,10 @@ public class Utilitaire
             case 12:
             case 23:
             case 25:
-            case 32:
+            case 26:
             case 33:
-            case 35:
+            case 34:
+            case 36:
                 StockageDonnee.setParamErreur("", false);
                 return ( splited_args[0] == "" ? GestionErreur.SUCCESS : GestionErreur.NOMBRE_PARAM_SUP );
       
@@ -277,12 +278,12 @@ public class Utilitaire
                 return GestionErreur.SUCCESS;
 
             /*  Commande requierant un paramètre en chaîne de caractère ou sans. [Peut utiliser les guillemets] */
-            case 26:
             case 27:
             case 28:
             case 29:
             case 30:
-            case 34:
+            case 31:
+            case 35:
                 if ( splited_args.length > 1 )
                 {
                     return GestionErreur.NOMBRE_PARAM_SUP;
@@ -384,7 +385,7 @@ public class Utilitaire
                 return GestionErreur.SUCCESS;
 
             /*  Cas particulier pour la fonction REPEAT */
-            case 31:
+            case 32:
                 String[] command_list = parseRepeat(args);
 
                 for ( String cmd : command_list )

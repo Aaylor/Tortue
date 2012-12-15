@@ -501,39 +501,42 @@ public class Controleur{
                 return retour;
 
             case 25:
+                return disablePixelArt();
+
+            case 26:
                 return newFile();
             
-            case 26:
+            case 27:
                 if ( commande_parser.length == 2 )
                     return open(commande_parser[1]);
 
                 return open("");
             
-            case 27:
+            case 28:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return save();
             
-            case 28:
+            case 29:
                 if ( commande_parser.length == 2 )
                     return saveas(commande_parser[1]);
 
                 return saveas("");
             
-            case 29:
+            case 30:
                 if ( commande_parser.length == 2 )
                     return savehistory(commande_parser[1]);
                 else
                     return savehistory("");
             
-            case 30:
+            case 31:
                 if ( commande_parser.length == 2 )
                     return exec(commande_parser[1]);
 
                 return exec("");
             
-            case 31:
+            case 32:
                 int nombre_de_repetition = Integer.parseInt(commande_parser[1]);
 
                 String args = "";
@@ -556,19 +559,19 @@ public class Controleur{
 
                 return retour;
                 
-            case 32:
+            case 33:
                 return clear();
             
-            case 33:
+            case 34:
                 return help();
             
-            case 34:
+            case 35:
                 if ( commande_parser.length < 2 )
                     return man(false, "");
                 else
                     return man(true, commande_parser[1]);
             
-            case 35:
+            case 36:
                 return exit();
 
             default:
