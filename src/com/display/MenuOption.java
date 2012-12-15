@@ -661,7 +661,7 @@ public class MenuOption extends JDialog{
 	}
 	
 	  ////////////////////////////////////////////
-	 //          ACCESSEURS
+	 //              ACCESSEURS                //        
 	////////////////////////////////////////////
 	
 	public static boolean getConfigProgrammeEstFenetre(){
@@ -702,7 +702,7 @@ public class MenuOption extends JDialog{
 	}
     
 	  ////////////////////////////////////////////
-	 //          MODIFIEURS
+	 //              MODIFIEURS                //
 	////////////////////////////////////////////
 	
 	public static void setConfigProgrammeEstFenetre(boolean a){

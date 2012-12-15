@@ -366,26 +366,34 @@ public class ZoneDessin extends JPanel{
 	}
 
 	
-	/**Méthode renvoyant la coordonée X absolue dans la zone de dessin par rapport à une coordonée X relative au dessin*/
+	/**Méthode renvoyant la coordonée X absolue dans la zone de dessin par rapport à une coordonée X relative au dessin
+	 * @return La coordonée X absolue dans la zone de dessin par rapport à une coordonée X relative au dessin
+	 * */
 	public int posXAbsolue(int x){
 		return x + ecartHorizontal;
 	}
-	/**Méthode renvoyant la coordonée Y absolue dans la zone de dessin par rapport à une coordonée Y relative au dessin*/
+	/**Méthode renvoyant la coordonée Y absolue dans la zone de dessin par rapport à une coordonée Y relative au dessin
+	 * @return La coordonée Y absolue dans la zone de dessin par rapport à une coordonée Y relative au dessin
+	 * */
 	public int posYAbsolue(int y){
 		return y + ecartVertical;
 	}
-	/**Méthode renvoyant la coordonée X absolue du curseur du curseur dans la zone de dessin par rapport à une coordonée X relative au dessin*/
+	/**Méthode renvoyant la coordonée X absolue du curseur du curseur dans la zone de dessin par rapport à une coordonée X relative au dessin
+	 * @return La coordonée X absolue du curseur du curseur dans la zone de dessin par rapport à une coordonée X relative au dessin
+	 * */
 	public int getPosX(){
 		return curseur.getPosX() + ecartHorizontal;
 	}
-	/**Méthode renvoyant la coordonée Y absolue du curseur dans la zone de dessin par rapport à une coordonée Y relative au dessin*/
+	/**Méthode renvoyant la coordonée Y absolue du curseur dans la zone de dessin par rapport à une coordonée Y relative au dessin
+	 * @return La coordonée Y absolue du curseur dans la zone de dessin par rapport à une coordonée Y relative au dessin
+	 * */
 	public int getPosY(){
 		return curseur.getPosY() + ecartVertical;
 	}
 	
-	/*///
-	 * ACCESSEURS
-	 //*/
+	  ////////////////////////////////////////////
+	 //              ACCESSEURS                //        
+	////////////////////////////////////////////
 	
 	/**Accesseur renvoyant l'écart horizontal entre le bord de la zone de dessin et du dessin
 	 * @return L'écart horizontal entre le bord de la zone de dessin et du dessin
@@ -417,16 +425,39 @@ public class ZoneDessin extends JPanel{
     public Color getBackground(){
     	return background;
     }
-    
-	/*///
-	 * MODIFIEURS
-	 //*/
+    /**Retourne le boolean représentation l'activation de l'affichage de la grille
+     * @return le boolean représentation l'activation de l'affichage de la grille
+     */
+	public boolean isGridEnable() {
+		return gridEnable;
+	}
+	/**Retourne le booleen représentant l'activation du magnetisme a la grille
+	 * @return Le booleen représentant l'activation du magnetisme a la grille
+	 */
+	public boolean isGridMagnetismEnable() {
+		return gridMagnetismEnable;
+	}
+	/**Retourne la largeur des cases de la grille
+	 * @return La largeur des cases de la grille
+	 */
+	public int getWidthCaseGrid(){
+		return widthCaseGrid;
+	}
+	/**Retourne la hauteur des cases de la grille
+	 * @return La hauteur des cases de la grille
+	 */
+	public int getHeightCaseGrid(){
+		return heightCaseGrid;
+	}
+	
+	  ////////////////////////////////////////////
+	 //              MODIFIEURS                //
+	////////////////////////////////////////////
     
     /** Modifie le controleur
      *  @param c Nouveau controleur
      */
-    public void setControleur(Controleur c)
-    {
+    public void setControleur(Controleur c){
         this.c = c;
     }
     /**Modifie la couleur d'arriere plan de la zone de dessin
@@ -449,45 +480,45 @@ public class ZoneDessin extends JPanel{
     /**Modifie la barre d'outils associée à la zone de dessin
      *  @param b La barre d'outils à associer à la zone de Dessin
      *  */
-    public void setBarreOutils(BarreOutils b){ barreOutils = b;}
-    
+    public void setBarreOutils(BarreOutils b){ 
+    	barreOutils = b;
+    }
     /**Modifie l'activation de l'affichage du curseur
      *  @param b Booleen définissant l'affichage du curseur
      *  */
-    public void setAffichageCurseur(boolean b){ affichageCurseur = b;}
-
-	public boolean isGridEnable() {
-		return gridEnable;
+    public void setAffichageCurseur(boolean b){
+    	affichageCurseur = b;
+    }
+	/**Modifie l'activation de l'affichage de la grille
+     * @param enable : Le booleen représentant l'activation de l'affichage de la grille
+     */
+	public void setGridEnable(boolean enable) {
+		gridEnable = enable;
 	}
-
-	public void setGridEnable(boolean a) {
-		gridEnable = a;
+	/**Modifie la largeur des cases de la grille
+	 * @param width : La largeur des cases de la grille
+	 */
+	public void setWidthCaseGrid(int width) {
+		widthCaseGrid = width;
 	}
-
-	public void setWidthCaseGrid(int a) {
-		widthCaseGrid = a;
+	/**Modifie la hauteur des cases de la grille
+	 * @param height : La hauteur des cases de la grille
+	 */
+	public void setHeightCaseGrid(int height) {
+		heightCaseGrid = height;
 	}
-
-	public void setHeightCaseGrid(int a) {
-		heightCaseGrid = a;
+	/**Modifie l'activation du magnetisme a la grille
+	 * @param enable : Le booleen representant l'activation du magnetisme a la grille 
+	 */
+	public void setGridMagnetismEnable(boolean enable) {
+		gridMagnetismEnable = enable;
 	}
-
-	public boolean isGridMagnetismEnable() {
-		return gridMagnetismEnable;
-	}
-
-	public void setGridMagnetismEnable(boolean g) {
-		gridMagnetismEnable = g;
+	/**Modifie l'activation du mode Pixel Art
+	 * @param enable : Le booleen representant l'activation du mode pixel art
+	 */
+	public  void setPixelArtModeEnable(boolean enable){
+		pixelArtModeEnable = enable;
 	}
 	
-	public  void setPixelArtModeEnable(boolean g) {
-		pixelArtModeEnable = g;
-	}
-	public int getWidthCaseGrid(){
-		return widthCaseGrid;
-	}
 
-	public int getHeightCaseGrid(){
-		return heightCaseGrid;
-	}
 }

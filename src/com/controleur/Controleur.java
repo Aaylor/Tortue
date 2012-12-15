@@ -1154,7 +1154,8 @@ public class Controleur{
     		//Disparition de la grille
     		zd.setGridEnable(false);
     		zd.setGridMagnetismEnable(false);
-    		zd.setPixelArtModeEnable(false);
+    		//Suppression du mode pixelart
+    		setPixelArtMod(false, 0);
     		//Mise a jour du menu Bar
     		barreMenu.affichageGrille(false);
     		barreMenu.affichageDesactiverLaGrille(false);
@@ -1172,6 +1173,7 @@ public class Controleur{
     			barreMenu.affichageMagnetisme(true);
     		}
     		else{
+    			setPixelArtMod(false, 0);
     			zd.setGridMagnetismEnable(false);
     			barreMenu.affichageMagnetisme(false);
     			setPixelArtMod(false, 0);
@@ -1179,6 +1181,7 @@ public class Controleur{
     		
     	}
     	else{
+    		setPixelArtMod(false, 0);
     		zd.setGridMagnetismEnable(false);
     		barreMenu.affichageMagnetisme(false);
     		setPixelArtMod(false, 0);
@@ -1225,7 +1228,7 @@ public class Controleur{
     }
 
     public int setPixelArtMod(boolean enable, int size){
-    	if (enable && size < 2){
+    	if (enable && (size < 2)){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
         }
         if(enable){
@@ -1244,14 +1247,13 @@ public class Controleur{
 			
 			barreMenu.affichagePixelArt(true);
 			barreMenu.affichageDesactiverPixelArt(true);
-			
-			zd.repaint();
     	}
     	else{
     		zd.setPixelArtModeEnable(false);
     		barreMenu.affichagePixelArt(false);
 			barreMenu.affichageDesactiverPixelArt(false);
     	}
+		zd.repaint();
 
         return GestionErreur.SUCCESS;
     }
