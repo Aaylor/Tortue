@@ -1133,7 +1133,7 @@ public class Controleur{
     }
 
     public int setGrid(boolean enable, int width, int height){
-    	if ( ( width < 2 ) || ( height < 2 ) )
+    	if (enable && ( width < 2 ) || ( height < 2 ) )
         {
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
         }
@@ -1221,11 +1221,9 @@ public class Controleur{
     }
 
     public int setPixelArtMod(boolean enable, int size){
-    	if (enable && size < 2 )
-        {
+    	if (enable && size < 2){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
         }
-        
         if(enable){
 	    	//Afficher la grille
 	    	setGrid(true, size, size);
