@@ -1026,7 +1026,7 @@ public class Controleur{
         }
         
         zd.repaint();
-
+        System.out.println("G RP1");
         return GestionErreur.SUCCESS;
     }
 
@@ -1056,6 +1056,7 @@ public class Controleur{
         }
         
         zd.setBackground(new Color(red,green,blue));
+        zd.repaint();
         return GestionErreur.SUCCESS;
     }
 
@@ -1799,7 +1800,6 @@ public class Controleur{
     {
     	setPixelArtMod(false, 0);
         String[] command_list = Utilitaire.parseRepeat(args);
-        //System.out.println( "COMPTEUR MIN : " + compteur_min + "\nCOMPTEUR MAX : " + compteur_max );
 
         int j = 0;
         while ( nombre_de_repetitions > 0 )
@@ -1815,8 +1815,6 @@ public class Controleur{
                 String[] tmp = cmd.trim().split(" ");
                 int compteur = 0;
 
-                System.out.println(cmd);
-               
                 while ( compteur < tmp.length && !tmp[compteur].equalsIgnoreCase("repeat") )
                 {
                     if ( tmp[compteur].indexOf("+") >= 0 || tmp[compteur].indexOf("-") >= 0 )
@@ -1842,14 +1840,12 @@ public class Controleur{
                             }
                         }
 
-                        System.out.println(calcul);
-                        repeat_memory.set( repeat_memory.getCompteur(), ( calcul.equals("\\+") ? repeat_memory.get( repeat_memory.getCompteur() )
+                        repeat_memory.set( repeat_memory.getCompteur(), ( calcul.equals("\\+") 
+                                ? repeat_memory.get( repeat_memory.getCompteur() )
                                 + Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("+")+1) )
                                 : repeat_memory.get( repeat_memory.getCompteur() )
                                 - Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("-")+1) ) ) );
                         tmp[compteur] = String.valueOf(repeat_memory.get(repeat_memory.getCompteur()));
-               //         System.out.println(compteur + "\t" + cmd);
-                        System.out.println( repeat_memory.get( repeat_memory.getCompteur() ) );
                         repeat_memory.incrementCompteur(compteur_min, compteur_max);
                     }
                     compteur++;
