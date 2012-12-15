@@ -1814,15 +1814,42 @@ public class Controleur{
             {
                 String[] tmp = cmd.trim().split(" ");
                 int compteur = 0;
+
+                System.out.println(cmd);
                
                 while ( compteur < tmp.length && !tmp[compteur].equalsIgnoreCase("repeat") )
                 {
-                    if ( tmp[compteur].indexOf("+") >= 0 )
+                    if ( tmp[compteur].indexOf("+") >= 0 || tmp[compteur].indexOf("-") >= 0 )
                     {
-                        repeat_memory.set( repeat_memory.getCompteur(), repeat_memory.get( repeat_memory.getCompteur() )
-                                + Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("+")+1) ) );
+                                
+                        String calcul;
+                        if ( (tmp[compteur].indexOf("-") < 0) || (tmp[compteur].indexOf("+") >= 0 
+                                    && tmp[compteur].indexOf("+") < tmp[compteur].indexOf("-")) )
+                        {
+                            calcul = "\\+";
+                        }
+                        else
+                        {
+                            calcul = "-";
+                        }
+
+                        if ( j == 0 )
+                        {
+                            String[] another_tmp = tmp[compteur].split(calcul);
+                            if ( !another_tmp[0].isEmpty() )
+                            {
+                                repeat_memory.set ( repeat_memory.getCompteur(), Integer.parseInt(another_tmp[0]) );
+                            }
+                        }
+
+                        System.out.println(calcul);
+                        repeat_memory.set( repeat_memory.getCompteur(), ( calcul.equals("\\+") ? repeat_memory.get( repeat_memory.getCompteur() )
+                                + Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("+")+1) )
+                                : repeat_memory.get( repeat_memory.getCompteur() )
+                                - Integer.parseInt( tmp[compteur].substring( tmp[compteur].indexOf("-")+1) ) ) );
                         tmp[compteur] = String.valueOf(repeat_memory.get(repeat_memory.getCompteur()));
                //         System.out.println(compteur + "\t" + cmd);
+                        System.out.println( repeat_memory.get( repeat_memory.getCompteur() ) );
                         repeat_memory.incrementCompteur(compteur_min, compteur_max);
                     }
                     compteur++;

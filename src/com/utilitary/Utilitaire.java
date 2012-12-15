@@ -111,9 +111,18 @@ public class Utilitaire
     {
         int number = 0;
 
-        while ( cmd.indexOf("+") >= 0 )
+        while ( cmd.contains("+") || cmd.contains("-") )
         {
-            cmd = cmd.substring( cmd.indexOf("+")+1 );
+            if ( (cmd.indexOf("-") < 0) || (cmd.indexOf("+") >= 0 
+                && cmd.indexOf("+") < cmd.indexOf("-")) )
+            {
+                cmd = cmd.substring( cmd.indexOf("+")+1 );
+            }
+            else
+            {
+                cmd = cmd.substring( cmd.indexOf("-")+1 );
+            }
+            
             number++;
         }
 
@@ -426,7 +435,8 @@ public class Utilitaire
                             if ( (tmp2[compteur].indexOf("+") >= 0) || (tmp2[compteur].indexOf("-") >= 0 ) )
                             {
                                 String calcul;
-                                if ( (tmp2[compteur].indexOf("-") < 0) || (tmp2[compteur].indexOf("+") >= 0 && tmp2[compteur].indexOf("+") < tmp2[compteur].indexOf("-")) )
+                                if ( (tmp2[compteur].indexOf("-") < 0) || (tmp2[compteur].indexOf("+") >= 0 
+                                            && tmp2[compteur].indexOf("+") < tmp2[compteur].indexOf("-")) )
                                 {
                                     calcul = "\\+";
                                 }
