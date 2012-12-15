@@ -1133,7 +1133,7 @@ public class Controleur{
     }
 
     public int setGrid(boolean enable, int width, int height){
-    	if (enable && ( width < 2 ) || ( height < 2 )){
+    	if (enable && (( width < 2 ) || ( height < 2 ))){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
         }
         
@@ -1148,6 +1148,7 @@ public class Controleur{
     		barreMenu.setMagnetismeDisponible(true);
     	}
     	else{
+    		System.out.println("test");
     		//Disparition de la grille
     		zd.setGridEnable(false);
     		zd.setGridMagnetismEnable(false);
