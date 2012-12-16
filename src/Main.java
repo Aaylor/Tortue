@@ -23,7 +23,7 @@ public class Main{
     /**
      * Fonction d'initialisation du programme
      */
-    public static void init()
+    private static void init()
     {
 
         if ( !StockageDonnee.init() )
@@ -38,7 +38,7 @@ public class Main{
     /**
      *  Fonction de lancement du programme
      */
-    public static void start_program()
+    private static void start_program()
     {
     	//Initialisation des parametres
     	int largeurDessin = MenuOption.getConfigDessinLargeur();
@@ -72,7 +72,7 @@ public class Main{
     * Fonction de verification du fichier du configuration
     * @return true si le fichier respecte les normes precisees dans la documentation
     */
-    public static boolean verifFichierConfig(){
+    private static boolean verifFichierConfig(){
     	boolean recreerFichierConfig = false;
     	
     	//Si le dossier .config n'existe pas, on le créé
@@ -460,12 +460,11 @@ public class Main{
 			}
     	}
     	
-    	
         return true;
 
     }
     
-    public static void donneeParDefaut(){
+    private static void donneeParDefaut(){
     	//Chargement des données par défaut
 	    //Données 1 : si true, la fenetre est en mode fenetré
 	    MenuOption.setConfigProgrammeEstFenetre(true);
@@ -493,7 +492,7 @@ public class Main{
 	    MenuOption.setConfigDessinBackgroundBlue(255);
     }
     
-    public static boolean isNumeric(String str)  
+    private static boolean isNumeric(String str)  
     {  
       try  
       {  
@@ -506,7 +505,7 @@ public class Main{
       return true;  
     }
     
-    public static int stringToInt(String s) 
+    private static int stringToInt(String s) 
     { 
     Integer ger = new Integer(s); 
     int i = ger.intValue(); 

@@ -155,7 +155,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     private void addTerminal()
     {
-
         this.champ_de_commande = new JTextField(50);
         this.champ_de_commande.setFocusable(true);
         this.champ_de_commande.setFocusTraversalKeysEnabled(false);
@@ -170,8 +169,6 @@ public class Terminal extends JPanel implements KeyListener{
         Terminal.historique.setBackground( new Color( bgColor[0], bgColor[1], bgColor[2] ) );
         Terminal.historique.setForeground( new Color( fontColor[0], fontColor[1], fontColor[2] ) );
         Terminal.historique.setEnabled(false);
-
-
     }
 
     /**

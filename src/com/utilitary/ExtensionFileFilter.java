@@ -17,11 +17,21 @@ class ExtensionFileFilter extends FileFilter
     private String description = "";
     private final String regex[];
 
+    /**
+     *  Créer un filtre d'extension à partir d'une seule regex
+     *  @param description Description affichée lors de l'ouverture de la boite de dialogue
+     *  @param regex Expression régulière correspondant aux extensions recherchées
+     */
     public ExtensionFileFilter(String description, String regex)
     {
         this(description, new String[] { regex });
     }
 
+    /**
+     *  Créer un filtre d'extension à partir d'un tableau de regex
+     *  @param description Description affichée lors de l'ouverture de la boite de dialogue
+     *  @param regex Tableau d'expressions régulières correspondant aux extensions recherchées
+     */
     public ExtensionFileFilter(String description, String regex[])
     {
         if ( description == null )
@@ -39,7 +49,10 @@ class ExtensionFileFilter extends FileFilter
         this.regex = regex.clone();
     }
 
-    public void lowerCase()
+    /**
+     *  Transforme la regex courante en minuscule
+     */
+    private void lowerCase()
     {
         for ( String reg : this.regex )
         {
@@ -47,11 +60,20 @@ class ExtensionFileFilter extends FileFilter
         }
     }
 
+    /**
+     *  Renvoie la description du filtre
+     *  @return La description
+     */
     public String getDescription()
     {
         return this.description;
     }
 
+    /**
+     *  Vérifier que le fichier en paramètre possède l'extension requise
+     *  @param file Fichier à tester
+     *  @return Si le fichier correspond au regex
+     */
     public boolean accept(File file)
     {
         if ( file.isDirectory() )

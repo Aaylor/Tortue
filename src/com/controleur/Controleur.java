@@ -74,6 +74,9 @@ public class Controleur{
     /**
      *  Fonction qui permet de contrôler le commande entree par l'utilisateur
      *  @param s Commande entree par l'utilisateur
+     *  @param write Détermine si la commande doit être écrite dans les collections
+     *  @param display Détermine la commande doit être affiché dans le terminal
+     *  @param flush Détermine si la mémoire [pour la fonction repeat] doit être remise à zéro
      *  @return Si la fonction s'est correctement deroulee
      */
     public boolean commande(String s, boolean write, boolean display, boolean flush)
@@ -220,11 +223,10 @@ public class Controleur{
         return s;
     }
 
-    
-
     /**
      *  Fonction qui traite le string
      *  @param commande_parser Tableau contenant le nom de la commande ainsi que ses arguments
+     *  @param write Détermine si la commande doit être ajouter dans les collections
      *  @return 0 si la fonction s'est bien deroulee.
      */
     int init(String[] commande_parser, boolean write)
@@ -936,7 +938,7 @@ public class Controleur{
     /**
      *  Fonction qui permet de deplacer le pointeur
      *  @param value Abscisse d'arrivee
-     *  @param value Ordonnee d'arrivee
+     *  @param value_2 Ordonnee d'arrivee
      *  @return si la fonction s'est bien deroulee.
      */
     int goTo(int value, int value_2)
@@ -1135,7 +1137,10 @@ public class Controleur{
     }
 
     /**
-     *  JAVADOC
+     *  Fait afficher la grille sur la zone de dessin
+     *  @param height Hauteur des carreaux
+     *  @param width Largeur des carreaux
+     *  @return Si la fonction s'est correctement déroulée
      */
     int grid(int height, int width)
     {
@@ -1143,7 +1148,8 @@ public class Controleur{
     }
 
     /**
-     *  JAVADOC
+     *  Fait afficher la grille sur la zone de dessin
+     *  @return Si la fonction s'est correctement déroulée
      */
     int grid()
     {
@@ -1157,6 +1163,13 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
 
+    /**
+     *  Détermine l'affichage de la grille
+     *  @param enable Détermine si on doit afficher la grille ou non
+     *  @param width Largeur des carreaux
+     *  @param height Hauteur des carreaux
+     *  @return Si la fonction s'est correctement déroulée
+     */
     int setGrid(boolean enable, int width, int height){
     	if (enable && (( width < 2 ) || ( height < 2 ))){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
@@ -1187,7 +1200,11 @@ public class Controleur{
 
         return GestionErreur.SUCCESS;
     }
-    
+   
+    /**
+     *  Détermine si le magnétisme doit être activé ou non.
+     *  @param b Boolean déterminant le magnétisme
+     */
     void setMagnetism(boolean b){
     	if(b){
     		if(zd.isGridEnable()){
@@ -1208,16 +1225,19 @@ public class Controleur{
     		barreMenu.affichageMagnetisme(false);
     		setPixelArtMod(false, 0);
     	}
+    
     }
+
+    /**
+     *  Alterne le magnetisme
+     */
     public void alternateMagnetism(){
-    	if(zd.isGridMagnetismEnable()){
-    		setMagnetism(false);
-    	}
-    	else setMagnetism(true);
+    	setMagnetism( !zd.isGridMagnetismEnable() );
     }
     
     /**
-     *  JAVADOC
+     *  Desactive la grille
+     *  @return Si la fonction s'est correctement déroulée
      */
     int disablegrid()
     {
@@ -1226,7 +1246,9 @@ public class Controleur{
     }
 
     /**
-     *  JAVADOC
+     *  Active le pixelart
+     *  @param size Taille des carreaux
+     *  @return Si la fonction s'est correctement déroulée
      */
     int pixelart(int size)
     {
@@ -1234,7 +1256,8 @@ public class Controleur{
     }
 
     /**
-     *  JAVADOC
+     *  Active le pixelart
+     *  @return Si la fonction s'est correctement déroulée
      */
     int pixelart()
     {
@@ -1249,6 +1272,12 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
 
+    /**
+     *  Affiche le pixelart
+     *  @param enable Détermine si le pixelart doit être affiché ou non
+     *  @param size Taille des carreaux
+     *  @return Détermine si la fonction s'est correctement déroulée
+     */
     int setPixelArtMod(boolean enable, int size){
     	if (enable && (size < 2)){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
@@ -1283,11 +1312,15 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
     
-    
+    /**
+     *  Désactive le pixelart
+     *  @return Si la fonction s'est correctement déroulée
+     */
     int disablePixelArt(){
     	setPixelArtMod(false, 0);
     	return GestionErreur.SUCCESS;
     }
+
     /**
      *  Fonction qui permet de creer un nouveau document
      *  @return si la fonction s'est bien deroulee.
@@ -1464,7 +1497,7 @@ public class Controleur{
 
     /**
      *  Fonction qui sauvegarde dans un dossier donner par l'utilisateur
-     *  @pathname Chemin du fichier
+     *  @param pathname Chemin du fichier
      *  @return si la fonction s'est bien deroulee
      */
     int saveas(String pathname)
@@ -1818,6 +1851,9 @@ public class Controleur{
      *  Fonction qui repète les dernières commandes lances par l'utilisateur
      *  @param nombre_de_repetition Nombres de repetitions
      *  @param args Argument à repeter n fois.
+     *  @param first_repeat Détermine si on se trouve sur le premier repeat ou non
+     *  @param compteur_min Détermine le compteur minimal
+     *  @param compteur_max Détermine le compteur max
      *  @return si la fonction s'est bien deroulee.
      */
     int repeat(int nombre_de_repetitions, String args, boolean first_repeat, int compteur_min, int compteur_max)
@@ -2004,11 +2040,12 @@ public class Controleur{
     	else
     		commande("pencil", true, false, true);
     }
-    
+
+    /**
+     *  Renvoie le curseur
+     *  @return curseur
+     */
     public Curseur getCurseur(){
     	return curseur;
     }
-    
-
-
 }

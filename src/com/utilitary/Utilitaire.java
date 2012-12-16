@@ -95,6 +95,7 @@ public class Utilitaire
 
     /**
      *  Renvoie le nombre d'incrémentation total
+     *  @param cmd La commande à tester
      *  @return nombre d'incrémentation
      */
     public static int nbIncrementation(String cmd)
@@ -120,7 +121,8 @@ public class Utilitaire
     }
 
     /**
-     *  Renvoie la date courante selon le format : yy-MM-yy_H-mm-ss
+     *  Renvoie la date courante selon le format en argument.
+     *  @param format Format de la date
      *  @return La date courante
      */
     public static String getCurDate(String format)
@@ -135,6 +137,7 @@ public class Utilitaire
      *  Renvoie un JFileChooser selon les règles édictées par les paramètres
      *  @param description Description des choix possibles
      *  @param regex Expression régulière correspondant aux choix possibles
+     *  @return Le chooser associés.
      */
     public static JFileChooser getChooser(String description, String[] regex)
     {
@@ -149,9 +152,10 @@ public class Utilitaire
     }
 
     /**
-     *  Renvoie la réponse de l'utilisateur
+     *  Affiche une boite de dialogue posant une question à l'utilisateur
      *  @param msg_dialog Le message qui sera afficher à l'écran
      *  @param title Titre de la fenêtre de dialogue
+     *  @return La réponse de l'utilisateur
      */
     public static int getOptionPane(String msg_dialog, String title)
     {
@@ -201,13 +205,24 @@ public class Utilitaire
                                                             JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         window_man.add(scroll_pane);
         window_man.setVisible(true);
-     }
+    }
 
+    /**
+     *  Test si la commande existe ou non
+     *  @param command Commande à tester
+     *  @return Si la commande existe
+     */
     public static boolean isACommand(String command)
     {
         return StockageDonnee.getNumeroFonction(command) != -1; 
     }
 
+    /**
+     *  Test les arguments de la commande
+     *  @param command Nom de la commande
+     *  @param args Argument de la commande
+     *  @return Si les arguments sont correctes ou non
+     */
     public static int testArgs(String command, String args)
     {
         String[] splited_args = args.split(" ");
@@ -402,6 +417,7 @@ public class Utilitaire
                                                             ||  tmp[0].equalsIgnoreCase("save")
                                                             ||  tmp[0].equalsIgnoreCase("saveas")
                                                             ||  tmp[0].equalsIgnoreCase("savehistory")
+                                                            ||  tmp[0].equalsIgnoreCase("getposition")
                                                             ||  tmp[0].equalsIgnoreCase("exec")
                                                             ||  tmp[0].equalsIgnoreCase("clear")
                                                             ||  tmp[0].equalsIgnoreCase("help")

@@ -54,7 +54,9 @@ public class GestionErreur
     }
 
     /**
-     *  JAVADOC
+     *  Ecrit dans les logs certains message d'erreurs plus ou moins critique
+     *  @param commande Commande correspondant au message d'erreur
+     *  @param error_msg Message d'erreur à écrire
      */
     public static void writeInLog(String command, String error_msg)
     {

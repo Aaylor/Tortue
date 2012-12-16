@@ -16,7 +16,6 @@ import com.utilitary.*;
 
 public class StockageDonnee
 {
-
     private static ArrayList<String> liste_commande_entree_correcte;
     private static ArrayList<String> liste_commande_undo;
     private static ArrayList<String> liste_commande_entree_generale;
@@ -26,7 +25,6 @@ public class StockageDonnee
     private static Hashtable<Integer, String> liste_erreurs;
     private static Hashtable<String, String> manuel;
     private static Hashtable<String, Color> liste_couleur;
-    
     
     private static String pathname_save = "";
     private static boolean image_save = true;
@@ -55,11 +53,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************               LISTE COMMANDES ENTREES CORRECTE             ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //********************************************************************************************//
+    //********************************************************************************************//
+    //**************               LISTE COMMANDES ENTREES CORRECTE             ******************//
+    //********************************************************************************************//
+    //********************************************************************************************//
 
     /**
      *  Fonction initialisant la collection des listes de commandes correctes entrées par l'utilisateur
@@ -77,10 +75,11 @@ public class StockageDonnee
     /**
      *  Fonction ajoutant la commande à la collection correspondante
      *  @param commande Commande entrée par l'utilisateur
+     *  @param verifLastCommand Vérifie ou non la dernière commande
+     *  @param removeRedo Efface le redo ou non
      */
-    public static boolean ajoutLCEC(String[] commande, boolean verifLastCommand, boolean removeRedo)
+    public static void ajoutLCEC(String[] commande, boolean verifLastCommand, boolean removeRedo)
     {
-
         String s = "";
         for (String cmd : commande)
         {
@@ -116,12 +115,11 @@ public class StockageDonnee
         {
             videLCU();
         }
-
-        return true;
     }
 
     /**
      *  Fonction renvoyant la commande entrée selon son numéro
+     *  @param numero Index demandé
      *  @return la commande
      */
     public static String getLCEC(int numero)
@@ -140,6 +138,7 @@ public class StockageDonnee
 
     /**
      *  Fonction supprimant l'élément à la collection, et le renvoyant
+     *  @param index Index de l'élément à supprimer
      *  @return Element supprimé
      */
     public static String remove_LCEC(int index)
@@ -157,11 +156,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************               LISTE COMMANDES ENTREES GENERALE             ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //********************************************************************************************//
+    //********************************************************************************************//
+    //**************               LISTE COMMANDES ENTREES GENERALE             ******************//
+    //********************************************************************************************//
+    //********************************************************************************************//
 
     /**
      *  Fonction initialisant la collection des listes de commandes générale (vraies ou fausses) entrées
@@ -178,10 +177,9 @@ public class StockageDonnee
      *  Fonction ajoutant la commande à la collection correspondante
      *  @param commande Commande entréé par l'utilisateur
      */
-    public static boolean ajoutLCEG(String commande)
+    public static void ajoutLCEG(String commande)
     {
         liste_commande_entree_generale.add(commande);
-        return true;
     }
 
     /**
@@ -204,11 +202,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************               LISTE COMMANDES UNDO                         ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //********************************************************************************************//
+    //********************************************************************************************//
+    //**************               LISTE COMMANDES UNDO                         ******************//
+    //********************************************************************************************//
+    //********************************************************************************************//
 
 
     /**
@@ -225,14 +223,14 @@ public class StockageDonnee
      *  Fonction ajoutant la commande à la collection correspondante
      *  @param String Commande
      */
-    public static boolean ajoutLCEC_undo(String commande)
+    public static void ajoutLCEC_undo(String commande)
     {
         liste_commande_undo.add(commande);
-        return true;
     }
 
     /**
      *  Fonction retournant la valeur de la collection à l'index indiqué
+     *  @param numero Index de la commande
      *  @return Commande qui a été undo
      */
     public static String getLCU(int numero)
@@ -259,11 +257,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************                    LISTE DESSIN                            ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //********************************************************************************************//
+    //********************************************************************************************//
+    //**************                    LISTE DESSIN                            ******************//
+    //********************************************************************************************//
+    //********************************************************************************************//
 
     /**
      *  Fonction initialisant la collection des listes d'objet utilisé pour le dessin
@@ -281,10 +279,9 @@ public class StockageDonnee
      *  Fonction ajoutant la commande à la collection correspondante
      *  @param Traceur Traceur à ajouter.
      */
-    public static boolean ajoutListeDessin(Traceur t)
+    public static void ajoutListeDessin(Traceur t)
     {
         liste_dessin.add(t);
-        return true;
     }
 
     /**
@@ -324,11 +321,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************               LISTE COMMANDES TAMPON                       ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //********************************************************************************************//
+    //********************************************************************************************//
+    //**************               LISTE COMMANDES TAMPON                       ******************//
+    //********************************************************************************************//
+    //********************************************************************************************//
 
     /**
      *  Fonction initialisant la collection des listes d'objet utilisé pour la mémoire tampon
@@ -368,6 +365,7 @@ public class StockageDonnee
 
     /**
      *  Fonction supprimant l'élément à la collection et le renvoyant
+     *  @param index Index de l'élément à supprimer
      *  @return Element supprimé
      */
     public static String remove_liste_commande_undo(int index)
@@ -385,11 +383,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************                        LISTE DES COMMANDES                 ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //*******************************************************************************************//
+    //*******************************************************************************************//
+    //**************                        LISTE DES COMMANDES                 *****************//
+    //*******************************************************************************************//
+    //*******************************************************************************************//
 
     /**
      *  Fonction initialisant la collection de la liste des commandes disponnible pour l'utilisateur
@@ -446,6 +444,7 @@ public class StockageDonnee
 
     /**
      *  Fonction renvoyant l'entier correspondant à la commande
+     *  @param commande Commande de l'utilisateur
      *  @return l'entier de la commande entrée par l'utilisateur
      */
     public static int getNumeroFonction(String commande)
@@ -464,11 +463,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************                        LISTE DES ERREURS                   ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //*******************************************************************************************//
+    //*******************************************************************************************//
+    //**************                        LISTE DES ERREURS                   *****************//
+    //*******************************************************************************************//
+    //*******************************************************************************************//
 
     /**
      *  Fonction initialisant la collection de message d'erreurs
@@ -540,11 +539,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************                            MANUEL                          ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //********************************************************************************************//
+    //********************************************************************************************//
+    //***************                            MANUEL                          *****************//
+    //********************************************************************************************//
+    //********************************************************************************************//
 
     /**
      *  Fonction initialisant le manuel
@@ -722,12 +721,16 @@ public class StockageDonnee
     
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************                    LISTE DES COULEURS                      ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //********************************************************************************************//
+    //********************************************************************************************//
+    //***************                    LISTE DES COULEURS                      *****************//
+    //********************************************************************************************//
+    //********************************************************************************************//
 
+    /**
+     *  Initialise la liste des couleurs
+     *  @return Si la collection s'est bien initialisée
+     */
     private static boolean init_liste_couleur(){
     
         liste_couleur = new Hashtable<String, Color>();
@@ -772,11 +775,11 @@ public class StockageDonnee
 
 
 
-    /*********************************************************************************************/
-    /*********************************************************************************************/
-    /***************                            OTHERS                          ******************/
-    /*********************************************************************************************/
-    /*********************************************************************************************/
+    //********************************************************************************************//
+    //********************************************************************************************//
+    //***************                            OTHERS                          *****************//
+    //********************************************************************************************//
+    //********************************************************************************************//
 
     /**
      *  Fonction permettant de tout vider
@@ -877,7 +880,10 @@ public class StockageDonnee
         return "";
     }
 
-
+    /**
+     *  Renvoie une liste des couleurs en HTML
+     *  @return Une liste formatée HTML
+     */
     private static String getColorListHtml()
     {
         return "<u>Liste des couleurs :</u>"
@@ -887,6 +893,10 @@ public class StockageDonnee
                 + "       <li>pink</li><li>red</li><li>yellow</li><li>white</li></ul>";
     }
     
+    /**
+     *  Renvoie une liste des commandes valides pour la fonctions REPEAT
+     *  @return Une liste formatée en HTML
+     */
     private static String getValidCommandRepeat()
     {
         String liste_valid_commande = "<u>Liste des commandes valides pour la fonction repeat :</u><ul>";
@@ -904,6 +914,7 @@ public class StockageDonnee
                                                     ||  !tmp_cmd.equalsIgnoreCase("saveas")
                                                     ||  !tmp_cmd.equalsIgnoreCase("savehistory")
                                                     ||  !tmp_cmd.equalsIgnoreCase("exec")
+                                                    ||  !tmp_cmd.equalsIgnoreCase("getposition")
                                                     ||  !tmp_cmd.equalsIgnoreCase("clear")
                                                     ||  !tmp_cmd.equalsIgnoreCase("help")
                                                     ||  !tmp_cmd.equalsIgnoreCase("man")
@@ -919,5 +930,4 @@ public class StockageDonnee
 
         return liste_valid_commande + "</ul>";
     }
-
 }
