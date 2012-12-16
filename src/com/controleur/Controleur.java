@@ -52,7 +52,6 @@ public class Controleur{
      */
     private void ___hydrate___(Fenetre f, Curseur c)
     {
-
         f.setControleur(this);
 
         term = f.getTerminal();
@@ -87,7 +86,7 @@ public class Controleur{
      */
     public boolean commande(String s, boolean write, boolean display, boolean flush)
     {
-	    String[] commande_parser;
+        String[] commande_parser;
         s = rework_command(s);
 
 		commande_parser = parse(s);
@@ -590,9 +589,6 @@ public class Controleur{
 
     }
 
-
-
-
     /**
      * Fonction qui permet l'ecriture lorsque l'utilisateur se deplace
      * @return si la fonction s'est bien deroulee.
@@ -603,7 +599,6 @@ public class Controleur{
         this.barreOutils.affichageBoutonPoserOutil();
         this.zd.repaint();
         return GestionErreur.SUCCESS;
-
     }
 
     /**

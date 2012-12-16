@@ -94,12 +94,28 @@ public class Terminal extends JPanel implements KeyListener{
         else if ( keyEvent.getKeyCode() == KeyEvent.VK_TAB 
                     && !this.champ_de_commande.getText().equals("") )
         {
+            String s = this.champ_de_commande.getText().trim();
+            String s_replace = this.champ_de_commande.getText().trim();
+            String display_prop = "";
+        
+            if ( s.indexOf(" ") >= 0 && s.substring( 0, s.indexOf(" ") ).equalsIgnoreCase("repeat") )
+            {
+                s_replace = s.replaceAll("\\[", "[ ").replaceAll("\\;", " ; ").replaceAll("\\]", " ] ").replaceAll("\\s{2,}", " ");
+                String[] tmp = s_replace.split(" ");
+                s_replace = tmp[ tmp.length-1 ];
 
-            ArrayList<String> proposition_completion = auto_completion( this.champ_de_commande.getText().trim() );
+                s = s.substring( 0, s.length()-tmp[tmp.length-1].length());
+            }
+            else 
+            {
+                s = "";
+            }
+
+            ArrayList<String> proposition_completion = auto_completion( s_replace );
 
             if ( proposition_completion.size() == 1 )
             {
-                this.champ_de_commande.setText(proposition_completion.get(0));
+                this.champ_de_commande.setText(s + proposition_completion.get(0));
             }
             else if ( proposition_completion.size() > 1 )
             {
@@ -169,7 +185,6 @@ public class Terminal extends JPanel implements KeyListener{
      */
     public ArrayList<String> auto_completion(String s)
     {
-
         ArrayList<String> proposition = new ArrayList<String>();
         Enumeration<String> commandes = StockageDonnee.getEnumerationListeCommandes();
 
@@ -184,7 +199,6 @@ public class Terminal extends JPanel implements KeyListener{
         }
 
         return proposition;
-
     }
 
     /**
