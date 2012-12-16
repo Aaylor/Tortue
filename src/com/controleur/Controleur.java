@@ -481,7 +481,6 @@ public class Controleur{
                     retour = grid();
                 }
 
-                System.out.println(retour);
                 return retour;
 
             case 25:
@@ -1045,7 +1044,6 @@ public class Controleur{
         }
         
         zd.repaint();
-        System.out.println("G RP1");
         return GestionErreur.SUCCESS;
     }
 
@@ -1790,7 +1788,6 @@ public class Controleur{
          
                 while ( (ligne=br.readLine()) != null )
                 {
-
                     ligne = ligne.trim();
                     if ( !ligne.startsWith("#") && !ligne.equals("") )
                     {
@@ -1821,7 +1818,6 @@ public class Controleur{
                     }
 
                     i++;
-                    
                 }
 
                 while ( StockageDonnee.getSize_Tmp() > 0 )
@@ -1879,7 +1875,6 @@ public class Controleur{
                 {
                     if ( tmp[compteur].contains("+") || tmp[compteur].contains("-") )
                     {
-                                
                         String calcul;
                         if ( (tmp[compteur].indexOf("-") < 0) || (tmp[compteur].indexOf("+") >= 0 
                                     && tmp[compteur].indexOf("+") < tmp[compteur].indexOf("-")) )
@@ -1920,7 +1915,6 @@ public class Controleur{
                 }
                
                 i++;
-                //System.out.println(cmd + "\t" + new_cmd);
                 if ( !tmp[0].equalsIgnoreCase("repeat") )
                 {
                     commande(new_cmd, false, false, false);
