@@ -94,7 +94,7 @@ public class Terminal extends JPanel implements KeyListener{
         else if ( keyEvent.getKeyCode() == KeyEvent.VK_TAB 
                     && !this.champ_de_commande.getText().equals("") )
         {
-            String s = this.champ_de_commande.getText().trim();
+            String s = "";
             String s_replace = this.champ_de_commande.getText().trim();
             String display_prop = "";
         
@@ -104,11 +104,7 @@ public class Terminal extends JPanel implements KeyListener{
                 String[] tmp = s_replace.split(" ");
                 s_replace = tmp[ tmp.length-1 ];
 
-                s = s.substring( 0, s.length()-tmp[tmp.length-1].length());
-            }
-            else 
-            {
-                s = "";
+                s = s_replace.substring( 0, s_replace.length()-tmp[tmp.length-1].length());
             }
 
             ArrayList<String> proposition_completion = auto_completion( s_replace );
