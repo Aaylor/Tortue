@@ -1,14 +1,12 @@
 package com.error;
 
-import java.io.File;
-import java.io.*;
-
-import com.controleur.Controleur;
-import com.display.*;
-import com.error.*;
 import com.stockage.StockageDonnee;
-import com.term.Terminal;
-import com.utilitary.*;
+import com.utilitary.Utilitaire;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 public class GestionErreur
 {
@@ -58,7 +56,7 @@ public class GestionErreur
     /**
      *  JAVADOC
      */
-    public static void writeInLog(String command, String error_msg, boolean append)
+    public static void writeInLog(String command, String error_msg)
     {
         File log_folder = new File( new File(System.getProperty("user.dir")).getParent()
                                 + File.separator + "log" );
@@ -80,12 +78,12 @@ public class GestionErreur
 
         try
         {
-            if ( !log_file.exists() || !append )
+            if ( !log_file.exists() || !true)
             {
                 log_file.createNewFile();
             }
 
-            FileWriter fw = new FileWriter(log_file, append);
+            FileWriter fw = new FileWriter(log_file, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter fSortie = new PrintWriter(bw);
 

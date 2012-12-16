@@ -3,7 +3,7 @@ package com.utilitary;
 public class Memory
 {
 
-    private int[] memory;
+    private final int[] memory;
     private boolean already_created = false;
     private int compteur;
 

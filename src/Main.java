@@ -10,14 +10,12 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 import com.controleur.Controleur;
 import com.display.*;
 import com.error.*;
 import com.stockage.StockageDonnee;
 import com.term.Terminal;
-import com.utilitary.*;
 
 
 public class Main{
@@ -119,7 +117,7 @@ public class Main{
     					else if (ligne.endsWith("false"))
     						MenuOption.setConfigProgrammeEstFenetre(true);
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("cursoratthecenter=")){
     					if(ligne.endsWith("true"))
@@ -127,7 +125,7 @@ public class Main{
     					else if(ligne.endsWith("false"))
     						MenuOption.setConfigCurseurEstCentre(false);
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("cursorred=")){
     					String valeur = ligne.substring(10);
@@ -136,7 +134,7 @@ public class Main{
     							MenuOption.setConfigCurseurRed(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("cursorgreen=")){
     					String valeur = ligne.substring(12);
@@ -145,7 +143,7 @@ public class Main{
 								MenuOption.setConfigCurseurGreen(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("cursorblue=")){
     					String valeur = ligne.substring(11);
@@ -154,7 +152,7 @@ public class Main{
     							MenuOption.setConfigCurseurBlue(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("picturewidth=")){
     					String valeur = ligne.substring(13);
@@ -163,7 +161,7 @@ public class Main{
     							MenuOption.setConfigDessinLargeur(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("pictureheight=")){
     					String valeur = ligne.substring(14);
@@ -172,7 +170,7 @@ public class Main{
     							MenuOption.setConfigDessinHauteur(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("backgroundcolorred=")){
     					String valeur = ligne.substring(19);
@@ -181,7 +179,7 @@ public class Main{
     							MenuOption.setConfigDessinBackgroundRed(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("backgroundcolorgreen=")){
     					String valeur = ligne.substring(21);
@@ -190,7 +188,7 @@ public class Main{
     							MenuOption.setConfigDessinBackgroundGreen(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("backgroundcolorblue=")){
     					String valeur = ligne.substring(20);
@@ -199,7 +197,7 @@ public class Main{
     							MenuOption.setConfigDessinBackgroundBlue(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("cursorwidth=")){
     					String valeur = ligne.substring(12);
@@ -208,7 +206,7 @@ public class Main{
     							MenuOption.setConfigCurseurEpaisseur(stringToInt(valeur));
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
     				else if(ligne.startsWith("design=")){
     					if(ligne.endsWith("system")){
@@ -228,7 +226,7 @@ public class Main{
     						Fenetre.definirThemeOldy();
     					}
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
     				}
                     else if(ligne.startsWith("terminalbackgroundcolorred=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
@@ -240,11 +238,11 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else if(ligne.startsWith("terminalbackgroundcolorgreen=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1).trim();
@@ -256,11 +254,11 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else if(ligne.startsWith("terminalbackgroundcolorblue=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
@@ -272,11 +270,11 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else if(ligne.startsWith("terminalfontcolorred=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
@@ -288,11 +286,11 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else if(ligne.startsWith("terminalfontcolorgreen=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
@@ -304,11 +302,11 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else if(ligne.startsWith("terminalfontcolorblue=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
@@ -320,11 +318,11 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else if(ligne.startsWith("terminalcursorcolorred=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
@@ -336,11 +334,11 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else if(ligne.startsWith("terminalcursorcolorgreen=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
@@ -352,11 +350,11 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else if(ligne.startsWith("terminalcursorcolorblue=")){
                         String valeur = ligne.substring(ligne.indexOf("=")+1);
@@ -368,21 +366,21 @@ public class Main{
                             }
                             else
                             {
-                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255", true);
+                                GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Warning, argument isn't bewteen 0 & 255");
                             }
                         }
                         else
-                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument", true);
+                            GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Invalid argument");
                     }
                     else
-                        GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Incorrect command", true);
+                        GestionErreur.writeInLog( "Ligne " + i + " : " + ligne, "Incorrect command");
 
                     i++;
     			}
     			br.close(); 
     		}		
     		catch (Exception e){
-                GestionErreur.writeInLog( "", e.toString(), true );
+                GestionErreur.writeInLog( "", e.toString());
     		}
     		
     	}

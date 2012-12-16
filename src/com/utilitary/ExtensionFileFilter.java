@@ -11,7 +11,7 @@ import com.stockage.StockageDonnee;
 import com.term.Terminal;
 import com.utilitary.*;
 
-public class ExtensionFileFilter extends FileFilter
+class ExtensionFileFilter extends FileFilter
 {
 
     private String description = "";

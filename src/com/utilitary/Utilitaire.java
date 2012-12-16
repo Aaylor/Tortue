@@ -1,25 +1,15 @@
 package com.utilitary;
 
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JEditorPane;
-import javax.swing.text.html.StyleSheet;
-import javax.swing.text.html.HTMLEditorKit;
-import java.text.SimpleDateFormat;
-import java.io.File;
-import java.util.Date;
-
-import com.controleur.Controleur;
-import com.display.*;
-import com.error.*;
+import com.error.GestionErreur;
 import com.stockage.StockageDonnee;
-import com.term.Terminal;
-import com.utilitary.*;
+
+import javax.swing.*;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
+import java.awt.*;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Utilitaire
 {
@@ -29,7 +19,7 @@ public class Utilitaire
      *  @param s Chaîne de caractère
      *  @return Si la chaîne est un entier
      */
-    public static boolean isInt(String s){
+    private static boolean isInt(String s){
         try{
             Integer.parseInt(s);        
     	}
@@ -45,7 +35,7 @@ public class Utilitaire
      *  @param s Tableau de chaîne de caractère
      *  @return Si toutes les cases du tableau sont des entiers
      */
-    public static boolean isInt(String[] s){
+    private static boolean isInt(String[] s){
         int i = 0;
         try{
             for ( String string_to_parseint : s )
@@ -92,7 +82,7 @@ public class Utilitaire
         int i = 0;
         while ( i < args_split.length )
         {
-            if ( args_split[i].indexOf("x00AB") >= 0 )
+            if (args_split[i].contains("x00AB"))
             {
                 args_split[i] = args_split[i].replaceAll("x00AB", ";");
             }
@@ -245,7 +235,7 @@ public class Utilitaire
             case 36:
             case 38:
                 StockageDonnee.setParamErreur("", false);
-                return ( splited_args[0] == "" ? GestionErreur.SUCCESS : GestionErreur.NOMBRE_PARAM_SUP );
+                return (splited_args[0].equals("") ? GestionErreur.SUCCESS : GestionErreur.NOMBRE_PARAM_SUP );
       
             /*  Commande requierant un seul paramètre entier ou rien    */
             case 26:

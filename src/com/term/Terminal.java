@@ -26,9 +26,9 @@ public class Terminal extends JPanel implements KeyListener{
     private int compteur_commandes = -1;
     private JTextField champ_de_commande;
 
-    private static int[] bgColor = new int[] { 0, 0, 0 };
-    private static int[] fontColor = new int[] { 255, 255, 255 };
-    private static int[] cursorColor = new int[] { 255, 255, 255 }; 
+    private static final int[] bgColor = new int[] { 0, 0, 0 };
+    private static final int[] fontColor = new int[] { 255, 255, 255 };
+    private static final int[] cursorColor = new int[] { 255, 255, 255 };
 
     /**
      *  Constructeur du Terminal
@@ -179,7 +179,7 @@ public class Terminal extends JPanel implements KeyListener{
      *  @param s Debut de commande entré par l'utilisateur
      *  @return ArrayList de tous les choix possibles [ de 0 jusqu'à n choix ]
      */
-    public ArrayList<String> auto_completion(String s)
+    ArrayList<String> auto_completion(String s)
     {
         ArrayList<String> proposition = new ArrayList<String>();
         Enumeration<String> commandes = StockageDonnee.getEnumerationListeCommandes();
@@ -219,13 +219,13 @@ public class Terminal extends JPanel implements KeyListener{
     /**
      *  Replace l'historique vers le bas
      */
-    public void replaceHistorique()
+    void replaceHistorique()
     {
         Terminal.historique.setCaretPosition(Terminal.historique.getDocument().getLength());
     }
 
     /**
-     *  Replace le compteur à l'endroit initial pour les touches UP \& DOWN
+     *  Replace le compteur à l'endroit initial pour les touches UP and DOWN
      */
     public void replaceCompteur()
     {

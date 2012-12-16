@@ -1,22 +1,14 @@
 package com.controleur;
 
-import java.util.Date;
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.*;
 import javax.imageio.ImageIO;
-import javax.swing.SwingWorker;
 
-import com.controleur.Controleur;
 import com.display.*;
 import com.error.*;
 import com.stockage.StockageDonnee;
@@ -147,7 +139,7 @@ public class Controleur{
      *  @param s Commande entree par l'utilisateur
      *  @return Tableau comportant la commande et ses arguments ( si besoins )
      */
-    public String[] parse(String s)
+    String[] parse(String s)
     {
         String[] split = s.split(" ");
 
@@ -218,7 +210,7 @@ public class Controleur{
      *  @param s Commande entree par l'utilisateur
      *  @return Commande retravaillee
      */
-    public String rework_command(String s)
+    String rework_command(String s)
     {
         String regex = "\\s{2,}";
         
@@ -235,13 +227,9 @@ public class Controleur{
      *  @param commande_parser Tableau contenant le nom de la commande ainsi que ses arguments
      *  @return 0 si la fonction s'est bien deroulee.
      */
-    public int init(String[] commande_parser, boolean write)
+    int init(String[] commande_parser, boolean write)
     {
         int retour = 0;
-        int valeur = 0;
-        int r, g, b;
-        int valeur_x, valeur_y, width, height;
-       
         String cmd = "";
         int increment = 1;
         while ( increment < commande_parser.length )
@@ -438,8 +426,8 @@ public class Controleur{
                                                         Integer.parseInt(commande_parser[4]),
                                                         Integer.parseInt(commande_parser[5]), 
                                                         Integer.parseInt(commande_parser[6]),
-                                                        Integer.parseInt(commande_parser[7])},  
-                                                        Integer.parseInt(commande_parser[8]) == 0 ? false : true);
+                                                        Integer.parseInt(commande_parser[7])},
+                                                        Integer.parseInt(commande_parser[8]) != 0);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("square") )
                 {
@@ -447,7 +435,7 @@ public class Controleur{
                                                         Integer.parseInt(commande_parser[3]), 
                                                         Integer.parseInt(commande_parser[4]), 
                                                         Integer.parseInt(commande_parser[4])},
-                                                        Integer.parseInt(commande_parser[5]) == 0 ? false : true);
+                                                        Integer.parseInt(commande_parser[5]) != 0);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("rectangle") )
                 {
@@ -455,14 +443,14 @@ public class Controleur{
                                                         Integer.parseInt(commande_parser[3]), 
                                                         Integer.parseInt(commande_parser[4]), 
                                                         Integer.parseInt(commande_parser[5])},
-                                                        Integer.parseInt(commande_parser[6]) == 0 ? false : true);
+                                                        Integer.parseInt(commande_parser[6]) != 0);
                 }
                 else if ( commande_parser[1].equalsIgnoreCase("circle") )
                 {
                     retour = doFigure(4, new int[] {    Integer.parseInt(commande_parser[2]),
                                                         Integer.parseInt(commande_parser[3]),
                                                         Integer.parseInt(commande_parser[4])},
-                                                        Integer.parseInt(commande_parser[5]) == 0 ? false : true);
+                                                        Integer.parseInt(commande_parser[5]) != 0);
                 }
                 else
                 {
@@ -593,7 +581,7 @@ public class Controleur{
      * Fonction qui permet l'ecriture lorsque l'utilisateur se deplace
      * @return si la fonction s'est bien deroulee.
      */
-    public int pendown()
+    int pendown()
     {
     	this.curseur.setIsDown(true);
         this.barreOutils.affichageBoutonPoserOutil();
@@ -605,7 +593,7 @@ public class Controleur{
      * Fonction qui permet d'arrêter l'ecriture lorsque l'utilisateur se deplace
      * @return si la fonction s'est bien deroulee.
      */
-    public int penup()
+    int penup()
     {
     	this.curseur.setIsDown(false);
         this.barreOutils.affichageBoutonPoserOutil();
@@ -618,7 +606,7 @@ public class Controleur{
      *  Fonction qui permet de passer en mode crayon
      *  @return si la fonction s'est bien deroulee.
      */
-    public int pencil()
+    int pencil()
     { 
     	this.curseur.setType((short)0);
         this.barreOutils.affichageBoutonOutil();
@@ -630,7 +618,7 @@ public class Controleur{
      * Fonction qui permet de passer en mode gomme
      * @return si la fonction s'est bien deroulee.
      */
-    public int eraser()
+    int eraser()
     {
     	this.curseur.setType((short)1);
         this.barreOutils.affichageBoutonOutil();
@@ -642,7 +630,7 @@ public class Controleur{
      *  Fonction qui permet de changer la forme du curseur
      *  @return sur la fonction s'est bien deroulee.
      */
-    public int change_forme()
+    int change_forme()
     {
     	setPixelArtMod(false, 0);
         this.curseur.setForme( this.curseur.getForme() == 1 ? (short)0 : (short)1 );
@@ -655,7 +643,7 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers le haut
      *  @return si la fonction s'est bien deroulee.
      */
-    public int up()
+    int up()
     {
     	this.curseur.setOrientation(180);
         this.zd.repaint();
@@ -667,7 +655,7 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers le bas
      *  @return si la fonction s'est bien deroulee.
      */
-    public int down()
+    int down()
     {
     	this.curseur.setOrientation(0);
         this.zd.repaint();
@@ -679,7 +667,7 @@ public class Controleur{
      *  Fonction qui permet de placer le pointeur vers la gauche
      *  @return si la fonction s'est bien deroulee.
      */
-    public int left()
+    int left()
     {
     	this.curseur.setOrientation(270);
         this.zd.repaint();
@@ -691,7 +679,7 @@ public class Controleur{
      * Fonction qui permet de placer le pointeur vers la droite
      * @return si la fonction s'est bien deroulee.
      */
-    public int right()
+    int right()
     {
     	this.curseur.setOrientation(90);
         this.zd.repaint();
@@ -703,7 +691,7 @@ public class Controleur{
      *  Fonction qui permet de deplacer le pointeur au centre
      *  @return si la fonction s'est bien deroulee.
      */
-    public int center(){
+    int center(){
         
         int x=zd.getLargeurDessin()/2;
         int y=zd.getHauteurDessin()/2;
@@ -717,7 +705,7 @@ public class Controleur{
      *  Fonction qui permet d'afficher la position courante de l'outil
      *  @return si la fonction s'est bien déroulée
      */
-    public int getPosition()
+    int getPosition()
     {
         term.addMessage( "   x = " + this.curseur.getPosX() + " ; y = " + this.curseur.getPosY() );
         return GestionErreur.SUCCESS;
@@ -728,7 +716,7 @@ public class Controleur{
      *  @param valeur Valeur de l'angle
      *  @return si la fonction s'est bien deroulee.
      */
-    public int rotate(int valeur)
+    int rotate(int valeur)
     {
     	this.curseur.setOrientation( ( valeur + 90 ) % 360 );
         this.zd.repaint();
@@ -741,7 +729,7 @@ public class Controleur{
      *  @param valeur Valeur à ajouter à l'angle courant
      *  @return si la fonction s'est bien déroulée
      */
-    public int addrotate(int valeur)
+    int addrotate(int valeur)
     {
         this.curseur.setOrientation( ( ((int)this.curseur.getOrientation()) + valeur ) % 360 );
         this.zd.repaint();
@@ -753,7 +741,7 @@ public class Controleur{
      *  Fonction qui annule les n dernières actions
      *  @return si la fonction s'est bien deroulee.
      */
-    public int undo()
+    int undo()
     {
         if ( Utilitaire.canUndo() )
         {
@@ -785,7 +773,7 @@ public class Controleur{
      *  Fonction qui refait les n dernières actions annulees
      *  @return si la fonction s'est bien deroulee.
      */
-    public int redo()
+    int redo()
     {
         if ( Utilitaire.canRedo() )
         {
@@ -818,7 +806,7 @@ public class Controleur{
      *  @param valeur Valeur d'avancee
      *  @return si la fonction s'est bien deroulee.
      */
-    public int forward(int valeur)
+    int forward(int valeur)
     {
     	
     	//Calcul de la nouvelle position du curseur
@@ -880,7 +868,7 @@ public class Controleur{
      *  @param valeur Valeur de recul
      *  @return si la fonction s'est bien deroulee.
      */
-    public int backward(int valeur)
+    int backward(int valeur)
     {
     	//Calcul de la nouvelle position du curseur
     	
@@ -951,7 +939,7 @@ public class Controleur{
      *  @param value Ordonnee d'arrivee
      *  @return si la fonction s'est bien deroulee.
      */
-    public int goTo(int value, int value_2)
+    int goTo(int value, int value_2)
     {
         int posX1=curseur.getPosX();
     	int posY1=curseur.getPosY();
@@ -990,7 +978,7 @@ public class Controleur{
      *  @param valeur Epaisseur du curseur
      *  @return si la fonction s'est bien deroulee.
      */
-    public int cursorWidth(int valeur)
+    int cursorWidth(int valeur)
     {
         valeur = ( valeur < 0 ? 0 : valeur > 100 ? 100 : valeur );
         curseur.setEpaisseur(valeur);
@@ -1004,7 +992,7 @@ public class Controleur{
      *  @param couleur Couleur du curseur
      *  @return si la fonction s'est bien deroulee.
      */
-    public int setColor(String couleur)
+    int setColor(String couleur)
     {
         if(StockageDonnee.isAColor(couleur)){
         	Color c = StockageDonnee.getColor(couleur);
@@ -1027,7 +1015,7 @@ public class Controleur{
      *  @param blue Bleu curseur
      *  @return si la fonction s'est bien deroulee.
      */
-    public int setColor(int red, int green, int blue, int alpha)
+    int setColor(int red, int green, int blue, int alpha)
     {
         red = ( red < 0 ? 0 : ( red > 255 ? 255 : red ) );
         green = ( green < 0 ? 0 : ( green > 255 ? 255 : green ) );
@@ -1043,7 +1031,7 @@ public class Controleur{
      *  @param bgColor Couleur de fond
      *  @return si la fonction s'est bien deroulee.
      */
-    public int setBackgroundColor(String bgColor)
+    int setBackgroundColor(String bgColor)
     {
         if(StockageDonnee.isAColor(bgColor)){
         	Color c = StockageDonnee.getColor(bgColor);
@@ -1066,7 +1054,7 @@ public class Controleur{
      *  @param blue Bleu fond
      *  @return si la fonction s'est bien deroulee.
      */
-    public int setBackgroundColor(int red, int green, int blue)
+    int setBackgroundColor(int red, int green, int blue)
     {
         if ( red < 0 || red > 255 )
         {
@@ -1096,7 +1084,7 @@ public class Controleur{
      *  @param estRempli Si la figure est pleine
      *  @return si la fonction s'est bien deroulee.
      */
-    public int doFigure(int type, int[] value, boolean estRempli)
+    int doFigure(int type, int[] value, boolean estRempli)
     {
         if(type==2){
         	Traceur t = new Traceur(2, curseur.getCouleur(), value[3], value[2], value[0], value[1], estRempli);
@@ -1119,7 +1107,7 @@ public class Controleur{
      *  @param valeur Largeur de la zone de dessin
      *  @return si la fonction s'est bien deroulee.
      */
-    public int width(int valeur)
+    int width(int valeur)
     {
         zd.setLargeur(valeur);
         zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
@@ -1135,7 +1123,7 @@ public class Controleur{
      *  @param valeur Hauteur de la zone de dessin
      *  @return si la fonction s'est bien deroulee.
      */
-    public int height(int valeur)
+    int height(int valeur)
     {
         zd.setHauteur(valeur);
         zd.setSize(zd.getLargeurDessin(), zd.getHauteurDessin());
@@ -1149,7 +1137,7 @@ public class Controleur{
     /**
      *  JAVADOC
      */
-    public int grid( int height, int width )
+    int grid(int height, int width)
     {
     	return setGrid(true, width, height);
     }
@@ -1157,7 +1145,7 @@ public class Controleur{
     /**
      *  JAVADOC
      */
-    public int grid()
+    int grid()
     {
     	MenuGrille.setPixelArtDisplay(false);
     	MenuGrille menuGrille = new MenuGrille(null, true); 
@@ -1169,7 +1157,7 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
 
-    public int setGrid(boolean enable, int width, int height){
+    int setGrid(boolean enable, int width, int height){
     	if (enable && (( width < 2 ) || ( height < 2 ))){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
         }
@@ -1177,8 +1165,8 @@ public class Controleur{
         if(enable){
     		//Affichage de la grille
     		zd.setGridEnable(true);
-			zd.setWidthCaseGrid(height);
-			zd.setHeightCaseGrid(width);
+			zd.setWidthCaseGrid(width);
+			zd.setHeightCaseGrid(height);
 			//Mise a jour du menu Bar
 			barreMenu.affichageGrille(true);
     		barreMenu.affichageDesactiverLaGrille(true);
@@ -1200,7 +1188,7 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
     
-    public void setMagnetism(boolean b){
+    void setMagnetism(boolean b){
     	if(b){
     		if(zd.isGridEnable()){
     			zd.setGridMagnetismEnable(true);
@@ -1231,7 +1219,7 @@ public class Controleur{
     /**
      *  JAVADOC
      */
-    public int disablegrid()
+    int disablegrid()
     {
     	setGrid(false, 0, 0);
         return GestionErreur.SUCCESS;
@@ -1240,7 +1228,7 @@ public class Controleur{
     /**
      *  JAVADOC
      */
-    public int pixelart(int size)
+    int pixelart(int size)
     {
     	return setPixelArtMod(true, size);
     }
@@ -1248,7 +1236,7 @@ public class Controleur{
     /**
      *  JAVADOC
      */
-    public int pixelart()
+    int pixelart()
     {
     	MenuGrille.setPixelArtDisplay(true);
     	MenuGrille menuGrille = new MenuGrille(null, true); 
@@ -1261,7 +1249,7 @@ public class Controleur{
         return GestionErreur.SUCCESS;
     }
 
-    public int setPixelArtMod(boolean enable, int size){
+    int setPixelArtMod(boolean enable, int size){
     	if (enable && (size < 2)){
             return GestionErreur.PARAM_GRID_PIXELART_INCORRECTE;
         }
@@ -1296,7 +1284,7 @@ public class Controleur{
     }
     
     
-    public int disablePixelArt(){
+    int disablePixelArt(){
     	setPixelArtMod(false, 0);
     	return GestionErreur.SUCCESS;
     }
@@ -1304,7 +1292,7 @@ public class Controleur{
      *  Fonction qui permet de creer un nouveau document
      *  @return si la fonction s'est bien deroulee.
      */
-    public int newFile()
+    int newFile()
     {
     	setPixelArtMod(false, 0);
         boolean save_return = StockageDonnee.getImageSave();
@@ -1354,7 +1342,7 @@ public class Controleur{
      *  @param path Chemin du fichier image
      *  @return si la fonction s'est bien deroulee.
      */
-    public int open(String path)
+    int open(String path)
     {
     	setPixelArtMod(false, 0);
     	String regex = "(.*)[\\.]([pP][nN][gG]||[jJ][pP][gG]||[gG][iI][fF])";
@@ -1419,7 +1407,7 @@ public class Controleur{
      *  Fonction qui permet de sauvegarder un document en une image
      *  @return si la fonction s'est bien deroulee.
      */
-    public int save()
+    int save()
     {
         
         String path_to_drawing = StockageDonnee.getPathname();
@@ -1454,7 +1442,7 @@ public class Controleur{
             }
             catch (Exception e)
             {
-                GestionErreur.writeInLog( "", e.toString(), true );
+                GestionErreur.writeInLog( "", e.toString());
             }
             finally
             {
@@ -1479,7 +1467,7 @@ public class Controleur{
      *  @pathname Chemin du fichier
      *  @return si la fonction s'est bien deroulee
      */
-    public int saveas(String pathname)
+    int saveas(String pathname)
     {
 
         String path_to_drawing = pathname;
@@ -1542,7 +1530,7 @@ public class Controleur{
                     }
                     catch(Exception e)
                     {
-                        GestionErreur.writeInLog( "", e.toString(), true );
+                        GestionErreur.writeInLog( "", e.toString());
                         return GestionErreur.CANT_CREATE;
                     }
                 }
@@ -1582,7 +1570,7 @@ public class Controleur{
             }
             catch (Exception e)
             {
-                GestionErreur.writeInLog( "", e.toString(), true );
+                GestionErreur.writeInLog( "", e.toString());
             }
             finally
             {
@@ -1605,7 +1593,7 @@ public class Controleur{
      *  @param pathname Chemin du fichier
      *  @return si la fonction s'est bien deroulee
      */
-    public int savehistory(String pathname)
+    int savehistory(String pathname)
     {
 
         File current = new File(System.getProperty("user.dir"));
@@ -1677,7 +1665,7 @@ public class Controleur{
                     }
                     catch(Exception e)
                     {
-                        GestionErreur.writeInLog( "", e.toString(), true );
+                        GestionErreur.writeInLog( "", e.toString());
                         return GestionErreur.CANT_CREATE;
                     }
                 }
@@ -1717,7 +1705,7 @@ public class Controleur{
         }
         catch (Exception e)
         {
-            GestionErreur.writeInLog( "", e.toString(), true );
+            GestionErreur.writeInLog( "", e.toString());
             return GestionErreur.CANT_CREATE;
         }
         
@@ -1730,7 +1718,7 @@ public class Controleur{
      *  @param pathname Chemin du fichier
      *  @return si la fonction s'est bien deroulee
      */
-    public int exec(String pathname)
+    int exec(String pathname)
     {
     	setPixelArtMod(false, 0);
         String regex = "(.*)[\\.][tT][xX][tT]$";
@@ -1805,14 +1793,14 @@ public class Controleur{
 
                 while ( StockageDonnee.getSize_Tmp() > 0 )
                 {
-                    commande( StockageDonnee.getTmp(0), true, true, true );
+                    commande( StockageDonnee.getTmp(), true, true, true );
                     zd.repaint();
                 }
 
             }
             catch (Exception e)
             {
-                GestionErreur.writeInLog( "", e.toString(), true );
+                GestionErreur.writeInLog( "", e.toString());
                 return GestionErreur.CANT_READ;
             }
 
@@ -1832,7 +1820,7 @@ public class Controleur{
      *  @param args Argument à repeter n fois.
      *  @return si la fonction s'est bien deroulee.
      */
-    public int repeat(int nombre_de_repetitions, String args, boolean first_repeat, int compteur_min, int compteur_max)
+    int repeat(int nombre_de_repetitions, String args, boolean first_repeat, int compteur_min, int compteur_max)
     {
     	setPixelArtMod(false, 0);
         String[] command_list = Utilitaire.parseRepeat(args);
@@ -1853,7 +1841,7 @@ public class Controleur{
 
                 while ( compteur < tmp.length && !tmp[compteur].equalsIgnoreCase("repeat") )
                 {
-                    if ( tmp[compteur].indexOf("+") >= 0 || tmp[compteur].indexOf("-") >= 0 )
+                    if ( tmp[compteur].contains("+") || tmp[compteur].contains("-") )
                     {
                                 
                         String calcul;
@@ -1918,7 +1906,7 @@ public class Controleur{
      *  Fonction qui efface l'ecran de dessin
      *  @return si la fonction s'est bien deroulee.
      */
-    public int clear()
+    int clear()
     {
 
         term.clear();
@@ -1930,7 +1918,7 @@ public class Controleur{
      *  Fonction qui affiche une fenêtre avec la liste des commandes
      *  @return si la fonction s'est bien deroulee.
      */
-    public int help()
+    int help()
     {
 
         return GestionErreur.SUCCESS;
@@ -1943,7 +1931,7 @@ public class Controleur{
      *  @param commande Nom de la commande
      *  @return si la fonction s'est bien deroulee.
      */
-    public int man(boolean isNotEmpty, String commande)
+    int man(boolean isNotEmpty, String commande)
     {
 
         if ( isNotEmpty )
@@ -1970,7 +1958,7 @@ public class Controleur{
      *  Fonction qui affiche le manuel de la commande
      *  @return si la fonction s'est bien deroulee.
      */
-    public int exit()
+    int exit()
     {
         if ( !StockageDonnee.getImageSave() )
         {
