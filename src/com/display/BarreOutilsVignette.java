@@ -45,6 +45,9 @@ public class BarreOutilsVignette extends JButton {
 		g.drawRect(0,0,this.getWidth()-1,this.getHeight()-1);
 	}
 	
+	/**Modifieur du controleur
+	 * @param c Le controleur
+	 */
 	public void setControleur(Controleur c){
 		this.controleur = c;
 	}
