@@ -6,6 +6,13 @@ import javax.swing.JPanel;
 
 import com.controleur.Controleur;
 
+/**
+ *  Curseur
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 @SuppressWarnings("serial")
 public class Curseur extends JPanel {
 	private int posX;
@@ -92,8 +99,8 @@ public class Curseur extends JPanel {
 	
 	/**
      *  Modifieur de la position du curseur
-     *  @param x : Position x du curseur
-     *  @param y : Position y du curseur
+     *  @param x Position x du curseur
+     *  @param y Position y du curseur
      */
 	public void setPosition(int x, int y){
 		this.posX = x;

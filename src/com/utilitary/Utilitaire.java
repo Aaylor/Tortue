@@ -11,6 +11,13 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ *  Classe comportant les fonctions utilisés par tout le programme
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class Utilitaire
 {
     

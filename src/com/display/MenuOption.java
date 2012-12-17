@@ -25,6 +25,13 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
+/**
+ *  Menu d'options
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 @SuppressWarnings("serial")
 public class MenuOption extends JDialog{
     private JRadioButton affichageFenetre = new JRadioButton("Fenêtré");

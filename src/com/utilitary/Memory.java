@@ -1,5 +1,12 @@
 package com.utilitary;
 
+/**
+ *  Mémoire pour la fonction repeat
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class Memory
 {
 

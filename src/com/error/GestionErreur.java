@@ -8,6 +8,13 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
+/**
+ *  Classe comportant les gestions d'erreurs
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class GestionErreur
 {
     

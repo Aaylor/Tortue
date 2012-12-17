@@ -18,6 +18,13 @@ import javax.swing.event.ChangeListener;
 
 import com.controleur.Controleur;
 
+/**
+ *  Barre d'outils
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 @SuppressWarnings("serial")
 public class BarreOutils extends JToolBar {
 	private Curseur curseur;

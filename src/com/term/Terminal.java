@@ -15,6 +15,13 @@ import com.stockage.StockageDonnee;
 import com.term.Terminal;
 import com.utilitary.*;
 
+/**
+ *  Terminal permettant à l'utilisateur de rentrer les commandes
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 @SuppressWarnings("serial")
 public class Terminal extends JPanel implements KeyListener{
 

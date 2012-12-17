@@ -21,6 +21,13 @@ import javax.swing.event.MouseInputAdapter;
 import com.controleur.Controleur;
 import com.stockage.StockageDonnee;
 
+/**
+ *  Zone de dessin
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 @SuppressWarnings("serial")
 public class ZoneDessin extends JPanel{
 	private int largeurDessin; //La largeur du dessin
@@ -46,7 +53,7 @@ public class ZoneDessin extends JPanel{
     /**Constructeur de la zone de dessin
      * @param largeurDessin La largeur en pixel du dessin
      * @param hauteurDessin La hauteur en pixel du dessin
-     * @param Color La couleur d'arrière plan de la zone de Dessin
+     * @param background La couleur d'arrière plan de la zone de Dessin
      * @param curseur Le curseur utilisé par le programme
      * */
 	public ZoneDessin(int largeurDessin, int hauteurDessin, Color background, Curseur curseur){

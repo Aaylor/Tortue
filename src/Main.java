@@ -17,7 +17,13 @@ import com.error.*;
 import com.stockage.StockageDonnee;
 import com.term.Terminal;
 
-
+/**
+ *  Main
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class Main{
 
     /**
