@@ -103,7 +103,7 @@ public class ZoneDessin extends JPanel{
                 	c.commande("pendown", true, false, true);
                 }
                 c.commande("goto " + posX_final + " " + posY_final, true, true, true);
-				repaint();
+				//repaint();
 				break;
 			//Clic molette
 			case 2 :

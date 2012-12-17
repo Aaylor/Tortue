@@ -91,28 +91,36 @@ public class BarreOutils extends JToolBar {
 		
 		JPanel panCurseur = new JPanel();
 		panCurseur.setLayout(new BoxLayout(panCurseur, BoxLayout.LINE_AXIS));
-		panCurseur.add(Box.createRigidArea(new Dimension(5,0)));
-		panCurseur.add(vignetteCouleur);
-		panCurseur.add(Box.createRigidArea(new Dimension(5,0)));
 		
 		JPanel panCurseurRouge = new JPanel();
 		panCurseurRouge.setLayout(new BoxLayout(panCurseurRouge, BoxLayout.PAGE_AXIS));
 		JLabel labRouge = new JLabel("Rouge");
 		panCurseurRouge.add(labRouge);
 		panCurseurRouge.add(sliderRed);
+		sliderRed.setMaximumSize(new Dimension(100, 50));
+		panCurseurRouge.setMaximumSize(new Dimension(100, 50));
 		
 		JPanel panCurseurVert = new JPanel();
 		panCurseurVert.setLayout(new BoxLayout(panCurseurVert, BoxLayout.PAGE_AXIS));
 		JLabel labVert = new JLabel("Vert");
 		panCurseurVert.add(labVert);
 		panCurseurVert.add(sliderGreen);
+		panCurseurRouge.add(sliderRed);
+		sliderGreen.setMaximumSize(new Dimension(100, 50));
+		panCurseurVert.setMaximumSize(new Dimension(100, 50));
 		
 		JPanel panCurseurBleu = new JPanel();
 		panCurseurBleu.setLayout(new BoxLayout(panCurseurBleu, BoxLayout.PAGE_AXIS));
 		JLabel labBleu = new JLabel("Bleu");
 		panCurseurBleu.add(labBleu);
 		panCurseurBleu.add(sliderBlue);
-		
+		panCurseurRouge.add(sliderRed);
+		sliderBlue.setMaximumSize(new Dimension(100, 50));
+		panCurseurBleu.setMaximumSize(new Dimension(100, 50));
+
+		panCurseur.add(Box.createRigidArea(new Dimension(5,0)));
+		panCurseur.add(vignetteCouleur);
+		panCurseur.add(Box.createRigidArea(new Dimension(5,0)));
 		panCurseur.add(panCurseurRouge);
 		panCurseur.add(panCurseurVert);
 		panCurseur.add(panCurseurBleu);
@@ -165,6 +173,7 @@ public class BarreOutils extends JToolBar {
 	    slider.setPaintLabels(true);
 	    slider.setMinorTickSpacing(25);
 	    slider.setMajorTickSpacing(25);
+	    slider.setMaximumSize(new Dimension (250, 55));
 	    slider.addChangeListener(new ChangeListener(){
 	      public void stateChanged(ChangeEvent event){
 	    	  controleur.commande("cursorwidth " + ((JSlider)event.getSource()).getValue(), true, true, true);
