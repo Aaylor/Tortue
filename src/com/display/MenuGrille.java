@@ -35,6 +35,10 @@ public class MenuGrille extends JDialog {
 	public static int heightCaseDefined;
 	private static boolean pixelArtDisplay;
 	
+	/**Constructeur de la boite de dialogue demandant les caracteristiques de la grille a afficher
+	 * @param parent La JFrame mere
+	 * @param modal
+	 */
 	public MenuGrille(JFrame parent, boolean modal){
 		super(parent, "Afficher la grille", modal);
 	    this.setLocationRelativeTo(null);
@@ -45,6 +49,8 @@ public class MenuGrille extends JDialog {
 		
 	}
 	
+	
+	/**Initialise les composant de la boite de dialogue**/
 	public void initComponent(){
 		itWorked = false;
 		
@@ -90,6 +96,7 @@ public class MenuGrille extends JDialog {
 		    });
 	}
 	
+	/**Fonction vérifiant les valeurs saisies par l'utilisateur**/
 	public void verificationDesValeurs(){
 		if(!pixelArtDisplay){
 			if(!textFieldWidth.getText().equals("") && !textFieldHeight.getText().equals("") && Integer.parseInt(textFieldWidth.getText()) >= 1  && Integer.parseInt(textFieldHeight.getText()) >= 1){
@@ -117,15 +124,29 @@ public class MenuGrille extends JDialog {
 		}
 	}
 	
+	/**Accesseur de la largeur des cases de la grille
+	 * @return Largeur des cases de la grille
+	 */
 	public static int getWidthCaseDefined(){
 		return widthCaseDefined;
 	}
+	
+	/**Accesseur de la hauteur des cases de la grille
+	 * @return Hauteur des cases de la grille
+	 */
 	public int getHeightCaseDefined(){
 		return heightCaseDefined;
 	}
+	
+	/**Modifieur du booleen activant l'affichage adapté au mode pixel art
+	 * @param a Booleen representant l'affichage ou non du mode pixel art*/
 	public static void setPixelArtDisplay(boolean a){
 		pixelArtDisplay = a;
 	}
+	
+	/**Accesseur du boolean represantant l'affichage adapté au mode pixel art
+	 * @return Booleen representant l'affichage ou non du mode pixel art
+	 */
 	public static boolean getPixelArtDisplay(){
 		return pixelArtDisplay;
 	}
