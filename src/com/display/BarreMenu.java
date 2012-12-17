@@ -348,6 +348,10 @@ public class BarreMenu extends JMenuBar{
         this.controleur = c;
     }
     
+    /**Modifie le champs affichant la position de la tortue
+     * @param x : Position x a afficher
+     * @param y : Position y a afficher
+     */
 	public static void setTextPositionTortue(int x, int y){
 		positionTortue.setText("Position  X : " + x + " Y : " + y);
 	}
