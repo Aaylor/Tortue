@@ -671,39 +671,75 @@ public class MenuOption extends JDialog{
 	 //              ACCESSEURS                //        
 	////////////////////////////////////////////
 	
+	/**Accesseur du booleen representant la valeur par défaut au démarrage du mode fenetre
+	 * @return configProgrammeEstFenetre
+	 */
 	public static boolean getConfigProgrammeEstFenetre(){
 		return configProgrammeEstFenetre;
 	}
+	/**Accesseur du booleen representant la valeur par défaut de la position du curseur (true: centre, false: en haut à gauche)
+	 * @return configCurseurEstCentre
+	 */
     public static boolean getConfigCurseurEstCentre(){
     	return configCurseurEstCentre;
     }
+    /**Accesseur de la composante rouge du curseur au demarrage
+	 * @return configCurseurRed
+	 */    
     public static int getConfigCurseurRed(){
     	return configCurseurRed;
     }
+    /**Accesseur de la composante vert du curseur au demarrage
+	 * @return configCurseurGreen
+	 */ 
     public static int getConfigCurseurGreen(){
     	return configCurseurGreen;
     }
+    /**Accesseur de la composante bleu du curseur au demarrage
+	 * @return configCurseurBlue
+	 */ 
     public static int getConfigCurseurBlue(){
     	return configCurseurBlue;
     }
+    /**Accesseur de la largeur de la zone de dessin au demarrage
+	 * @return configDessinLargeur
+	 */ 
     public static int getConfigDessinLargeur(){
     	return configDessinLargeur;
     }
+    /**Accesseur de la hauteur de la zone de dessin au demarrage
+	 * @return configDessinHauteur
+	 */ 
     public static int getConfigDessinHauteur(){
     	return configDessinHauteur;
     }
+    /**Accesseur de la composante bleu de la zone de dessin au demarrage
+	 * @return configDessinBackgroundRed
+	 */ 
     public static int getConfigDessinBackgroundRed(){
     	return configDessinBackgroundRed;
     }
+    /**Accesseur de la composante verte de la zone de dessin au demarrage
+	 * @return configDessinBackgroundGreen
+	 */ 
     public static int getConfigDessinBackgroundGreen(){
     	return configDessinBackgroundGreen;
     }
+    /**Accesseur de la composante bleu de la zone de dessin au demarrage
+	 * @return configDessinBackgroundBlue
+	 */ 
     public static int getConfigDessinBackgroundBlue(){
     	return configDessinBackgroundBlue;
     }
+    /**Accesseur de l'epaisseur du curseur au demarrage
+	 * @return configCurseurEpaisseur
+	 */
     public static int getConfigCurseurEpaisseur(){
     	return configCurseurEpaisseur;
     }
+    /**Accesseur du theme par defaut au demarrage
+	 * @return configTheme
+	 */
     public static int getConfigTheme(){
 		return configTheme;
 	}
