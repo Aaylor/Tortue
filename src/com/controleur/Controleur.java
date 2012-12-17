@@ -1732,6 +1732,13 @@ public class Controleur{
             fSortie.println("new");
             fSortie.println("width " + zd.getLargeurDessin());
             fSortie.println("height " + zd.getHauteurDessin());
+            fSortie.println("setcolor " + MenuOption.getConfigCurseurRed() + " "
+                                        + MenuOption.getConfigCurseurGreen() + " "
+                                        + MenuOption.getConfigCurseurBlue());
+            fSortie.println("setbackgroundcolor "   + MenuOption.getConfigDessinBackgroundRed() + " "
+                                                    + MenuOption.getConfigDessinBackgroundGreen() + " "
+                                                    + MenuOption.getConfigDessinBackgroundBlue());
+            fSortie.println("cursorwidth " + MenuOption.getConfigCurseurEpaisseur() );
             fSortie.println("penup");            
 
             for (int i = 0; i < StockageDonnee.getSize_LCEC(); i++)

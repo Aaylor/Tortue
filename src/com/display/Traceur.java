@@ -82,67 +82,198 @@ public class Traceur extends JPanel{
 		
 	
 	/*accesseurs*/
+    /**
+     * Epaisseur du dessin
+     * @return l'epaisseur
+     */
 	public int getEpaisseur(){ return this.epaisseur; }
+
+    /**
+     *  Type du dessin
+     *  @return le type du dessin
+     */
 	public int getType(){ return this.type; }
+
+    /**
+     *  Couleur du dessin
+     *  @return couleur
+     */
 	public Color getColor(){ return this.couleur; }
+
+    /**
+     *  Etat du curseur
+     *  @return etat du curseur
+     */
 	public boolean getIsDown(){ return this.isDown; }
+
+    /**
+     *  Origine X du point
+     *  @return x
+     */
 	public int getXOrigine(){ return this.x_origine; }
+
+    /**
+     *  Origine Y du point
+     *  @return y
+     */
 	public int getYOrigine(){ return this.y_origine; }
+
+    /**
+     *  Arrivee du point X
+     *  @return x
+     */
 	public int getXArrivee(){ return this.x_arrivee; }
+
+    /**
+     *  Arrivee du point Y
+     *  @return y
+     */
 	public int getYArrivee(){ return this.y_arrivee; }
+
+    /**
+     *  Troisieme point utilise lors de la creation d'un triangle
+     *  @return x
+     */
 	public int getX3(){ return this.x3; }
+
+    /**
+     *  Troisieme point utilise lors de la creation d'un triangle
+     *  @return y
+     */
 	public int getY3(){ return this.y3; }
+
+    /**
+     *  Hauteur
+     *  @return hauteur
+     */
 	public int getHauteur(){ return this.hauteur; }
+
+    /**
+     *  Largeur
+     *  @return largeur
+     */
 	public int getLargeur(){ return this.largeur; }
+
+    /**
+     *  Determine si le dessin est rempli
+     *  @return remplissage
+     */
 	public boolean estRempli(){ return this.estRempli;}
+
+    /**
+     *  Forme du dessin
+     *  @return forme
+     */
 	public int getForme(){ return this.forme; }
+
+    /**
+     *  Pathname de l'image
+     *  @return pathname
+     */
 	public String getPath(){ return this.path;}
 	
 	
 	/*modifieurs*/
+    /**
+     *  Change l'epaisseur
+     *  @param epaisseur
+     */
 	public void setEpaisseur(int epaisseur){
 		this.epaisseur=epaisseur;
 		}
 	
+    /**
+     *  Type du dessin
+     *  @param type
+     */
 	public void setType(int type){
 		this.type=type;
 	}
 	
+    /**
+     *  Couleur du traceur
+     *  @param couleur
+     */
 	public void setColor(Color couleur){
 		this.couleur=couleur;
 	}
 	
+    /**
+     *  Change l'etat du curseur
+     *  @param isDown
+     */
 	public void setIsDown(boolean isDown){
 		this.isDown=isDown;
 	}
 	
+    /**
+     *  Point x d'origine
+     *  @param x_origine
+     */
 	public void setXOrigine(int x_origine){
 		this.x_origine=x_origine;
 	}
-	
+
+    /**
+     *  Point y d'origine
+     *  @param y_origine
+     */
 	public void setYOrigine(int y_origine){
 		this.y_origine=y_origine;
 	}
 	
+    /**
+     *  Point x d'arrive
+     *  @param x_arrivee
+     */
 	public void setXArrivee(int x_arrivee){
 		this.x_arrivee=x_arrivee;
 	}
 	
+    /**
+     *  Point y arrivee
+     *  @param y_arrivee
+     */
 	public void setYArrivee(int y_arrivee){
 		this.y_arrivee=y_arrivee;
 	}
+
+    /**
+     *  Troisieme point x
+     *  @param x
+     */
 	public void setX3(int x){
 		this.x3=x;
 	}
+
+    /**
+     *  Troisieme point y
+     *  @param y
+     */
 	public void setY3(int y){
 		this.y3=y;
 	}
+
+    /**
+     *  Remplissage du dessin
+     *  @param estRempli
+     */
 	public void estRempli(boolean estRempli){
 		this.estRempli=estRempli;
 	}
+
+    /**
+     *  Forme du dessin
+     *  @param forme
+     */
 	public void setForme(int forme){
 		this.forme=forme;
 	}
+
+    /**
+     *  Pathname du dessin
+     *  @param path
+     */
 	public void setPath(String path){
 		this.path=path;
 	}
