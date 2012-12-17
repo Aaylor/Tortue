@@ -14,7 +14,7 @@ penup
 cursorwidth 10 
 goto 215 55 
 pendown 
-forme 
+shape 
 forward 60 
 down 
 forward 10 
