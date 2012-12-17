@@ -1,0 +1,22 @@
+##################################################
+##################################################
+##		HISTORIQUE GENERE LE		##
+##		12-12-17_11-25-18		##
+##################################################
+##################################################
+
+new
+width 500
+height 500
+penup
+shape 
+goto 500 500 
+pendown 
+repeat 100 [forward 10; addrotate 10; setcolor +1 +2 +3] 
+repeat 100 [forward 10; addrotate 10; setcolor +1 +2 +3] 
+repeat 100 [forward 10; addrotate 10; setcolor +1 +2 +3] 
+repeat 100 [forward 10; addrotate 10; setcolor +1 +2 +3] 
+repeat 100 [forward 10; addrotate 10; setcolor +1 +2 +3] 
+repeat 100 [forward 10; addrotate 10; setcolor +1 +2 +3] 
+repeat 100 [forward 10; addrotate 10; setcolor +1 +2 +3] 
+repeat 100 [forward 10; addrotate 10; setcolor +1 +2 +3] 
