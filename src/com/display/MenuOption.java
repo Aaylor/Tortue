@@ -747,40 +747,75 @@ public class MenuOption extends JDialog{
 	  ////////////////////////////////////////////
 	 //              MODIFIEURS                //
 	////////////////////////////////////////////
-	
+    /**Modifieur du booleen representant la valeur par défaut au démarrage du mode fenetre
+	 * @param a booleen representant la valeur par défaut au démarrage du mode fenetre
+	 */
 	public static void setConfigProgrammeEstFenetre(boolean a){
 		configProgrammeEstFenetre = a;
 	}
+	/**Modifieur du booleen representant la valeur par défaut de la position du curseur (true: centre, false: en haut à gauche)
+	 * @param a booleen representant la valeur par défaut de la position du curseur (true: centre, false: en haut à gauche)
+	 */
 	public static void setConfigCurseurEstCentre(boolean a){
 		configCurseurEstCentre = a;
 	}
+	/**Modifieur de la composante rouge du curseur au demarrage
+	* @param a composante rouge du curseur au demarrage
+	*/
 	public static void setConfigCurseurRed(int a){
 		configCurseurRed = a;
 	}
+	/**Modifieur de la composante verte du curseur au demarrage
+	* @param a composante verte du curseur au demarrage
+	*/
 	public static void setConfigCurseurGreen(int a){
 		configCurseurGreen = a;
 	}
+	/**Modifieur de la composante bleu du curseur au demarrage
+	* @param a composante bleu du curseur au demarrage
+	*/
 	public static void setConfigCurseurBlue(int a){
 		configCurseurBlue = a;
 	}
+	/**Modifeur de la largeur de la zone de dessin au demarrage
+	 * @param a largeur de la zone de dessin au demarrage
+	 */ 
 	public static void setConfigDessinLargeur(int a){
 		configDessinLargeur = a;
 	}
+	/**Modifeur de la hauteur de la zone de dessin au demarrage
+	 * @param a hauteur de la zone de dessin au demarrage
+	 */ 
 	public static void setConfigDessinHauteur(int a){
 		configDessinHauteur = a;
 	}
+	/**Modifieur de la composante rouge de la zone de dessin au demarrage
+	 * @param a composante rouge de la zone de dessin au demarrage
+	 */
 	public static void setConfigDessinBackgroundRed(int a){
 		configDessinBackgroundRed = a;
 	}
+	/**Modifieur de la composante verte de la zone de dessin au demarrage
+	 * @param a composante verte de la zone de dessin au demarrage
+	 */
 	public static void setConfigDessinBackgroundGreen(int a){
 		configDessinBackgroundGreen = a;
 	}
+	/**Modifieur de la composante bleu de la zone de dessin au demarrage
+	 * @param a composante bleu de la zone de dessin au demarrage
+	 */
 	public static void setConfigDessinBackgroundBlue(int a){
 		configDessinBackgroundBlue = a;
 	}
+	/**Modifieur de l'epaisseur du curseur au demarrage
+	 * @param a epaisseur du curseur au demarrage
+	 */
 	public static void setConfigCurseurEpaisseur(int a){
 		configCurseurEpaisseur = a;
 	}
+	/**Modifieur du theme par defaut au demarrage
+	 * @param a theme par defaut au demarrage
+	 */
 	public static void setConfigTheme(int a){
 		configTheme = a;
 	}
