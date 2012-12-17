@@ -11,7 +11,7 @@ height 500
 penup
 penup 
 cursorwidth 20 
-forme 
+shape 
 setcolor 89 151 255 
 penup 
 goto 310 250 

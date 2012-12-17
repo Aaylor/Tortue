@@ -227,11 +227,12 @@ public class Utilitaire
         css.addRule( "ul {list-style-type:disc;}" );
         css.addRule( "body {background:#EFEFEF;}" );
         css.addRule( ".global_div {margin-right:5px; margin-left:5px;}" );
-        css.addRule( "#syntax {background:#AAAAAA; margin-top:5px; margin-bottom:5px;}" );
-        css.addRule( "#explaination {background:#AAAAAA; margin-top:5px; margin-bottom:5px;}" );
-        css.addRule( "#cmd-color-list {background:#AAAAAA; margin-top:5px; margin-bottom:5px;}" );
-        css.addRule( "#example {background: #AAAAAA; margin-top:5px; margin-bottom:5px;} ");
+        css.addRule( "#syntax {background:#AAAAAA; margin-top:5px; margin-bottom:5px; padding:5px;}" );
+        css.addRule( "#explaination {background:#AAAAAA; margin-top:5px; margin-bottom:5px; padding:5px;}" );
+        css.addRule( "#cmd-color-list {background:#AAAAAA; margin-top:5px; margin-bottom:5px; padding:5px;}" );
+        css.addRule( "#example {background: #AAAAAA; margin-top:5px; margin-bottom:5px; padding:5px;}" );
         css.addRule( "#no-chip {list-style-type:none;}" );
+        css.addRule( "#underline {text-decoration:underline;}" );
         
         kit.setStyleSheet( css );
         dialog.setEditorKit(kit);
