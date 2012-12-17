@@ -97,8 +97,8 @@ public class BarreOutils extends JToolBar {
 		JLabel labRouge = new JLabel("Rouge");
 		panCurseurRouge.add(labRouge);
 		panCurseurRouge.add(sliderRed);
-		sliderRed.setMaximumSize(new Dimension(100, 50));
-		panCurseurRouge.setMaximumSize(new Dimension(100, 50));
+		//sliderRed.setMaximumSize(new Dimension(100, 50));
+		//panCurseurRouge.setMaximumSize(new Dimension(100, 50));
 		
 		JPanel panCurseurVert = new JPanel();
 		panCurseurVert.setLayout(new BoxLayout(panCurseurVert, BoxLayout.PAGE_AXIS));
@@ -106,8 +106,8 @@ public class BarreOutils extends JToolBar {
 		panCurseurVert.add(labVert);
 		panCurseurVert.add(sliderGreen);
 		panCurseurRouge.add(sliderRed);
-		sliderGreen.setMaximumSize(new Dimension(100, 50));
-		panCurseurVert.setMaximumSize(new Dimension(100, 50));
+		//sliderGreen.setMaximumSize(new Dimension(100, 50));
+		//panCurseurVert.setMaximumSize(new Dimension(100, 50));
 		
 		JPanel panCurseurBleu = new JPanel();
 		panCurseurBleu.setLayout(new BoxLayout(panCurseurBleu, BoxLayout.PAGE_AXIS));
@@ -115,8 +115,8 @@ public class BarreOutils extends JToolBar {
 		panCurseurBleu.add(labBleu);
 		panCurseurBleu.add(sliderBlue);
 		panCurseurRouge.add(sliderRed);
-		sliderBlue.setMaximumSize(new Dimension(100, 50));
-		panCurseurBleu.setMaximumSize(new Dimension(100, 50));
+		//sliderBlue.setMaximumSize(new Dimension(100, 50));
+		//panCurseurBleu.setMaximumSize(new Dimension(100, 50));
 
 		panCurseur.add(Box.createRigidArea(new Dimension(5,0)));
 		panCurseur.add(vignetteCouleur);
