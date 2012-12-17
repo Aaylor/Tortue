@@ -171,7 +171,7 @@ public class Utilitaire
      *  @param msg_dialog Le message afficher à l'écran
      *  @param title Titre de la fenêtre
      */
-     public static void getInformationalPane(String msg_dialog, String title)
+     public static void getManualPane(String msg_dialog, String title)
      {
         JFrame window_man = new JFrame( "MANUEL : " + title );
         window_man.setMinimumSize( new Dimension( 500, 600 ) );
@@ -190,10 +190,10 @@ public class Utilitaire
         css.addRule( "ul {list-style-type:disc;}" );
         css.addRule( "body {background:#EFEFEF;}" );
         css.addRule( ".global_div {margin-right:5px; margin-left:5px;}" );
-        css.addRule( "#syntax {background:#DDDDDD; margin-top:5px; margin-bottom:5px;}" );
-        css.addRule( "#explaination {background:#DDDDDD;}" );
-        css.addRule( "#cmd-color-list {background:#DDDDDD; margin-top:5px; margin-bottom:5px;}" );
-        css.addRule( "#example {background: #DDDDDD; margin-top:5px; margin-bottom:5px;} ");
+        css.addRule( "#syntax {background:#AAAAAA; margin-top:5px; margin-bottom:5px;}" );
+        css.addRule( "#explaination {background:#AAAAAA; margin-top:5px; margin-bottom:5px;}" );
+        css.addRule( "#cmd-color-list {background:#AAAAAA; margin-top:5px; margin-bottom:5px;}" );
+        css.addRule( "#example {background: #AAAAAA; margin-top:5px; margin-bottom:5px;} ");
         css.addRule( "#no-chip {list-style-type:none;}" );
         
         kit.setStyleSheet( css );

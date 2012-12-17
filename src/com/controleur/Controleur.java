@@ -1968,7 +1968,7 @@ public class Controleur{
         {
             if ( Utilitaire.isACommand(commande) )
             {
-                Utilitaire.getInformationalPane( StockageDonnee.getManuel(commande), commande.toUpperCase() );
+                Utilitaire.getManualPane( StockageDonnee.getManuel(commande), commande.toUpperCase() );
             }
             else
             {

@@ -578,9 +578,14 @@ public class StockageDonnee
                                 + "<i><b>\"rotate 0\"</b></i></div>");
         manuel.put("center", "<div id=\"syntax\">Syntaxe : <ul><li>center, <i>pas d'arguments possible</i></li></ul></div>" 
                                 + "<div id=\"explaination\">Place l'outil au centre de la zone de dessin</div>");
+        manuel.put("getposition", "<div id=\"syntax\">Syntaxe : <ul><li>getposition, <i> pas d'arguments possible</i></li></ul></div>"
+                                + "<div id=\"explaination\">Indique les coordonées courante de l'outil</div>");
         manuel.put("rotate", "<div id=\"syntax\">Syntaxe : <ul><li>rotate <angle en degr&eacute;></li></ul></div>"
                                 + "<div id=\"explaination\">Effectue une rotation du curseur.</div>"
                                 + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>rotate 156</li><li>rotate -43</li></ul>");
+        manuel.put("addrotate", "<div id=\"syntax\">Syntaxe : <ul><li>addrotate `angle en degr&eacute;`</li></ul></div>"
+                                + "<div id=\"explaination\">Effectue une rotation du curseur à partir de son orientation</div>"
+                                + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>addrotate 34</li><li>rotate -254</li></ul>");
         manuel.put("undo", "<div id=\"syntax\">Syntaxe : <ul><li>undo, <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<div id=\"explaination\">Supprime les dernières actions.</div>");
         manuel.put("redo", "<div id=\"syntax\">Syntaxe : <ul><li>redo, <i>pas d'arguments possible</i></li></ul></div>"

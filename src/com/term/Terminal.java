@@ -95,22 +95,29 @@ public class Terminal extends JPanel implements KeyListener{
                     && !this.champ_de_commande.getText().equals("") )
         {
             String s = "";
-            String s_replace = this.champ_de_commande.getText().trim();
+            String original = this.champ_de_commande.getText().trim();
+            String s_replace = original;
             String display_prop = "";
-        
-            if ( s.indexOf(" ") >= 0 && s.substring( 0, s.indexOf(" ") ).equalsIgnoreCase("repeat") )
+       
+            if ( s_replace.indexOf(" ") >= 0 
+                    && ( s_replace.substring( 0, s_replace.indexOf(" ") ).equalsIgnoreCase("repeat")
+                        || s_replace.substring( 0, s_replace.indexOf(" ") ).equalsIgnoreCase("man") ) )
             {
-                s_replace = s.replaceAll("\\[", "[ ").replaceAll("\\;", " ; ").replaceAll("\\]", " ] ").replaceAll("\\s{2,}", " ");
+                s_replace = s_replace.trim()
+                    .replaceAll("\\[", "[ ").replaceAll("\\;", " ; ").replaceAll("\\]", " ] ").replaceAll("\\s{2,}", " ");
                 String[] tmp = s_replace.split(" ");
                 s_replace = tmp[ tmp.length-1 ];
 
-                s = s_replace.substring( 0, s_replace.length()-tmp[tmp.length-1].length());
+                s = original.substring( 0, original.length()-tmp[tmp.length-1].length());
+                System.out.println("DONE");
             }
 
+            System.out.println( "s : " + s );
             ArrayList<String> proposition_completion = auto_completion( s_replace );
 
             if ( proposition_completion.size() == 1 )
             {
+                System.out.println( s + proposition_completion.get(0) );
                 this.champ_de_commande.setText(s + proposition_completion.get(0));
             }
             else if ( proposition_completion.size() > 1 )
