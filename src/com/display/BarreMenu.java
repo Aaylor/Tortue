@@ -211,66 +211,27 @@ public class BarreMenu extends JMenuBar{
 		});
 	}
 	
-	private void activerGrille(){
-		controleur.commande("grid", true, false, true);
-	}
-	
-	private void activerMagnetisme(){
-		controleur.alternateMagnetism();
-	}
-	
-	private void activerPixelArtMode(){
-		controleur.commande("pixelart", true, false, true);
-	}
-	
-	public void affichageGrille(boolean  active){
-		if(active){
-			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
-		}
-		else activerLaGrille.setIcon(new ImageIcon(""));
-	}
-	public void affichageDesactiverLaGrille(boolean  active){
-		desactiverLaGrille.setEnabled(active);
-	}
-	
-	public void affichageMagnetisme(boolean  active){
-		if(active){
-			magnetisme.setIcon(new ImageIcon("../img/ok.png"));
-		}
-		else magnetisme.setIcon(new ImageIcon(""));
-	}
-	public void setMagnetismeDisponible(boolean disponible){
-		if(disponible){
-			magnetisme.setEnabled(true);
-		}
-		else{
-			magnetisme.setEnabled(false);
-			affichageMagnetisme(false);
-		}
-	}
-	public void affichagePixelArt(boolean  active){
-		if(active){
-			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
-		}
-		else modePixelArt.setIcon(new ImageIcon(""));
-	}
-	public void affichageDesactiverPixelArt(boolean  active){
-		desactiverModePixelArt.setEnabled(active);
-	}
-	
+	/**Fonction appelée lors du clic sur le JMenuItem "Nouveau" */
 	private void nouveau(){
 		controleur.commande("new", true, false, true);
 	}
+	
+	/**Fonction appelée lors du clic sur le JMenuItem "Ouvrir une Image" */
 	private void ouvrirImage(){
 		controleur.commande("open", true, false, true);
 	}
+	
+	/**Fonction appelée lors du clic sur le JMenuItem "Ouvrir un Historique" */
 	private void ouvrirHistorique(){
 		controleur.commande("exec", true, false, true);
 	}	
+	
+	/**Fonction appelée lors du clic sur le JMenuItem "Enregistrer une Image" */
 	private void enregistrerImage(){
 		controleur.commande("save", true, false, true);
 	}
 	
+	/**Fonction appelée lors du clic sur le JMenuItem "Ouvrir un Historique" */
 	private void enregistrerHistorique(){
 		controleur.commande("savehistory", true, false, true);
 	}
@@ -280,6 +241,7 @@ public class BarreMenu extends JMenuBar{
         controleur.commande("exit", false, false, true);
 	}
 	
+	/**Fonction appelée lors du clic sur le JMenuItem "A Propos" */
 	private void aPropos(){
 		JOptionPane.showMessageDialog(null,
 								"Carapuce est un projet Universitaire développé par 4 étudiants :\n\n" +
@@ -290,15 +252,78 @@ public class BarreMenu extends JMenuBar{
 								JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-    /**
-     *  Modifieur du controleur
-     *  @param c nouveau controleur
-     */
-    public void setControleur(Controleur c)
-    {
-        this.controleur = c;
-    }
+	/**Fonction appelée lors du clic sur le JMenuItem "Activer la grille" */
+	private void activerGrille(){
+		controleur.commande("grid", true, false, true);
+	}
+	
+	/**Fonction appelée lors du clic sur le JMenuItem "Activer le magnetisme a la grille" */
+	private void activerMagnetisme(){
+		controleur.alternateMagnetism();
+	}
+	
+	/**Fonction appelée lors du clic sur le JMenuItem "Activer le mode pixel art" */
+	private void activerPixelArtMode(){
+		controleur.commande("pixelart", true, false, true);
+	}
+	
+	/**Fonction affichant l'icone "check" devant "Afficher la grille" selon le boolean passe en parametre
+	 * @param active Boolean definissant l'affichage de l'icone "check" ou non
+	 * */
+	public void affichageGrille(boolean  active){
+		if(active){
+			activerLaGrille.setIcon(new ImageIcon("../img/ok.png"));
+		}
+		else activerLaGrille.setIcon(new ImageIcon(""));
+	}
+	
+	/**Fonction activant ou non le JMenuItem "Desactiver la grille"
+	 * @param active : Booleen definissant l'activation du JMenuItem "Desactiver la grille */
+	public void affichageDesactiverLaGrille(boolean  active){
+		desactiverLaGrille.setEnabled(active);
+	}
+	
+	/**Fonction affichant l'icone "check" devant "Magnetisme a la grille" selon le boolean passe en parametre
+	 * @param active Boolean definissant l'affichage de l'icone "check" ou non */
+	public void affichageMagnetisme(boolean  active){
+		if(active){
+			magnetisme.setIcon(new ImageIcon("../img/ok.png"));
+		}
+		else magnetisme.setIcon(new ImageIcon(""));
+	}
+	
+	/**Fonction activant ou non le JMenuItem "Desactiver le magnetisme"
+	 * @param active : Booleen definissant l'activation du JMenuItem "Desactiver le magnetisme" */
+	public void setMagnetismeDisponible(boolean disponible){
+		if(disponible){
+			magnetisme.setEnabled(true);
+		}
+		else{
+			magnetisme.setEnabled(false);
+			affichageMagnetisme(false);
+		}
+	}
+	
+	/**Fonction affichant l'icone "check" devant "Mode Pixel Art" selon le boolean passe en parametre
+	 * @param active Boolean definissant l'affichage de l'icone "check" ou non */
+	public void affichagePixelArt(boolean  active){
+		if(active){
+			modePixelArt.setIcon(new ImageIcon("../img/ok.png"));
+		}
+		else modePixelArt.setIcon(new ImageIcon(""));
+	}
+	
+	/**Fonction affichant l'icone "check" devant "Magnetisme a la grille" selon le boolean passe en parametre
+	 * @param active Boolean definissant l'affichage de l'icone "check" ou non */
+	public void affichageDesactiverPixelArt(boolean  active){
+		desactiverModePixelArt.setEnabled(active);
+	}
+	
 
+
+	  ////////////////////////////////////////////
+	 //              ACCESSEURS                //        
+	////////////////////////////////////////////
 	public JMenuItem getPrecedent() {
 		return precedent;
 	}
@@ -307,6 +332,15 @@ public class BarreMenu extends JMenuBar{
 		return suivant;
 	}
 	
+	  ////////////////////////////////////////////
+	 //              MODIFIEURS                //
+	////////////////////////////////////////////
+	/**Modifieur du controleur
+     *  @param c nouveau controleur */
+    public void setControleur(Controleur c){
+        this.controleur = c;
+    }
+    
 	public static void setTextPositionTortue(int x, int y){
 		positionTortue.setText("Position  X : " + x + " Y : " + y);
 	}
