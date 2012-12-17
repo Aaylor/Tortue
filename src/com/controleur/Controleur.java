@@ -3,6 +3,7 @@ package com.controleur;
 import java.io.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Enumeration;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -1950,9 +1951,34 @@ public class Controleur{
      */
     int help()
     {
+        String liste_commande = "<table>";
+        
+        Enumeration<String> command_list = StockageDonnee.getEnumerationListeCommandes();
+        int i = 0;
+
+        while ( command_list.hasMoreElements() )
+        {
+            String current_cmd = command_list.nextElement();
+            if ( i%3 == 0 )
+            {
+                liste_commande += "<tr><td>" + current_cmd + "</td>";
+            }
+            else if ( i%3 == 2 )
+            {
+                liste_commande += "<td>" + current_cmd + "</td></tr";
+            }
+            else
+            {
+                liste_commande += "<td>" + current_cmd + "</td>";
+            }
+            i++;
+        }
+
+        liste_commande += "</table>";
+
+        Utilitaire.getHelpPane( liste_commande ); 
 
         return GestionErreur.SUCCESS;
-
     }
 
     /**

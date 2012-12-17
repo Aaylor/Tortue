@@ -100,24 +100,27 @@ public class Terminal extends JPanel implements KeyListener{
             String display_prop = "";
        
             if ( s_replace.indexOf(" ") >= 0 
-                    && ( s_replace.substring( 0, s_replace.indexOf(" ") ).equalsIgnoreCase("repeat")
-                        || s_replace.substring( 0, s_replace.indexOf(" ") ).equalsIgnoreCase("man") ) )
+                    && ( original.toLowerCase().startsWith("repeat")
+                        || original.toLowerCase().startsWith("man") ) )
             {
-                s_replace = s_replace.trim()
+                s_replace = original.trim()
                     .replaceAll("\\[", "[ ").replaceAll("\\;", " ; ").replaceAll("\\]", " ] ").replaceAll("\\s{2,}", " ");
                 String[] tmp = s_replace.split(" ");
+
+                if ( original.toLowerCase().startsWith("man") && tmp.length > 2 )
+                {
+                    return;
+                }
+
                 s_replace = tmp[ tmp.length-1 ];
 
                 s = original.substring( 0, original.length()-tmp[tmp.length-1].length());
-                System.out.println("DONE");
             }
 
-            System.out.println( "s : " + s );
             ArrayList<String> proposition_completion = auto_completion( s_replace );
 
             if ( proposition_completion.size() == 1 )
             {
-                System.out.println( s + proposition_completion.get(0) );
                 this.champ_de_commande.setText(s + proposition_completion.get(0));
             }
             else if ( proposition_completion.size() > 1 )

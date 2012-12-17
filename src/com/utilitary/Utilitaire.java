@@ -167,6 +167,44 @@ public class Utilitaire
     }
 
     /**
+     *  Affiche le helper
+     *  @param msg_dialog
+     *  @param title
+     */
+    public static void getHelpPane(String msg_dialog)
+    {
+        JFrame window_help = new JFrame( "HELP" );
+        window_help.setMinimumSize( new Dimension( 500, 600 ) );
+        window_help.setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
+      
+        String html = "<html><head></head><body><div class=\"global_div\"><h2>Liste des commandes : </h3>" 
+            + msg_dialog + "</div></body></html>";
+
+        JEditorPane dialog = new JEditorPane();
+        dialog.setContentType("text/html");
+        dialog.setEditable(false);
+
+        HTMLEditorKit kit = (HTMLEditorKit)dialog.getEditorKit();
+
+        StyleSheet css = kit.getStyleSheet();
+        css.addRule( "body {background:#EFEFEF;}" );
+        css.addRule( ".global_div {margin-right:5px; margin-left:5px;}" );
+        css.addRule( "h2 {text-decoration:underline;}" );
+        css.addRule( "td, tr {background:#AAAAAA; border-style:solid; border-width: 2px; border-color:#EFEFEF}" );
+        css.addRule( "td {width:200px;}" );
+
+        kit.setStyleSheet( css );
+        dialog.setEditorKit(kit);
+        dialog.setText(html);
+        dialog.setCaretPosition(0);
+
+        JScrollPane scroll_pane = new JScrollPane( dialog,  JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+                                                            JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
+        window_help.add(scroll_pane);
+        window_help.setVisible(true);
+    }
+
+    /**
      *  Affiche et renvoie l'action de l'utilisateur
      *  @param msg_dialog Le message afficher à l'écran
      *  @param title Titre de la fenêtre
@@ -182,7 +220,6 @@ public class Utilitaire
         JEditorPane dialog = new JEditorPane();
         dialog.setContentType("text/html");
         dialog.setEditable(false);
-
 
         HTMLEditorKit kit = (HTMLEditorKit)dialog.getEditorKit();
         
