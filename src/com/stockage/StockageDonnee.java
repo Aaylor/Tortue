@@ -556,10 +556,10 @@ public class StockageDonnee
 
         manuel.put("pendown", "<div id=\"syntax\">Syntaxe : <ul><li>pendown <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<div id=\"explaination\">Pose l'outil et permet ainsi de dessiner.</div>");
-        manuel.put("penup", "<div id=\"syntax\">Syntaxe : &nbsp;<ul><li>penup, <i>pas d'arguments possible</i></li></ul></div>"
-                                + "<div id=\"explaination\">Lève l'outil et permet ainsi de ne pas dessiner.</div>");
+        manuel.put("penup", "<div id=\"syntax\">Syntaxe : <ul><li>penup, <i>pas d'arguments possible</i></li></ul></div>"
+                                + "<div id=\"explaination\">L&egrave;ve l'outil et permet ainsi de ne pas dessiner.</div>");
         manuel.put("pencil", "<div id=\"syntax\">Syntaxe : <ul><li>pencil, <i>pas d'arguments possible</i></li></ul></div>"
-                                + "<div id=\"explaination\">Passe en mode crayon : dessine selon la couleur et l'epaisseur courante.</div>");
+                                + "<div id=\"explaination\">Passe en mode crayon : dessine selon la couleur et l'&eacute;paisseur courante.</div>");
         manuel.put("eraser", "<div id=\"syntax\">Syntaxe : <ul><li>eraser, <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<div id=\"explaination\">Passe en mode gomme : efface selon la couleur de fond.</div>");
         manuel.put("shape", "<div id=\"syntax\">Syntaxe : <ul><li>shape, <i>pas d'arguments possible</i></li></ul></div>"
@@ -579,24 +579,24 @@ public class StockageDonnee
         manuel.put("center", "<div id=\"syntax\">Syntaxe : <ul><li>center, <i>pas d'arguments possible</i></li></ul></div>" 
                                 + "<div id=\"explaination\">Place l'outil au centre de la zone de dessin</div>");
         manuel.put("getposition", "<div id=\"syntax\">Syntaxe : <ul><li>getposition, <i> pas d'arguments possible</i></li></ul></div>"
-                                + "<div id=\"explaination\">Indique les coordonées courante de l'outil</div>");
-        manuel.put("rotate", "<div id=\"syntax\">Syntaxe : <ul><li>rotate <angle en degr&eacute;></li></ul></div>"
+                                + "<div id=\"explaination\">Indique les coordon&eacute;es courante de l'outil</div>");
+        manuel.put("rotate", "<div id=\"syntax\">Syntaxe : <ul><li>rotate `angle en degr&eacute;`</li></ul></div>"
                                 + "<div id=\"explaination\">Effectue une rotation du curseur.</div>"
                                 + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>rotate 156</li><li>rotate -43</li></ul>");
         manuel.put("addrotate", "<div id=\"syntax\">Syntaxe : <ul><li>addrotate `angle en degr&eacute;`</li></ul></div>"
-                                + "<div id=\"explaination\">Effectue une rotation du curseur à partir de son orientation</div>"
+                                + "<div id=\"explaination\">Effectue une rotation du curseur &agrave; partir de son orientation</div>"
                                 + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>addrotate 34</li><li>rotate -254</li></ul>");
         manuel.put("undo", "<div id=\"syntax\">Syntaxe : <ul><li>undo, <i>pas d'arguments possible</i></li></ul></div>"
-                                + "<div id=\"explaination\">Supprime les dernières actions.</div>");
+                                + "<div id=\"explaination\">Supprime les derni&egrave;res actions.</div>");
         manuel.put("redo", "<div id=\"syntax\">Syntaxe : <ul><li>redo, <i>pas d'arguments possible</i></li></ul></div>"
-                                + "<div id=\"explaination\">Refait les dernières actions supprim&eacute;es.</div>");
+                                + "<div id=\"explaination\">Refait les derni&egrave;res actions supprim&eacute;es.</div>");
         manuel.put("forward", "<div id=\"syntax\">Syntaxe : <ul><li>forward `distance`</li></ul></div>"
                                 + "<div id=\"explaination\">Fait avancer le curseur.</div>"
                                 + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>forward 234</li><li>forward 32</li></ul></div>");
         manuel.put("backward", "<div id=\"syntax\">Syntaxe : <ul><li>backward `distance`</li></ul></div>"
                                 + "<div id=\"explaination\">Fait reculer le curseur.</div>"
                                 + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>backward 234</li><li>backward 32</li></ul></div>");
-        manuel.put("goto", "<div id=\"syntax\">Syntaxe : <ul><li>goto <entier x><entier y></li></ul></div>"
+        manuel.put("goto", "<div id=\"syntax\">Syntaxe : <ul><li>goto `entier x` `entier y`</li></ul></div>"
                                 + "<div id=\"explaination\">D&eacute;place le curseur aux coordonn&eacute;es x et y.</div>"
                                 + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>goto 54 300</li><li>goto 450 32</li></ul></div>");
         manuel.put("cursorwidth", "<div id=\"syntax\">Syntaxe : cursorwidth `int width`</div>"
@@ -610,7 +610,7 @@ public class StockageDonnee
                                 + "vert et bleue) tels qu'ils soient entre 0 et 255. "
                                 + "L'alpha correspond &agrave; la transparence du trac&eacute; (entre 0 et 255)</div>"
                                 + "<div id=\"cmd-color-list\">" + color_list_html + "</div>"
-                                + "<div id=\"example\">Exemple : <ul id=\"no-chip\"><li>setcolor red</li>"
+                                + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>setcolor red</li>"
                                 + "<li>setcolor 100 200 140</li><li>setcolor 255 0 123 200</li></ul></div>");
         manuel.put("setbackgroundcolor", "<div id=\"syntax\">Syntaxe : <ul><li>setbackgroundcolor `couleur`</li>"
                                 + "<li>setcolor `int r` `int g` `int b`</li></ul></div>"
@@ -618,7 +618,7 @@ public class StockageDonnee
                                 + "<br />Un nom de couleur peut &ecirc;tre utilis&eacute; (voir annexe), ou bien des entiers r,g,b (correspondant "
                                 + "respectivement aux couleurs rouge, verte et bleue) tels qu'ils soient entre 0 et 255.</div>"
                                 + "<div id=\"cmd-color-list\">" + color_list_html + "</div>"
-                                + "<div id=\"example\">Exemple : <ul id=\"no-chip\"><li>setbackgroundcolor red</li>"
+                                + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>setbackgroundcolor red</li>"
                                 + "<li>setbackgroundcolor 100 200 140</li><li>setbackgroundcolor 255 0 123</li></ul></div>");
         manuel.put("do", "<div id=\"syntax\">Syntaxe : <ul><li>do `nom figure` `args`</li></ul></div>"
                                 + "<div id=\"explaination\">Dessine une figure selon les arguments donn&eacute; par l'utilisateur."
@@ -627,25 +627,25 @@ public class StockageDonnee
                                 + "     <li>circle `x1` `x2` `width` `fill`</li>"
                                 + "     <li>square `x1` `x2` `width` `fill`</li>"
                                 + "     <li>rectangle `x1` `x2` `width` `height` `fill`</li></ul>"
-                                + "<p>Les valeurs x1 &agrave; x3, y1 &agrave; y3, width, height sont des valeurs entières.</p>"
+                                + "<p>Les valeurs x1 &agrave; x3, y1 &agrave; y3, width, height sont des valeurs enti&egrave;res.</p>"
                                 + "<br />La valeur fill correspond &agrave; la valeur 0 si la figure est vide, 1 si la figure est remplie.</div>"
                                 + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>do circle 100 200 150 1</li><li>do circle 43 540 100 0</li>"
                                 + "<li>do square 334 210 200 1</li><do rectangle 0 320 100 200 0</li><li>do triangle 100 100 437 23 213 89 0</li></ul>");
         manuel.put("width", "<div id=\"syntax\">Syntaxe : <ul><li>width `width`</li></ul></div>"
                                 + "<div id=\"explaination\">Change la largeur de la zone de dessin. ( Ne recalcule pas le dessin )."
-                                + "<br />`width` est ici une valeur entière.</div>"
-                                + "<div id=\"example\"> <ul id=\"no-chip\"><li>width 300</li><li>width 1234</li></ul>");
+                                + "<br />`width` est ici une valeur enti&egrave;re.</div>"
+                                + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>width 300</li><li>width 1234</li></ul>");
         manuel.put("height", "<div id=\"syntax\">Syntaxe : <ul><li>height `height`</li></ul></div>"
                                 + "<div id=\"explaination\">Change la hauteur de la zone de dessin. ( Ne recalcule pas le dessin )."
-                                + "<br />`height` est ici une valeur entière.</div>"
+                                + "<br />`height` est ici une valeur enti&egrave;re.</div>"
                                 + "<div id=\"example\"> <ul id=\"no-chip\"><li>height 300</li><li>height 1234</li></ul>");
         manuel.put("grid", "<div id=\"syntax\">Syntaxe : <ul><li>grid</li><li>grid `width` `height`</li></ul></div>"
                                 + "<div id=\"explaination\">Affiche une grille sur la zone de dessin. Fait partie int&eacute;grante du mode pixelart."
-                                + "<br />Si aucun argument n'est entr&eacute;, une boîte de dialogue est ouverte demande la largeur et"
+                                + "<br />Si aucun argument n'est entr&eacute;, une bo&icirc;te de dialogue est ouverte demande la largeur et"
                                 + "la hauteur des carreaux."
-                                + "<br />Les valeurs `width` et `height` sont des valeurs entières correspondant &agrave; la largeur et"
+                                + "<br />Les valeurs `width` et `height` sont des valeurs enti&egrave;res correspondant &agrave; la largeur et"
                                 + "&agrave; la hauteur des carreaux.</div>"
-                                + "<div id=\"example\"> <ul id=\"no-chip\"><li>grid 10 10</li><li>grid</li></div>");
+                                + "<div id=\"example\">Exemples : <ul id=\"no-chip\"><li>grid 10 10</li><li>grid</li></div>");
         manuel.put("disablegrid", "<div id=\"syntax\">Syntaxe : <ul><li>disablegrid, <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<div id=\"explaination\">D&eacute;sactive la grille.</div>");
         manuel.put("pixelart", "<div id=\"syntax\">Syntaxe : <ul><li>pixelart</li><li>pixelart `size`</li></ul></div>"
@@ -657,29 +657,29 @@ public class StockageDonnee
         manuel.put("disablepixelart", "<div id=\"syntax\">Syntaxe : <ul><li>disablepixelart</li></ul></div>"
                                 + "<div id=\"explaination\"> D&eacute;sactive le mode pixelart (voir le manuel pixelart)</div>");
         manuel.put("new", "<div id=\"syntax\">Syntaxe : <ul><li>new, <i>pas d'arguments possible</i></li></ul></div>"
-                                + "<div id=\"explaination\">Cr&eacute;er un nouveau fichier. Si le fichier courrant a &eacute;t&eacute; modifi&eacute;, "
+                                + "<div id=\"explaination\">Cr&eacute;er un nouveau fichier. Si le fichier courant a &eacute;t&eacute; modifi&eacute;, "
                                 + "alors une demande de sauvegarde "
                                 + "avant de cr&eacute;er le nouveau fichier.</div>");
         manuel.put("open", "<div id=\"syntax\">Syntaxe : <ul><li>open</li><li>open `pathname`</li></ul></div>"
                                 + "<div id=\"explaination\">Ouvre un fichier image."
-                                + "Si aucun argument n'est pr&eacute;cis&eacute;, ouvre une boîte de dialogue permettant le choix d'un fichier image."
+                                + "Si aucun argument n'est pr&eacute;cis&eacute;, ouvre une bo&icirc;te de dialogue permettant le choix d'un fichier image."
                                 + "L'argument `pathname`, doit &ecirc;tre le chemin (absolu ou relatif) de l'image."
                                 + "Le programme ne peut ouvrir que des images PNG, JPG, GIF.</div>"
                                 + "<div id=\"example\"> Exemples : <ul id=\"no-chip\"><li>open</li><li>open /home/myusername/doc/animage.jpg</li><li>open \"c:\\docs\\image\\animage.gif\"</li>");
         manuel.put("save", "<div id=\"syntax\">Syntaxe : <ul><li>save, <i>pas d'arguments possible</i></li></ul></div>"
                                 + "<div id=\"explaination\">Si l'image est d&eacute;j&agrave; associ&eacute; &agrave; un fichier image, alors sauvegarde automatiquement. "
-                                + "Sinon, ouvre une boîte de dialogue permettant de choisir o&ugrave; sauvegarder l'image."
+                                + "Sinon, ouvre une bo&icirc;te de dialogue permettant de choisir o&ugrave; sauvegarder l'image."
                                 + "Les images ne peuvent &ecirc;tre sauvegarder qu'en PNG, JPG, GIF.</div>"
                                 + "<div id=\"example\"> Exemples : <ul id=\"no-chip\"><li>save</li>");
         manuel.put("saveas", "<div id=\"syntax\">Syntaxe : <ul><li>saveas</li><li>saveas `pathname`</li></ul></div>"
-                                + "<div id=\"explaination\">Si aucun argument n'est entr&eacute;, on ouvre alors une boîte de dialogue permettant de choisir "
+                                + "<div id=\"explaination\">Si aucun argument n'est entr&eacute;, on ouvre alors une bo&icirc;te de dialogue permettant de choisir "
                                 + "o&ugrave; sauvegarder l'image."
                                 + "<br />L'argument `pathname` doit &ecirc;tre un chemin valide o&ugrave; sauvegarder l'image. ATTENTION : sauvegarde "
                                 + "par dessus le fichier existant.</div>"
                                 + "<div id=\"example\"> Exemples : <ul id=\"no-chip\"><li>save</li><li>save /home/myusername/animage.png</li><li>save \"c:\\docs\\image\\animage.gif\"</li>");
         manuel.put("savehistory", "<div id=\"syntax\">Syntaxe : <ul><li>savehistory</li><li>savehistory `pathname`</li></ul></div>"
                                 + "<div id=\"explaination\">Permet de sauvegarder le fichier historique."
-                                + "<br />Si aucun argument n'est entr&eacute;, ouvre une boîte de dialogue permettant de choisir o&ugrave; sauvegarder "
+                                + "<br />Si aucun argument n'est entr&eacute;, ouvre une bo&icirc;te de dialogue permettant de choisir o&ugrave; sauvegarder "
                                 + "l'historique."
                                 + "<br />L'argument `pathname` doit &ecirc;tre un chemin valide o&ugrave; sauvegarder l'historique. ATTENTION : sauvegarde "
                                 + "par dessus le fichier existant."
@@ -688,17 +688,17 @@ public class StockageDonnee
                                 + "<li>savehisotry \"c:\\docs\\history\\history.txt\"</li>");
         manuel.put("exec", "<div id=\"syntax\">Syntaxe : <ul><li>exec</li><li>exec `pathname`</li></ul></div>"
                                 + "<div id=\"explaination\">Permet d'executer un historique texte."
-                                + "<br />Si aucun argument n'est entr&eacute;, ouvre une boîte de dialogue permettant de choisir le fichier "
+                                + "<br />Si aucun argument n'est entr&eacute;, ouvre une bo&icirc;te de dialogue permettant de choisir le fichier "
                                 + "&agrave; executer."
                                 + "<br />L'argument `pathname doit &ecirc;tre un chemin valide et un fichier texte.</div>"
                                 + "<div id=\"example\"> Exemples : <ul id=\"no-chip\"><li>exec</li><li>exec /home/myusername/doc/history.txt</li>"
                                 + "<li>exec \"c:\\docs\\history\\history.txt\"</li>");
         manuel.put("repeat", "<div id=\"syntax\">Syntaxe : <ul><li>repeat `nombre de r&eacute;p&eacute;tition` [`args1`; `args2`; ...; `argsN`]</li></ul></div>"
                                 + "<div id=\"explaination\">Permet d'effectuer la r&eacute;p&eacute;tition d'une ou plusieurs suite de commandes."
-                                + "<br />L'argument `nombre de repetition` doit &ecirc;tre un entier (ne peut aller au del&agrave; de 1000)"
+                                + "<br />L'argument `nombre de repetition` doit &ecirc;tre un entier."
                                 + "<br />Les arguments entr&eacute;es sont valide si et seulement si elles appartiennent &agrave; la liste des commandes "
                                 + "valides, mais aussi si les valeurs entr&eacute;es son valide."
-                                + "<br /><br />Des incr&eacute;mentations sont possibles sur la majorit&eacute; des commandes contenant des valeurs entières. "
+                                + "Des incr&eacute;mentations sont possibles sur la majorit&eacute; des commandes contenant des valeurs enti&egrave;res.</div> "
                                 + "<div id=\"cmd-color-list\">" + liste_commandes_valide_repeat + "</div>"
                                 + "<div id=\"example\"> Exemples : <ul id=\"no-chip\"><li>repeat 10 [forward 10; down; forward 10; right]</li>"
                                 + "<li>repeat 300 [forward 1; setcolor +1 +1 +1]</li><li>repeat 5 [rotate +10; forward 5; repeat 5 [setcolor +2 +2 +2]; cursorwidth +5]]</li></ul></div>");
