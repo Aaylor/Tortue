@@ -20,7 +20,13 @@ import javax.swing.UIManager;
 import com.controleur.Controleur;
 import com.term.Terminal;
 
-
+/**
+ *  Fenetre
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 @SuppressWarnings("serial")
 public class Fenetre extends JFrame{
 	BarreMenu barreMenu = new BarreMenu();//Barre de menu

@@ -15,6 +15,13 @@ import javax.swing.JScrollPane;
 
 import com.controleur.Controleur;
 
+/**
+ *  Menu de la fonction grid
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class MenuGrille extends JDialog {	
 	private JLabel labWidth = new JLabel("Largeur des cases de la grille :"); 
 	private JLabel labHeight = new JLabel("Hauteur Horizontal des cases de la grille :");

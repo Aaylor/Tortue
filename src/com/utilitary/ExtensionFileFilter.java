@@ -11,7 +11,14 @@ import com.stockage.StockageDonnee;
 import com.term.Terminal;
 import com.utilitary.*;
 
-class ExtensionFileFilter extends FileFilter
+/**
+ *  Classe comportant les filtres pour les boites de dialogues
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
+public class ExtensionFileFilter extends FileFilter
 {
 
     private String description = "";

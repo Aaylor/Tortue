@@ -16,6 +16,13 @@ import com.stockage.StockageDonnee;
 import com.term.Terminal;
 import com.utilitary.*;
 
+/**
+ *  Classe qui controle la totalité du programme
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class Controleur{
 
     private Terminal term = null;

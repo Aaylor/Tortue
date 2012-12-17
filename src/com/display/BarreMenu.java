@@ -17,6 +17,13 @@ import javax.swing.KeyStroke;
 
 import com.controleur.Controleur;
 
+/**
+ *  Barre de menu
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 @SuppressWarnings("serial")
 public class BarreMenu extends JMenuBar{
 	

@@ -14,6 +14,13 @@ import com.stockage.StockageDonnee;
 import com.term.Terminal;
 import com.utilitary.*;
 
+/**
+ *  Classe comportant toutes les donnees importante a sauvegarder
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class StockageDonnee
 {
     private static ArrayList<String> liste_commande_entree_correcte;

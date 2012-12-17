@@ -11,7 +11,13 @@ import javax.swing.JColorChooser;
 
 import com.controleur.Controleur;
 
-
+/**
+ *  Vignette de la barre d'outils
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class BarreOutilsVignette extends JButton {
 	Curseur c;
 	Controleur controleur;

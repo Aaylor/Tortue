@@ -4,6 +4,13 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+/**
+ *  Traceur
+ *  @author Loic Runarvot
+ *  @author Mehdi Khelifi
+ *  @author Gauthier Lo
+ *  @version 1.0
+ */
 public class Traceur extends JPanel{
 	
 	private int epaisseur;

@@ -9,7 +9,7 @@ function do_javadoc(){
         mkdir $folder;
     fi
 
-    javadoc -charset 'UTF-8' -quiet -d $folder `pwd`"/src/"$java_file; 2> error.log
+    javadoc -charset 'UTF-8' -quiet -d $folder `pwd`"/src/"*; 2> error.log
 
     if [ -s error.log ]; then
         cat error.log;
