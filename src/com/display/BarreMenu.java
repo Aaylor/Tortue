@@ -52,6 +52,10 @@ public class BarreMenu extends JMenuBar{
 	private JMenuItem options = new JMenuItem("Paramètres");
 	private JMenuItem aPropos = new JMenuItem("A propos");
 	
+	//Partie Informative
+	private JMenuItem separateur = new JMenuItem();
+	private static JMenu positionTortue = new JMenu("");
+	
     /**
      *  Constructeur de la Barre d'Outils
      */
@@ -92,6 +96,10 @@ public class BarreMenu extends JMenuBar{
 		menuOutils.addSeparator();
 		menuOutils.add(options);
 		menuOutils.add(aPropos);
+		
+		//Partie informative
+		this.add(separateur);
+		this.add(positionTortue);
 		
 		//Ajout des raccourcis
 		//menuFichier.setMnemonic('F');
@@ -297,5 +305,9 @@ public class BarreMenu extends JMenuBar{
 
 	public JMenuItem getSuivant() {
 		return suivant;
-	} 
+	}
+	
+	public static void setTextPositionTortue(int x, int y){
+		positionTortue.setText("Position  X : " + x + " Y : " + y);
+	}
 }

@@ -363,6 +363,9 @@ public class ZoneDessin extends JPanel{
 		this.setPreferredSize(new Dimension(largeurDessin, hauteurDessin));
 		this.setMinimumSize(new Dimension(largeurDessin, hauteurDessin));
 		this.setMaximumSize(new Dimension(largeurDessin, hauteurDessin));
+		
+		//On envoie les coordonnée de la tortue a la barre de menu
+		BarreMenu.setTextPositionTortue(curseur.getPosX(), curseur.getPosY());
 	}
 
 	
