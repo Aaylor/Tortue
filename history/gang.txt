@@ -1,0 +1,41 @@
+##################################################
+##################################################
+##		HISTORIQUE GENERE LE		##
+##		12-12-12_15-39-03		##
+##################################################
+##################################################
+
+new
+width 500
+height 500
+penup
+pendown 
+repeat 18 [ forward +30 ; repeat 10 [ rotate +90 ]] 
+penup 
+center 
+right 
+up 
+forward 10 
+forward 4 
+pendown 
+right 
+setcolor red 
+repeat 18 [ forward +30 ; repeat 10 [ rotate +90 ]] 
+pendown 
+center 
+up 
+penup 
+forward 28 
+right 
+pendown 
+setcolor green 
+repeat 18 [ forward +30 ; repeat 10 [ rotate +90 ]] 
+center 
+penup 
+up 
+forward 42 
+pendown 
+right 
+setcolor blue 
+repeat 18 [ forward +30 ; repeat 10 [ rotate +90 ]] 
+setcolor white 

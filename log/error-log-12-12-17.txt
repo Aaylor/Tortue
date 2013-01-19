@@ -1,0 +1,8 @@
+[12-57-21] :
+During command : Ligne 13 : terminalbackgroundcolorred=999999
+Warning, argument isn't bewteen 0 & 255
+
+[12-57-21] :
+During command : Ligne 17 : terminalfontcolorgreen=b
+Invalid argument
+

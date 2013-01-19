@@ -1,0 +1,18 @@
+##################################################
+##################################################
+##		HISTORIQUE GENERE LE		##
+##		12-12-17_16-56-56		##
+##################################################
+##################################################
+
+new
+width 750
+height 750
+setcolor 100 200 243
+setbackgroundcolor 255 255 255
+cursorwidth 15
+penup
+pendown 
+cursorwidth 8 
+setcolor 0 0 0 
+repeat 18 [addrotate 20; repeat 18 [addrotate 20; forward 50]; setcolor 100+7 200-3 143+3] 
