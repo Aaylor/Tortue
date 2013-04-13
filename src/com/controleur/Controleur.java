@@ -1026,9 +1026,20 @@ public class Controleur{
      */
     int setColor(int red, int green, int blue, int alpha)
     {
-        red = ( red < 0 ? 0 : ( red > 255 ? 255 : red ) );
-        green = ( green < 0 ? 0 : ( green > 255 ? 255 : green ) );
-        blue = ( red < 0 ? 0 : ( blue > 255 ? 255 : blue ) );
+        do
+        {
+            red = ( red < 0 ? 255 + red : ( red > 255 ? red - 255 : red ) );
+        } while (red < 0 || red > 255);
+        
+        do
+        {
+            green = ( green < 0 ? 255 + green : ( green > 255 ? green - 255 : green ) );
+        } while (green < 0 || green > 255);
+
+        do
+        {
+            blue = ( blue < 0 ? 255 + blue : ( blue > 255 ? blue - 255 : blue ) );
+        } while (blue < 0 || blue > 255);
 
     	curseur.setCouleur(new Color(red,green,blue,alpha));
         barreOutils.misAJourSliderCouleur(red, green, blue);
@@ -1979,7 +1990,7 @@ public class Controleur{
             }
             else if ( i%3 == 2 )
             {
-                liste_commande += "<td>" + current_cmd + "</td></tr";
+                liste_commande += "<td>" + current_cmd + "</td></tr>";
             }
             else
             {
